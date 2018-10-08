@@ -1,10 +1,8 @@
 <template>
     <button class="g-button" :class="{[`icon-${iconPosition}`]:true}">
-        <svg class="icon" aria-hidden="true" v-if="icon">
-            <use :xlink:href="`#i-${icon}`"></use>
-        </svg>
+        <g-icon class="icon" v-if="icon" :name="icon"></g-icon>
         <div class="content">
-            <slot />
+            <slot/>
         </div>
     </button>
 </template>
@@ -18,7 +16,7 @@ export default {
         iconPosition: {
             type: String,
             default: 'left',
-            validator(value){
+            validator(value) {
                 return value === 'left' || value === 'right'
             }
         }
@@ -35,7 +33,7 @@ export default {
     background: var(--button-bg);
     display: inline-flex;
     justify-content: center;
-    align-content: center;
+    align-items: center;
     vertical-align: middle;
     &.icon-left {
         >.icon {
