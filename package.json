@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "UI组件库",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "start": "npx parcel index.html --no-cache"
+  },
   "author": "freda",
   "license": "MIT",
   "dependencies": {
