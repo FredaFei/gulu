@@ -1,6 +1,7 @@
 <template>
     <button class="g-button" :class="{[`icon-${iconPosition}`]:true}">
         <g-icon class="icon" v-if="icon" :name="icon"></g-icon>
+        <g-icon class="icon loading" v-if="loading" name="loading"></g-icon>
         <div class="content">
             <slot/>
         </div>
@@ -19,11 +20,24 @@ export default {
             validator(value) {
                 return value === 'left' || value === 'right'
             }
+        },
+        loading: {
+            type: Boolean,
+            default: false
         }
     }
 }
 </script>
 <style lang="scss" scoped>
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
 .g-button {
     font-size: var(--button-fontSize);
     height: var(--button-height);
@@ -35,6 +49,9 @@ export default {
     justify-content: center;
     align-items: center;
     vertical-align: middle;
+    &>.loading {
+        animation: spin 1.2s infinite linear;
+    }
     &.icon-left {
         >.icon {
             order: 1;
