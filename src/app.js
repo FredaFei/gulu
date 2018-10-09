@@ -17,7 +17,10 @@ new Vue({
 })
 
 import chai from 'chai'
+// 自动点击测试
+import spies from 'chai-spies'
 const expect = chai.expect
+chai.use(spies)
 
 {
   const Constructor = Vue.extend(Button)
@@ -79,4 +82,17 @@ const expect = chai.expect
   expect(order).to.eq('2')
   vm.$el.remove()
   vm.$destroy()
+}
+{
+  const Constructor = Vue.extend(Button)
+  const vm = new Constructor({
+    propsData: {
+      icon: 'settings'
+    }
+  })
+  vm.$mount()
+  let spy = chai.spy(function(){})
+  vm.$on('click', spy)
+  vm.$el.click()
+  expect(spy).to.have.been.called()
 }
