@@ -1,9 +1,13 @@
 <template>
-    <div class="wrapper" :class="[`${type}`]">
-        <input type="text" :value="value" :disabled="disabled" :readonly="readonly">
-        <template v-if="type">
-            <g-icon class="icon" :name="type"></g-icon>
-            <span :class="[`message ${type}-message`]">{{message}}</span>
+    <div class="wrapper" :class="[`${iconType}`]">
+        <input type="text" :value="value" :disabled="disabled" :readonly="readonly"
+        @click="$emit('click',$event)"
+        @change="$emit('change',$event)"
+        @focus="$emit('focus',$event)"
+        @blur="$emit('blur',$event)">
+        <template v-if="iconType">
+            <g-icon class="icon" :name="iconType"></g-icon>
+            <span :class="[`message ${iconType}-message`]">{{message}}</span>
         </template>
     </div>
 </template>
@@ -27,7 +31,7 @@ export default {
             type: Boolean,
             default: false
         },
-        type: {
+        iconType: {
             type: String,
             default: ''
         },
