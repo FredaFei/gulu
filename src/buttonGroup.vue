@@ -1,5 +1,5 @@
 <template>
-    <div class="button-group">
+    <div class="g-button-group">
         <slot/>
     </div>
 </template>
@@ -19,7 +19,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.button-group {
+.g-button-group {
     display: inline-flex;
     vertical-align: middle;
     >.g-button {
