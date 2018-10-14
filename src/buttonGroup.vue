@@ -6,10 +6,11 @@
 
 <script>
 export default {
+    name: 'guluButtonGroup',
     mounted() {
-        for(let node of this.$el.children){
+        for (let node of this.$el.children) {
             let name = node.nodeName.toLowerCase()
-            if(name !== 'button'){
+            if (name !== 'button') {
                 console.warn(`g-button-group  组件的子元素应该全是 g-button, 但你写的是 ${name}`)
             }
         }
@@ -17,13 +18,13 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .button-group {
     display: inline-flex;
     vertical-align: middle;
     >.g-button {
         border-radius: 0;
-        &:not(:first-child){
+        &:not(:first-child) {
             margin-left: -1px;
         }
         &:first-child {
@@ -34,7 +35,7 @@ export default {
             border-top-right-radius: var(--border-radius);
             border-bottom-right-radius: var(--border-radius);
         }
-        &:hover{
+        &:hover {
             position: relative;
             z-index: 1;
         }

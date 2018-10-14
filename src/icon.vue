@@ -6,6 +6,7 @@
 
 <script>
 export default {
+    name: 'guluIcon',
     props: {
         name: {
             type: String,
@@ -15,7 +16,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .g-icon {
     width: 1em;
     height: 1em;
