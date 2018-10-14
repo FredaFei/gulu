@@ -8,11 +8,11 @@
     </button>
 </template>
 <script>
-import Icon from './icon'
+import GIcon from './icon'
 export default {
     name: 'guluButton',
     components:{
-        'g-icon': Icon
+        GIcon
     },
     props: {
         icon: {
