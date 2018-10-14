@@ -15,15 +15,8 @@ new Vue({
     return {
       loading: true,
       value: '张三',
-      message: '名字长度需大于2'
+      message: '名字长度需大于2',
+      value2: 'ha'
     }
-  },
-  created(){
-    setTimeout(()=> {
-      let event = new Event('change')
-      let inputEl = this.$el.querySelector('input')
-      inputEl.dispatchEvent(event)
-      console.log('end')
-    }, 3000);
   }
 })

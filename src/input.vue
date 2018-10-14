@@ -1,10 +1,10 @@
 <template>
     <div class="wrapper" :class="[`${iconType}`]">
         <input type="text" :value="value" :disabled="disabled" :readonly="readonly"
-        @click="$emit('click',$event)"
-        @change="$emit('change',$event)"
-        @focus="$emit('focus',$event)"
-        @blur="$emit('blur',$event)">
+        @click="$emit('click',$event.target.value)"
+        @change="$emit('change',$event.target.value)"
+        @focus="$emit('focus',$event.target.value)"
+        @blur="$emit('blur',$event.target.value)">
         <template v-if="iconType">
             <g-icon class="icon" :name="iconType"></g-icon>
             <span :class="[`message ${iconType}-message`]">{{message}}</span>

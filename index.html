@@ -38,7 +38,13 @@
     <div id="app">
         <div class="box">
             <g-input :value="value" icon-type="error" :message="message"></g-input>
+        </div>
+        <div class="box">
             <g-input :value="value" icon-type="info" :message="message"></g-input>
+        </div>
+        <div class="box">
+            <g-input v-model="value2"></g-input>
+            <p>{{value2}}</p>
         </div>
         <div class="box">
             <g-input :value="value" disabled></g-input>
