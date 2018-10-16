@@ -30,6 +30,7 @@
         }
         .box{
             margin: 20px;
+            background: blue;
         }
     </style>
 </head>
@@ -38,49 +39,15 @@
     <div id="app">
         <div class="box">
             <g-row>
-                <g-col>1</g-col>
-                <g-col>2</g-col>
+                <g-col span="12" offset="10">2</g-col>
+                <g-col span="6">6</g-col>
+                <g-col span="6">4</g-col>
             </g-row>
             <g-row>
-                <g-col span="2">2</g-col>
-                <g-col span="6">6</g-col>
-                <g-col span="4">4</g-col>
-            </g-row>
-            <g-row gutter="30">
-                <g-col span="6">6</g-col>
-                <g-col span="6">6</g-col>
-                <g-col span="22">22</g-col>
+                <g-col span="8" :phone="{span:24}" :narrow-pc="{span:22}">6</g-col>
+                <g-col span="14" :phone="{span:24}" :narrow-pc="{span:2}">22</g-col>
             </g-row>
         </div>
-
-
-        <div class="box">
-            <g-input :value="value" icon-type="error" :message="message"></g-input>
-        </div>
-        <div class="box">
-            <g-input :value="value" icon-type="info" :message="message"></g-input>
-        </div>
-        <div class="box">
-            <g-input v-model="value2"></g-input>
-            <p>{{value2}}</p>
-        </div>
-        <div class="box">
-            <g-input :value="value" disabled></g-input>
-            <g-input :value="value" readonly error="info"></g-input>
-        </div>
-        <div class="box">
-            <g-button>按钮</g-button>
-            <g-button icon="settings">按钮</g-button>
-            <g-button icon=settings icon-position="right">按钮</g-button>
-            <g-button icon-position="right" :loading="loading" @click="loading=!loading">按钮</g-button>
-            <g-button-group>
-                <g-button icon=left icon-position="left">上一页</g-button>
-                <g-button>1</g-button>
-                <g-button icon=right icon-position="right">下一页</g-button>
-            </g-button-group>
-        </div>
-
-
     </div>
     <script src="./src/app.js"></script>
     <script src="//at.alicdn.com/t/font_862456_p07n5ma1j5o.js"></script>
