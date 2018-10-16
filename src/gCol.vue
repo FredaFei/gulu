@@ -1,6 +1,6 @@
 <template>
     <div class="col-container" :class="[span&&`col-${span}`,offset&&`offset-${offset}`]"
-    :style="{paddingLeft:gutter/2+'px',paddingRight:gutter/2+'px'}">
+    :style="colStyle">
         <div style="border: 1px solid green;height:100px;">
             <slot></slot>
         </div>
@@ -18,6 +18,15 @@ export default {
             type: [String, Number]
         }
     },
+    computed: {
+        colStyle() {
+            let { gutter } = this
+            return {
+                paddingLeft: gutter / 2 + 'px',
+                paddingRight: gutter / 2 + 'px'
+            }
+        }
+    }
 
 }
 </script>
@@ -25,7 +34,6 @@ export default {
 <style lang="scss" scoped>
 .col-container {
   height: 100%;
-  width: 50%;
   border: 1px solid red;
   background: gray;
   $class-prefix: col-;
