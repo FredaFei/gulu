@@ -9,7 +9,7 @@
 
 <script>
 export default {
-    name: 'gCol',
+    name: 'guluCol',
     props: {
         span: {
             type: [String, Number]
