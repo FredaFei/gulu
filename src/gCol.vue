@@ -1,8 +1,6 @@
 <template>
   <div class="col" :class="colClass" :style="colStyle">
-    <div style="border: 1px solid green;height:100px;">
-      <slot></slot>
-    </div>
+    <slot></slot>
   </div>
 </template>
 
@@ -51,14 +49,14 @@ export default {
         ipad,
         narrowPc,
         pc,
-        } = this
+        createClass
+      } = this
       return [
-        span && `col-${span}`,
-        offset && `col-${offset}`,
-        phone && `col-phone-${phone.span}`,
-        narrowPc && `col-narrow-pc-${narrowPc.span}`,
-        ipad && `col-ipad-${ipad.span}`,
-        pc && `col-pc-${pc.span}`
+        ...createClass({span,offset}),
+        ...createClass(phone,'phone-'),
+        ...createClass(ipad,'ipad-'),
+        ...createClass(narrowPc,'narrow-pc-'),
+        ...createClass(pc,'pc-')
       ]
     },
     colStyle() {
@@ -70,6 +68,20 @@ export default {
         paddingRight: gutter / 2 + 'px'
       }
     }
+  },
+  methods: {
+    // str: pc-、ipad-...
+    createClass(obj,str=''){
+      if(!obj)return []
+      let array = []
+      if(obj.span){
+        array.push(`col-${str}${obj.span}`)
+      }
+      if(obj.offset){
+        array.push(`col-${str}${obj.offset}`)
+      }
+      return array
+    }
   }
 
 }
@@ -78,7 +90,6 @@ export default {
 <style lang="scss" scoped>
 .col {
   height: 100%;
-  border: 1px solid red;
   background: gray;
   $class-prefix: col-;
   @for $n from 1 through 24 {
