@@ -10,7 +10,7 @@ describe('GRow', () => {
     it('存在.', () => {
         expect(GRow).to.be.ok
     })
-    describe('props', done => {
+    describe('props', (done) => {
         const Constructor = Vue.extend(GRow)
         let vm
         afterEach(() => {
