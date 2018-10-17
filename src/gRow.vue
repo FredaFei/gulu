@@ -13,8 +13,8 @@ export default {
         },
         align: {
             type: String,
-            validator(val){
-                return ['left','center','right'].includes(val)
+            validator(val) {
+                return ['left', 'center', 'right'].includes(val)
             }
         }
     },
@@ -22,12 +22,12 @@ export default {
         rowStyle() {
             let { gutter } = this
             return {
-                marginLeft: -gutter / 2 + 'px', 
+                marginLeft: -gutter / 2 + 'px',
                 marginRight: -gutter / 2 + 'px'
             }
         },
-        rowClass(){
-            let {align} = this
+        rowClass() {
+            let { align } = this
             return [align && `align-${align}`]
         }
     }
@@ -36,16 +36,16 @@ export default {
 
 <style lang="scss" scoped>
 .row {
-  display: flex;
-  flex-wrap: wrap;
-  &.align-left{
-      justify-content: flex-start;
-  }
-  &.align-center{
-      justify-content: center;
-  }
-  &.align-right{
-      justify-content: flex-end;
-  }
+    display: flex;
+    flex-wrap: wrap;
+    &.align-left {
+        justify-content: flex-start;
+    }
+    &.align-center {
+        justify-content: center;
+    }
+    &.align-right {
+        justify-content: flex-end;
+    }
 }
 </style>

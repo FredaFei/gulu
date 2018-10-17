@@ -14,13 +14,13 @@ Vue.component('g-col', GCol)
 Vue.component('g-row', GRow)
 
 new Vue({
-  el: '#app',
-  data(){
-    return {
-      loading: true,
-      value: '张三',
-      message: '名字长度需大于2',
-      value2: 'ha'
+    el: '#app',
+    data() {
+        return {
+            loading: true,
+            value: '张三',
+            message: '名字长度需大于2',
+            value2: 'ha'
+        }
     }
-  }
 })

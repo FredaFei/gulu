@@ -11,7 +11,7 @@
 import GIcon from './icon'
 export default {
     name: 'guluButton',
-    components:{
+    components: {
         GIcon
     },
     props: {
@@ -54,29 +54,29 @@ export default {
     justify-content: center;
     align-items: center;
     vertical-align: middle;
-    &>.loading {
+    & > .loading {
         animation: spin 1.2s infinite linear;
     }
     &.icon-left {
-        >.icon {
+        > .icon {
             order: 1;
-            margin-right: .2em;
+            margin-right: 0.2em;
         }
-        >.content {
+        > .content {
             order: 2;
         }
     }
     &.icon-right {
-        >.icon {
+        > .icon {
             order: 2;
-            margin-left: .2em;
+            margin-left: 0.2em;
         }
-        >.content {
+        > .content {
             order: 1;
         }
     }
     &:hover {
-        border-color: var(--border-color-hover)
+        border-color: var(--border-color-hover);
     }
 
     &:active {

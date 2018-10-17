@@ -1,37 +1,37 @@
 {
-  "name": "gulu",
-  "version": "1.0.0",
-  "description": "UI组件库",
-  "main": "index.js",
-  "scripts": {
-    "start": "npx parcel index.html --no-cache",
-    "dev-test": "parcel watch test/* --no-cache & karma start",
-    "test": "parcel build test/* --no-cache --no-minify && karma start --single-run"
-  },
-  "author": "freda",
-  "license": "MIT",
-  "dependencies": {
-    "vue": "^2.5.17",
-    "vue-hot-reload-api": "^2.3.1"
-  },
-  "devDependencies": {
-    "@vue/component-compiler-utils": "^2.2.0",
-    "chai": "^4.2.0",
-    "chai-spies": "^1.0.0",
-    "karma": "^3.0.0",
-    "karma-chai": "^0.1.0",
-    "karma-chai-spies": "^0.1.4",
-    "karma-chrome-launcher": "^2.2.0",
-    "karma-mocha": "^1.3.0",
-    "karma-sinon-chai": "^2.0.2",
-    "mocha": "^5.2.0",
-    "parcel-bundler": "^1.10.3",
-    "sass": "^1.14.1",
-    "sinon": "^6.3.5",
-    "sinon-chai": "^3.2.0",
-    "vue-template-compiler": "^2.5.17"
-  },
-  "alias": {
-    "vue": "./node_modules/vue/dist/vue.common.js"
-  }
+    "name": "gulu",
+    "version": "1.0.0",
+    "description": "UI组件库",
+    "main": "index.js",
+    "scripts": {
+        "start": "npx parcel index.html --no-cache",
+        "dev-test": "parcel watch test/* --no-cache & karma start",
+        "test": "parcel build test/* --no-cache --no-minify && karma start --single-run"
+    },
+    "author": "freda",
+    "license": "MIT",
+    "dependencies": {
+        "vue": "^2.5.17",
+        "vue-hot-reload-api": "^2.3.1"
+    },
+    "devDependencies": {
+        "@vue/component-compiler-utils": "^2.2.0",
+        "chai": "^4.2.0",
+        "chai-spies": "^1.0.0",
+        "karma": "^3.0.0",
+        "karma-chai": "^0.1.0",
+        "karma-chai-spies": "^0.1.4",
+        "karma-chrome-launcher": "^2.2.0",
+        "karma-mocha": "^1.3.0",
+        "karma-sinon-chai": "^2.0.2",
+        "mocha": "^5.2.0",
+        "parcel-bundler": "^1.10.3",
+        "sass": "^1.14.1",
+        "sinon": "^6.3.5",
+        "sinon-chai": "^3.2.0",
+        "vue-template-compiler": "^2.5.17"
+    },
+    "alias": {
+        "vue": "./node_modules/vue/dist/vue.common.js"
+    }
 }

@@ -39,7 +39,6 @@ export default {
             type: String,
             default: ''
         }
-
     }
 }
 </script>
@@ -49,7 +48,7 @@ $font-size: 14px;
 $color: #333;
 $border-color: rgba(102, 102, 102, 1);
 $border-radius: 4px;
-$error-color: #F1453D;
+$error-color: #f1453d;
 $info-color: #67c23a;
 $border-color-hover: #666;
 .wrapper {
@@ -57,13 +56,13 @@ $border-color-hover: #666;
     justify-content: center;
     align-items: center;
     font-size: $font-size;
-    >:not(:last-child) {
-        margin-right: .5em;
+    > :not(:last-child) {
+        margin-right: 0.5em;
     }
-    &>.message {
+    & > .message {
         font-size: 12px;
     }
-    >input {
+    > input {
         width: 128px;
         padding: 0 8px;
         height: 32px;
@@ -75,7 +74,7 @@ $border-color-hover: #666;
         }
         &:focus {
             outline: none;
-            box-shadow: inset 0 1px 3px rgba(0, 0, 0, .2);
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
         }
         &[disabled],
         &[readonly] {
@@ -86,24 +85,24 @@ $border-color-hover: #666;
         }
     }
     &.error {
-        >input {
+        > input {
             border-color: $error-color;
         }
-        >.icon {
+        > .icon {
             fill: $error-color;
         }
-        >.error-message {
+        > .error-message {
             color: $error-color;
         }
     }
     &.info {
-        >input {
+        > input {
             border-color: $info-color;
         }
-        >.icon {
+        > .icon {
             fill: $info-color;
         }
-        >.info-message {
+        > .info-message {
             color: $info-color;
         }
     }

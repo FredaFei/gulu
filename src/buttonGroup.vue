@@ -11,7 +11,9 @@ export default {
         for (let node of this.$el.children) {
             let name = node.nodeName.toLowerCase()
             if (name !== 'button') {
-                console.warn(`g-button-group  组件的子元素应该全是 g-button, 但你写的是 ${name}`)
+                console.warn(
+                    `g-button-group  组件的子元素应该全是 g-button, 但你写的是 ${name}`
+                )
             }
         }
     }
@@ -22,7 +24,7 @@ export default {
 .g-button-group {
     display: inline-flex;
     vertical-align: middle;
-    >.g-button {
+    > .g-button {
         border-radius: 0;
         &:not(:first-child) {
             margin-left: -1px;
