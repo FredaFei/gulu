@@ -1,10 +1,10 @@
 <template>
     <div class="toast">
-        <div :class="['content',{border:!autoClose &&closeButton}]">
+        <div :class="['content',{border:!autoClose&&closeButton.text}]">
             <slot v-if="enableHtml" v-html="$slots.default[0]"></slot>
             <slot v-else></slot>
         </div>
-        <span class="close" v-if="closeButton" @click="onClose">{{closeButton.text}}</span>
+        <span class="close" v-if="closeButton&&!autoClose" @click="onClose">{{closeButton.text}}</span>
     </div>
 </template>
 
@@ -18,13 +18,13 @@ export default {
         },
         autoCloseDelay: {
             type: Number,
-            default: 3
+            default: 2
         },
         closeButton: {
             type: Object,
             default: () => {
                 return {
-                    text: '',
+                    text: '关闭',
                     callback: undefined
                 }
             }
@@ -34,11 +34,14 @@ export default {
             default: false
         }
     },
+    mounted() {
+        this.execAutoClose()
+    },
     methods: {
         execAutoClose() {
             if (this.autoClose) {
                 setTimeout(() => {
-                    this.close
+                    this.close()
                 }, this.autoCloseDelay * 1000)
             }
         },
