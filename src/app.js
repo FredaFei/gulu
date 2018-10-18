@@ -35,12 +35,12 @@ new Vue({
       this.$toast('i am a toast!i am a toast!')
     },
     showTaost1() {
-      this.$toast('i am a toast!i am a toast!', {
+      this.$toast(`i am a toast!i am a toast! ${parseInt(Math.random()*100)}`, {
         autoCloseDelay: 4
       })
     },
     showTaost2() {
-      this.$toast('i am a toast!i am a toast!', {
+      this.$toast(`i am a toast!i am a toast! ${parseInt(Math.random()*100)}`, {
         autoClose: false,
         position: 'top'
       })
