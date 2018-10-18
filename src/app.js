@@ -28,12 +28,31 @@ new Vue({
         }
     },
     mounted() {
-        console.log(123)
-        this.showTaost()
+        // this.showTaost()
     },
     methods: {
         showTaost(){
-            this.$toast('i am a toast!')
+            this.$toast('i am a toast!i am a toast!')
+        },
+        showTaost1(){
+            this.$toast('i am a toast!i am a toast!',{
+                autoCloseDelay: 4
+            })
+        },
+        showTaost2(){
+            this.$toast('i am a toast!i am a toast!',{
+                autoClose: false
+            })
+        },
+        showTaost3(){
+            this.$toast('i am a toast!i am a toast!',{
+                autoClose: true
+            })
+        },
+        showTaost4(){
+            this.$toast('i am a toast!i am a toast!',{
+                autoClose: true
+            })
         }
     }
 })
