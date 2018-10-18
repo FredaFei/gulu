@@ -1,6 +1,6 @@
 <template>
-    <div class="toast">
-        <div :class="['content',{border:!autoClose&&closeButton.text}]">
+    <div class="toast" :class="`position-${position}`">
+        <div class="content" :class="toastClass">
             <slot v-if="enableHtml" v-html="$slots.default[0]"></slot>
             <slot v-else></slot>
         </div>
@@ -32,6 +32,15 @@ export default {
         enableHtml: {
             type: Boolean,
             default: false
+        },
+        position: {
+            type: String,
+            default: 'middle'
+        },
+    },
+    computed: {
+        toastClass() {
+            return [{ 'border': !this.autoClose }]
         }
     },
     mounted() {
@@ -67,6 +76,9 @@ $toast-bg: rgba(0, 0, 0, 0.75);
 $box-shadow: rgba(0, 0, 0, 0.5);
 $border-color: #666;
 .toast {
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -76,9 +88,22 @@ $border-color: #666;
     background: $toast-bg;
     border-radius: 4px;
     box-shadow: 0 1px 3px 0 $box-shadow;
+    &.position-top {
+        top: 0;
+        transform: translate(0 -50%);
+        border-radius: 0 0 4px 4px;
+    }
+    &.position-middle {
+        top: 50%;
+        transform: translate(-50%, -50%);
+    }
+    &.position-bottom {
+        bottom: 0;
+        border-radius: 4px 4px 0 0;
+    }
     .content {
         flex: 1;
-        padding: 12px 0;
+        padding: 12px 16px 12px 0;
         &.border {
             border-right: 1px solid $border-color;
         }

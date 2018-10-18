@@ -41,7 +41,8 @@ new Vue({
     },
     showTaost2() {
       this.$toast('i am a toast!i am a toast!', {
-        autoClose: false
+        autoClose: false,
+        position: 'top'
       })
     },
     showTaost3() {
