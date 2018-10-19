@@ -37,7 +37,10 @@ export default {
         },
         position: {
             type: String,
-            default: 'middle'
+            default: 'middle',
+            validator(val){
+                return ['top','middle','bottom'].includes(val)
+            }
         },
     },
     computed: {
@@ -79,6 +82,7 @@ $toast-bg: rgba(0, 0, 0, 0.75);
 $box-shadow: rgba(0, 0, 0, 0.5);
 $border-color: #666;
 $animation: .2s linear;
+// todo 离开的动画
 @keyframes fade-in {
     0% {
         opacity: 0;
