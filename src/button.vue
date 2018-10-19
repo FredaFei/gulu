@@ -57,6 +57,9 @@ export default {
     & > .loading {
         animation: spin 1.2s infinite linear;
     }
+    > .content {
+        line-height: 1em;
+    }
     &.icon-left {
         > .icon {
             order: 1;

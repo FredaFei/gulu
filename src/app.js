@@ -46,9 +46,9 @@ new Vue({
       })
     },
     showTaost3() {
-      this.$toast('i am a toast!i am a toast!', {
+      this.$toast('i am a toast!', {
         autoClose: false,
-        position: 'top',
+        position: 'middle',
         closeButton: {
           text: '关闭',
           callback() {

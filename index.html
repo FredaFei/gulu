@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <style>
+    <style lang="scss">
         * {
             margin: 0;
             padding: 0;
@@ -14,7 +14,6 @@
         }
 
         body {
-            margin: 20px;
             font-size: var(--button-fontSize);
         }
 
@@ -29,19 +28,123 @@
             --border-color-hover: #666;
         }
 
-        .box {
+        .module-wrapper {
             margin: 20px;
+            color: #0d1a26;
+        }
+
+        .module-hd {}
+
+        .module-bd {
+            margin-top: 10px;
+            padding: 14px;
+            border-radius: 4px;
+            border: 1px solid #ebedf0
+        }
+
+        .box {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .g-button {
+            margin-bottom: 16px;
         }
     </style>
 </head>
 
 <body>
     <div id="app">
-        <div class="box">
-            <button @click="showTaost1">click me</button>
-            <button @click="showTaost2">click me</button>
-            <button @click="showTaost3">click me</button>
-            <button @click="showTaost4">click me</button>
+        <div class="module-wrapper">
+            <div class="module-hd">
+                <h2>Button 按钮</h2>
+                <h5>代码演示:</h5>
+            </div>
+            <div class="module-bd">
+                <div class="box">
+                    <g-button>默认</g-button>
+                    <g-button icon="settings">icon 左边</g-button>
+                    <g-button icon="right" icon-position="right">icon 右边</g-button>
+                    <g-button loading>loading</g-button>
+                    <g-button-group>
+                        <g-button icon="left">prev</g-button>
+                        <g-button loading>loading</g-button>
+                        <g-button icon="right" icon-position="right">next</g-button>
+                    </g-button-group>
+                </div>
+            </div>
+
+        </div>
+        <div class="module-wrapper">
+            <div class="module-hd">
+                <h2>Input 输入框</h2>
+                <h5>代码演示:</h5>
+            </div>
+            <div class="module-bd">
+                <div class="box">
+                    <g-input value="张三"></g-input>
+                    <g-input value="只读" readonly></g-input>
+                    <g-input value="disabled" disabled></g-input>
+                    <g-input value="12345" icon-type="error" message="密码长度需超过6位"></g-input>
+                    <g-input value="12345" icon-type="info" message="密码安全等级 一般"></g-input>
+                </div>
+            </div>
+        </div>
+        <div class="module-wrapper">
+            <div class="module-hd">
+                <h2>Toast 提示</h2>
+                <h5>代码演示:</h5>
+            </div>
+            <div class="module-bd">
+                <div class="box">
+                    <g-button @click="showTaost1">默认</g-button>
+                    <g-button @click="showTaost2">手动关闭</g-button>
+                    <g-button @click="showTaost2">顶部</g-button>
+                    <g-button @click="showTaost3">居中</g-button>
+                    <g-button @click="showTaost4">底部</g-button>
+                </div>
+            </div>
+        </div>
+        <div class="module-wrapper">
+            <div class="module-hd">
+                <h2>Grid 栅格</h2>
+                <h5>代码演示:</h5>
+            </div>
+            <div class="module-bd">
+                <div class="box">
+                    <g-row>
+                        <g-col span="12">col-12</g-col>
+                        <g-col span="12">col-12</g-col>
+                    </g-row>
+                    <g-row>
+                        <g-col span="8">col-8</g-col>
+                        <g-col span="8">col-8</g-col>
+                        <g-col span="8">col-8</g-col>
+                    </g-row>
+                    <g-row>
+                        <g-col span="6">col-6</g-col>
+                        <g-col span="6">col-6</g-col>
+                        <g-col span="6">col-6</g-col>
+                        <g-col span="6">col-6</g-col>
+                    </g-row>
+                    <g-row align="right">
+                            <g-col span="17" offset="1">col-17</g-col>
+                            <g-col span="5" offset="1">col-5</g-col>
+                        </g-row>
+                    <g-row gutter="16" align="center">
+                            <g-col span="5" offset="1">col-6</g-col>
+                            <g-col span="5" offset="1">col-6</g-col>
+                        </g-row>
+                    <g-row gutter="16">
+                        <g-col span="6"><div style="background:#fafafa">col-6</div></g-col>
+                        <g-col span="6"><div style="background:#fafafa">col-6</div></g-col>
+                        <g-col span="6"><div style="background:#fafafa">col-6</div></g-col>
+                        <g-col span="6"><div style="background:#fafafa">col-6</div></g-col>
+                    </g-row>
+                </div>
+            </div>
         </div>
     </div>
     <script src="./src/app.js"></script>

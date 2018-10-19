@@ -30,7 +30,12 @@ export default {
             let { align } = this
             return [align && `align-${align}`]
         }
-    }
+    },
+    mounted() {
+        this.$children.forEach(vm=>{
+            vm.gutter = this.gutter
+        })
+    },
 }
 </script>
 
@@ -38,6 +43,7 @@ export default {
 .row {
     display: flex;
     flex-wrap: wrap;
+    width: 100%;
     &.align-left {
         justify-content: flex-start;
     }

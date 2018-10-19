@@ -40,6 +40,11 @@ export default {
             validator
         }
     },
+    data(){
+        return {
+            gutter: 0
+        }
+    },
     computed: {
         colClass() {
             let { span, offset, phone, ipad, narrowPc, pc, createClass } = this
@@ -53,9 +58,11 @@ export default {
         },
         colStyle() {
             let { gutter } = this
-            return {
-                paddingLeft: gutter / 2 + 'px',
-                paddingRight: gutter / 2 + 'px'
+            if(gutter !== 0){
+                return {
+                    paddingLeft: gutter / 2 + 'px',
+                    paddingRight: gutter / 2 + 'px'
+                }
             }
         }
     },
@@ -79,19 +86,20 @@ export default {
 <style lang="scss" scoped>
 .col {
     height: 100%;
-    background: gray;
-    $class-prefix: col-;
-    @for $n from 1 through 24 {
-        &.#{$class-prefix}#{$n} {
-            width: ($n/24) * 100%;
-        }
-    }
+    background: #ddd;
     $class-prefix: offset-;
     @for $n from 1 through 24 {
         &.#{$class-prefix}#{$n} {
             margin-left: ($n/24) * 100%;
         }
     }
+    $class-prefix: col-;
+    @for $n from 1 through 24 {
+        &.#{$class-prefix}#{$n} {
+            width: ($n/24) * 100%;
+        }
+    }
+
     @media (max-width: 576px) {
         $class-prefix: offset-phone-;
         @for $n from 1 through 24 {
