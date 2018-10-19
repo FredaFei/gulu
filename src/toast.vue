@@ -149,7 +149,7 @@ $animation: .2s linear;
             flex: 1;
             padding: 12px 0;
             &.border {
-                padding-left: 16px; 
+                padding-right: 16px; 
                 border-right: 1px solid $border-color;
             }
         }
