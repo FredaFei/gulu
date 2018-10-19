@@ -44,6 +44,7 @@ export default {
     display: flex;
     flex-wrap: wrap;
     width: 100%;
+    background: red;
     &.align-left {
         justify-content: flex-start;
     }
