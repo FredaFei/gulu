@@ -2,7 +2,7 @@
     <div class="wrapper" :class="`position-${position}`">
         <div class="toast">
             <div class="content" :class="toastClass">
-                <slot v-if="enableHtml" v-html="$slots.default[0]"></slot>
+                <div v-if="enableHtml" v-html="$slots.default[0]"></div>
                 <slot v-else></slot>
             </div>
             <span class="close" v-if="closeButton&&!autoClose" @click="onClose">{{closeButton.text}}</span>

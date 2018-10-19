@@ -58,8 +58,9 @@ new Vue({
       })
     },
     showTaost4() {
-      this.$toast('i am a toast!i am a toast!', {
+      this.$toast('i am a toast!i am a toast! <strong id="test">test strong</strong>', {
         position: 'bottom',
+        enableHtml: true
       })
     }
   }
