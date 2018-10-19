@@ -36,7 +36,7 @@ new Vue({
     },
     showTaost1() {
       this.$toast(`i am a toast!i am a toast! ${parseInt(Math.random()*100)}`, {
-        autoCloseDelay: 4
+        autoCloseDelay: 40,
       })
     },
     showTaost2() {

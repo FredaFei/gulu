@@ -31,7 +31,6 @@
 
         .box {
             margin: 20px;
-            background: blue;
         }
     </style>
 </head>
@@ -43,21 +42,6 @@
             <button @click="showTaost2">click me</button>
             <button @click="showTaost3">click me</button>
             <button @click="showTaost4">click me</button>
-        </div>
-        <div class="box">
-            <g-row align="right">
-                <g-col span="6">6</g-col>
-                <g-col span="6">4</g-col>
-            </g-row>
-            <g-row>
-                <g-col span="12" offset="10">2</g-col>
-                <g-col span="6">6</g-col>
-                <g-col span="6">4</g-col>
-            </g-row>
-            <g-row>
-                <g-col span="8" :phone="{span:24}" :narrow-pc="{span:22,offset:1}">6</g-col>
-                <g-col span="14" :phone="{span:24}" :narrow-pc="{span:2,offset:1}">22</g-col>
-            </g-row>
         </div>
     </div>
     <script src="./src/app.js"></script>

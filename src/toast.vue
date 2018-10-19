@@ -147,8 +147,9 @@ $animation: .2s linear;
         box-shadow: 0 1px 3px 0 $box-shadow;
         .content {
             flex: 1;
-            padding: 12px 16px 12px 0;
+            padding: 12px 0;
             &.border {
+                padding-left: 16px; 
                 border-right: 1px solid $border-color;
             }
         }
