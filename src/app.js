@@ -6,6 +6,7 @@ import Input from './input'
 import GCol from './gCol'
 import GRow from './gRow'
 import GLayout from './layout'
+import GSider from './sider'
 import GHeader from './header'
 import GContent from './content'
 import GFooter from './footer'
@@ -19,6 +20,7 @@ Vue.component('g-input', Input)
 Vue.component('g-col', GCol)
 Vue.component('g-row', GRow)
 Vue.component('g-layout', GLayout)
+Vue.component('g-sider', GSider)
 Vue.component('g-header', GHeader)
 Vue.component('g-content', GContent)
 Vue.component('g-footer', GFooter)

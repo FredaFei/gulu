@@ -39,7 +39,7 @@
             margin-top: 10px;
             padding: 14px;
             border-radius: 4px;
-            border: 1px solid #ebedf0
+            border: 1px solid #ebedf0;
         }
 
         .box {
@@ -51,6 +51,26 @@
 
         .g-button {
             margin-bottom: 16px;
+        }
+        .demo + .demo{
+            margin-top: 20px;
+        }
+        .demo>.sider {
+            width: 200px;
+            background: #aaaaaa;
+        }
+
+        .demo>.header,
+        .demo>.footer {
+            line-height: 40px;
+            background: blue;
+            color: #fff;
+            font-size: 16px;
+        }
+
+        .demo>.content {
+            background: #ddd;
+            height: 400px;
         }
     </style>
 </head>
@@ -147,10 +167,18 @@
                 <h5>代码演示:</h5>
             </div>
             <div class="module-bd">
-                <g-layout>
-                    <g-header>header</g-header>
-                    <g-content>content</g-content>
-                    <g-footer>footer</g-footer>
+                <g-layout class="demo">
+                    <g-header class="header">header</g-header>
+                    <g-content class="content">content</g-content>
+                    <g-footer class="footer">footer</g-footer>
+                </g-layout>
+                <g-layout class="demo">
+                    <g-sider class="sider">sider</g-sider>
+                    <g-layout class="demo">
+                        <g-header class="header">header</g-header>
+                        <g-content class="content">content</g-content>
+                        <g-footer class="footer">footer</g-footer>
+                    </g-layout>
                 </g-layout>
             </div>
         </div>
