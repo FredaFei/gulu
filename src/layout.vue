@@ -15,9 +15,7 @@ export default {
         }
     },
     mounted() {
-        console.log(this.$children)
         this.$children.forEach(item=>{
-            console.log(item.$options.name)
             if(item.$options.name === 'guluSider'){
                 this.layoutClass.hasSider = true
             }

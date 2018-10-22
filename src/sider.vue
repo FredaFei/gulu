@@ -30,7 +30,7 @@ export default {
     .slide-enter,.slide-leave-to{
         margin-left: -200px;
     }
-    .slide-leave-active,.slide-enter-active{
+    .slide-enter-active,.slide-leave-active{
         transition: all .2s ease;
     }
 </style>
