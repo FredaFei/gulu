@@ -1,8 +1,10 @@
 <template>
+<transition name="slide">
     <div class="sider" v-if="visible">
         <slot></slot>
         <button class="close" @click="visible=false">close</button>
     </div>
+</transition>
 </template>
 
 <script>
@@ -24,5 +26,11 @@ export default {
             top: 0;
             right: 0;
         }
+    }
+    .slide-enter,.slide-leave-to{
+        margin-left: -200px;
+    }
+    .slide-leave-active,.slide-enter-active{
+        transition: all .2s ease;
     }
 </style>
