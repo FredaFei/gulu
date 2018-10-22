@@ -85,16 +85,20 @@
                 <h5>代码演示:</h5>
             </div>
             <div class="module-bd">
-                <g-tabs>
+                <g-tabs :selected.sync="selectedTabs" @update:selected="selectedFn">
                     <g-tabs-header>
-                        <g-tabs-item>sport</g-tabs-item>
-                        <g-tabs-item>music</g-tabs-item>
-                        <g-tabs-item>moving</g-tabs-item>
+                        <template slot="actions"><button>设置</button></template>
+                        <g-tabs-item name="sport">
+                            <g-icon name="settings"></g-icon>
+                            sport
+                        </g-tabs-item>
+                        <g-tabs-item name="music" disabled>music</g-tabs-item>
+                        <g-tabs-item name="moving">moving</g-tabs-item>
                     </g-tabs-header>
                     <g-tabs-body>
-                        <g-tabs-pane>sport content</g-tabs-pane>
-                        <g-tabs-pane>music content</g-tabs-pane>
-                        <g-tabs-pane>moving content</g-tabs-pane>
+                        <g-tabs-pane name="sport">sport content</g-tabs-pane>
+                        <g-tabs-pane name="music">music content</g-tabs-pane>
+                        <g-tabs-pane name="moving">moving content</g-tabs-pane>
                     </g-tabs-body>
                 </g-tabs>
             </div>

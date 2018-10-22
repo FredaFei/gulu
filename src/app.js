@@ -45,13 +45,17 @@ new Vue({
       loading: true,
       value: '张三',
       message: '名字长度需大于2',
-      value2: 'ha'
+      value2: 'ha',
+      selectedTabs: 'sport'
     }
   },
   mounted() {
     // this.showTaost()
   },
   methods: {
+      selectedFn(){
+          console.log(90)
+      },
     showTaost() {
       this.$toast('i am a toast!i am a toast!')
     },
