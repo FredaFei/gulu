@@ -26,7 +26,8 @@ export default {
     computed: {
         classes() {
             return {
-                active: this.active
+                active: this.active,
+                disabled: this.disabled
             }
         }
     },
@@ -38,6 +39,7 @@ export default {
     },
     methods: {
         onClick() {
+            if(this.disabled){return false}
             this.eventBus &&
                 this.eventBus.$emit('update:selected', this.name, this)
             this.$emit('click', this)
@@ -57,6 +59,9 @@ $blue: #1890ff;
     &.active {
         color: $blue;
         font-weight: bold;
+    }
+    &.disabled{
+        color: #ccc;
     }
 }
 </style>
