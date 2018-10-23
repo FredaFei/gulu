@@ -67,5 +67,6 @@ export default {
 
 <style lang="scss">
 .tabs-content {
+    position: relative;
 }
 </style>

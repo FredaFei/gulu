@@ -14,11 +14,9 @@ export default {
     inject: ['eventBus'],
     mounted() {
         this.eventBus.$on('update:selected', (name, vm) => {
-            console.log(vm.$el)
-            console.log(vm.$el.getBoundingClientRect())
             let { width, left } = vm.$el.getBoundingClientRect()
             this.$refs.line.style.width = `${width}px`
-            // todo line的宽度有偏移
+            // 若是父元素有padding或者margin，line的水平位置会偏移
             this.$refs.line.style.left = `${left}px`
         })
     }
@@ -29,13 +27,12 @@ export default {
 .tabs-header {
     display: flex;
     justify-content: flex-start;
-    position: relative;
     border-bottom: 1px solid #ddd;
+    position: relative;
     > .line {
         position: absolute;
         bottom: 0;
-        left: 0;
-        border-bottom: 1px solid #1890ff;
+        border-bottom: 2px solid #1890ff;
         transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
     }
     > .action-wrapper {

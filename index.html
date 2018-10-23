@@ -92,7 +92,7 @@
                             <g-icon name="settings"></g-icon>
                             sport
                         </g-tabs-item>
-                        <g-tabs-item name="music" disabled>music</g-tabs-item>
+                        <g-tabs-item name="music">music</g-tabs-item>
                         <g-tabs-item name="moving">moving</g-tabs-item>
                     </g-tabs-header>
                     <g-tabs-body>
@@ -102,8 +102,23 @@
                     </g-tabs-body>
                 </g-tabs>
             </div>
-
         </div>
+        <g-tabs :selected.sync="selectedTabs" @update:selected="selectedFn">
+            <g-tabs-header>
+                <template slot="actions"><button>设置</button></template>
+                <g-tabs-item name="sport">
+                    <g-icon name="settings"></g-icon>
+                    sport
+                </g-tabs-item>
+                <g-tabs-item name="music">music</g-tabs-item>
+                <g-tabs-item name="moving">moving</g-tabs-item>
+            </g-tabs-header>
+            <g-tabs-body>
+                <g-tabs-pane name="sport">sport content</g-tabs-pane>
+                <g-tabs-pane name="music">music content</g-tabs-pane>
+                <g-tabs-pane name="moving">moving content</g-tabs-pane>
+            </g-tabs-body>
+        </g-tabs>
         <div class="module-wrapper">
             <div class="module-hd">
                 <h2>Button 按钮</h2>
