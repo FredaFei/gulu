@@ -14,20 +14,20 @@ export default {
             require: true
         }
     },
-    data(){
+    data() {
         return {
             active: false
         }
     },
     computed: {
-        classes(){
+        classes() {
             return {
                 active: this.active
             }
         }
     },
     created() {
-        this.eventBus.$on('update:selected', name => {
+        this.eventBus && this.eventBus.$on('update:selected', name => {
             this.active = name === this.name
         })
     }
@@ -35,10 +35,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.tabs-pane{
+.tabs-pane {
     padding: 1em;
-    &.active{
-    
-    }
+    &.active {}
 }
 </style>

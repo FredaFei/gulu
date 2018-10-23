@@ -13,7 +13,7 @@ export default {
     name: 'guluTabsHeader',
     inject: ['eventBus'],
     mounted() {
-        this.eventBus.$on('update:selected', (name, vm) => {
+        this.eventBus && this.eventBus.$on('update:selected', (name, vm) => {
             let { width, left } = vm.$el.getBoundingClientRect()
             this.$refs.line.style.width = `${width}px`
             // 若是父元素有padding或者margin，line的水平位置会偏移

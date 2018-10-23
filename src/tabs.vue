@@ -52,7 +52,7 @@ export default {
                         childVm.$options.name === 'guluTabsItem' &&
                         childVm.name === this.selected
                     ) {
-                        this.eventBus.$emit(
+                        this.eventBus && this.eventBus.$emit(
                             'update:selected',
                             this.selected,
                             childVm
