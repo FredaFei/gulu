@@ -11,9 +11,6 @@
 export default {
     name: 'guluTabsHeader',
     inject: ['eventBus'],
-    // created() {
-    //     this.$emit('update:selected', 'tabs header data')
-    // }
 }
 </script>
 
