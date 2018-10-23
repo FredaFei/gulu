@@ -30,6 +30,7 @@ export default {
     display: flex;
     justify-content: flex-start;
     position: relative;
+    border-bottom: 1px solid #ddd;
     > .line {
         position: absolute;
         bottom: 0;
