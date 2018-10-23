@@ -15,12 +15,12 @@ Vue.component('g-tabs-pane', TabsPane)
 Vue.config.productionTip = false
 Vue.config.devtools = false
 
-describe('TabsItem', () => {
+describe('Tabs', () => {
     it('存在.', () => {
-        expect(TabsItem).to.be.ok
+        expect(Tabs).to.be.ok
     })
     describe('props', (done) => {
-        const Constructor = Vue.extend(TabsItem)
+        const Constructor = Vue.extend(Tabs)
         let vm
         afterEach(() => {
             vm.$destroy()
