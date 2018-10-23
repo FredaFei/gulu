@@ -39,54 +39,63 @@ Vue.component('g-tabs-item', TabsItem)
 Vue.component('g-tabs-pane', TabsPane)
 
 new Vue({
-  el: '#app',
-  data() {
-    return {
-      loading: true,
-      value: '张三',
-      message: '名字长度需大于2',
-      value2: 'ha',
-      selectedTabs: 'sport'
-    }
-  },
-  mounted() {
-    // this.showTaost()
-  },
-  methods: {
-      selectedFn(){
-          console.log(90)
-      },
-    showTaost() {
-      this.$toast('i am a toast!i am a toast!')
-    },
-    showTaost1() {
-      this.$toast(`i am a toast!i am a toast! ${parseInt(Math.random()*100)}`, {
-        autoClose: 3,
-      })
-    },
-    showTaost2() {
-      this.$toast(`i am a toast!i am a toast! ${parseInt(Math.random()*100)}`, {
-        autoClose: false,
-        position: 'top'
-      })
-    },
-    showTaost3() {
-      this.$toast('i am a toast!', {
-        autoClose: false,
-        position: 'middle',
-        closeButton: {
-          text: '关闭',
-          callback() {
-            console.log('i know')
-          }
+    el: '#app',
+    data() {
+        return {
+            loading: true,
+            value: '张三',
+            message: '名字长度需大于2',
+            value2: 'ha',
+            selectedTabs: 'sport'
         }
-      })
     },
-    showTaost4() {
-      this.$toast('i am a toast!i am a toast! <strong id="test">test strong</strong>', {
-        position: 'bottom',
-        enableHtml: true
-      })
+    mounted() {
+        // this.showTaost()
+    },
+    methods: {
+        selectedFn(data) {
+            console.log(data)
+        },
+        showTaost() {
+            this.$toast('i am a toast!i am a toast!')
+        },
+        showTaost1() {
+            this.$toast(
+                `i am a toast!i am a toast! ${parseInt(Math.random() * 100)}`,
+                {
+                    autoClose: 3
+                }
+            )
+        },
+        showTaost2() {
+            this.$toast(
+                `i am a toast!i am a toast! ${parseInt(Math.random() * 100)}`,
+                {
+                    autoClose: false,
+                    position: 'top'
+                }
+            )
+        },
+        showTaost3() {
+            this.$toast('i am a toast!', {
+                autoClose: false,
+                position: 'middle',
+                closeButton: {
+                    text: '关闭',
+                    callback() {
+                        console.log('i know')
+                    }
+                }
+            })
+        },
+        showTaost4() {
+            this.$toast(
+                'i am a toast!i am a toast! <strong id="test">test strong</strong>',
+                {
+                    position: 'bottom',
+                    enableHtml: true
+                }
+            )
+        }
     }
-  }
 })
