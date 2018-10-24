@@ -55,8 +55,8 @@ new Vue({
         // this.showTaost()
     },
     methods: {
-        selectedFn(data) {
-            console.log(data)
+        selectedFn() {
+            console.log(89)
         },
         showTaost() {
             this.$toast('i am a toast!i am a toast!')
