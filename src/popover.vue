@@ -3,7 +3,7 @@
         <div class="popover-content" ref="popoverContent" v-if="isVisible">
             <slot name="popover"></slot>
         </div>
-        <div class="trigger" ref="trigger">
+        <div class="trigger" ref="trigger" style="display:inline-block">
             <slot></slot>
         </div>
     </div>
@@ -58,18 +58,41 @@ export default {
     }
 }
 </script>
-
 <style lang="scss" scoped>
+$border-radius: 4px;
+$border-color:#333;
 .popover-wrapper {
     display: inline-block;
     vertical-align: top;
     position: relative;
-    border: 1px solid red;
 }
 .popover-content {
     position: absolute;
-    // bottom: 100%;
     transform: translateY(-100%);
-    box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+    padding: .5em 1em;
+    max-width: 20em;
+    border-radius: $border-radius;
+    border: 1px solid $border-color;
+    background: #fff;
+    filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.5));
+    word-break: break-all;
+    margin-top: -10px;
+    &:before,&:after{
+        content: '';
+        position: absolute;
+        top: 100%;
+        left: 10px;
+        width: 0;
+        height: 0;
+        border: 10px solid transparent;
+    }
+    &:before{
+        border-top-color: #333;
+    }
+    &:after{
+        border-top-color: white;
+        top: calc(100% - 1px);
+    }
 }
+
 </style>

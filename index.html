@@ -80,7 +80,7 @@
         }
         .test{
             /* overflow: hidden; */
-            padding: 20px;
+            padding: 200px;
             width: 2800px;
             /* height: 2000px; */
             border: 1px solid blue;
@@ -91,6 +91,24 @@
 <body>
     <div id="app">
         <div class="test">
+            <g-popover>
+                <template slot="popover">
+                    this is a popover,this is a popover,this is a popover
+                    this is a popover,this is a popover,this is a popover
+                    this is a popover,this is a popover,this is a popover
+                    this is a popover,this is a popover,this is a popover
+                    this is a popover,this is a popover,this is a popover
+                    this is a popover,this is a popover,this is a popover
+
+                </template>
+                <button @click="selectedFn">click me</button>
+            </g-popover>
+            <g-popover>
+                <template slot="popover">
+                    this is a popover
+                </template>
+                <button @click="selectedFn">click me</button>
+            </g-popover>
             <g-popover>
                 <template slot="popover">
                     this is a popover
