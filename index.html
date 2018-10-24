@@ -74,19 +74,30 @@
             background: #ddd;
             height: 200px;
         }
+        body{
+            height: 100px;
+            border: 1px solid red;
+        }
+        .test{
+            overflow: hidden;
+            height: 20px;
+            border: 1px solid blue;
+        }
     </style>
 </head>
 
 <body>
     <div id="app">
+        <div class="test">
             <g-popover>
                 <template slot="popover">
                     this is a popover
                 </template>
                 <button>click me</button>
             </g-popover>
+        </div>
 
-        <div class="module-wrapper">
+        <!-- <div class="module-wrapper">
             <div class="module-hd">
                 <h2>tabs</h2>
                 <h5>代码演示:</h5>
@@ -230,7 +241,7 @@
                     </g-layout>
                 </g-layout>
             </div>
-        </div>
+        </div> -->
 
     </div>
     <script src="./src/app.js"></script>

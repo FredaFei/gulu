@@ -1,6 +1,6 @@
 <template>
-    <div class="popover-wrapper">
-        <div class="popover-content" v-if="isVisible">
+    <div class="popover-wrapper" @click.stop="onClose">
+        <div class="popover-content" ref="popoverContent" v-if="isVisible">
             <slot name="popover"></slot>
         </div>
         <slot></slot>
@@ -10,10 +10,26 @@
 <script>
 export default {
     name: 'guluPopover',
-    props: {
-        isVisible: {
-            type: Boolean,
-            default: false
+    data(){
+        return {
+            isVisible: false
+        }
+    },
+    methods: {
+        onClose(){
+            console.log('btn click')
+            this.isVisible = !this.isVisible
+            if(this.isVisible){
+                this.$nextTick(()=>{
+                    document.body.appendChild(this.$refs.popoverContent)
+                })
+            }
+            const close = ()=>{
+                console.log('body click')
+                this.isVisible = false
+                document.documentElement.removeEventListener('click',close)
+            }
+            document.documentElement.addEventListener('click',close)
         }
     }
 }
