@@ -25,7 +25,7 @@ describe('TabsItem', () => {
         afterEach(() => {
             vm.$destroy()
         })
-        it.only('接受 name 属性 ', () => {
+        it('接受 name 属性 ', () => {
             vm = new Constructor({
                 propsData: {
                     name: 'test2'
@@ -34,7 +34,7 @@ describe('TabsItem', () => {
             expect(vm.$el.getAttribute('data-name')).to.eq('test2')
             vm.$el.remove
         })
-        it.only('可以设置 disabled .', () => {
+        it('可以设置 disabled .', () => {
             vm = new Constructor({
                 propsData: {
                     disabled: true
