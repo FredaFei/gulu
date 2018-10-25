@@ -29,30 +29,41 @@ export default {
     methods: {
         positionContent() {
             document.body.appendChild(this.$refs.popoverContent)
-            const { left, top, width, height } = this.$refs.trigger.getBoundingClientRect()
-            const { popoverContent } = this.$refs
-            console.log(left, top, width, height)
-            if (this.position === 'top') {
-                popoverContent.style.left = left + window.scrollX + 'px'
-                popoverContent.style.top = top + window.scrollY + 'px'
-            } else if (this.position === 'right') {
-                let { height: height2 } = this.$refs.popoverContent.getBoundingClientRect()
-                popoverContent.style.left = left + width + window.scrollX + 'px'
-                popoverContent.style.top = top + (height - height2) / 2 + window.scrollY + 'px'
-            } else if (this.position === 'bottom') {
-                popoverContent.style.left = left + window.scrollX + 'px'
-                popoverContent.style.top = top + height + window.scrollY + 'px'
-            } else if (this.position === 'left') {
-                let { height: height2 } = this.$refs.popoverContent.getBoundingClientRect()
-                popoverContent.style.left = left + window.scrollX + 'px'
-                popoverContent.style.top = top + (height - height2) / 2 + window.scrollY + 'px'
+            const { popoverContent, trigger } = this.$refs
+            const { left, top, width, height } = trigger.getBoundingClientRect()
+            let { height: height2 } = popoverContent.getBoundingClientRect()
+            console.log(left, top, width, height,height2)
+
+            const positions = {
+                top: {
+                    top: top + window.scrollY,
+                    left: left + window.scrollX
+                },
+                right: {
+                    top: top + (height - height2) / 2 + window.scrollY,
+                    left: left + width + window.scrollX
+                },
+                bottom: {
+                    top: top + height + window.scrollY,
+                    left: left + window.scrollX
+                },
+                left: {
+                    top: top + (height - height2) / 2 + window.scrollY,
+                    left: left + window.scrollX
+                }
             }
+            popoverContent.style.top = positions[this.position]['top'] + 'px'
+            popoverContent.style.left = positions[this.position]['left'] + 'px'
         },
         onClickDocument(e) {
             console.log('body click')
-            if (this.$refs.popoverWrapper
-                && (this.$refs.popoverWrapper.contains(e.target) || this.$refs.popoverContent === e.target)
-            ) { return }
+            if (
+                this.$refs.popoverWrapper &&
+                (this.$refs.popoverWrapper.contains(e.target) ||
+                    this.$refs.popoverContent === e.target)
+            ) {
+                return
+            }
             this.close()
         },
         open() {
@@ -60,13 +71,19 @@ export default {
             this.$nextTick(() => {
                 this.positionContent()
                 console.log('document addEvent')
-                document.documentElement.addEventListener('click', this.onClickDocument)
+                document.documentElement.addEventListener(
+                    'click',
+                    this.onClickDocument
+                )
             })
         },
         close() {
             console.log('document removeEv')
             this.isVisible = false
-            document.documentElement.removeEventListener('click', this.onClickDocument)
+            document.documentElement.removeEventListener(
+                'click',
+                this.onClickDocument
+            )
         },
         onClose(event) {
             if (this.$refs.trigger.contains(event.target)) {
@@ -83,7 +100,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 $border-radius: 4px;
-$border-color:#333;
+$border-color: #333;
 .popover-wrapper {
     display: inline-block;
     vertical-align: top;
@@ -92,7 +109,7 @@ $border-color:#333;
 
 .popover-content {
     position: absolute;
-    padding: .5em 1em;
+    padding: 0.5em 1em;
     max-width: 20em;
     border-radius: $border-radius;
     border: 1px solid $border-color;
