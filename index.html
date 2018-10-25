@@ -91,6 +91,37 @@
 <body>
     <div id="app">
         <div class="test">
+            <g-popover position="top">
+                <template slot="popover">
+                    this is a popover,this is a popover,this is a popover
+                    this is a popover,this is a popover,this is a popover
+                    this is a popover,this is a popover,this is a popover
+                    this is a popover,this is a popover,this is a popover
+                    this is a popover,this is a popover,this is a popover
+                    this is a popover,this is a popover,this is a popover
+
+                </template>
+                <button @click="selectedFn">click me</button>
+            </g-popover>
+            <g-popover position="right">
+                <template slot="popover">
+                    this is a popover
+                </template>
+                <button @click="selectedFn">click me</button>
+            </g-popover>
+            <g-popover position="bottom">
+                <template slot="popover">
+                    this is a popover
+                </template>
+                <button @click="selectedFn">click me</button>
+            </g-popover>
+            <g-popover position="left">
+                <template slot="popover">
+                    this is a popover
+                </template>
+                <button @click="selectedFn">click me</button>
+            </g-popover>
+            <br /><br />
             <g-popover position="top" trigger="hover">
                 <template slot="popover">
                     this is a popover,this is a popover,this is a popover
