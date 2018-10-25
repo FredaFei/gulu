@@ -1,5 +1,5 @@
 <template>
-    <div class="popover-wrapper" @click="onClose" ref="popoverWrapper">
+    <div class="popover-wrapper" ref="popoverWrapper">
         <div class="popover-content" ref="popoverContent" v-if="isVisible" :class="`position-${position}`">
             <slot name="popover"></slot>
         </div>
@@ -19,11 +19,34 @@ export default {
             validator(val) {
                 return ['top', 'right', 'bottom', 'left'].indexOf(val) >= 0
             }
+        },
+        trigger: {
+            type: String,
+            default: 'click',
+            validator(val) {
+                return ['click', 'hover'].indexOf(val) >= 0
+            }
         }
     },
     data() {
         return {
             isVisible: false
+        }
+    },
+    mounted() {
+        if(this.trigger === 'click'){
+            this.$refs.popoverWrapper.addEventListener('click', this.onClick)
+        }else{
+            this.$refs.popoverWrapper.addEventListener('mouseenter', this.open)
+            this.$refs.popoverWrapper.addEventListener('mouseleave', this.close)
+        }
+    },
+    destroyed() {
+        if(this.trigger === 'click'){
+            this.$refs.popoverWrapper.removeEventListener('click', this.onClick)
+        }else{
+            this.$refs.popoverWrapper.removeEventListener('mouseenter', this.open)
+            this.$refs.popoverWrapper.removeEventListener('mouseleave', this.close)
         }
     },
     methods: {
@@ -32,7 +55,6 @@ export default {
             const { popoverContent, trigger } = this.$refs
             const { left, top, width, height } = trigger.getBoundingClientRect()
             let { height: height2 } = popoverContent.getBoundingClientRect()
-            console.log(left, top, width, height,height2)
 
             const positions = {
                 top: {
@@ -85,7 +107,7 @@ export default {
                 this.onClickDocument
             )
         },
-        onClose(event) {
+        onClick(event) {
             if (this.$refs.trigger.contains(event.target)) {
                 console.log('down')
                 if (this.isVisible) {
