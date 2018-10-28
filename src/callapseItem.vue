@@ -1,6 +1,6 @@
 <template>
     <div class="callapse-item">
-        <div class="title" @click="toggle">{{title}}</div>
+        <div class="title" @click="toggle">{{title}}{{single}}</div>
         <div class="content" v-if="open">
             <slot></slot>
         </div>
@@ -23,13 +23,16 @@ export default {
     },
     data() {
         return {
-            open: false
+            open: false,
+            single: false
         }
     },
     mounted() {
         this.eventBus && this.eventBus.$on('select:updated', name => {
             if (this.name !== name) {
-                this.close()
+                if(this.single){
+                    this.close()
+                }
             } else {
                 this.show()
             }
