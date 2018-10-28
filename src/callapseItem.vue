@@ -10,10 +10,11 @@
 <script>
 export default {
     name: 'guluCallapseItem',
+    inject: ['eventBus'],
     props: {
         title: {
             type: String,
-            default: ''
+            require: true
         }
     },
     data() {
@@ -21,9 +22,24 @@ export default {
             open: false
         }
     },
+    mounted() {
+        this.eventBus.$on('select:updated', vm => {
+            if (this !== vm) {
+                this.close()
+            }
+        })
+    },
     methods: {
         toggle() {
-            this.open = !this.open
+            if (this.open) {
+                this.open = false
+            } else {
+                this.open = true
+                this.eventBus.$emit('select:updated', this)
+            }
+        },
+        close() {
+            this.open = false
         }
     }
 }

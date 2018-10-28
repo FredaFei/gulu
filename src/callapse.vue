@@ -5,8 +5,19 @@
 </template>
 
 <script>
+import Vue from 'vue'
 export default {
-    name: 'guluCallapse'
+    name: 'guluCallapse',
+    data(){
+        return {
+            eventBus: new Vue()
+        }
+    },
+    provide(){
+        return {
+            eventBus: this.eventBus
+        }
+    }
 }
 </script>
 
