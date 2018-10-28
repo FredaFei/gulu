@@ -15,6 +15,10 @@ export default {
         title: {
             type: String,
             require: true
+        },
+        name: {
+            type: String,
+            require: ''
         }
     },
     data() {
@@ -23,9 +27,11 @@ export default {
         }
     },
     mounted() {
-        this.eventBus && this.eventBus.$on('select:updated', vm => {
-            if (this !== vm) {
+        this.eventBus && this.eventBus.$on('select:updated', name => {
+            if (this.name !== name) {
                 this.close()
+            } else {
+                this.show()
             }
         })
     },
@@ -35,11 +41,14 @@ export default {
                 this.open = false
             } else {
                 this.open = true
-                this.eventBus && this.eventBus.$emit('select:updated', this)
+                this.eventBus && this.eventBus.$emit('select:updated', this.name)
             }
         },
         close() {
             this.open = false
+        },
+        show() {
+            this.open = true
         }
     }
 }

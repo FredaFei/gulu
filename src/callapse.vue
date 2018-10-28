@@ -9,8 +9,14 @@ import Vue from 'vue'
 export default {
     name: 'guluCallapse',
     props: {
-        single: Boolean,
-        default: false
+        single: {
+            type: Boolean,
+            default: false
+        },
+        selected: {
+            type: String,
+            default: ''
+        }
     },
     data() {
         return {
@@ -18,11 +24,12 @@ export default {
         }
     },
     provide() {
-        if (this.single) {
-            return {
-                eventBus: this.eventBus
-            }
+        return {
+            eventBus: this.eventBus
         }
+    },
+    mounted() {
+        this.eventBus && this.eventBus.$emit('select:updated', this.selected)
     }
 }
 </script>
