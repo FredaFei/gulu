@@ -1,0 +1,64 @@
+<template>
+    <div class="callapse-item" :class="{'active':open}">
+        <div class="title" @click="toggle">{{title}}</div>
+        <div class="content" v-if="open">
+            <slot></slot>
+        </div>
+    </div>
+</template>
+
+<script>
+export default {
+    name: 'guluCallapseItem',
+    props: {
+        title: {
+            type: String,
+            default: ''
+        }
+    },
+    data() {
+        return {
+            open: false
+        }
+    },
+    methods: {
+        toggle() {
+            this.open = !this.open
+        }
+    }
+}
+</script>
+
+<style lang="scss" scoped>
+$font-size: 16px;
+$border-radius: 4px;
+.callapse-item {
+    font-size: $font-size;
+    >.title {
+        margin-bottom: -1px;
+        padding: 10px 12px;
+        border-bottom: 1px solid rgba(204, 204, 204, 1);
+    }
+    &.active {
+        >.title {
+            background: #ccc;
+            border-color: red;
+        }
+    }
+    &:first-child {
+        >.title {
+            border-top-left-radius: $border-radius;
+            border-top-right-radius: $border-radius;
+        }
+    }
+    &:last-child {
+        >.title:last-child {
+            border-bottom-left-radius: $border-radius;
+            border-bottom-right-radius: $border-radius;
+        }
+    }
+    .content {
+        padding: 0 12px;
+    }
+}
+</style>

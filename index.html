@@ -76,20 +76,25 @@
         }
         body{
             height: 100px;
-            /* border: 1px solid red; */
         }
         .test{
-            /* overflow: hidden; */
-            padding: 200px;
-            width: 2800px;
-            /* height: 2000px; */
-            border: 1px solid blue;
+            margin: 20px;
+            width: 400px;
         }
     </style>
 </head>
 
 <body>
     <div id="app">
+        <div class="test">
+            <g-callapse>
+                <g-callapse-item title="title_1">content_1</g-callapse-item>
+                <g-callapse-item title="title_2">content_2</g-callapse-item>
+                <g-callapse-item title="title_3">content_3</g-callapse-item>
+                <g-callapse-item title="title_4">content_4</g-callapse-item>
+            </g-callapse>
+        </div>
+
         <div class="test">
             <g-popover position="top">
                 <template slot="popover" slot-scope="{close}">
