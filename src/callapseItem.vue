@@ -1,5 +1,5 @@
 <template>
-    <div class="callapse-item" :class="{'active':open}">
+    <div class="callapse-item">
         <div class="title" @click="toggle">{{title}}</div>
         <div class="content" v-if="open">
             <slot></slot>
@@ -38,12 +38,6 @@ $border-radius: 4px;
         margin-bottom: -1px;
         padding: 10px 12px;
         border-bottom: 1px solid rgba(204, 204, 204, 1);
-    }
-    &.active {
-        >.title {
-            background: #ccc;
-            border-color: red;
-        }
     }
     &:first-child {
         >.title {
