@@ -52,7 +52,8 @@ new Vue({
             value: '张三',
             message: '名字长度需大于2',
             value2: 'ha',
-            selectedTabs: 'sport'
+            selectedTabs: 'sport',
+            selectedTab: '3'
         }
     },
     mounted() {
