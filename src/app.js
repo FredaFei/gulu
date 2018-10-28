@@ -53,11 +53,12 @@ new Vue({
             message: '名字长度需大于2',
             value2: 'ha',
             selectedTabs: 'sport',
-            selectedTab: '3'
+            selectedTab: ['3']
         }
     },
     mounted() {
         // this.showTaost()
+        console.log(this.selectedTab)
     },
     methods: {
         selectedFn() {

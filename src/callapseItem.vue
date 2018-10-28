@@ -1,6 +1,6 @@
 <template>
     <div class="callapse-item">
-        <div class="title" @click="toggle">{{title}}{{single}}</div>
+        <div class="title" @click="toggle">{{title}}</div>
         <div class="content" v-if="open">
             <slot></slot>
         </div>
@@ -18,40 +18,30 @@ export default {
         },
         name: {
             type: String,
-            require: ''
+            require: true
         }
     },
     data() {
         return {
-            open: false,
-            single: false
+            open: false
         }
     },
     mounted() {
-        this.eventBus && this.eventBus.$on('select:updated', name => {
-            if (this.name !== name) {
-                if(this.single){
-                    this.close()
-                }
+        this.eventBus && this.eventBus.$on('update:selected', names => {
+            if (names.indexOf(this.name) >= 0) {
+                this.open = true
             } else {
-                this.show()
+                this.open = false
             }
         })
     },
     methods: {
         toggle() {
             if (this.open) {
-                this.open = false
+                this.eventBus && this.eventBus.$emit('update:removeSelected', this.name)
             } else {
-                this.open = true
-                this.eventBus && this.eventBus.$emit('select:updated', this.name)
+                this.eventBus && this.eventBus.$emit('update:addSelected', this.name)
             }
-        },
-        close() {
-            this.open = false
-        },
-        show() {
-            this.open = true
         }
     }
 }
