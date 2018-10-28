@@ -92,14 +92,15 @@
     <div id="app">
         <div class="test">
             <g-popover position="top">
-                <template slot="popover">
+                <template slot="popover" slot-scope="{close}">
+                    {{close}}
                     this is a popover,this is a popover,this is a popover
                     this is a popover,this is a popover,this is a popover
                     this is a popover,this is a popover,this is a popover
                     this is a popover,this is a popover,this is a popover
                     this is a popover,this is a popover,this is a popover
                     this is a popover,this is a popover,this is a popover
-
+                    <button>close</button>
                 </template>
                 <button @click="selectedFn">click me</button>
             </g-popover>

@@ -29,4 +29,6 @@ describe('Popover', () => {
       done()
     })
   })
+//   todo 
+  itx('可以设置  trigger', ()=>{})
 })

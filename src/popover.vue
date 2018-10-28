@@ -1,7 +1,8 @@
 <template>
     <div class="popover-wrapper" ref="popoverWrapper">
-        <div class="popover-content" ref="popoverContent" v-if="isVisible" :class="`position-${position}`">
-            <slot name="popover"></slot>
+        <div class="popover-content" ref="popoverContent" v-if="isVisible" 
+        :class="`position-${position}`">
+            <slot name="popover" :close="close"></slot>
         </div>
         <div class="trigger" ref="trigger" style="display:inline-block">
             <slot></slot>
@@ -78,7 +79,6 @@ export default {
             popoverContent.style.left = positions[this.position]['left'] + 'px'
         },
         onClickDocument(e) {
-            console.log('body click')
             if (
                 this.$refs.popoverWrapper &&
                 (this.$refs.popoverWrapper.contains(e.target) ||
@@ -92,7 +92,6 @@ export default {
             this.isVisible = true
             this.$nextTick(() => {
                 this.positionContent()
-                console.log('document addEvent')
                 document.documentElement.addEventListener(
                     'click',
                     this.onClickDocument
@@ -100,7 +99,6 @@ export default {
             })
         },
         close() {
-            console.log('document removeEv')
             this.isVisible = false
             document.documentElement.removeEventListener(
                 'click',
@@ -109,7 +107,6 @@ export default {
         },
         onClick(event) {
             if (this.$refs.trigger.contains(event.target)) {
-                console.log('down')
                 if (this.isVisible) {
                     this.close()
                 } else {
