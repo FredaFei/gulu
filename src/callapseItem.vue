@@ -23,7 +23,7 @@ export default {
         }
     },
     mounted() {
-        this.eventBus.$on('select:updated', vm => {
+        this.eventBus && this.eventBus.$on('select:updated', vm => {
             if (this !== vm) {
                 this.close()
             }
@@ -35,7 +35,7 @@ export default {
                 this.open = false
             } else {
                 this.open = true
-                this.eventBus.$emit('select:updated', this)
+                this.eventBus && this.eventBus.$emit('select:updated', this)
             }
         },
         close() {
