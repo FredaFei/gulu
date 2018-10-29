@@ -1,5 +1,5 @@
 <template>
-    <div class="callapse-item">
+    <div class="callapse-item" :data-name="name">
         <div class="title" @click="toggle">{{title}}</div>
         <div class="content" v-if="open">
             <slot></slot>
