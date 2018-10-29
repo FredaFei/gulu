@@ -87,12 +87,12 @@
 <body>
     <div id="app">
         <div class="test">
-            <g-callapse single :selected.sync="selectedTab">
-                <g-callapse-item title="title_1" name="1">content_1</g-callapse-item>
-                <g-callapse-item title="title_2" name="2">content_2</g-callapse-item>
-                <g-callapse-item title="title_3" name="3">content_3</g-callapse-item>
-                <g-callapse-item title="title_4" name="4">content_4</g-callapse-item>
-            </g-callapse>
+            <g-collapse single :selected.sync="selectedTab">
+                <g-collapse-item title="title_1" name="1">content_1</g-collapse-item>
+                <g-collapse-item title="title_2" name="2">content_2</g-collapse-item>
+                <g-collapse-item title="title_3" name="3">content_3</g-collapse-item>
+                <g-collapse-item title="title_4" name="4">content_4</g-collapse-item>
+            </g-collapse>
             {{selectedTab}}
         </div>
 
