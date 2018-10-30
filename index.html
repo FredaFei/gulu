@@ -86,6 +86,10 @@
 
 <body>
     <div id="app">
+        <g-cascader :source="source">
+            <button>click</button>
+        </g-cascader>
+        
         <div class="test">
             <g-callapse single :selected.sync="selectedTab">
                 <g-callapse-item title="title_1" name="1">content_1</g-callapse-item>

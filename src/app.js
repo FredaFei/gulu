@@ -19,6 +19,7 @@ import TabsPane from './tabsPane'
 import Popover from './popover'
 import Callapse from './callapse'
 import CallapseItem from './callapseItem'
+import Cascader from './Cascader'
 
 import plugin from './plugin'
 
@@ -43,6 +44,7 @@ Vue.component('g-tabs-pane', TabsPane)
 Vue.component('g-popover', Popover)
 Vue.component('g-callapse', Callapse)
 Vue.component('g-callapse-item', CallapseItem)
+Vue.component('g-cascader', Cascader)
 
 new Vue({
     el: '#app',
@@ -53,7 +55,8 @@ new Vue({
             message: '名字长度需大于2',
             value2: 'ha',
             selectedTabs: 'sport',
-            selectedTab: ['3']
+            selectedTab: ['3'],
+            source: []
         }
     },
     mounted() {
