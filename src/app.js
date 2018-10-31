@@ -93,7 +93,8 @@ new Vue({
             }
           ]
         }
-      ]
+      ],
+      selected: []
     }
   },
   mounted() {

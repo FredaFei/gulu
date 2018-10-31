@@ -86,7 +86,9 @@
 
 <body>
     <div id="app">
-        <g-cascader :source="source">
+        {{selected}}
+        <g-cascader :source="source" :selected="selected"
+        @update:selected="selected = $event">
             <button>click</button>
         </g-cascader>
         

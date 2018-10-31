@@ -4,7 +4,7 @@
             <slot></slot>
         </div>
         <div class="popover" v-if="popoverVisible">
-            <gulu-cascader-item :source-items="source"></gulu-cascader-item>
+            <gulu-cascader-item :source-items="source" :selected="selected" @update:selected="updateSelected"></gulu-cascader-item>
         </div>
     </div>
 </template>
@@ -18,11 +18,20 @@ export default {
         source: {
             type: Array,
             require: true
+        },
+        selected: {
+            type: Array,
+            default: ()=>[]
         }
     },
     data(){
         return {
             popoverVisible: false
+        }
+    },
+    methods: {
+        updateSelected(newSelected){
+            this.$emit('update:selected',newSelected)
         }
     }
 }
