@@ -4,9 +4,7 @@
             <slot></slot>
         </div>
         <div class="popover" v-if="popoverVisible">
-            <div v-for="sourceItem in source" :key="sourceItem.name">
-                <gulu-cascader-item :source-item="sourceItem"></gulu-cascader-item>
-            </div>
+            <gulu-cascader-item :source-items="source"></gulu-cascader-item>
         </div>
     </div>
 </template>
@@ -31,5 +29,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+    .cascader-wrapper{
+        .popover{
+            border: 1px solid red;
+        }
+    }
 </style>
