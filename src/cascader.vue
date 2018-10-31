@@ -31,6 +31,7 @@ export default {
 <style lang="scss" scoped>
     .cascader-wrapper{
         .popover{
+            height: 200px;
             border: 1px solid red;
         }
     }
