@@ -10,7 +10,8 @@
             </div>
         </div>
         <div class="right" v-if="rightItems">
-            <gulu-cascader-item :source-items="rightItems" :level="level+1"></gulu-cascader-item>
+            <gulu-cascader-item :source-items="rightItems" :level="level+1"
+            :selected="selected" @update:selected="updateSelected"></gulu-cascader-item>
         </div>
     </div>
 </template>
@@ -40,8 +41,9 @@ export default {
     },
     computed: {
         rightItems() {
-            if (this.leftSelected && this.leftSelected.children) {
-                return this.leftSelected.children
+            let currentSelected = this.selected[this.level]
+            if (currentSelected && currentSelected.children) {
+                return currentSelected.children
             } else {
                 return null
             }
@@ -52,6 +54,9 @@ export default {
             let copy = JSON.parse(JSON.stringify(this.selected))
             copy[this.level] = item
             this.$emit('update:selected',copy)
+        },
+        updateSelected(newSelected){
+            this.$emit('update:selected',newSelected)
         }
     }
 }
