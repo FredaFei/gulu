@@ -1,8 +1,5 @@
 <template>
     <div class="cascader-item">
-        <div>
-            selected: {{ selected && selected[level] && selected[level].name }} level: {{ level && level }}
-        </div>
         <div class="left">
             <div class="label" v-for="item in sourceItems" @click="onClickLabel(item)">
                 {{item.name}}

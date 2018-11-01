@@ -86,11 +86,8 @@
 
 <body>
     <div id="app">
-        {{selected}}
         <g-cascader :source="source" :selected="selected"
-        @update:selected="selected = $event">
-            <button>click</button>
-        </g-cascader>
+        @update:selected="selected = $event"></g-cascader>
         
         <div class="test">
             <g-collapse single :selected.sync="selectedTab">
