@@ -48,10 +48,10 @@ Vue.component('g-cascader', Cascader)
 
 import db from './db'
 function ajax(parentId = 0) {
-  return new Promise((resolve,reject)=>{
+  return new Promise((resolve, reject) => {
     setTimeout(() => {
-        let result = db.filter(item => item.parent_id === parentId)
-        resolve(result)
+      let result = db.filter(item => item.parent_id === parentId)
+      resolve(result)
     }, 2000)
   })
 }
@@ -80,6 +80,14 @@ new Vue({
     console.log(this.selectedTab)
   },
   methods: {
+    xxx() {
+        ajax(this.selected[0].id).then(result=>{
+            let lastLevelSelected = this.source.filter(item=>item.id===this.selected[0].id)[0]
+            lastLevelSelected.children = result
+            this.$set(lastLevelSelected,'children',result)
+            console.log(lastLevelSelected);
+        })
+    },
     selectedFn() {
       console.log(89)
     },

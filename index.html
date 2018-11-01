@@ -86,8 +86,8 @@
 
 <body>
     <div id="app">
-        <g-cascader :source="source" :selected="selected"
-        @update:selected="selected = $event" popover-height="200px"></g-cascader>
+        <g-cascader :source="source"
+        :selected.sync="selected" @update:selected="xxx" popover-height="200px"></g-cascader>
         
         <div class="test">
             <g-collapse single :selected.sync="selectedTab">
