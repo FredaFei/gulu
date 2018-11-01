@@ -46,6 +46,11 @@ Vue.component('g-collapse', Collapse)
 Vue.component('g-collapse-item', CollapseItem)
 Vue.component('g-cascader', Cascader)
 
+import db from './db'
+function ajax(parentId=0) {
+    return db.filter(item=>item.parent_id === parentId)
+}
+
 new Vue({
   el: '#app',
   data() {
@@ -56,44 +61,7 @@ new Vue({
       value2: 'ha',
       selectedTabs: 'sport',
       selectedTab: ['3'],
-      source: [
-        {
-          name: '浙江',
-          children: [
-            {
-              name: '杭州',
-              children: [{ name: '拱墅' }, { name: '西湖' }, { name: '上城' }]
-            }
-          ]
-        },
-        {
-          name: '福建',
-          children: [
-            {
-              name: '福州',
-              children: [
-                { name: '鼓楼' },
-                { name: '台江' },
-                { name: '仓山' },
-                { name: '马尾' }
-              ]
-            },
-            {
-              name: '厦门',
-              children: [{ name: '思明' }, { name: '湖里' }, { name: '集美' }]
-            }
-          ]
-        },
-        {
-          name: '山东',
-          children: [
-            {
-              name: '济南',
-              children: [{ name: '天桥' }, { name: '历下' }, { name: '市中' }]
-            }
-          ]
-        }
-      ],
+      source: ajax(),
       selected: []
     }
   },
