@@ -47,8 +47,13 @@ Vue.component('g-collapse-item', CollapseItem)
 Vue.component('g-cascader', Cascader)
 
 import db from './db'
-function ajax(parentId=0) {
-    return db.filter(item=>item.parent_id === parentId)
+function ajax(parentId = 0) {
+  return new Promise((resolve,reject)=>{
+    setTimeout(() => {
+        let result = db.filter(item => item.parent_id === parentId)
+        resolve(result)
+    }, 2000)
+  })
 }
 
 new Vue({
@@ -64,6 +69,11 @@ new Vue({
       source: ajax(),
       selected: []
     }
+  },
+  created() {
+    ajax(0).then(result => {
+      this.source = result
+    })
   },
   mounted() {
     // this.showTaost()
