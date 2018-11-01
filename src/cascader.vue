@@ -3,8 +3,8 @@
         <div class="cascader" @click="popoverVisible=!popoverVisible">
             {{ result }}
         </div>
-        <div class="popover" v-if="popoverVisible">
-            <gulu-cascader-item :source-items="source" :selected="selected" @update:selected="updateSelected"></gulu-cascader-item>
+        <div class="popover-wrapper" v-if="popoverVisible">
+            <gulu-cascader-item :source-items="source" :selected="selected" @update:selected="updateSelected" :height="popoverHeight"></gulu-cascader-item>
         </div>
     </div>
 </template>
@@ -22,6 +22,9 @@ export default {
         selected: {
             type: Array,
             default: ()=>[]
+        },
+        popoverHeight:{
+            type: String,
         }
     },
     data(){
@@ -50,6 +53,7 @@ $border-radius: 4px;
         justify-content: flex-start;
         align-items: flex-start;
         flex-direction: column;
+        position: relative;
         .cascader{
             height: 30px;
             line-height: 30px;
@@ -59,8 +63,14 @@ $border-radius: 4px;
             border: 1px solid $border-color;
             border-radius: $border-radius;
         }
-        .popover{
-            height: 200px;
+        .popover-wrapper{
+            position: absolute;
+            top:100%;
+            left: 0;
+            margin-top: 8px;
+            background: #fff;
+            z-index: 1;
+            box-shadow: 0 0 3px rgba(0,0,0,.2);
         }
     }
 </style>

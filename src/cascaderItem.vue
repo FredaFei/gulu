@@ -1,5 +1,5 @@
 <template>
-    <div class="cascader-item">
+    <div class="cascader-item" :style="{height:height}">
         <div class="left">
             <div class="label" v-for="item in sourceItems" @click="onClickLabel(item)">
                 {{item.name}}
@@ -7,7 +7,7 @@
             </div>
         </div>
         <div class="right" v-if="rightItems">
-            <gulu-cascader-item :source-items="rightItems" :level="level+1"
+            <gulu-cascader-item :height="height" :source-items="rightItems" :level="level+1"
             :selected="selected" @update:selected="updateSelected"></gulu-cascader-item>
         </div>
     </div>
@@ -29,6 +29,9 @@ export default {
         level: {
             type: Number,
             default: 0
+        },
+        height: {
+            type: String
         }
     },
     data() {
@@ -61,13 +64,14 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+$border-color: #eee;
 .cascader-item {
-    // margin: 20px;
     display: flex;
     align-items: flex-start;
     justify-content: flex-start;
     .left {
-        border: 1px solid red;
+        height: 100%;
+        overflow: auto;
         .label {
             padding: 4px 8px;
             .icon {
@@ -78,8 +82,8 @@ export default {
         }
     }
     .right {
-        border: 1px solid red;
-        margin-left: -1px;
+        height: 100%;
+        border-left: 1px solid $border-color;
     }
 }
 </style>
