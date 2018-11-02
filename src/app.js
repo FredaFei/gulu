@@ -46,6 +46,7 @@ Vue.component('g-collapse', Collapse)
 Vue.component('g-collapse-item', CollapseItem)
 Vue.component('g-cascader', Cascader)
 
+
 import db from './db'
 function ajax(parentId = 0) {
   return new Promise((resolve, reject) => {
@@ -67,7 +68,7 @@ new Vue({
       selectedTabs: 'sport',
       selectedTab: ['3'],
       source: ajax(),
-      selected: []
+      selected: [],
     }
   },
   created() {

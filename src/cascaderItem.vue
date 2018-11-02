@@ -1,7 +1,7 @@
 <template>
     <div class="cascader-item" :style="{height:height}">
         <div class="left">
-            <div class="label" v-for="item in sourceItems" @click="onClickLabel(item)">
+            <div class="label" v-for="item in sourceItems" :key="item.name" @click="onClickLabel(item)">
                 {{item.name}}
                 <icon class="icon" name="right" v-if="item.children"></icon>
             </div>
@@ -36,7 +36,6 @@ export default {
     },
     data() {
         return {
-            leftSelected: null
         }
     },
     computed: {
