@@ -1,5 +1,5 @@
 <template>
-    <div class="callapse-item" :data-name="name">
+    <div class="collapse-item" :data-name="name">
         <div class="title" @click="toggle">{{title}}</div>
         <div class="content" v-if="open">
             <slot></slot>
@@ -9,7 +9,7 @@
 
 <script>
 export default {
-    name: 'guluCallapseItem',
+    name: 'guluCollapseItem',
     inject: ['eventBus'],
     props: {
         title: {
@@ -50,7 +50,7 @@ export default {
 <style lang="scss" scoped>
 $font-size: 16px;
 $border-radius: 4px;
-.callapse-item {
+.collapse-item {
     font-size: $font-size;
     >.title {
         margin-bottom: -1px;

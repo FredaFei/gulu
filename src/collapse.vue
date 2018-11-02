@@ -1,5 +1,5 @@
 <template>
-    <div class="callapse-wrapper">
+    <div class="collapse-wrapper">
         <slot></slot>
     </div>
 </template>
@@ -7,7 +7,7 @@
 <script>
 import Vue from 'vue'
 export default {
-    name: 'guluCallapse',
+    name: 'guluCollapse',
     props: {
         single: {
             type: Boolean,
@@ -59,7 +59,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.callapse-wrapper {
+.collapse-wrapper {
     border: 1px solid rgba(204, 204, 204, 1);
     border-radius: 4px;
 }
