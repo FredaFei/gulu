@@ -29,7 +29,7 @@ export default {
     },
     mounted() {
         // 默认选中状态
-        this.eventBus.$emit('update:select', this.selected)
+        this.eventBus.$emit('update:selected', this.selected)
         let selectedCopy = JSON.parse(JSON.stringify(this.selected))
         this.onAddSelected(selectedCopy)
         this.onRemoveSelected(selectedCopy)
