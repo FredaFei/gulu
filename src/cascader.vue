@@ -51,7 +51,6 @@ export default {
                 return children.filter(item => item.id === id)[0]
             }
             let complex = (children, id) => {
-                debugger;
                 let hasChildrem = []
                 let noChildrem = []
                 children.forEach(item => {
@@ -81,9 +80,14 @@ export default {
             console.log(JSON.stringify(this.source))
             let updateSource = (result) => {
                 // 找到原来的id，添加children属性
-                let toUpdate = complex(this.source, lastItem.id)
+                let copy = JSON.parse(JSON.stringify(this.source))
+                let toUpdate = complex(copy, lastItem.id)
+                toUpdate.children = result
+                console.log('toUpdate')
                 console.log(JSON.stringify(toUpdate))
-                this.$set(toUpdate, 'children', result)
+                console.log('copy')
+                console.log(JSON.stringify(copy))
+                this.$emit('update:source', copy)
             }
             this.loadData(lastItem, updateSource)
         }

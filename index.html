@@ -86,10 +86,10 @@
 
 <body>
     <div id="app">
-        <g-cascader :source="source"
+        <g-cascader :source.sync="source"
         :selected.sync="selected" 
         popover-height="200px" :load-data="loadData"></g-cascader>
-        
+        {{selected.map(item=>item.name)}}
         <div class="test">
             <g-collapse :selected.sync="selectedTab">
                 <g-collapse-item title="title_1" name="1">content_1</g-collapse-item>
