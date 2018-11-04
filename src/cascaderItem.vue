@@ -8,7 +8,7 @@
         </div>
         <div class="right" v-if="rightItems">
             <gulu-cascader-item :height="height" :source-items="rightItems" :level="level+1"
-            :selected="selected" @update:selected="updateSelected"></gulu-cascader-item>
+            :selected="selected" @update:selected="onUpdateSelected"></gulu-cascader-item>
         </div>
     </div>
 </template>
@@ -20,7 +20,7 @@ export default {
     components: { Icon },
     props: {
         sourceItems: {
-            type: Array
+            // type: Array
         },
         selected: {
             type: Array,
@@ -55,7 +55,7 @@ export default {
             copy.splice(this.level+1)
             this.$emit('update:selected',copy)
         },
-        updateSelected(newSelected){
+        onUpdateSelected(newSelected){
             this.$emit('update:selected',newSelected)
         }
     }
