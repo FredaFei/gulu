@@ -46,8 +46,6 @@ export default {
         onUpdateSelected(newSelected) {
             this.$emit('update:selected', newSelected)
             let lastItem = newSelected[newSelected.length - 1]
-            console.log('lastItem')
-            console.log(lastItem)
             let simplest = (children, id) => {
                 return children.filter(item => item.id === id)[0]
             }
@@ -77,17 +75,11 @@ export default {
                     }
                 }
             }
-            console.log('source')
-            console.log(JSON.stringify(this.source))
             let updateSource = (result) => {
                 // 找到原来的id，添加children属性
                 let copy = JSON.parse(JSON.stringify(this.source))
                 let toUpdate = complex(copy, lastItem.id)
                 toUpdate.children = result
-                console.log('toUpdate')
-                console.log(JSON.stringify(toUpdate))
-                console.log('copy')
-                console.log(JSON.stringify(copy))
                 this.$emit('update:source', copy)
             }
             this.loadData && this.loadData(lastItem, updateSource)

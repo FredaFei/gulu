@@ -126,19 +126,10 @@ new Vue({
   },
   methods: {
     loadData({id},updateSource){
-        console.log(id)
         ajax(id).then(result=>{
             updateSource(result)
         })
     },
-    // xxx() {
-    //     ajax(this.selected[0].id).then(result=>{
-    //         let lastLevelSelected = this.source.filter(item=>item.id===this.selected[0].id)[0]
-    //         lastLevelSelected.children = result
-    //         this.$set(lastLevelSelected,'children',result)
-    //         console.log(lastLevelSelected);
-    //     })
-    // },
     selectedFn() {
       console.log(89)
     },
