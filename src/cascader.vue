@@ -4,7 +4,8 @@
             {{ result }}
         </div>
         <div class="popover-wrapper" v-if="popoverVisible">
-            <gulu-cascader-item :source-items="source" :selected="selected" @update:selected="onUpdateSelected" :height="popoverHeight"></gulu-cascader-item>
+            <gulu-cascader-item :source-items="source" :selected="selected" 
+            @update:selected="onUpdateSelected" :load-data="loadData":height="popoverHeight"></gulu-cascader-item>
         </div>
     </div>
 </template>
@@ -89,7 +90,7 @@ export default {
                 console.log(JSON.stringify(copy))
                 this.$emit('update:source', copy)
             }
-            this.loadData(lastItem, updateSource)
+            this.loadData && this.loadData(lastItem, updateSource)
         }
     }
 }

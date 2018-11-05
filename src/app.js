@@ -52,6 +52,13 @@ function ajax(parentId = 0) {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       let result = db.filter(item => item.parent_id === parentId)
+      result.forEach(node=>{
+          if(db.filter(item=>item.parent_id === node.id).length>0){
+            node.isLeaf = false
+          }else{
+              node.isLeaf = true
+          }
+      })
       resolve(result)
     }, 300)
   })
@@ -72,13 +79,50 @@ new Vue({
     }
   },
   created() {
-    ajax(0).then(result => {
-      this.source = result
-    })
+    // ajax(0).then(result => {
+    //   this.source = result
+    // })
+    this.source = [
+        {
+          name: '浙江',
+          children: [
+            {
+              name: '杭州',
+              children: [{ name: '拱墅' }, { name: '西湖' }, { name: '上城' }]
+            }
+          ]
+        },
+        {
+          name: '福建',
+          children: [
+            {
+              name: '福州',
+              children: [
+                { name: '鼓楼' },
+                { name: '台江' },
+                { name: '仓山' },
+                { name: '马尾' }
+              ]
+            },
+            {
+              name: '厦门',
+              children: [{ name: '思明' }, { name: '湖里' }, { name: '集美' }]
+            }
+          ]
+        },
+        {
+          name: '山东',
+          children: [
+            {
+              name: '济南',
+              children: [{ name: '天桥' }, { name: '历下' }, { name: '市中' }]
+            }
+          ]
+        }
+      ]
   },
   mounted() {
     // this.showTaost()
-    console.log(this.selectedTab)
   },
   methods: {
     loadData({id},updateSource){

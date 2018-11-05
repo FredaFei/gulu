@@ -2,13 +2,14 @@
     <div class="cascader-item" :style="{height:height}">
         <div class="left">
             <div class="label" v-for="item in sourceItems" :key="item.name" @click="onClickLabel(item)">
-                {{item.name}}
-                <icon class="icon" name="right" v-if="item.children"></icon>
+                <span class="name">{{item.name}}</span>
+                <icon class="icon" name="right" v-if="rightArrowVisible(item)"></icon>
             </div>
         </div>
         <div class="right" v-if="rightItems">
             <gulu-cascader-item :height="height" :source-items="rightItems" 
-            :level="level+1" :selected="selected" @update:selected="onUpdateSelected"></gulu-cascader-item>
+            :level="level+1" :selected="selected" @update:selected="onUpdateSelected"
+            :load-data="loadData"></gulu-cascader-item>
         </div>
     </div>
 </template>
@@ -29,6 +30,9 @@ export default {
         level: {
             type: Number,
             default: 0
+        },
+        loadData: {
+            type: Function
         },
         height: {
             type: String
@@ -51,6 +55,9 @@ export default {
         }
     },
     methods: {
+        rightArrowVisible(item){
+            return this.loadData ? !item.isLeaf : item.children
+        },
         onClickLabel(item) {
             let copy = JSON.parse(JSON.stringify(this.selected))
             copy[this.level] = item
@@ -70,13 +77,24 @@ $border-color: #eee;
     display: flex;
     align-items: flex-start;
     justify-content: flex-start;
+    
     .left {
         height: 100%;
         overflow: auto;
         .label {
-            padding: 4px 8px;
+            padding: 8px;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            cursor: pointer;
+            &:hover{
+                background: #eee;
+            }
+            .name{
+                margin-right: 1em;
+            }
             .icon {
-                margin-left: 1em;
+                margin-left: auto;
                 fill: #aaa;
                 transform: scale(.7);
             }
