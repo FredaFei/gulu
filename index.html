@@ -74,10 +74,12 @@
             background: #ddd;
             height: 200px;
         }
-        body{
+
+        body {
             height: 100px;
         }
-        .test{
+
+        .test {
             margin: 20px;
             width: 400px;
         }
@@ -86,10 +88,13 @@
 
 <body>
     <div id="app">
-        <g-cascader :source.sync="source"
-        :selected.sync="selected" 
-        popover-height="200px" ></g-cascader>
         {{selected.map(item=>item.name)}}
+        <div class="test">
+            <g-cascader :source.sync="source" :load-data="loadData" :selected.sync="selected" popover-height="200px"></g-cascader>
+        </div>
+        <div class="test">
+            <g-cascader :source.sync="source" :selected.sync="selected" popover-height="200px"></g-cascader>
+        </div>
         <div class="test">
             <g-collapse :selected.sync="selectedTab">
                 <g-collapse-item title="title_1" name="1">content_1</g-collapse-item>
@@ -103,13 +108,9 @@
         <div class="test">
             <g-popover position="top">
                 <template slot="popover" slot-scope="{close}">
-                    {{close}}
-                    this is a popover,this is a popover,this is a popover
-                    this is a popover,this is a popover,this is a popover
-                    this is a popover,this is a popover,this is a popover
-                    this is a popover,this is a popover,this is a popover
-                    this is a popover,this is a popover,this is a popover
-                    this is a popover,this is a popover,this is a popover
+                    {{close}} this is a popover,this is a popover,this is a popover this is a popover,this is a popover,this is a popover this
+                    is a popover,this is a popover,this is a popover this is a popover,this is a popover,this is a popover
+                    this is a popover,this is a popover,this is a popover this is a popover,this is a popover,this is a popover
                     <button>close</button>
                 </template>
                 <button @click="selectedFn">click me</button>
@@ -135,12 +136,9 @@
             <br /><br />
             <g-popover position="top" trigger="hover">
                 <template slot="popover">
-                    this is a popover,this is a popover,this is a popover
-                    this is a popover,this is a popover,this is a popover
-                    this is a popover,this is a popover,this is a popover
-                    this is a popover,this is a popover,this is a popover
-                    this is a popover,this is a popover,this is a popover
-                    this is a popover,this is a popover,this is a popover
+                    this is a popover,this is a popover,this is a popover this is a popover,this is a popover,this is a popover this is a popover,this
+                    is a popover,this is a popover this is a popover,this is a popover,this is a popover this is a popover,this
+                    is a popover,this is a popover this is a popover,this is a popover,this is a popover
 
                 </template>
                 <button @click="selectedFn">click me</button>

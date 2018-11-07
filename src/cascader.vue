@@ -4,7 +4,7 @@
             {{ result }}
         </div>
         <div class="popover-wrapper" v-if="popoverVisible">
-            <gulu-cascader-item :source-items="source" :selected="selected" 
+            <gulu-cascader-item :source-items="source" :selected="selected" :loading-item="loadingItem"
             @update:selected="onUpdateSelected" :load-data="loadData":height="popoverHeight"></gulu-cascader-item>
         </div>
     </div>
@@ -34,7 +34,8 @@ export default {
     },
     data() {
         return {
-            popoverVisible: false
+            popoverVisible: false,
+            loadingItem: {}
         }
     },
     computed: {
@@ -100,13 +101,17 @@ export default {
                 }
             }
             let updateSource = (result) => {
+                this.loadingItem = {}
                 // 找到原来的id，添加children属性
                 let copy = JSON.parse(JSON.stringify(this.source))
                 let toUpdate = complex(copy, lastItem.id)
                 toUpdate.children = result
                 this.$emit('update:source', copy)
             }
-            this.loadData && this.loadData(lastItem, updateSource)
+            if(this.loadData && !lastItem.isLeaf){
+                this.loadData(lastItem, updateSource)
+                this.loadingItem = lastItem
+            }
         }
     }
 }

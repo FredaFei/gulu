@@ -3,11 +3,18 @@
         <div class="left">
             <div class="label" v-for="item in sourceItems" :key="item.name" @click="onClickLabel(item)">
                 <span class="name">{{item.name}}</span>
-                <icon class="icon" name="right" v-if="rightArrowVisible(item)"></icon>
+                <span class="icons">
+                    <template v-if="item.name===loadingItem.name">
+                        <icon class="icon loading" name="loading"></icon>
+                    </template>
+                    <template v-else>
+                        <icon class="icon next" name="right" v-if="rightArrowVisible(item)"></icon>
+                    </template>
+                </span>
             </div>
         </div>
         <div class="right" v-if="rightItems">
-            <gulu-cascader-item :height="height" :source-items="rightItems" 
+            <gulu-cascader-item :height="height" :source-items="rightItems" :loading-item="loadingItem"
             :level="level+1" :selected="selected" @update:selected="onUpdateSelected"
             :load-data="loadData"></gulu-cascader-item>
         </div>
@@ -22,6 +29,10 @@ export default {
     props: {
         sourceItems: {
             // type: Array
+        },
+        loadingItem: {
+            type: Object,
+            default: ()=>({})
         },
         selected: {
             type: Array,
@@ -72,6 +83,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "var";
 $border-color: #eee;
 .cascader-item {
     display: flex;
@@ -94,10 +106,15 @@ $border-color: #eee;
             .name{
                 margin-right: 1em;
             }
-            .icon {
+            .icons {
                 margin-left: auto;
                 fill: #aaa;
-                transform: scale(.7);
+                .next{
+                    transform: scale(.7);
+                }
+                .loading{
+                    animation: spin 1.2s infinite linear;
+                }
             }
         }
     }
