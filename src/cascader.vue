@@ -118,8 +118,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-$border-color: #ddd;
-$border-radius: 4px;
+@import "var";
 .cascader-wrapper {
     display: inline-flex;
     justify-content: flex-start;

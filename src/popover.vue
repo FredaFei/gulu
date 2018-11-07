@@ -118,8 +118,7 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-$border-radius: 4px;
-$border-color: #333;
+@import "var";
 .popover-wrapper {
     display: inline-block;
     vertical-align: top;

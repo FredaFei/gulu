@@ -59,8 +59,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "var";
 .collapse-wrapper {
     border: 1px solid rgba(204, 204, 204, 1);
-    border-radius: 4px;
+    border-radius: $border-radius;
 }
 </style>

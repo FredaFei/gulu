@@ -84,12 +84,10 @@ export default {
 
 <style lang="scss" scoped>
 @import "var";
-$border-color: #eee;
 .cascader-item {
     display: flex;
     align-items: flex-start;
     justify-content: flex-start;
-    
     .left {
         height: 100%;
         overflow: auto;

@@ -34,22 +34,14 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-@keyframes spin {
-    0% {
-        transform: rotate(0deg);
-    }
-    100% {
-        transform: rotate(360deg);
-    }
-}
-
+@import "var";
 .g-button {
-    font-size: var(--button-fontSize);
-    height: var(--button-height);
+    font-size: $button-fontSize;
+    height: $button-height;
     padding: 0 1em;
-    border-radius: var(--border-radius);
-    border: 1px solid var(--border-color);
-    background: var(--button-bg);
+    border-radius: $border-radius;
+    border: 1px solid $border-color;
+    background: $button-bg;
     display: inline-flex;
     justify-content: center;
     align-items: center;
@@ -79,11 +71,11 @@ export default {
         }
     }
     &:hover {
-        border-color: var(--border-color-hover);
+        border-color: $border-color-hover;
     }
 
     &:active {
-        background-color: var(--border-active-bg);
+        background-color: $border-active-bg;
     }
 
     &:focus {

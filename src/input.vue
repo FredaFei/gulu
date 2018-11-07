@@ -44,18 +44,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-$font-size: 14px;
-$color: #333;
-$border-color: rgba(102, 102, 102, 1);
-$border-radius: 4px;
-$error-color: #f1453d;
-$info-color: #67c23a;
-$border-color-hover: #666;
+@import "var";
 .wrapper {
     display: inline-flex;
     justify-content: center;
     align-items: center;
-    font-size: $font-size;
+    font-size: $input-font-size;
     > :not(:last-child) {
         margin-right: 0.5em;
     }
@@ -67,10 +61,10 @@ $border-color-hover: #666;
         padding: 0 8px;
         height: 32px;
         font-size: inherit;
-        border: 1px solid $border-color;
+        border: 1px solid $input-border-color;
         border-radius: $border-radius;
         &:hover {
-            border-color: $border-color-hover;
+            border-color: $input-border-color-hover;
         }
         &:focus {
             outline: none;

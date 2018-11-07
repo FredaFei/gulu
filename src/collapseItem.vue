@@ -48,8 +48,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-$font-size: 16px;
-$border-radius: 4px;
+@import "var";
 .collapse-item {
     font-size: $font-size;
     >.title {
