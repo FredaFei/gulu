@@ -13,7 +13,7 @@ describe('Collapse', () => {
     it('存在.', () => {
         expect(Collapse).to.be.ok
     })
-    it.only('可以设置 single.', done => {
+    xit('可以设置 single.', done => {
         const div = document.createElement('div')
         document.body.appendChild(div)
         div.innerHTML = `
@@ -35,8 +35,8 @@ describe('Collapse', () => {
             console.log(vm.$el)
             setTimeout(() => {
                 console.log(vm.$el)
-                // expect(vm.$el.querySelector('#content_1')).to.not.exist
-                // expect(vm.$el.querySelector('#content_2')).to.exist
+                expect(vm.$el.querySelector('#content_1')).to.not.exist
+                expect(vm.$el.querySelector('#content_2')).to.exist
                 done()
             })
         })
