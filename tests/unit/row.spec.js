@@ -21,10 +21,7 @@ describe('GRow', () => {
                     <g-col span="6">4</g-col>
                 </g-row>`]
                 },
-                attachToDocument: true,
-                propsData: {
-                    gutter: 'right'
-                }
+                attachToDocument: true
             })
             const { vm } = wrapper
             const rowEl = vm.$el.querySelectorAll('.row')[0]
