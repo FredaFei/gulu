@@ -1,14 +1,13 @@
 import chai, { expect } from 'chai'
 import { mount } from '@vue/test-utils'
 
-import GRow from '@/gRow'
 import GCol from '@/gCol'
 
 describe('GCol', () => {
     it('存在.', () => {
         expect(GCol).to.be.ok
     })
-    describe('props', done => {
+    describe('props', () => {
         it('可以设置span.', () => {
             const wrapper = mount(GCol, {
                 propsData: {

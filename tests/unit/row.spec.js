@@ -5,9 +5,6 @@ import Vue from 'vue'
 import GRow from '@/gRow'
 import GCol from '@/gCol'
 
-Vue.config.productionTip = false
-Vue.config.devtools = false
-
 describe('GRow', () => {
     it('存在.', () => {
         expect(GRow).to.be.ok
