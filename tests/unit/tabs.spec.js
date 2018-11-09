@@ -1,19 +1,21 @@
-const expect = chai.expect
+import chai, { expect } from 'chai'
+import sinon from 'sinon'
+import sinonChai from 'sinon-chai'
+chai.use(sinonChai)
+import { mount } from '@vue/test-utils'
+
 import Vue from 'vue'
-import Tabs from '../src/tabs'
-import TabsHeader from '../src/tabsHeader'
-import TabsBody from '../src/tabsBody'
-import TabsItem from '../src/tabsItem'
-import TabsPane from '../src/tabsPane'
+import Tabs from '@/tabs'
+import TabsHeader from '@/tabsHeader'
+import TabsBody from '@/tabsBody'
+import TabsItem from '@/tabsItem'
+import TabsPane from '@/tabsPane'
 
 Vue.component('g-tabs', Tabs)
 Vue.component('g-tabs-header', TabsHeader)
 Vue.component('g-tabs-body', TabsBody)
 Vue.component('g-tabs-item', TabsItem)
 Vue.component('g-tabs-pane', TabsPane)
-
-Vue.config.productionTip = false
-Vue.config.devtools = false
 
 describe('Tabs', () => {
     it('存在.', () => {
@@ -52,7 +54,7 @@ describe('Tabs', () => {
                 done()
             });
         })
-        it('可以设置 direction .', () => {
+        xit('可以设置 direction .', () => {
             
         })
     })
