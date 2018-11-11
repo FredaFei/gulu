@@ -1,93 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <style lang="scss">
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-size: 14px;
-        }
-
-        :root {
-            --button-height: 32px;
-            --button-fontSize: 14px;
-            --color: #333;
-            --button-bg: #fff;
-            --border-radius: 4px;
-            --border-active-bg: #eee;
-            --border-color: #999;
-            --border-color-hover: #666;
-        }
-
-        .module-wrapper {
-            margin: 20px;
-            color: #0d1a26;
-        }
-
-        .module-hd {}
-
-        .module-bd {
-            margin-top: 10px;
-            padding: 14px;
-            border-radius: 4px;
-            border: 1px solid #ebedf0;
-        }
-
-        .box {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-
-        .g-button {
-            margin-bottom: 16px;
-        }
-
-        .demo+.demo {
-            margin-top: 20px;
-        }
-
-        .demo>.sider {
-            width: 200px;
-            background: #aaaaaa;
-        }
-
-        .demo>.header,
-        .demo>.footer {
-            line-height: 40px;
-            background: blue;
-            color: #fff;
-            font-size: 16px;
-        }
-
-        .demo>.content {
-            background: #ddd;
-            height: 200px;
-        }
-
-        body {
-            height: 100px;
-        }
-
-        .test {
-            margin: 20px;
-            width: 400px;
-        }
-    </style>
-</head>
-
-<body>
-    <div id="app">
+<template>
+    <div id="demo">
         {{selected.map(item=>item.name)}}
         <div class="test">
             <g-cascader :source.sync="source" :load-data="loadData" :selected.sync="selected" popover-height="200px"></g-cascader>
@@ -108,9 +20,7 @@
         <div class="test">
             <g-popover position="top">
                 <template slot="popover" slot-scope="{close}">
-                    {{close}} this is a popover,this is a popover,this is a popover this is a popover,this is a popover,this is a popover this
-                    is a popover,this is a popover,this is a popover this is a popover,this is a popover,this is a popover
-                    this is a popover,this is a popover,this is a popover this is a popover,this is a popover,this is a popover
+                    {{close}} this is a popover,this is a popover,this is a popover this is a popover,this is a popover,this is a popover this is a popover,this is a popover,this is a popover this is a popover,this is a popover,this is a popover this is a popover,this is a popover,this is a popover this is a popover,this is a popover,this is a popover
                     <button>close</button>
                 </template>
                 <button @click="selectedFn">click me</button>
@@ -136,9 +46,7 @@
             <br /><br />
             <g-popover position="top" trigger="hover">
                 <template slot="popover">
-                    this is a popover,this is a popover,this is a popover this is a popover,this is a popover,this is a popover this is a popover,this
-                    is a popover,this is a popover this is a popover,this is a popover,this is a popover this is a popover,this
-                    is a popover,this is a popover this is a popover,this is a popover,this is a popover
+                    this is a popover,this is a popover,this is a popover this is a popover,this is a popover,this is a popover this is a popover,this is a popover,this is a popover this is a popover,this is a popover,this is a popover this is a popover,this is a popover,this is a popover this is a popover,this is a popover,this is a popover
 
                 </template>
                 <button @click="selectedFn">click me</button>
@@ -163,7 +71,7 @@
             </g-popover>
         </div>
 
-         <div class="module-wrapper">
+        <div class="module-wrapper">
             <div class="module-hd">
                 <h2>tabs</h2>
                 <h5>代码演示:</h5>
@@ -171,7 +79,9 @@
             <div class="module-bd">
                 <g-tabs :selected.sync="selectedTabs" @update:selected="selectedFn">
                     <g-tabs-header>
-                        <template slot="actions"><button>设置</button></template>
+                        <template slot="actions">
+                            <button>设置</button>
+                        </template>
                         <g-tabs-item name="sport">
                             <g-icon name="settings"></g-icon>
                             sport
@@ -189,7 +99,9 @@
         </div>
         <g-tabs :selected.sync="selectedTabs" @update:selected="selectedFn">
             <g-tabs-header>
-                <template slot="actions"><button>设置</button></template>
+                <template slot="actions">
+                    <button>设置</button>
+                </template>
                 <g-tabs-item name="sport">
                     <g-icon name="settings"></g-icon>
                     sport
@@ -307,11 +219,267 @@
                     </g-layout>
                 </g-layout>
             </div>
-        </div> 
+        </div>
 
     </div>
-    <script src="./src/app.js"></script>
-    <script src="//at.alicdn.com/t/font_862456_p07n5ma1j5o.js"></script>
-</body>
+</template>
 
-</html>
+<script>
+import Vue from 'vue'
+import Button from './button'
+import Icon from './icon'
+import ButtonGroup from './buttonGroup'
+import Input from './input'
+import GCol from './gCol'
+import GRow from './gRow'
+import GLayout from './layout'
+import GSider from './sider'
+import GHeader from './header'
+import GContent from './content'
+import GFooter from './footer'
+import Toast from './toast'
+import Tabs from './tabs'
+import TabsHeader from './tabsHeader'
+import TabsBody from './tabsBody'
+import TabsItem from './tabsItem'
+import TabsPane from './tabsPane'
+import Popover from './popover'
+import Collapse from './collapse'
+import CollapseItem from './collapseItem'
+import Cascader from './cascader'
+
+import plugin from './plugin'
+
+Vue.component('g-button', Button)
+Vue.component('g-icon', Icon)
+Vue.component('g-button-group', ButtonGroup)
+Vue.component('g-input', Input)
+Vue.component('g-col', GCol)
+Vue.component('g-row', GRow)
+Vue.component('g-layout', GLayout)
+Vue.component('g-sider', GSider)
+Vue.component('g-header', GHeader)
+Vue.component('g-content', GContent)
+Vue.component('g-footer', GFooter)
+Vue.component('g-toast', Toast)
+Vue.use(plugin)
+Vue.component('g-tabs', Tabs)
+Vue.component('g-tabs-header', TabsHeader)
+Vue.component('g-tabs-body', TabsBody)
+Vue.component('g-tabs-item', TabsItem)
+Vue.component('g-tabs-pane', TabsPane)
+Vue.component('g-popover', Popover)
+Vue.component('g-collapse', Collapse)
+Vue.component('g-collapse-item', CollapseItem)
+Vue.component('g-cascader', Cascader)
+
+
+import db from './db'
+function ajax(parentId = 0) {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            let result = db.filter(item => item.parent_id === parentId)
+            result.forEach(node => {
+                if (db.filter(item => item.parent_id === node.id).length > 0) {
+                    node.isLeaf = false
+                } else {
+                    node.isLeaf = true
+                }
+            })
+            resolve(result)
+        }, 3000)
+    })
+}
+
+export default{
+    data() {
+        return {
+            loading: true,
+            value: '张三',
+            message: '名字长度需大于2',
+            value2: 'ha',
+            selectedTabs: 'sport',
+            selectedTab: ['3'],
+            source: ajax(),
+            selected: [],
+        }
+    },
+    created() {
+        ajax(0).then(result => {
+            this.source = result
+        })
+        // this.source = [
+        //     {
+        //       name: '浙江',
+        //       children: [
+        //         {
+        //           name: '杭州',
+        //           children: [{ name: '拱墅' }, { name: '西湖' }, { name: '上城' }]
+        //         }
+        //       ]
+        //     },
+        //     {
+        //       name: '福建',
+        //       children: [
+        //         {
+        //           name: '福州',
+        //           children: [
+        //             { name: '鼓楼' },
+        //             { name: '台江' },
+        //             { name: '仓山' },
+        //             { name: '马尾' }
+        //           ]
+        //         },
+        //         {
+        //           name: '厦门',
+        //           children: [{ name: '思明' }, { name: '湖里' }, { name: '集美' }]
+        //         }
+        //       ]
+        //     },
+        //     {
+        //       name: '山东',
+        //       children: [
+        //         {
+        //           name: '济南',
+        //           children: [{ name: '天桥' }, { name: '历下' }, { name: '市中' }]
+        //         }
+        //       ]
+        //     }
+        //   ]
+    },
+    mounted() {
+        // this.showTaost()
+    },
+    methods: {
+        loadData({ id }, updateSource) {
+            ajax(id).then(result => {
+                updateSource(result)
+            })
+        },
+        selectedFn() {
+            console.log(89)
+        },
+        showTaost() {
+            this.$toast('i am a toast!i am a toast!')
+        },
+        showTaost1() {
+            this.$toast(
+                `i am a toast!i am a toast! ${parseInt(Math.random() * 100)}`,
+                {
+                    autoClose: 3
+                }
+            )
+        },
+        showTaost2() {
+            this.$toast(
+                `i am a toast!i am a toast! ${parseInt(Math.random() * 100)}`,
+                {
+                    autoClose: false,
+                    position: 'top'
+                }
+            )
+        },
+        showTaost3() {
+            this.$toast('i am a toast!', {
+                autoClose: false,
+                position: 'middle',
+                closeButton: {
+                    text: '关闭',
+                    callback() {
+                        console.log('i know')
+                    }
+                }
+            })
+        },
+        showTaost4() {
+            this.$toast(
+                'i am a toast!i am a toast! <strong id="test">test strong</strong>',
+                {
+                    position: 'bottom',
+                    enableHtml: true
+                }
+            )
+        }
+    }
+}
+
+</script>
+
+<style lang="scss">
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-size: 14px;
+}
+
+ :root {
+    --button-height: 32px;
+    --button-fontSize: 14px;
+    --color: #333;
+    --button-bg: #fff;
+    --border-radius: 4px;
+    --border-active-bg: #eee;
+    --border-color: #999;
+    --border-color-hover: #666;
+}
+
+.module-wrapper {
+    margin: 20px;
+    color: #0d1a26;
+}
+
+.module-hd {}
+
+.module-bd {
+    margin-top: 10px;
+    padding: 14px;
+    border-radius: 4px;
+    border: 1px solid #ebedf0;
+}
+
+.box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.g-button {
+    margin-bottom: 16px;
+}
+
+.demo+.demo {
+    margin-top: 20px;
+}
+
+.demo>.sider {
+    width: 200px;
+    background: #aaaaaa;
+}
+
+.demo>.header,
+.demo>.footer {
+    line-height: 40px;
+    background: blue;
+    color: #fff;
+    font-size: 16px;
+}
+
+.demo>.content {
+    background: #ddd;
+    height: 200px;
+}
+
+body {
+    height: 100px;
+}
+
+.test {
+    margin: 20px;
+    width: 400px;
+}
+</style>
