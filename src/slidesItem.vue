@@ -9,6 +9,12 @@
 <script>
 export default {
   name: 'guluSlides',
+  props: {
+    name: {
+      type: String,
+      required: true
+    }
+  },
   data() {
     return {
       visible: false

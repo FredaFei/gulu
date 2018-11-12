@@ -15,7 +15,7 @@ export default {
         },
         name: {
             type: String | Number,
-            require: true
+            required: true
         }
     },
     data() {

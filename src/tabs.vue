@@ -11,7 +11,7 @@ export default {
     props: {
         selected: {
             type: String | Number,
-            require: true
+            required: true
         },
         // todo direction 待定
         direction: {

@@ -9,6 +9,12 @@
 <script>
 export default {
   name: 'guluSlide',
+  props: {
+    selected: {
+      type: String,
+      default: ''
+    }
+  },
   mounted() {
     console.log(this.$children)
     this.$children[0].visible = true

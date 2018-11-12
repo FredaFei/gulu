@@ -18,7 +18,7 @@ export default {
     props: {
         source: {
             // type: Array,
-            require: true,
+            required: true,
             default: []
         },
         selected: {
