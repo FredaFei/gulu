@@ -1,13 +1,13 @@
 <template>
   <div id="demo">
-    <g-slides>
-      <g-slides-item>
+    <g-slides :selected="slidesSelected">
+      <g-slides-item name="1">
         <div class="slides-item">slide 1</div>
       </g-slides-item>
-      <g-slides-item>
+      <g-slides-item name="2">
         <div class="slides-item">slide 2</div>
       </g-slides-item>
-      <g-slides-item>
+      <g-slides-item name="3">
         <div class="slides-item">slide 3</div>
       </g-slides-item>
     </g-slides>
@@ -318,9 +318,11 @@ export default {
       selectedTab: ['3'],
       source: ajax(),
       selected: [],
+      slidesSelected: '1'
     }
   },
   created() {
+    
     ajax(0).then(result => {
       this.source = result
     })

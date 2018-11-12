@@ -18,11 +18,22 @@ export default {
   mounted() {
     console.log(this.$children)
     this.$children[0].visible = true
-    setTimeout(() => {
-      this.$children[0].visible = false
-      this.$children[1].visible = true
-    }, 2000);
+    // setTimeout(() => {
+    //   this.$children[0].visible = false
+    //   this.$children[1].visible = true
+    // }, 2000);
+    this.updateChildren()
   },
+  updated(){
+    this.updateChildren()
+  },
+  methods: {
+    updateChildren(){
+      this.$children.forEach((vm)=>{
+        vm.selected = this.selected
+      })
+    }
+  }
 }
 </script>
 
