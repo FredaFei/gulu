@@ -27,16 +27,18 @@ export default {
   },
   methods: {
     playAutomaticlly() {
-      let names = this.$children.map(vm=>vm.name)
+      let names = this.$children.map(vm => vm.name)
       let index = names.indexOf(this.getSelected())
-      setInterval(() => {
+      let run = () => {
         if (index === names.length) {
           index = 0
         }
-        this.$emit('update:selected',names[index+1])
+        this.$emit('update:selected', names[index + 1])
         index++
         console.log(index)
-      }, 2000);
+        setTimeout(run, 2000)
+      }
+      setTimeout(run, 2000)
     },
     getSelected() {
       let first = this.$children[0]
