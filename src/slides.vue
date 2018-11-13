@@ -12,18 +12,39 @@ export default {
   props: {
     selected: {
       type: String
+    },
+    autoPlay: {
+      type: Boolean,
+      default: true
     }
   },
   mounted() {
     this.updateChildren()
+    this.autoPlay && this.playAutomaticlly()
   },
   updated() {
     this.updateChildren()
   },
   methods: {
+    playAutomaticlly() {
+      let names = this.$children.map(vm=>vm.name)
+      let index = names.indexOf(this.getSelected())
+      setInterval(() => {
+        if (index === names.length) {
+          index = 0
+        }
+        this.$emit('update:selected',names[index+1])
+        index++
+        console.log(index)
+      }, 2000);
+    },
+    getSelected() {
+      let first = this.$children[0]
+      return this.selected || first.name
+    },
     updateChildren() {
       let first = this.$children[0]
-      let selected = this.selected || first.name
+      let selected = this.getSelected()
       this.$children.forEach((vm) => {
         vm.selected = selected
       })

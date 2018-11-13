@@ -1,6 +1,6 @@
 <template>
   <div id="demo">
-    <g-slides :selected="slidesSelected">
+    <g-slides :selected.sync="selected">
       <g-slides-item name="1">
         <div class="slides-item">slide 1</div>
       </g-slides-item>
@@ -12,8 +12,7 @@
       </g-slides-item>
     </g-slides>
 
-    {{selected.map(item=>item.name)}}
-    <div class="test">
+    <!--<div class="test">
       <g-cascader :source.sync="source" :load-data="loadData" :selected.sync="selected" popover-height="200px"></g-cascader>
     </div>
     <div class="test">
@@ -231,7 +230,7 @@
           </g-layout>
         </g-layout>
       </div>
-    </div>
+    </div>-->
 
   </div>
 </template>
@@ -317,15 +316,11 @@ export default {
       selectedTabs: 'sport',
       selectedTab: ['3'],
       source: ajax(),
-      selected: [],
-      slidesSelected: '1'
+      // selected: [],
+      selected: '1'
     }
   },
   created() {
-    setTimeout(() => {
-      this.slidesSelected = '2'
-      console.log(3)
-    }, 2000);
     ajax(0).then(result => {
       this.source = result
     })
@@ -436,11 +431,13 @@ export default {
 body {
   font-size: 14px;
 }
-.slides-item{
+
+.slides-item {
   width: 200px;
   height: 150px;
   border: 1px solid red;
 }
+
 .module-wrapper {
   margin: 20px;
   color: #0d1a26;
