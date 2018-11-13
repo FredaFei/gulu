@@ -317,7 +317,7 @@ export default {
       selectedTab: ['3'],
       source: ajax(),
       // selected: [],
-      selected: '1'
+      selected: '3'
     }
   },
   created() {

@@ -30,12 +30,12 @@ export default {
       let names = this.$children.map(vm => vm.name)
       let index = names.indexOf(this.getSelected())
       let run = () => {
-        if (index === names.length) {
-          index = 0
+        let newIndex = index - 1
+        if (newIndex === names.length) {
+          newIndex = 0
         }
-        this.$emit('update:selected', names[index + 1])
-        index++
-        console.log(index)
+        if (newIndex === -1) { newIndex = names.length - 1 }
+        this.$emit('update:selected', names[newIndex])
         setTimeout(run, 2000)
       }
       setTimeout(run, 2000)
@@ -45,10 +45,14 @@ export default {
       return this.selected || first.name
     },
     updateChildren() {
-      let first = this.$children[0]
       let selected = this.getSelected()
       this.$children.forEach((vm) => {
         vm.selected = selected
+        const names = this.$children.map(vm => vm.name)
+        let newIndex = names.indexOf(selected)
+        let oldIndex = names.indexOf(vm.name)
+        vm.reverse = newIndex>oldIndex ? false : true
+        console.log(vm.reverse)
       })
     }
   }
@@ -63,6 +67,7 @@ export default {
   }
   &-window {
     position: relative;
+    overflow: hidden;
   }
 }
 </style>
