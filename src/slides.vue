@@ -11,24 +11,21 @@ export default {
   name: 'guluSlide',
   props: {
     selected: {
-      type: String,
-      default: ''
+      type: String
     }
   },
   mounted() {
-    console.log(this.$children)
-    this.$children[0].visible = true
     this.updateChildren()
   },
-  updated(){
+  updated() {
     this.updateChildren()
   },
   methods: {
-    updateChildren(){
-      this.$children.forEach((vm)=>{
-        console.log(vm)
-        vm.selected = this.selected
-        console.log(vm.selected)
+    updateChildren() {
+      let first = this.$children[0]
+      let selected = this.selected || first.name
+      this.$children.forEach((vm) => {
+        vm.selected = selected
       })
     }
   }
