@@ -322,7 +322,10 @@ export default {
     }
   },
   created() {
-    
+    setTimeout(() => {
+      this.slidesSelected = '2'
+      console.log(3)
+    }, 2000);
     ajax(0).then(result => {
       this.source = result
     })
