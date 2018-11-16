@@ -431,9 +431,11 @@ export default {
 body {
   font-size: 14px;
 }
-
+#demo{
+  padding: 20px;
+}
 .slides-item {
-  width: 200px;
+  width: 100%;
   height: 150px;
   border: 1px solid red;
 }

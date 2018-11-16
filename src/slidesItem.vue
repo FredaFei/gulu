@@ -18,7 +18,7 @@ export default {
   data() {
     return {
       selected: undefined,
-      reverse: false
+      reverse: false,
     }
   },
   computed: {
@@ -36,7 +36,8 @@ export default {
   position: absolute;
   top: 0;
   left: 0;
-  border: 10px solid blueviolet;
+  width: 100%;  
+  height: 100%;
 }
 
 .slide-enter-active,

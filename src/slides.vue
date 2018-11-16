@@ -3,6 +3,9 @@
     <div class="g-slides-window">
       <slot></slot>
     </div>
+    <div class="g-slides-dots">
+      <span v-for="n in childrenLength" :key="n" :class="{active: selectedIndex===n-1}" @click="select(n-1)">{{n}}</span>
+    </div>
   </div>
 </template>
 
@@ -18,27 +21,43 @@ export default {
       default: true
     }
   },
+  data() {
+    return {
+      childrenLength: 0
+    }
+  },
+  computed: {
+    selectedIndex() {
+      return this.names.indexOf(this.selected)
+    },
+    names() {
+      return this.$children.map(vm => vm.name)
+    }
+  },
   mounted() {
+    this.childrenLength = this.$children.length
     this.updateChildren()
-    this.autoPlay && this.playAutomaticlly()
+    this.autoPlay && this.playAutomatically()
   },
   updated() {
     this.updateChildren()
   },
   methods: {
-    playAutomaticlly() {
-      let names = this.$children.map(vm => vm.name)
-      let index = names.indexOf(this.getSelected())
+    playAutomatically() {
+      let index = this.names.indexOf(this.getSelected())
       let run = () => {
         let newIndex = index - 1
-        if (newIndex === names.length) {
+        if (newIndex === this.childrenLength) {
           newIndex = 0
         }
-        if (newIndex === -1) { newIndex = names.length - 1 }
-        this.$emit('update:selected', names[newIndex])
-        setTimeout(run, 2000)
+        if (newIndex === -1) { newIndex = this.childrenLength - 1 }
+        this.select(newIndex)
+        setTimeout(run, 3000)
       }
-      setTimeout(run, 2000)
+      setTimeout(run, 3000)
+    },
+    select(index) {
+      this.$emit('update:selected', this.names[index])
     },
     getSelected() {
       let first = this.$children[0]
@@ -48,11 +67,10 @@ export default {
       let selected = this.getSelected()
       this.$children.forEach((vm) => {
         vm.selected = selected
-        const names = this.$children.map(vm => vm.name)
-        let newIndex = names.indexOf(selected)
-        let oldIndex = names.indexOf(vm.name)
-        vm.reverse = newIndex>oldIndex ? false : true
-        console.log(vm.reverse)
+        let newIndex = this.names.indexOf(selected)
+        let oldIndex = this.names.indexOf(vm.name)
+        vm.reverse = newIndex > oldIndex ? false : true
+        // console.log(vm.reverse)
       })
     }
   }
@@ -62,12 +80,29 @@ export default {
 <style lang="scss" scoped>
 .g-slides {
   &-wrapper {
-    display: inline-block;
     border: 1px solid blue;
   }
   &-window {
     position: relative;
     overflow: hidden;
+  }
+  &-dots {
+    display: flex;
+    justify-content: center;
+    span {
+      width: 16px;
+      line-height: 16px;
+      font-size: 12px;
+      text-align: center;
+      border-radius: 50%;
+      background: #ccc;
+      &+span {
+        margin-left: .4em;
+      }
+      &.active {
+        background: red;
+      }
+    }
   }
 }
 </style>
