@@ -50,12 +50,11 @@ export default {
       if (this.timerId) { return false }
       let run = () => {
         let index = this.names.indexOf(this.getSelected())
-        console.log(this.getSelected())
-        let newIndex = index - 1
+        let newIndex = index + 1
         if (newIndex === this.childrenLength) {
           newIndex = 0
         }
-        if (newIndex === -1) { newIndex = this.childrenLength - 1 }
+        if (newIndex === -1) { newIndex = this.childrenLength + 1 }
         this.select(newIndex)
         this.timerId = setTimeout(run, 3000)
       }
@@ -105,7 +104,6 @@ export default {
 <style lang="scss" scoped>
 .g-slides {
   &-wrapper {
-    border: 1px solid blue;
   }
   &-window {
     position: relative;
@@ -117,14 +115,16 @@ export default {
     span {
       width: 20px;
       line-height: 20px;
+      margin-top: 8px;
       margin-left: 8px;
       font-size: 12px;
       text-align: center;
       border-radius: 50%;
-      background: #ccc;
+      background: #ddd;
       cursor: pointer;
       &.active {
-        background: red;
+        background: #000;
+        color: #fff;
       }
     }
   }

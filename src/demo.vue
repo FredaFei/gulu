@@ -437,7 +437,7 @@ body {
 .slides-item {
   width: 100%;
   height: 150px;
-  border: 1px solid red;
+  background: #dddddd;
 }
 
 .module-wrapper {
