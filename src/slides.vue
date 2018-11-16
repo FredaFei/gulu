@@ -23,21 +23,23 @@ export default {
   },
   data() {
     return {
-      childrenLength: 0
+      childrenLength: 0,
+      lastSelectedIndex: undefined 
     }
   },
   computed: {
     selectedIndex() {
-      return this.names.indexOf(this.selected)
+      let index = this.names.indexOf(this.selected)
+      return index === -1 ? 0 :index
     },
     names() {
       return this.$children.map(vm => vm.name)
     }
   },
   mounted() {
-    this.childrenLength = this.$children.length
     this.updateChildren()
     this.autoPlay && this.playAutomatically()
+    this.childrenLength = this.$children.length
   },
   updated() {
     this.updateChildren()
@@ -45,6 +47,7 @@ export default {
   methods: {
     playAutomatically() {
       let index = this.names.indexOf(this.getSelected())
+      console.log(this.getSelected())
       let run = () => {
         let newIndex = index - 1
         if (newIndex === this.childrenLength) {
@@ -57,6 +60,7 @@ export default {
       setTimeout(run, 3000)
     },
     select(index) {
+      this.lastSelectedIndex = this.selected
       this.$emit('update:selected', this.names[index])
     },
     getSelected() {
@@ -66,10 +70,10 @@ export default {
     updateChildren() {
       let selected = this.getSelected()
       this.$children.forEach((vm) => {
-        vm.selected = selected
-        let newIndex = this.names.indexOf(selected)
-        let oldIndex = this.names.indexOf(vm.name)
-        vm.reverse = newIndex > oldIndex ? false : true
+        vm.reverse = this.selected > this.lastSelectedIndex ? false : true
+        this.$nextTick(()=>{
+          vm.selected = selected
+        })
         // console.log(vm.reverse)
       })
     }
