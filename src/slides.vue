@@ -25,13 +25,13 @@ export default {
     return {
       childrenLength: 0,
       lastSelectedIndex: undefined,
-      timerId:undefined
+      timerId: undefined
     }
   },
   computed: {
     selectedIndex() {
       let index = this.names.indexOf(this.selected)
-      return index === -1 ? 0 :index
+      return index === -1 ? 0 : index
     },
     names() {
       return this.$children.map(vm => vm.name)
@@ -47,7 +47,7 @@ export default {
   },
   methods: {
     playAutomatically() {
-      if(this.timerId){return false}
+      if (this.timerId) { return false }
       let run = () => {
         let index = this.names.indexOf(this.getSelected())
         console.log(this.getSelected())
@@ -61,13 +61,13 @@ export default {
       }
       this.timerId = setTimeout(run, 3000)
     },
-    onMouseEnter(){
+    onMouseEnter() {
       this.pause()
     },
-    onMouseLeave(){
+    onMouseLeave() {
       this.playAutomatically()
     },
-    pause(){
+    pause() {
       window.clearTimeout(this.timerId)
       this.timerId = undefined
     },
@@ -82,8 +82,17 @@ export default {
     updateChildren() {
       let selected = this.getSelected()
       this.$children.forEach((vm) => {
-        vm.reverse = this.selected > this.lastSelectedIndex ? false : true
-        this.$nextTick(()=>{
+        let reverse = this.selected > this.lastSelectedIndex ? false : true
+        if (this.timerId) {
+          if (this.lastSelectedIndex === this.childrenLength - 1 && this.selectedIndex === 0) {
+            reverse = false
+          }
+          if (this.lastSelectedIndex === 0 && this.selectedIndex === this.childrenLength - 1) {
+            vm.reverse = true
+          }
+        }
+        vm.reverse = reverse
+        this.$nextTick(() => {
           vm.selected = selected
         })
         // console.log(vm.reverse)
@@ -106,15 +115,14 @@ export default {
     display: flex;
     justify-content: center;
     span {
-      width: 16px;
-      line-height: 16px;
+      width: 20px;
+      line-height: 20px;
+      margin-left: 8px;
       font-size: 12px;
       text-align: center;
       border-radius: 50%;
       background: #ccc;
-      &+span {
-        margin-left: .4em;
-      }
+      cursor: pointer;
       &.active {
         background: red;
       }
