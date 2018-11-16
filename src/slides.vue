@@ -1,6 +1,6 @@
 <template>
   <div class="g-slides-wrapper">
-    <div class="g-slides-window">
+    <div class="g-slides-window" @mouseenter="onMouseEnter" @mouseleave="onMouseLeave">
       <slot></slot>
     </div>
     <div class="g-slides-dots">
@@ -24,7 +24,8 @@ export default {
   data() {
     return {
       childrenLength: 0,
-      lastSelectedIndex: undefined 
+      lastSelectedIndex: undefined,
+      timerId:undefined
     }
   },
   computed: {
@@ -46,18 +47,29 @@ export default {
   },
   methods: {
     playAutomatically() {
-      let index = this.names.indexOf(this.getSelected())
-      console.log(this.getSelected())
+      if(this.timerId){return false}
       let run = () => {
+        let index = this.names.indexOf(this.getSelected())
+        console.log(this.getSelected())
         let newIndex = index - 1
         if (newIndex === this.childrenLength) {
           newIndex = 0
         }
         if (newIndex === -1) { newIndex = this.childrenLength - 1 }
         this.select(newIndex)
-        setTimeout(run, 3000)
+        this.timerId = setTimeout(run, 3000)
       }
-      setTimeout(run, 3000)
+      this.timerId = setTimeout(run, 3000)
+    },
+    onMouseEnter(){
+      this.pause()
+    },
+    onMouseLeave(){
+      this.playAutomatically()
+    },
+    pause(){
+      window.clearTimeout(this.timerId)
+      this.timerId = undefined
     },
     select(index) {
       this.lastSelectedIndex = this.selected
