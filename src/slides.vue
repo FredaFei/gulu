@@ -62,10 +62,6 @@ export default {
       let run = () => {
         let index = this.names.indexOf(this.getSelected())
         let newIndex = index + 1
-        if (newIndex === this.childrenLength) {
-          newIndex = 0
-        }
-        if (newIndex === -1) { newIndex = this.childrenLength + 1 }
         this.select(newIndex)
         this.timerId = setTimeout(run, 3000)
       }
@@ -87,9 +83,11 @@ export default {
       window.clearTimeout(this.timerId)
       this.timerId = undefined
     },
-    select(index) {
+    select(newIndex) {
       this.lastSelectedIndex = this.selectedIndex
-      this.$emit('update:selected', this.names[index])
+      if (newIndex === -1) { newIndex = this.names.length - 1 }
+      if (newIndex === this.names.length) { newIndex = 0 }
+      this.$emit('update:selected', this.names[newIndex])
     },
     getSelected() {
       let first = this.$children[0]
@@ -111,7 +109,6 @@ export default {
         this.$nextTick(() => {
           vm.selected = selected
         })
-        // console.log(vm.reverse)
       })
     }
   }

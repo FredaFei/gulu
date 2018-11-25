@@ -42,7 +42,7 @@ export default {
 
 .slide-enter-active,
 .slide-leave-active {
-  transition: all 1s ease;
+  transition: all .2s ease;
 }
 
 .slide-enter {
