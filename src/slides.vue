@@ -4,14 +4,22 @@
       <slot></slot>
     </div>
     <div class="g-slides-dots">
+      <span class="arrow" @click="onClickPrev">
+        <g-icon name="left"></g-icon>
+      </span>
       <span v-for="n in childrenLength" :key="n" :class="{active: selectedIndex===n-1}" @click="select(n-1)">{{n}}</span>
+      <span class="arrow" @click="onClickNext">
+        <g-icon name="right"></g-icon>
+      </span>
     </div>
   </div>
 </template>
 
 <script>
+import GIcon from './icon'
 export default {
   name: 'guluSlide',
+  components: { GIcon },
   props: {
     selected: {
       type: String
@@ -34,13 +42,16 @@ export default {
       return index === -1 ? 0 : index
     },
     names() {
-      return this.$children.map(vm => vm.name)
+      return this.items.map(vm => vm.name)
+    },
+    items() {
+      return this.$children.filter(vm => vm.$options.name === 'guluSlideItem')
     }
   },
   mounted() {
     this.updateChildren()
     this.autoPlay && this.playAutomatically()
-    this.childrenLength = this.$children.length
+    this.childrenLength = this.items.length
   },
   updated() {
     this.updateChildren()
@@ -60,6 +71,12 @@ export default {
       }
       this.timerId = setTimeout(run, 3000)
     },
+    onClickPrev() {
+      this.select(this.selectedIndex - 1)
+    },
+    onClickNext() {
+      this.select(this.selectedIndex + 1)
+    },
     onMouseEnter() {
       this.pause()
     },
@@ -71,7 +88,7 @@ export default {
       this.timerId = undefined
     },
     select(index) {
-      this.lastSelectedIndex = this.selected
+      this.lastSelectedIndex = this.selectedIndex
       this.$emit('update:selected', this.names[index])
     },
     getSelected() {
@@ -80,8 +97,8 @@ export default {
     },
     updateChildren() {
       let selected = this.getSelected()
-      this.$children.forEach((vm) => {
-        let reverse = this.selected > this.lastSelectedIndex ? false : true
+      this.items.forEach((vm) => {
+        let reverse = this.selectedIndex > this.lastSelectedIndex ? false : true
         if (this.timerId) {
           if (this.lastSelectedIndex === this.childrenLength - 1 && this.selectedIndex === 0) {
             reverse = false
@@ -103,8 +120,7 @@ export default {
 
 <style lang="scss" scoped>
 .g-slides {
-  &-wrapper {
-  }
+  &-wrapper {}
   &-window {
     position: relative;
     overflow: hidden;

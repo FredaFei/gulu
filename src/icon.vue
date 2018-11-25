@@ -5,6 +5,7 @@
 </template>
 
 <script>
+import './svg'
 export default {
   name: 'guluIcon',
   props: {
@@ -20,7 +21,7 @@ export default {
 .g-icon {
   width: 1em;
   height: 1em;
-  vertical-align: -0.15em;
+  vertical-align: -0.10em;
   fill: currentColor;
   overflow: hidden;
 }
