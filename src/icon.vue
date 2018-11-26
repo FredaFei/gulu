@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import './svg'
+import './svg.js'
 export default {
   name: 'guluIcon',
   props: {

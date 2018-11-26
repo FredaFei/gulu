@@ -5,21 +5,21 @@
     </div>
     <div class="g-slides-dots">
       <span class="arrow" @click="onClickPrev">
-        <g-icon name="left"></g-icon>
+        <!-- <g-icon name="left"></g-icon> -->
       </span>
       <span v-for="n in childrenLength" :key="n" :class="{active: selectedIndex===n-1}" @click="select(n-1)">{{n}}</span>
       <span class="arrow" @click="onClickNext">
-        <g-icon name="right"></g-icon>
+        <!-- <g-icon name="right"></g-icon> -->
       </span>
     </div>
   </div>
 </template>
 
 <script>
-import GIcon from './icon'
+// import GIcon from './icon'
 export default {
   name: 'guluSlide',
-  components: { GIcon },
+  // components: { GIcon },
   props: {
     selected: {
       type: String
@@ -27,6 +27,10 @@ export default {
     autoPlay: {
       type: Boolean,
       default: true
+    },
+    autoPlayDelay: {
+      type: Number,
+      default: 2000
     }
   },
   data() {
@@ -63,9 +67,9 @@ export default {
         let index = this.names.indexOf(this.getSelected())
         let newIndex = index + 1
         this.select(newIndex)
-        this.timerId = setTimeout(run, 3000)
+        this.timerId = setTimeout(run, this.autoPlayDelay)
       }
-      this.timerId = setTimeout(run, 3000)
+      this.timerId = setTimeout(run, this.autoPlayDelay)
     },
     onClickPrev() {
       this.select(this.selectedIndex - 1)

@@ -1,11 +1,12 @@
 // 新建 karma.conf.js，内容如下
+var webpackConfig = require('@vue/cli-service/webpack.config.js')
 module.exports = function(config) {
   config.set({
     // base path that will be used to resolve all patterns (eg. files, exclude)
     basePath: '',
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-    frameworks: ['mocha', 'sinon-chai'],
+    frameworks: ['mocha'],
     client: {
       chai: {
         includeStack: true
@@ -13,19 +14,19 @@ module.exports = function(config) {
     },
 
     // list of files / patterns to load in the browser
-    files: ['dist/**/*.test.js', 'dist/**/*.test.css'],
+    files: ['dist/**/*.test.js'],
 
     // list of files / patterns to exclude
     exclude: [],
 
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
-    preprocessors: {},
+    preprocessors: {'**/*.spec.js': ['webpack','sourcemap']},
 
     // test results reporter to use
     // possible values: 'dots', 'progress'
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-    reporters: ['progress'],
+    reporters: ['spec'],
 
     // web server port
     port: 9876,
