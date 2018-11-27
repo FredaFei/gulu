@@ -1,8 +1,8 @@
 import chai, { expect } from 'chai'
 import sinon from 'sinon'
 import sinonChai from 'sinon-chai'
-chai.use(sinonChai)
 import { mount } from '@vue/test-utils'
+chai.use(sinonChai)
 
 import Vue from 'vue'
 import Tabs from '@/tabs'
@@ -18,36 +18,33 @@ Vue.component('g-tabs-item', TabsItem)
 Vue.component('g-tabs-pane', TabsPane)
 
 describe('TabsItem', () => {
-    it('存在.', () => {
-        expect(TabsItem).to.be.ok
+  it('存在.', () => {
+    expect(TabsItem).to.be.ok
+  })
+  it('接受 name 属性 ', (done) => {
+    const wrapper = mount(TabsItem, {
+      propsData: {
+        name: 'test2'
+      }
     })
-    describe('props', () => {
-        const Constructor = Vue.extend(TabsItem)
-        let vm
-        afterEach(() => {
-            vm.$destroy()
-        })
-        it('接受 name 属性 ', () => {
-            vm = new Constructor({
-                propsData: {
-                    name: 'test2'
-                }
-            }).$mount()
-            expect(vm.$el.getAttribute('data-name')).to.eq('test2')
-            vm.$el.remove
-        })
-        it('可以设置 disabled .', () => {
-            vm = new Constructor({
-                propsData: {
-                    disabled: true
-                }
-            }).$mount()
-            const element = vm.$el
-            expect(element.classList.contains('disabled')).to.eq(true)
-            const callback = sinon.fake()
-            vm.$on('click',callback)
-            vm.$el.click()
-            expect(callback).to.have.not.been.called
-        })
+    setTimeout(() => {
+      expect(wrapper.attributes('data-name')).to.be.eq('test2')
+      done()
     })
+  })
+  it('可以设置 disabled .', (done) => {
+    const callback = sinon.fake()
+    const wrapper = mount(TabsItem, {
+      propsData: {
+        disabled: true,
+        name: 'test2'
+      }
+    })
+    console.log(wrapper.classes())
+    expect(wrapper.classes('disabled')).to.be.true
+    setTimeout(() => {
+      expect(callback).to.have.not.been.called
+      done()
+    })
+  })
 })
