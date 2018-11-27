@@ -40,7 +40,6 @@ describe('TabsItem', () => {
         name: 'test2'
       }
     })
-    console.log(wrapper.classes())
     expect(wrapper.classes('disabled')).to.be.true
     setTimeout(() => {
       expect(callback).to.have.not.been.called
