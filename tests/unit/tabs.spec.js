@@ -18,44 +18,37 @@ Vue.component('g-tabs-item', TabsItem)
 Vue.component('g-tabs-pane', TabsPane)
 
 describe('Tabs', () => {
-    it('存在.', () => {
-        expect(Tabs).to.be.ok
+  it('存在.', () => {
+    expect(Tabs).to.be.ok
+  })
+  describe('props', () => {
+    it('接受 selected 属性', (done) => {
+      const wrapper = mount(Tabs, {
+        propsData: {
+          selected: 'music'
+        },
+        slots: {
+          default: `
+            <g-tabs-header>
+                <g-tabs-item name="sport">sport</g-tabs-item>
+                <g-tabs-item name="music">music</g-tabs-item>
+                <g-tabs-item name="moving">moving</g-tabs-item>
+            </g-tabs-header>
+            <g-tabs-body>
+                <g-tabs-pane name="sport">sport content</g-tabs-pane>
+                <g-tabs-pane name="music">music content</g-tabs-pane>
+                <g-tabs-pane name="moving">moving content</g-tabs-pane>
+            </g-tabs-body>
+              `
+        }
+      })
+      setTimeout(() => {
+        const element = wrapper.find('.tabs-item[data-name="music"]') 
+        expect(element.exists()).to.be.true
+        expect(element.classes('active')).to.be.true
+        done()
+      })
     })
-    describe('props', (done) => {
-        const Constructor = Vue.extend(Tabs)
-        let vm
-        afterEach(() => {
-            vm.$destroy()
-        })
-        it('接受 selected 属性 ', () => {
-            let div = document.createElement('div')
-            document.body.appendChild(div)
-            div.innerHTML = `
-                <g-tabs selected="sport">
-                    <g-tabs-header>
-                        <g-tabs-item name="sport">sport</g-tabs-item>
-                        <g-tabs-item name="music">music</g-tabs-item>
-                        <g-tabs-item name="moving">moving</g-tabs-item>
-                    </g-tabs-header>
-                    <g-tabs-body>
-                        <g-tabs-pane name="sport">sport content</g-tabs-pane>
-                        <g-tabs-pane name="music">music content</g-tabs-pane>
-                        <g-tabs-pane name="moving">moving content</g-tabs-pane>
-                    </g-tabs-body>
-                </g-tabs>
-            `
-            vm = new Vue({
-                el: div
-            })
-            setTimeout(() => {
-                const element = vm.$el.querySelector('.tabs-item[data-name="sport"]')
-                expect(element.classList.contains('active')).to.eq(true)
-                vm.$el.remove
-                done()
-            });
-        })
-        xit('可以设置 direction .', () => {
-            
-        })
-    })
+    xit('可以设置 direction .', () => {})
+  })
 })
