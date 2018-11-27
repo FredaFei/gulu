@@ -5,7 +5,7 @@
     var scripts = document.getElementsByTagName('script')
     return scripts[scripts.length - 1]
   })()
-  var shouldInjectCss = script.getAttribute('data-injectcss')
+  // var shouldInjectCss = script.getAttribute('data-injectcss')
   var ready = function(fn) {
     if (document.addEventListener) {
       if (~['complete', 'loaded', 'interactive'].indexOf(document.readyState)) {
@@ -72,15 +72,15 @@
       prepend(svg, document.body)
     }
   }
-  if (shouldInjectCss && !window.__iconfont__svg__cssinject__) {
-    window.__iconfont__svg__cssinject__ = true
-    try {
-      document.write(
-        '<style>.svgfont {display: inline-block;width: 1em;height: 1em;fill: currentColor;vertical-align: -0.1em;font-size:16px;}</style>'
-      )
-    } catch (e) {
-      console && console.log(e)
-    }
-  }
+  // if (shouldInjectCss && !window.__iconfont__svg__cssinject__) {
+  //   window.__iconfont__svg__cssinject__ = true
+  //   try {
+  //     document.write(
+  //       '<style>.svgfont {display: inline-block;width: 1em;height: 1em;fill: currentColor;vertical-align: -0.1em;font-size:16px;}</style>'
+  //     )
+  //   } catch (e) {
+  //     console && console.log(e)
+  //   }
+  // }
   ready(appendSvg)
 })(window)

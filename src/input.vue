@@ -33,7 +33,7 @@ export default {
         },
         iconType: {
             type: String,
-            default: ''
+            default: '11'
         },
         message: {
             type: String,
