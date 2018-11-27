@@ -4,22 +4,22 @@
       <slot></slot>
     </div>
     <div class="g-slides-dots">
-      <span class="arrow" @click="onClickPrev">
-        <!-- <g-icon name="left"></g-icon> -->
+      <span class="arrow prev" @click="onClickPrev">
+        <g-icon name="left"></g-icon>
       </span>
-      <span v-for="n in childrenLength" :key="n" :class="{active: selectedIndex===n-1}" @click="select(n-1)">{{n}}</span>
-      <span class="arrow" @click="onClickNext">
-        <!-- <g-icon name="right"></g-icon> -->
+      <span v-for="n in childrenLength" :key="n" :data-index="n-1" :class="{active: selectedIndex===n-1}" @click="select(n-1)">{{n}}</span>
+      <span class="arrow next" @click="onClickNext">
+        <g-icon name="right"></g-icon>
       </span>
     </div>
   </div>
 </template>
 
 <script>
-// import GIcon from './icon'
+import GIcon from './icon'
 export default {
   name: 'guluSlide',
-  // components: { GIcon },
+  components: { GIcon },
   props: {
     selected: {
       type: String
