@@ -2,7 +2,7 @@
     <button class="g-button" :class="{[`icon-${iconPosition}`]:true}" @click="$emit('click')">
         <g-icon class="icon" v-if="icon&&!loading" :name="icon"></g-icon>
         <g-icon class="icon loading" v-if="loading" name="loading"></g-icon>
-        <div class="content">
+        <div class="g-button-content">
             <slot/>
         </div>
     </button>
@@ -49,24 +49,24 @@ export default {
     & > .loading {
         animation: spin 1.2s infinite linear;
     }
-    > .content {
+    > .g-button-content {
         line-height: 1em;
     }
     &.icon-left {
         > .icon {
             order: 1;
-            margin-right: 0.2em;
+            margin-right: 0.1em;
         }
-        > .content {
+        > .g-button-content {
             order: 2;
         }
     }
     &.icon-right {
         > .icon {
             order: 2;
-            margin-left: 0.2em;
+            margin-left: 0.1em;
         }
-        > .content {
+        > .g-button-content {
             order: 1;
         }
     }
