@@ -118,7 +118,7 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-@import "var";
+@import "../../style/_var";
 .popover-wrapper {
     display: inline-block;
     vertical-align: top;

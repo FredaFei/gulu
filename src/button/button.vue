@@ -8,7 +8,7 @@
     </button>
 </template>
 <script>
-import GIcon from './icon'
+import GIcon from '../icon'
 export default {
     name: 'guluButton',
     components: {
@@ -34,7 +34,7 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-@import "var";
+@import "../../style/_var";
 .g-button {
     font-size: $button-fontSize;
     height: $button-height;

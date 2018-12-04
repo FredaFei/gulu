@@ -237,74 +237,74 @@
 
 <script>
 import Vue from 'vue'
-import Button from './button'
-import Icon from './icon'
-import ButtonGroup from './buttonGroup'
-import Input from './input'
-import GCol from './gCol'
-import GRow from './gRow'
-import GLayout from './layout'
-import GSider from './sider'
-import GHeader from './header'
-import GContent from './content'
-import GFooter from './footer'
-import Toast from './toast'
-import Tabs from './tabs'
-import TabsHeader from './tabsHeader'
-import TabsBody from './tabsBody'
-import TabsItem from './tabsItem'
-import TabsPane from './tabsPane'
-import Popover from './popover'
-import Collapse from './collapse'
-import CollapseItem from './collapseItem'
-import Cascader from './cascader'
+// import Button from './button'
+// import Icon from './icon'
+// import ButtonGroup from './buttonGroup'
+// import Input from './input'
+// import GCol from './gCol'
+// import GRow from './gRow'
+// import GLayout from './layout'
+// import GSider from './sider'
+// import GHeader from './header'
+// import GContent from './content'
+// import GFooter from './footer'
+// import Toast from './toast'
+// import Tabs from './tabs'
+// import TabsHeader from './tabsHeader'
+// import TabsBody from './tabsBody'
+// import TabsItem from './tabsItem'
+// import TabsPane from './tabsPane'
+// import Popover from './popover'
+// import Collapse from './collapse'
+// import CollapseItem from './collapseItem'
+// import Cascader from './cascader'
 import Slides from './slides'
 import SlidesItem from './slidesItem'
 
-import plugin from './plugin'
+// import plugin from './plugin'
 
-Vue.component('g-button', Button)
-Vue.component('g-icon', Icon)
-Vue.component('g-button-group', ButtonGroup)
-Vue.component('g-input', Input)
-Vue.component('g-col', GCol)
-Vue.component('g-row', GRow)
-Vue.component('g-layout', GLayout)
-Vue.component('g-sider', GSider)
-Vue.component('g-header', GHeader)
-Vue.component('g-content', GContent)
-Vue.component('g-footer', GFooter)
-Vue.component('g-toast', Toast)
-Vue.use(plugin)
-Vue.component('g-tabs', Tabs)
-Vue.component('g-tabs-header', TabsHeader)
-Vue.component('g-tabs-body', TabsBody)
-Vue.component('g-tabs-item', TabsItem)
-Vue.component('g-tabs-pane', TabsPane)
-Vue.component('g-popover', Popover)
-Vue.component('g-collapse', Collapse)
-Vue.component('g-collapse-item', CollapseItem)
-Vue.component('g-cascader', Cascader)
+// Vue.component('g-button', Button)
+// Vue.component('g-icon', Icon)
+// Vue.component('g-button-group', ButtonGroup)
+// Vue.component('g-input', Input)
+// Vue.component('g-col', GCol)
+// Vue.component('g-row', GRow)
+// Vue.component('g-layout', GLayout)
+// Vue.component('g-sider', GSider)
+// Vue.component('g-header', GHeader)
+// Vue.component('g-content', GContent)
+// Vue.component('g-footer', GFooter)
+// Vue.component('g-toast', Toast)
+// Vue.use(plugin)
+// Vue.component('g-tabs', Tabs)
+// Vue.component('g-tabs-header', TabsHeader)
+// Vue.component('g-tabs-body', TabsBody)
+// Vue.component('g-tabs-item', TabsItem)
+// Vue.component('g-tabs-pane', TabsPane)
+// Vue.component('g-popover', Popover)
+// Vue.component('g-collapse', Collapse)
+// Vue.component('g-collapse-item', CollapseItem)
+// Vue.component('g-cascader', Cascader)
 Vue.component('g-slides', Slides)
 Vue.component('g-slides-item', SlidesItem)
 
 
-import db from './db'
-function ajax(parentId = 0) {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      let result = db.filter(item => item.parent_id === parentId)
-      result.forEach(node => {
-        if (db.filter(item => item.parent_id === node.id).length > 0) {
-          node.isLeaf = false
-        } else {
-          node.isLeaf = true
-        }
-      })
-      resolve(result)
-    }, 3000)
-  })
-}
+// import db from './db'
+// function ajax(parentId = 0) {
+//   return new Promise((resolve, reject) => {
+//     setTimeout(() => {
+//       let result = db.filter(item => item.parent_id === parentId)
+//       result.forEach(node => {
+//         if (db.filter(item => item.parent_id === node.id).length > 0) {
+//           node.isLeaf = false
+//         } else {
+//           node.isLeaf = true
+//         }
+//       })
+//       resolve(result)
+//     }, 3000)
+//   })
+// }
 
 export default {
   data() {
@@ -321,9 +321,9 @@ export default {
     }
   },
   created() {
-    ajax(0).then(result => {
-      this.source = result
-    })
+    // ajax(0).then(result => {
+    //   this.source = result
+    // })
     // this.source = [
     //     {
     //       name: '浙江',

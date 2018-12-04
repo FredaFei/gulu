@@ -5,7 +5,7 @@
         </div>
         <div class="popover-wrapper" v-if="popoverVisible">
             <gulu-cascader-item :source-items="source" :selected="selected" :loading-item="loadingItem"
-            @update:selected="onUpdateSelected" :load-data="loadData":height="popoverHeight"></gulu-cascader-item>
+            @update:selected="onUpdateSelected" :load-data="loadData" :height="popoverHeight"></gulu-cascader-item>
         </div>
     </div>
 </template>
@@ -118,7 +118,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "var";
+@import "../../style/_var";
 .cascader-wrapper {
     display: inline-flex;
     justify-content: flex-start;

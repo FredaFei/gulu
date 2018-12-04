@@ -5,7 +5,7 @@ chai.use(sinonChai)
 import { mount } from '@vue/test-utils'
 
 import Vue from 'vue'
-import CollapseItem from '@/collapseItem'
+import CollapseItem from '@/collapse/collapseItem'
 
 describe('CollapseItem', (done) => {
   it('存在.', () => {

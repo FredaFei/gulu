@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import GIcon from './icon'
+import GIcon from '../icon'
 export default {
     name: 'guluInput',
     components: {
@@ -44,7 +44,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "var";
+@import "../../style/_var";
 .wrapper {
     display: inline-flex;
     justify-content: center;

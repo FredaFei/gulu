@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import GIcon from './icon'
+import GIcon from '../icon'
 export default {
   name: 'guluSlide',
   components: { GIcon },

@@ -5,11 +5,11 @@ chai.use(sinonChai)
 import { mount } from '@vue/test-utils'
 
 import Vue from 'vue'
-import Tabs from '@/tabs'
-import TabsHeader from '@/tabsHeader'
-import TabsBody from '@/tabsBody'
-import TabsItem from '@/tabsItem'
-import TabsPane from '@/tabsPane'
+import Tabs from '@/tabs/tabs'
+import TabsHeader from '@/tabs/tabsHeader'
+import TabsBody from '@/tabs/tabsBody'
+import TabsItem from '@/tabs/tabsItem'
+import TabsPane from '@/tabs/tabsPane'
 
 Vue.component('g-tabs', Tabs)
 Vue.component('g-tabs-header', TabsHeader)

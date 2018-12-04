@@ -5,8 +5,8 @@ chai.use(sinonChai)
 import { mount } from '@vue/test-utils'
 
 import Vue from 'vue'
-import Slides from '@/slides'
-import SlidesItem from '@/slidesItem'
+import Slides from '@/slides/slides'
+import SlidesItem from '@/slides/slidesItem'
 
 Vue.component('GSlidesItem', SlidesItem)
 describe('Slides', () => {
