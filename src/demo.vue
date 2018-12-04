@@ -11,7 +11,6 @@
         <div class="slides-item">slide 3</div>
       </g-slides-item>
     </g-slides>
-
     <!--<div class="test">
       <g-cascader :source.sync="source" :load-data="loadData" :selected.sync="selected" popover-height="200px"></g-cascader>
     </div>
@@ -26,60 +25,6 @@
         <g-collapse-item title="title_4" name="4">content_4</g-collapse-item>
       </g-collapse>
       {{selectedTab}}
-    </div>
-
-    <div class="test">
-      <g-popover position="top">
-        <template slot="popover" slot-scope="{close}">
-          {{close}} this is a popover,this is a popover,this is a popover this is a popover,this is a popover,this is a popover this is a popover,this is a popover,this is a popover this is a popover,this is a popover,this is a popover this is a popover,this is a popover,this is a popover this is a popover,this is a popover,this is a popover
-          <button>close</button>
-        </template>
-        <button @click="selectedFn">click me</button>
-      </g-popover>
-      <g-popover position="right">
-        <template slot="popover">
-          this is a popover
-        </template>
-        <button @click="selectedFn">click me</button>
-      </g-popover>
-      <g-popover position="bottom">
-        <template slot="popover">
-          this is a popover
-        </template>
-        <button @click="selectedFn">click me</button>
-      </g-popover>
-      <g-popover position="left">
-        <template slot="popover">
-          this is a popover
-        </template>
-        <button @click="selectedFn">click me</button>
-      </g-popover>
-      <br /><br />
-      <g-popover position="top" trigger="hover">
-        <template slot="popover">
-          this is a popover,this is a popover,this is a popover this is a popover,this is a popover,this is a popover this is a popover,this is a popover,this is a popover this is a popover,this is a popover,this is a popover this is a popover,this is a popover,this is a popover this is a popover,this is a popover,this is a popover
-
-        </template>
-        <button @click="selectedFn">click me</button>
-      </g-popover>
-      <g-popover position="right" trigger="hover">
-        <template slot="popover">
-          this is a popover
-        </template>
-        <button @click="selectedFn">click me</button>
-      </g-popover>
-      <g-popover position="bottom" trigger="hover">
-        <template slot="popover">
-          this is a popover
-        </template>
-        <button @click="selectedFn">click me</button>
-      </g-popover>
-      <g-popover position="left" trigger="hover">
-        <template slot="popover">
-          this is a popover
-        </template>
-        <button @click="selectedFn">click me</button>
-      </g-popover>
     </div>
 
     <div class="module-wrapper">
@@ -254,12 +199,12 @@ import Vue from 'vue'
 // import TabsBody from './tabsBody'
 // import TabsItem from './tabsItem'
 // import TabsPane from './tabsPane'
-// import Popover from './popover'
+import Popover from './popover/popover'
 // import Collapse from './collapse'
 // import CollapseItem from './collapseItem'
 // import Cascader from './cascader'
-import Slides from './slides'
-import SlidesItem from './slidesItem'
+import Slides from './slides/slides'
+import SlidesItem from './slides/slidesItem'
 
 // import plugin from './plugin'
 
@@ -281,7 +226,7 @@ import SlidesItem from './slidesItem'
 // Vue.component('g-tabs-body', TabsBody)
 // Vue.component('g-tabs-item', TabsItem)
 // Vue.component('g-tabs-pane', TabsPane)
-// Vue.component('g-popover', Popover)
+Vue.component('g-popover', Popover)
 // Vue.component('g-collapse', Collapse)
 // Vue.component('g-collapse-item', CollapseItem)
 // Vue.component('g-cascader', Cascader)

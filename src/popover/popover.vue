@@ -42,7 +42,7 @@ export default {
             this.$refs.popoverWrapper.addEventListener('mouseleave', this.close)
         }
     },
-    destroyed() {
+    beforeDestroy() {
         if(this.trigger === 'click'){
             this.$refs.popoverWrapper.removeEventListener('click', this.onClick)
         }else{

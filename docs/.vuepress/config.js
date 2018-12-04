@@ -21,6 +21,12 @@ module.exports = {
         children: [
           '/components/button',
           '/components/input',
+          '/components/popover',
+          '/components/toast',
+          '/components/tabs',
+          '/components/slides',
+          '/components/cascader',
+          '/components/collapse',
         ]
       },
     ]
