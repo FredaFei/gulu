@@ -5,7 +5,7 @@ chai.use(sinonChai)
 
 import { mount,shallowMount } from '@vue/test-utils'
 import Vue from 'vue'
-import Button from '@/button/button'
+import Button from '../../../src/button/button'
 
 describe('Button', () => {
     it('存在.', () => {

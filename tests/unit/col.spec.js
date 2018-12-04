@@ -1,7 +1,7 @@
 import chai, { expect } from 'chai'
 import { mount } from '@vue/test-utils'
 
-import GCol from '@/grid/gCol'
+import GCol from '../../../src/grid/gCol'
 
 describe('GCol', () => {
     it('存在.', () => {

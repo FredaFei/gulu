@@ -14,20 +14,23 @@ module.exports = function(config) {
     },
 
     // list of files / patterns to load in the browser
-    files: ['dist/**/*.test.js'],
+    files: ['tests/**/*.spec.js'],
 
     // list of files / patterns to exclude
     exclude: [],
 
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
-    preprocessors: {'**/*.spec.js': ['webpack','sourcemap']},
+    preprocessors: { '**/*.spec.js': ['webpack', 'sourcemap'] },
 
     // test results reporter to use
     // possible values: 'dots', 'progress'
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-    reporters: ['spec'],
-
+    reporters: ['spec', 'coverage'],
+    coverageReporter: {
+      dir: './coverage',
+      reporters: [{ type: 'lcov', subdir: '.' }, { type: 'text-summary' }]
+    },
     // web server port
     port: 9876,
 
