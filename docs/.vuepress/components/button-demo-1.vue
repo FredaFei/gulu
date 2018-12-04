@@ -17,8 +17,8 @@
   </div>
 </template>
 <script>
-import Button from '../../../src/button'
-import ButtonGroup from '../../../src/buttonGroup'
+import Button from '../../../src/button/button'
+import ButtonGroup from '../../../src/button/buttonGroup'
 export default {
   components: {
     GButton: Button,

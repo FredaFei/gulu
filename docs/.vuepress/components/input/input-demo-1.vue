@@ -1,14 +1,14 @@
 <template>
   <div>
     <h1>使用方式</h1>
-    <g-button>默认样式</g-button>
+    <g-input>默认样式</g-input>
   </div>
 </template>
 <script>
-import Button from '../../../../src/button'
+import Input from '../../../../src/input/input'
 export default {
   components: {
-    'GButton': Button
+    'GInput': Input
   }
 }
 </script>

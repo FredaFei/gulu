@@ -1,5 +1,6 @@
+const path = require('path')
 module.exports = {
-  base: '/haha/',
+  base: '/gelu/',
   title: 'Hello VuePress',
   description: 'Just playing around',
   markdown: {
@@ -23,5 +24,8 @@ module.exports = {
         ]
       },
     ]
+  },
+  scss: {
+    includePaths: [path.join(__dirname,'../../style')]
   }
 }
