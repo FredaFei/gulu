@@ -6,6 +6,13 @@
 
 基于 Vue 开发的一个 UI 组件库
 
+## 单元测试
+mocha: JavaScript test framework
+karma: JavaScript Test Runner
+chai: 断言库
+sinon: Standalone test spies, stubs and mocks for JavaScript.  Works with any unit testing framework
+istanbul: 覆盖率
+
 ## 开始使用
 
 -   安装
