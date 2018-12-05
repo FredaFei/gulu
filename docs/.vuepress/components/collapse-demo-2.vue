@@ -1,6 +1,6 @@
 <template>
-  <div
-    <h3>代码演示</h3>
+  <div>
+    <h3>代码演示(单个选中)</h3>
     <g-collapse :selected.sync="selectedTab2" single>
       <g-collapse-item title="title_1" name="1">content_1</g-collapse-item>
       <g-collapse-item title="title_2" name="2">content_2</g-collapse-item>
@@ -21,13 +21,9 @@ export default {
   },
   data(){
     return {
-      selectedTab1: ['1', '3'],
       selectedTab2: ['3']
     }
   }
 }
 </script>
 
-<style lang="scss" scoped>
-
-</style>

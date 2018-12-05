@@ -5,7 +5,7 @@ chai.use(sinonChai)
 import { mount } from '@vue/test-utils'
 
 import Vue from 'vue'
-import Input from '../../../src/input/input'
+import Input from '../../src/input/input'
 
 describe('Input', () => {
   it('存在.', () => {

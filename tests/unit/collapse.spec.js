@@ -5,8 +5,8 @@ chai.use(sinonChai)
 import { mount } from '@vue/test-utils'
 
 import Vue from 'vue'
-import Collapse from '../../../src/collapse/collapse'
-import CollapseItem from '../../../src/collapse/collapseItem'
+import Collapse from '../../src/collapse/collapse'
+import CollapseItem from '../../src/collapse/collapseItem'
 
 Vue.component('g-collapse-item', CollapseItem)
 

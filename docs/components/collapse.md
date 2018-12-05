@@ -11,51 +11,40 @@ sidebarDepth: 2
 ``` vue{4}
 <template>
   <div class="box">
-    <g-slides :selected.sync="selected">
-      <g-slides-item name="1">
-        <div class="slides-item">slide 1</div>
-      </g-slides-item>
-      <g-slides-item name="2">
-        <div class="slides-item">slide 2</div>
-      </g-slides-item>
-      <g-slides-item name="3">
-        <div class="slides-item">slide 3</div>
-      </g-slides-item>
-    </g-slides>
+    <g-collapse :selected.sync="selectedTab1">
+      <g-collapse-item title="title_1" name="1">content_1</g-collapse-item>
+      <g-collapse-item title="title_2" name="2">content_2</g-collapse-item>
+      <g-collapse-item title="title_3" name="3">content_3</g-collapse-item>
+      <g-collapse-item title="title_4" name="4">content_4</g-collapse-item>
+    </g-collapse>
+    <g-collapse :selected.sync="selectedTab2" single>
+      <g-collapse-item title="title_1" name="1">content_1</g-collapse-item>
+      <g-collapse-item title="title_2" name="2">content_2</g-collapse-item>
+      <g-collapse-item title="title_3" name="3">content_3</g-collapse-item>
+      <g-collapse-item title="title_4" name="4">content_4</g-collapse-item>
+    </g-collapse>
   </div>
 </template>
 ```
 ``` js{4}
-import Slides from '../../../src/slides/slides'
-import SlidesItem from '../../../src/slides/slidesItem'
+import Collapse from '../../../src/collapse/collapse'
+import CollapseItem from '../../../src/collapse/collapseItem'
 export default {
   components: {
-    GSlides: Slides,
-    GSlidesItem: SlidesItem
+    GCollapse: Collapse,
+    GCollapseItem: CollapseItem
   },
   data(){
     return {
-      selected: ''
+      selectedTab1: ['1', '3'],
+      selectedTab2: ['3']
     }
   }
-}
-```
-
-``` css{4}
-.box{
-  padding: 20px;
-}
-.slides-item {
-  width: 100%;
-  height: 150px;
-  background: #dddddd;
 }
 ```
 ### API
 
 | 参数           | 说明           | 类型      |默认值        |          可选值|
 | ------------- |:--------------:| --------:|------------:|--------------:|
-| selected         | 默认切换值  | String   | -          | -             |
-| autoPlay  | 是否自动切换    | Boolean   | true       | false     |
-| autoPlayDelay       | 自动切换频率   | Number  | 2000      | -         |
-
+| selected         | 默认展示的面板  | Array   | -          | -             |
+| single  | 是否仅展示一个面板    | Boolean   | false        | true     |

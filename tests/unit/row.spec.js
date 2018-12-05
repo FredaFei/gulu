@@ -2,8 +2,8 @@ import chai, { expect } from 'chai'
 import { mount } from '@vue/test-utils'
 import Vue from 'vue'
 
-import GRow from '../../../src/grid/gRow'
-import GCol from '../../../src/grid/gCol'
+import GRow from '../../src/grid/gRow'
+import GCol from '../../src/grid/gCol'
 
 describe('GRow', () => {
     it('存在.', () => {

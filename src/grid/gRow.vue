@@ -13,6 +13,7 @@ export default {
         },
         align: {
             type: String,
+            default: 'left',
             validator(val) {
                 return ['left', 'center', 'right'].includes(val)
             }
@@ -42,9 +43,7 @@ export default {
 <style lang="scss" scoped>
 .row {
     display: flex;
-    flex-wrap: wrap;
     width: 100%;
-    background: red;
     &.align-left {
         justify-content: flex-start;
     }

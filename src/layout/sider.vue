@@ -2,7 +2,7 @@
 <transition name="slide">
     <div class="sider" v-if="visible">
         <slot></slot>
-        <button class="close" @click="visible=false">close</button>
+        <button class="close" v-if="visibleCloseBtn" @click="visible=false">close</button>
     </div>
 </transition>
 </template>
@@ -10,6 +10,9 @@
 <script>
 export default {
     name: 'guluSider',
+    props: {
+      visibleCloseBtn: false
+    },
     data(){
         return {
             visible: true

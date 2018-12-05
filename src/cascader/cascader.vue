@@ -17,7 +17,7 @@ export default {
   components: { guluCascaderItem },
   props: {
     source: {
-      // type: Array,
+      type: Array,
       required: true,
       default: []
     },

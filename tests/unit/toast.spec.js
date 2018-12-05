@@ -5,7 +5,7 @@ chai.use(sinonChai)
 import { mount } from '@vue/test-utils'
 
 import Vue from 'vue'
-import Toast from '../../../src/toast/toast'
+import Toast from '../../src/toast/toast'
 
 describe('Toast', () => {
     it('存在.', () => {

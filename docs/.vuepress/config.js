@@ -23,6 +23,8 @@ module.exports = {
           '/components/input',
           '/components/popover',
           '/components/toast',
+          '/components/grid',
+          '/components/layout',
           '/components/tabs',
           '/components/slides',
           '/components/cascader',
