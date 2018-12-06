@@ -13,24 +13,26 @@ export default {
       required: true
     }
   },
-  data(){
+  data() {
     return {
       selected: false
     }
   },
   methods: {
-    onClick(){
-      this.$emit('add:selected',this.name)
+    onClick() {
+      this.$emit('add:selected', this.name)
     }
   }
 }
 </script>
 
 <style lang="scss" scoped>
-  .g-nav-item{
-      padding: 10px;
-    &.selected{
-      background: red;
-    }
+.g-nav-item {
+  padding: 10px;
+  position: relative;
+  &.selected {
+    background: red;
   }
+  
+}
 </style>

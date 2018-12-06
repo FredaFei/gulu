@@ -1,6 +1,11 @@
 <template>
-  <div class="sub-nav">
-    <slot></slot>
+  <div class="g-sub-nav">
+    <span class="g-sub-nav-title">
+      <slot name="title"></slot>
+    </span>
+    <div class="g-sub-nav-popover">
+      <slot></slot>
+    </div>
   </div>
 </template>
 
@@ -11,5 +16,18 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+.g-sub-nav {
+  &-title {
+    display: inline-block;
+    vertical-align: top;
+    background: blue;
+  }
+  &-popover {
+    border: 1px solid red;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    white-space: nowrap;
+  }
+}
 </style>
