@@ -1,31 +1,33 @@
 <template>
   <div id="demo">
-    <g-slides :selected.sync="selected">
-      <g-slides-item name="1">
-        <div class="slides-item">slide 1</div>
-      </g-slides-item>
-      <g-slides-item name="2">
-        <div class="slides-item">slide 2</div>
-      </g-slides-item>
-      <g-slides-item name="3">
-        <div class="slides-item">slide 3</div>
-      </g-slides-item>
-    </g-slides>
+    <g-nav :selected.sync="selected">
+      <g-nav-item name="music">
+        <div>slide 1</div>
+      </g-nav-item>
+      <g-nav-item name="book">
+        <div>slide 2</div>
+      </g-nav-item>
+      <g-nav-item name="sport">
+        <div>slide 3</div>
+      </g-nav-item>
+    </g-nav>
 
   </div>
 </template>
 
 <script>
 import Vue from 'vue'
-import Slides from './slides/slides'
-import SlidesItem from './slides/slidesItem'
-Vue.component('g-slides', Slides)
-Vue.component('g-slides-item', SlidesItem)
+import Nav from './nav/nav'
+import NavItem from './nav/navItem'
+import SubNav from './nav/subNav'
+Vue.component('g-nav', Nav)
+Vue.component('g-nav-item', NavItem)
+Vue.component('g-subnav', SubNav)
 
 export default {
   data() {
     return {
-      selected: ''
+      selected: ['book']
     }
   }
 }
@@ -44,11 +46,6 @@ body {
 }
 #demo{
   padding: 20px;
-}
-.slides-item {
-  width: 100%;
-  height: 150px;
-  background: #dddddd;
 }
 
 </style>
