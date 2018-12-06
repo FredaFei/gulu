@@ -17,6 +17,12 @@ export default {
       default: false
     }
   },
+  provide() { return { root: this } },
+  data(){
+    return {
+      items: []
+    }
+  },
   mounted() {
     this.updateChildren()
     this.listenToChildren()
@@ -25,13 +31,13 @@ export default {
     this.updateChildren()
   },
   computed: {
-    names() {
-      return this.$children.filter(vm => vm.$options.name === 'guluNavItem')
-    }
   },
   methods: {
+    addItem(vm){
+      this.items.push(vm)
+    },
     updateChildren() {
-      this.names.forEach(vm => {
+      this.items.forEach(vm => {
         if (this.selected.indexOf(vm.name) >= 0) {
           vm.selected = true
         } else {
@@ -40,7 +46,7 @@ export default {
       })
     },
     listenToChildren() {
-      this.names.forEach(vm => {
+      this.items.forEach(vm => {
         vm.$on('add:selected', name => {
           if (this.multiple) {
             if (this.selected.indexOf(vm.name) < 0) {

@@ -18,6 +18,7 @@ export default {
 <style lang="scss" scoped>
 .g-sub-nav {
   &-title {
+    padding: 10px;
     display: inline-block;
     vertical-align: top;
     background: blue;

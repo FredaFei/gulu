@@ -7,6 +7,7 @@
 <script>
 export default {
   name: 'guluNavItem',
+  inject: ['root'],
   props: {
     name: {
       type: String,
@@ -17,6 +18,9 @@ export default {
     return {
       selected: false
     }
+  },
+  created(){
+    this.root.addItem(this)
   },
   methods: {
     onClick() {
@@ -33,6 +37,6 @@ export default {
   &.selected {
     background: red;
   }
-  
+
 }
 </style>

@@ -4,14 +4,12 @@
       <g-nav-item name="music">
         <div>nav 1</div>
       </g-nav-item>
-      <g-nav-item name="book">
-        <g-sub-nav>
-          <template slot="title">nav 2</template>
-          <g-nav-item>小说</g-nav-item>
-          <g-nav-item>动漫</g-nav-item>
-          <g-nav-item>杂志期刊</g-nav-item>
-        </g-sub-nav>
-      </g-nav-item>
+      <g-sub-nav>
+        <template slot="title">nav 2</template>
+        <g-nav-item name="faction">小说</g-nav-item>
+        <g-nav-item name="comic">动漫</g-nav-item>
+        <g-nav-item name="journal">杂志期刊</g-nav-item>
+      </g-sub-nav>
       <g-nav-item name="sport">
         <div>nav 3</div>
       </g-nav-item>
