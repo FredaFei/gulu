@@ -20,7 +20,6 @@ export default {
   },
   methods: {
     onClick(){
-      console.log(90)
       this.$emit('add:selected',this.name)
     }
   }
