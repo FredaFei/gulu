@@ -33,7 +33,6 @@ export default {
 <style lang="scss" scoped>
 .g-nav-item {
   padding: 10px;
-  position: relative;
   &.selected {
     background: red;
   }

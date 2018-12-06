@@ -8,7 +8,12 @@
         <template slot="title">nav 2</template>
         <g-nav-item name="faction">小说</g-nav-item>
         <g-nav-item name="comic">动漫</g-nav-item>
-        <g-nav-item name="journal">杂志期刊</g-nav-item>
+        <g-sub-nav>
+          <template slot="title">杂志期刊</template>
+          <g-nav-item name="technology ">科技</g-nav-item>
+          <g-nav-item name="fashion">时尚</g-nav-item>
+          <g-nav-item name="society">社会</g-nav-item>
+        </g-sub-nav>
       </g-sub-nav>
       <g-nav-item name="sport">
         <div>nav 3</div>

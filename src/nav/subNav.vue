@@ -1,9 +1,9 @@
 <template>
   <div class="g-sub-nav">
-    <span class="g-sub-nav-title">
+    <span class="g-sub-nav-title" @click="onClick">
       <slot name="title"></slot>
     </span>
-    <div class="g-sub-nav-popover">
+    <div class="g-sub-nav-popover" v-show="visible">
       <slot></slot>
     </div>
   </div>
@@ -11,17 +11,27 @@
 
 <script>
 export default {
-  name: 'gulusubNav'
+  name: 'gulusubNav',
+  data(){
+    return {
+      visible: false
+    }
+  },
+  methods: {
+    onClick(){
+      this.visible = !this.visible
+    }
+  }
 }
 </script>
 
 <style lang="scss" scoped>
 .g-sub-nav {
+  position: relative;
   &-title {
     padding: 10px;
     display: inline-block;
     vertical-align: top;
-    background: blue;
   }
   &-popover {
     border: 1px solid red;
