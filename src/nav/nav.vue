@@ -1,6 +1,7 @@
 <template>
   <div class="g-nav-wrapper">
     <slot></slot>
+    <div>{{namePath}}</div>
   </div>
 </template>
 
@@ -20,7 +21,8 @@ export default {
   provide() { return { root: this } },
   data(){
     return {
-      items: []
+      items: [],
+      namePath: []
     }
   },
   mounted() {
@@ -60,7 +62,7 @@ export default {
           }
         })
       })
-    }
+    },
   }
 }
 </script>
