@@ -1,5 +1,5 @@
 <template>
-  <div class="g-sub-nav" :class="{active}">
+  <div class="g-sub-nav" :class="{active}" v-click-outside="close">
     <span class="g-sub-nav-title" @click="onClick">
       <slot name="title"></slot>
     </span>
@@ -10,9 +10,11 @@
 </template>
 
 <script>
+import ClickOutside from '../clickOutside'
 export default {
   name: 'gulusubNav',
   inject: ['root'],
+  directives: {ClickOutside},
   props: {
     name: {
       type: String,
@@ -32,6 +34,9 @@ export default {
   methods: {
     onClick() {
       this.visible = !this.visible
+    },
+    close(){
+      this.visible = false
     },
     updateNamePath() {
       this.root.namePath.unshift(this.name)
