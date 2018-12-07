@@ -24,7 +24,7 @@
         <div>nav 3</div>
       </g-nav-item>
     </g-nav>
-
+    <p>test test test test test test test test test test</p>
   </div>
 </template>
 

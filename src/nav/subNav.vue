@@ -26,19 +26,25 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "var";
 .g-sub-nav {
   position: relative;
   &-title {
-    padding: 10px;
-    display: inline-block;
-    vertical-align: top;
+    padding: 10px 20px;
+    display: block;
   }
   &-popover {
-    border: 1px solid red;
     position: absolute;
     top: 100%;
     left: 0;
+    margin-top: 4px;
+    min-width: 8em;
+    font-size: $font-size;
+    color: $light-color;
     white-space: nowrap;
+    box-shadow: 0 0 3px rgba(0,0,0,.4);
+    border-radius: $border-radius;
+    background: white;
   }
 }
 
@@ -46,6 +52,7 @@ export default {
   .g-sub-nav-popover {
     top: 0;
     left: 100%;
+    margin-left: 8px;
   }
 }
 </style>

@@ -19,7 +19,7 @@ export default {
       selected: false
     }
   },
-  created(){
+  created() {
     this.root.addItem(this)
   },
   methods: {
@@ -31,11 +31,31 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "var";
 .g-nav-item {
-  padding: 10px;
+  padding: 10px 20px;
+  position: relative;
   &.selected {
-    background: red;
+    &:after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      border: 2px solid $blue;
+    }
   }
+}
 
+.g-sub-nav {
+  .g-nav-item {
+    &.selected {
+      color: $color;
+      background: $gray;
+      &:after {
+        display: none;
+      }
+    }
+  }
 }
 </style>

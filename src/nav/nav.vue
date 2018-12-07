@@ -66,8 +66,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "var";
 .g-nav-wrapper {
-  border: 1px solid;
+  border-bottom: 1px solid $gray;
   display: flex;
 }
 </style>
