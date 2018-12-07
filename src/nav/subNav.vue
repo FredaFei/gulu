@@ -1,7 +1,12 @@
 <template>
   <div class="g-sub-nav" :class="{active}" v-click-outside="close">
-    <span class="g-sub-nav-title" @click="onClick">
-      <slot name="title"></slot>
+    <span class="g-sub-nav-label" @click="onClick">
+      <span class="g-sub-nav-title">
+        <slot name="title"></slot>
+      </span>
+      <span class="g-sub-nav-icon" :class="{visible}">
+        <g-icon name="right"></g-icon>
+      </span>
     </span>
     <div class="g-sub-nav-popover" v-show="visible">
       <slot></slot>
@@ -11,10 +16,12 @@
 
 <script>
 import ClickOutside from '../clickOutside'
+import GIcon from '../icon'
 export default {
   name: 'gulusubNav',
   inject: ['root'],
-  directives: {ClickOutside},
+  directives: { ClickOutside },
+  components: { GIcon },
   props: {
     name: {
       type: String,
@@ -35,7 +42,7 @@ export default {
     onClick() {
       this.visible = !this.visible
     },
-    close(){
+    close() {
       this.visible = false
     },
     updateNamePath() {
@@ -59,12 +66,15 @@ export default {
       bottom: 0;
       left: 0;
       width: 100%;
-      border: 2px solid $blue;
+      border-bottom: 2px solid $blue;
     }
   }
-  &-title {
+  &-label {
     padding: 10px 20px;
     display: block;
+  }
+  &-icon {
+    display: none;
   }
   &-popover {
     position: absolute;
@@ -87,5 +97,24 @@ export default {
     left: 100%;
     margin-left: 8px;
   }
+  .g-sub-nav-label {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .g-sub-nav-icon {
+      transition: transform 250ms;
+      display: inline-flex; margin-left: 1em;
+      svg {fill: $light-color;}
+      &.vertical {
+        transform: rotate(90deg);
+        &.visible {
+          transform: rotate(270deg);
+        }
+      }
+      &.visible {
+        transform: rotate(180deg);
+      }
+    }
 }
 </style>
