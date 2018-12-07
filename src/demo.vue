@@ -10,9 +10,14 @@
         <g-nav-item name="comic">动漫</g-nav-item>
         <g-sub-nav>
           <template slot="title">杂志期刊</template>
-          <g-nav-item name="technology ">科技</g-nav-item>
+          <g-nav-item name="technology">科技</g-nav-item>
           <g-nav-item name="fashion">时尚</g-nav-item>
-          <g-nav-item name="society">社会</g-nav-item>
+          <g-sub-nav>
+            <template slot="title">社会</template>
+            <g-nav-item name="11">社会 1</g-nav-item>
+            <g-nav-item name="22">社会 2</g-nav-item>
+            <g-nav-item name="33">社会 3</g-nav-item>
+          </g-sub-nav>
         </g-sub-nav>
       </g-sub-nav>
       <g-nav-item name="sport">

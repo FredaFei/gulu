@@ -12,13 +12,13 @@
 <script>
 export default {
   name: 'gulusubNav',
-  data(){
+  data() {
     return {
       visible: false
     }
   },
   methods: {
-    onClick(){
+    onClick() {
       this.visible = !this.visible
     }
   }
@@ -39,6 +39,13 @@ export default {
     top: 100%;
     left: 0;
     white-space: nowrap;
+  }
+}
+
+.g-sub-nav .g-sub-nav{
+  .g-sub-nav-popover {
+    top: 0;
+    left: 100%;
   }
 }
 </style>
