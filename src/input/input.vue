@@ -44,7 +44,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "../../style/_var";
+@import "var";
 .wrapper {
     display: inline-flex;
     justify-content: center;
