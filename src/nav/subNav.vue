@@ -8,11 +8,18 @@
         <g-icon name="right"></g-icon>
       </span>
     </span>
-    <transition name="fade" @enter="enter" @after-enter="afterEnter" @leave="leave" @after-leave="afterLeave">
+    <template v-if="vertical">
+      <transition name="fade" @enter="enter" @after-enter="afterEnter" @leave="leave" @after-leave="afterLeave">
+        <div class="g-sub-nav-popover" v-show="visible" :class="{vertical}">
+          <slot></slot>
+        </div>
+      </transition>
+    </template>
+    <template v-else>
       <div class="g-sub-nav-popover" v-show="visible" :class="{vertical}">
         <slot></slot>
       </div>
-    </transition>
+    </template>
   </div>
 </template>
 
@@ -117,11 +124,11 @@ export default {
     box-shadow: 0 0 3px rgba(0, 0, 0, .4);
     border-radius: $border-radius;
     background: white;
+    transition: height .25s;
     &.vertical {
       position: static;
       box-shadow: none;
       border-radius: 0;
-      transition: height .25s;
       overflow: hidden;
     }
   }
