@@ -52,7 +52,6 @@ export default {
       el.style.height = `auto`
       let { height } = el.getBoundingClientRect()
       el.style.height = 0
-      console.log('enter: ' + height)
       el.getBoundingClientRect()
       el.style.height = `${height}px`
       el.addEventListener('transitionend', () => {
@@ -64,7 +63,6 @@ export default {
     },
     leave(el, done) {
       let { height } = el.getBoundingClientRect()
-      console.log('leave: ' + height)
       el.style.height = `${height}px`
       el.getBoundingClientRect()
       el.style.height = 0
@@ -107,9 +105,6 @@ export default {
       }
     }
   }
-  // &.vertical{
-  //   color: $blue;
-  // }
   &-label {
     padding: 10px 20px;
     display: block;
