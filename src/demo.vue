@@ -1,6 +1,6 @@
 <template>
   <div id="demo">
-    <g-nav :selected.sync="selected" vertical style="width:200px; margin-bottom:100px">
+    <g-nav :selected.sync="selected" @update:selected="clickFn" vertical style="width:200px; margin-bottom:100px">
       <g-nav-item name="music">
         <div>nav 1</div>
       </g-nav-item>
@@ -66,6 +66,20 @@ export default {
     return {
       selected: 'book'
     }
+  },
+  watch: {
+    selected(newValue) {
+      if (newValue === 'sport') {
+        alert(newValue)
+      }
+    }
+  },
+  methods: {
+    clickFn(name) {
+      if (name === 'music') {
+        alert(name)
+      }
+    }
   }
 }
 
@@ -81,8 +95,8 @@ export default {
 body {
   font-size: 14px;
 }
-#demo{
+
+#demo {
   padding: 20px;
 }
-
 </style>
