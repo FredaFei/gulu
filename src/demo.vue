@@ -64,7 +64,7 @@ Vue.component('g-sub-nav', SubNav)
 export default {
   data() {
     return {
-      selected: 'book'
+      selected: 'sport'
     }
   },
   watch: {
