@@ -24,7 +24,7 @@
         <div>nav 3</div>
       </g-nav-item>
     </g-nav>
-    <g-nav :selected.sync="selected">
+    <g-nav :selected.sync="selected" style="width:300px;">
       <g-nav-item name="music">
         <div>nav 1</div>
       </g-nav-item>

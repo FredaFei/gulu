@@ -1,10 +1,10 @@
 <template>
-  <div class="g-sub-nav" :class="{active}" v-click-outside="close">
+  <div class="g-sub-nav" :class="{active, vertical}" v-click-outside="close">
     <span class="g-sub-nav-label" @click="onClick">
       <span class="g-sub-nav-title">
         <slot name="title"></slot>
       </span>
-      <span class="g-sub-nav-icon" :class="{visible}">
+      <span class="g-sub-nav-icon" :class="{visible,vertical}">
         <g-icon name="right"></g-icon>
       </span>
     </span>
@@ -95,16 +95,21 @@ export default {
 @import "var";
 .g-sub-nav {
   position: relative;
-  &.active {
-    &:after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      border-bottom: 2px solid $blue;
+  &:not(.vertical) {
+    &.active {
+      &:after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        border-bottom: 2px solid $blue;
+      }
     }
   }
+  // &.vertical{
+  //   color: $blue;
+  // }
   &-label {
     padding: 10px 20px;
     display: block;
