@@ -1,7 +1,6 @@
 <template>
   <div class="g-nav-wrapper" :class="{vertical}">
     <slot></slot>
-    <div>{{namePath}}</div>
   </div>
 </template>
 

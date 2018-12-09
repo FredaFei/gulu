@@ -8,7 +8,7 @@
         <g-icon name="right"></g-icon>
       </span>
     </span>
-    <transition name="fade">
+    <transition name="fade" @enter="enter" @after-enter="afterEnter" @leave="leave" @after-leave="afterLeave">
       <div class="g-sub-nav-popover" v-show="visible" :class="{vertical}">
         <slot></slot>
       </div>
@@ -41,6 +41,33 @@ export default {
     }
   },
   methods: {
+    enter(el, done) {
+      el.style.height = `auto`
+      let { height } = el.getBoundingClientRect()
+      el.style.height = 0
+      console.log('enter: ' + height)
+      el.getBoundingClientRect()
+      el.style.height = `${height}px`
+      el.addEventListener('transitionend', () => {
+        done()
+      })
+    },
+    afterEnter(el) {
+      el.style.height = `auto`
+    },
+    leave(el, done) {
+      let { height } = el.getBoundingClientRect()
+      console.log('leave: ' + height)
+      el.style.height = `${height}px`
+      el.getBoundingClientRect()
+      el.style.height = 0
+      el.addEventListener('transitionend', () => {
+        done()
+      })
+    },
+    afterLeave(el) {
+      el.style.height = `auto`
+    },
     onClick() {
       this.visible = !this.visible
     },
@@ -59,12 +86,6 @@ export default {
 
 <style lang="scss" scoped>
 @import "var";
-.fade-enter-active, .fade-leave-active {
-  transition: opacity .5s;
-}
-.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
-  opacity: 0;
-}
 .g-sub-nav {
   position: relative;
   &.active {
@@ -100,6 +121,8 @@ export default {
       position: static;
       box-shadow: none;
       border-radius: 0;
+      transition: height .25s;
+      overflow: hidden;
     }
   }
 }
