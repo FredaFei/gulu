@@ -7,7 +7,7 @@
 <script>
 export default {
   name: 'guluNavItem',
-  inject: ['root'],
+  inject: ['root','vertical'],
   props: {
     name: {
       type: String,

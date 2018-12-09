@@ -1,5 +1,5 @@
 <template>
-  <div class="g-nav-wrapper">
+  <div class="g-nav-wrapper" :class="{vertical}">
     <slot></slot>
     <div>{{namePath}}</div>
   </div>
@@ -16,10 +16,14 @@ export default {
     multiple: {
       type: Boolean,
       default: false
+    },
+    vertical: {
+      type: Boolean,
+      default: false
     }
   },
-  provide() { return { root: this } },
-  data(){
+  provide() { return { root: this, vertical: this.vertical } },
+  data() {
     return {
       items: [],
       namePath: []
@@ -35,7 +39,7 @@ export default {
   computed: {
   },
   methods: {
-    addItem(vm){
+    addItem(vm) {
       this.items.push(vm)
     },
     updateChildren() {
@@ -70,7 +74,14 @@ export default {
 <style lang="scss" scoped>
 @import "var";
 .g-nav-wrapper {
-  border-bottom: 1px solid $gray;
   display: flex;
+  color: $color;
+  cursor: default;
+  user-select: none;
+  border-bottom: 1px solid $gray;
+  &.vertical{
+    flex-direction: column;
+    border: 1px solid $gray;
+  }
 }
 </style>

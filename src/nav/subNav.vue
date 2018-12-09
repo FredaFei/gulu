@@ -8,9 +8,11 @@
         <g-icon name="right"></g-icon>
       </span>
     </span>
-    <div class="g-sub-nav-popover" v-show="visible">
-      <slot></slot>
-    </div>
+    <transition name="fade">
+      <div class="g-sub-nav-popover" v-show="visible" :class="{vertical}">
+        <slot></slot>
+      </div>
+    </transition>
   </div>
 </template>
 
@@ -19,7 +21,7 @@ import ClickOutside from '../clickOutside'
 import GIcon from '../icon'
 export default {
   name: 'gulusubNav',
-  inject: ['root'],
+  inject: ['root', 'vertical'],
   directives: { ClickOutside },
   components: { GIcon },
   props: {
@@ -57,6 +59,12 @@ export default {
 
 <style lang="scss" scoped>
 @import "var";
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
+}
 .g-sub-nav {
   position: relative;
   &.active {
@@ -88,33 +96,46 @@ export default {
     box-shadow: 0 0 3px rgba(0, 0, 0, .4);
     border-radius: $border-radius;
     background: white;
+    &.vertical {
+      position: static;
+      box-shadow: none;
+      border-radius: 0;
+    }
   }
 }
 
 .g-sub-nav .g-sub-nav {
+  &.active {
+    &:after {
+      display: none;
+    }
+  }
   .g-sub-nav-popover {
     top: 0;
     left: 100%;
     margin-left: 8px;
   }
   .g-sub-nav-label {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .g-sub-nav-icon {
+    transition: transform 250ms;
+    display: inline-flex;
+    margin-left: 1em;
+    svg {
+      fill: $light-color;
     }
-    .g-sub-nav-icon {
-      transition: transform 250ms;
-      display: inline-flex; margin-left: 1em;
-      svg {fill: $light-color;}
-      &.vertical {
-        transform: rotate(90deg);
-        &.visible {
-          transform: rotate(270deg);
-        }
-      }
+    &.vertical {
+      transform: rotate(90deg);
       &.visible {
-        transform: rotate(180deg);
+        transform: rotate(270deg);
       }
     }
+    &.visible {
+      transform: rotate(180deg);
+    }
+  }
 }
 </style>
