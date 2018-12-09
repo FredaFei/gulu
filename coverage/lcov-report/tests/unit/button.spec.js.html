@@ -20,9 +20,9 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">66.67% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>24/36</span>
+        <span class='fraction'>35/35</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
@@ -30,18 +30,18 @@
         <span class='fraction'>0/0</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">77.78% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>7/9</span>
+        <span class='fraction'>9/9</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">66.67% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>24/36</span>
+        <span class='fraction'>35/35</span>
       </div>
     </div>
   </div>
-  <div class='status-line medium'></div>
+  <div class='status-line high'></div>
 <pre><table class="coverage">
 <tr><td class="line-count quiet">1
 2
@@ -120,8 +120,7 @@
 75
 76
 77
-78
-79</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+78</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
@@ -155,32 +154,31 @@
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
@@ -204,78 +202,77 @@ import sinon from 'sinon'
 import sinonChai from 'sinon-chai'
 chai.use(sinonChai)
 &nbsp;
-import { mount,shallowMount } from '@vue/test-utils'
+import { mount, shallowMount } from '@vue/test-utils'
 import Vue from 'vue'
 import Button from '../../src/button/button'
 &nbsp;
 describe('Button', () =&gt; {
-    it('存在.', () =&gt; {
-        expect(Button).to.be.ok
+  it('存在.', () =&gt; {
+    expect(Button).to.be.ok
+  })
+  describe('props', () =&gt; {
+    it('可以设置icon.', () =&gt; {
+      const wrapper = mount(Button, {
+        propsData: {
+          icon: 'settings'
+        }
+      })
+      let el = wrapper.find('use')
+      expect(el.attributes('href')).to.equal('#i-settings')
     })
-    describe('props', () =&gt; {
-        it('可以设置icon.', () =&gt; {
-            const wrapper = mount(Button, {
-                propsData: {
-                    icon: 'settings'
-                }
-            })
-            let el = wrapper.find('use')
-            expect(el.attributes('href')).to.equal('#i-settings')
-        })
-        it('可以设置loading.', () =&gt; {
-            const wrapper = mount(Button, {
-                propsData: {
-                    loading: true
-                }
-            })
-            const { vm } = wrapper
-            let el = wrapper.find('use')
-            expect(el.attributes('href')).to.equal('#i-loading')
-        })
-        xit('icon 默认的 order 是 1', () =&gt; <span class="fstat-no" title="function not covered" >{</span>
-            const wrapper = <span class="cstat-no" title="statement not covered" >shallowMount(Button, {</span>
-                attachToDocument: true,
-                propsData: {
-                    icon: 'settings',
-                    iconPosition: 'left'
-                }
-            })
-            const { vm } = <span class="cstat-no" title="statement not covered" >wrapper</span>
-            let el = <span class="cstat-no" title="statement not covered" >vm.$el.querySelector('svg')</span>
-<span class="cstat-no" title="statement not covered" >            console.log(getComputedStyle(el))</span>
-<span class="cstat-no" title="statement not covered" >            console.log(vm.$el)</span>
-<span class="cstat-no" title="statement not covered" >            expect(wrapper.contains('.icon-left')).to.eq(true)</span>
-<span class="cstat-no" title="statement not covered" >            expect(getComputedStyle(el).order).to.eq('1')</span>
-        })
-        xit('设置 iconPosition 可以改变 order', () =&gt; <span class="fstat-no" title="function not covered" >{</span>
-            const wrapper = <span class="cstat-no" title="statement not covered" >mount(Button, {</span>
-                attachToDocument: true,
-                propsData: {
-                    icon: 'settings',
-                    iconPosition: 'right'
-                }
-            })
-            const { vm } = <span class="cstat-no" title="statement not covered" >wrapper</span>
-            const el = <span class="cstat-no" title="statement not covered" >vm.$el.querySelector('svg')</span>
-<span class="cstat-no" title="statement not covered" >            expect(wrapper.contains('.icon-right')).to.eq(true)</span>
-<span class="cstat-no" title="statement not covered" >            expect(getComputedStyle(el).order).to.eq('2')</span>
-        })
+    it('可以设置loading.', () =&gt; {
+      const wrapper = mount(Button, {
+        propsData: {
+          loading: true
+        }
+      })
+      const { vm } = wrapper
+      let el = wrapper.find('use')
+      expect(el.attributes('href')).to.equal('#i-loading')
     })
-    describe('事件', () =&gt; {
-        it('点击 button 触发 click 事件', () =&gt; {
-            const wrapper = mount(Button, {
-                propsData: {
-                    icon: 'settings'
-                }
-            })
-            const { vm } = wrapper
-            const callback = sinon.fake()
-            vm.$on('click', callback)
-            vm.$el.click()
-            // wrapper.trigger('click')
-            expect(callback).to.have.been.called
-        })
+    it('icon 默认的 order 是 1', () =&gt; {
+      const wrapper = mount(Button, {
+        attachToDocument: true,
+        propsData: {
+          icon: 'settings',
+        }
+      })
+      const { vm } = wrapper
+      let el = vm.$el.querySelector('svg')
+      console.log(getComputedStyle(el))
+      console.log(vm.$el)
+      // expect(wrapper.contains('.icon-left')).to.eq(true)
+      expect(getComputedStyle(el).order).to.eq('1')
     })
+    it('设置 iconPosition 可以改变 order', () =&gt; {
+      const wrapper = mount(Button, {
+        attachToDocument: true,
+        propsData: {
+          icon: 'settings',
+          iconPosition: 'right'
+        }
+      })
+      const { vm } = wrapper
+      const el = vm.$el.querySelector('svg')
+      expect(wrapper.contains('.icon-right')).to.eq(true)
+      expect(getComputedStyle(el).order).to.eq('2')
+    })
+  })
+  describe('事件', () =&gt; {
+    it('点击 button 触发 click 事件', () =&gt; {
+      const wrapper = mount(Button, {
+        propsData: {
+          icon: 'settings'
+        }
+      })
+      const { vm } = wrapper
+      const callback = sinon.fake()
+      vm.$on('click', callback)
+      vm.$el.click()
+      // wrapper.trigger('click')
+      expect(callback).to.have.been.called
+    })
+  })
 })
 &nbsp;</pre></td></tr>
 </table></pre>
@@ -283,7 +280,7 @@ describe('Button', () =&gt; {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Sun Dec 09 2018 21:41:56 GMT+0800 (中国标准时间)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Sun Dec 09 2018 22:03:30 GMT+0800 (中国标准时间)
 </div>
 </div>
 <script src="../../prettify.js"></script>
