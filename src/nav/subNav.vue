@@ -1,5 +1,5 @@
 <template>
-  <div class="g-sub-nav" :class="{active, vertical}" v-click-outside="close">
+  <div class="g-sub-nav" :class="{active, vertical}" v-click-outside="close" :data-name="name">
     <span class="g-sub-nav-label" @click="onClick">
       <span class="g-sub-nav-title">
         <slot name="title"></slot>
