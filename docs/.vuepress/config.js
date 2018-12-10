@@ -1,6 +1,6 @@
 const path = require('path')
 module.exports = {
-  base: '/gelu/',
+  base: '/gulu/',
   title: 'Hello VuePress',
   description: 'Just playing around',
   markdown: {
@@ -29,6 +29,7 @@ module.exports = {
           '/components/slides',
           '/components/cascader',
           '/components/collapse',
+          '/components/nav',
         ]
       },
     ]

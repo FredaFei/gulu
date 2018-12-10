@@ -90,7 +90,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "var";
+@import 'var';
 .g-sub-nav {
   position: relative;
   &:not(.vertical) {
@@ -121,10 +121,11 @@ export default {
     font-size: $font-size;
     color: $light-color;
     white-space: nowrap;
-    box-shadow: 0 0 3px rgba(0, 0, 0, .4);
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.4);
     border-radius: $border-radius;
     background: white;
-    transition: height .25s;
+    z-index: 5;
+    transition: height 0.25s;
     &.vertical {
       position: static;
       box-shadow: none;
@@ -134,6 +135,30 @@ export default {
   }
 }
 
+.g-sub-nav {
+  & .g-sub-nav,
+  &.vertical{
+    .g-sub-nav-label {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .g-sub-nav-icon {
+      transition: transform 250ms;
+      display: inline-flex;
+      margin-left: 1em;
+      &.vertical {
+        transform: rotate(90deg);
+        &.visible {
+          transform: rotate(270deg);
+        }
+      }
+      &.visible {
+        transform: rotate(180deg);
+      }
+    }
+  }
+}
 .g-sub-nav .g-sub-nav {
   &.active {
     &:after {
@@ -144,28 +169,6 @@ export default {
     top: 0;
     left: 100%;
     margin-left: 8px;
-  }
-  .g-sub-nav-label {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  .g-sub-nav-icon {
-    transition: transform 250ms;
-    display: inline-flex;
-    margin-left: 1em;
-    svg {
-      fill: $light-color;
-    }
-    &.vertical {
-      transform: rotate(90deg);
-      &.visible {
-        transform: rotate(270deg);
-      }
-    }
-    &.visible {
-      transform: rotate(180deg);
-    }
   }
 }
 </style>
