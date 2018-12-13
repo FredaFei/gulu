@@ -58,6 +58,7 @@ describe('validate', () => {
       { key: 'email', pattern: 'email' }
     ]
     let errors = validate(data, rules)
+    console.log(errors)
     expect(errors.email).to.not.exist
   })
   it('required & pattern .', () => {
@@ -74,13 +75,12 @@ describe('validate', () => {
   })
   it('pattern & minLength.', () => {
     var data = {
-      password: '1a'
+      password: '11a'
     }
     var rules = [
       { key: 'password', pattern: /^\d+$/, minLength: 6 }
     ]
     let errors = validate(data, rules)
-    console.log(errors)
     expect(errors.password.pattern).to.exist
     expect(errors.password.minLength).to.exist
   })
