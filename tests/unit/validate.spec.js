@@ -35,7 +35,7 @@ describe('validate', () => {
       email: '@xx.cn',
     }
     var rules = [
-      { key: 'email', required: true, pattern: /^.+@.+$/ },
+      { key: 'email', pattern: /^.+@.+$/ },
     ]
     let errors = validate(data, rules)
     expect(errors.email.pattern).to.exist
@@ -45,7 +45,7 @@ describe('validate', () => {
       email: '@xx.cn',
     }
     var rules = [
-      { key: 'email', required: true, pattern: 'email' },
+      { key: 'email', pattern: 'email' },
     ]
     let errors = validate(data, rules)
     expect(errors.email.pattern).to.exist
@@ -55,10 +55,34 @@ describe('validate', () => {
       email: '13@ccl.op'
     }
     var rules = [
-      { key: 'email', required: true, pattern: 'email' }
+      { key: 'email', pattern: 'email' }
     ]
     let errors = validate(data, rules)
     expect(errors.email).to.not.exist
+  })
+  it('required & pattern .', () => {
+    var data = {
+      email: ''
+    }
+    var rules = [
+      { key: 'email', required: true, pattern: 'email' }
+    ]
+    let errors = validate(data, rules)
+    expect(errors.email).to.exist
+    expect(errors.email.required).to.exist
+    expect(errors.email.pattern).to.not.exist
+  })
+  it('pattern & minLength.', () => {
+    var data = {
+      password: '1a'
+    }
+    var rules = [
+      { key: 'password', pattern: /^\d+$/, minLength: 6 }
+    ]
+    let errors = validate(data, rules)
+    console.log(errors)
+    expect(errors.password.pattern).to.exist
+    expect(errors.password.minLength).to.exist
   })
   xit('pattern 格式正确.', () => {
     var data = {

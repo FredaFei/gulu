@@ -20,28 +20,28 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">86.67% </span>
+        <span class="strong">30.43% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>13/15</span>
+        <span class='fraction'>7/23</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">72.22% </span>
+        <span class="strong">0% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>13/18</span>
+        <span class='fraction'>0/18</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">100% </span>
+        <span class="strong">33.33% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>2/2</span>
+        <span class='fraction'>2/6</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">86.67% </span>
+        <span class="strong">30.43% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>13/15</span>
+        <span class='fraction'>7/23</span>
       </div>
     </div>
   </div>
-  <div class='status-line high'></div>
+  <div class='status-line low'></div>
 <pre><table class="coverage">
 <tr><td class="line-count quiet">1
 2
@@ -69,57 +69,108 @@
 24
 25
 26
-27</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">5×</span>
-<span class="cline-any cline-yes">5×</span>
-<span class="cline-any cline-yes">5×</span>
-<span class="cline-any cline-yes">5×</span>
-<span class="cline-any cline-yes">5×</span>
-<span class="cline-any cline-yes">1×</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">5×</span>
-<span class="cline-any cline-yes">3×</span>
-<span class="cline-any cline-yes">2×</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3×</span>
-<span class="cline-any cline-yes">2×</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">5×</span>
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7×</span>
+<span class="cline-any cline-yes">7×</span>
+<span class="cline-any cline-yes">7×</span>
+<span class="cline-any cline-yes">7×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-yes">7×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">export default function validate(data, rules) {
   let errors = {}
   rules.forEach(ruleItem =&gt; {
     let value = data[ruleItem.key]
-    <span class="missing-if-branch" title="else path not taken" >E</span>if (ruleItem.required) {
-      if (!value &amp;&amp; value !== 0) {
-        errors[ruleItem.key] = { required: '必填' }
-        // return
+    validate.required = ()=&gt;<span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >      if (ruleItem.required) {</span>
+<span class="cstat-no" title="statement not covered" >        if (!value &amp;&amp; value !== 0) {</span>
+<span class="cstat-no" title="statement not covered" >          errors[ruleItem.key] = { required: '必填' }</span>
+<span class="cstat-no" title="statement not covered" >          return</span>
+        }
       }
     }
-    if (ruleItem.pattern) {
-      if (ruleItem.pattern === 'email') {
-        ruleItem.pattern = /^.+@.+$/
-      }
-      if (ruleItem.pattern.test(value) === false) {
-        errors[ruleItem.key] = { pattern: '格式不正确' }
+    validate.pattern = ()=&gt;<span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >      if (ruleItem.pattern) {</span>
+<span class="cstat-no" title="statement not covered" >        if (ruleItem.pattern === 'email') {</span>
+<span class="cstat-no" title="statement not covered" >          ruleItem.pattern = /^.+@.+$/</span>
+        }
+<span class="cstat-no" title="statement not covered" >        if (ruleItem.pattern.test(value) === false) {</span>
+<span class="cstat-no" title="statement not covered" >          ensureObject(errors, ruleItem.key)</span>
+<span class="cstat-no" title="statement not covered" >          errors[ruleItem.key].pattern = '格式不正确'</span>
+        }
       }
     }
-    <span class="missing-if-branch" title="if path not taken" >I</span>if (ruleItem.minLength &amp;&amp; <span class="branch-1 cbranch-no" title="branch not covered" >ruleItem.minLength)</span> {
-<span class="cstat-no" title="statement not covered" >      if (data[ruleItem.key].length &lt; ruleItem.minLength) {</span>
-<span class="cstat-no" title="statement not covered" >        errors[ruleItem.key] = { minLength: '密码长度不能小于6' }</span>
+    validate.minLength = ()=&gt;<span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >      if (ruleItem.minLength) {</span>
+<span class="cstat-no" title="statement not covered" >        if (data[ruleItem.key].length &lt; ruleItem.minLength) {</span>
+<span class="cstat-no" title="statement not covered" >          ensureObject(errors, ruleItem.key)</span>
+<span class="cstat-no" title="statement not covered" >          errors[ruleItem.key].minLength = '密码长度不能小于6'</span>
+        }
       }
     }
   })
   return errors
+}
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+function ensureObject(obj, key) <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >  if (Object.prototype.toString.call(obj[key]) !== '[object Object]') {</span>
+<span class="cstat-no" title="statement not covered" >    obj[key] = {}</span>
+  }
 }
 &nbsp;</pre></td></tr>
 </table></pre>
@@ -127,7 +178,7 @@
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Tue Dec 11 2018 22:46:22 GMT+0800 (中国标准时间)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Thu Dec 13 2018 10:54:06 GMT+0800 (中国标准时间)
 </div>
 </div>
 <script src="../prettify.js"></script>

@@ -5,7 +5,7 @@ export default function validate(data, rules) {
     if (ruleItem.required) {
       if (!value && value !== 0) {
         errors[ruleItem.key] = { required: '必填' }
-        // return
+        return
       }
     }
     if (ruleItem.pattern) {
@@ -13,14 +13,23 @@ export default function validate(data, rules) {
         ruleItem.pattern = /^.+@.+$/
       }
       if (ruleItem.pattern.test(value) === false) {
-        errors[ruleItem.key] = { pattern: '格式不正确' }
+        ensureObject(errors, ruleItem.key)
+        errors[ruleItem.key].pattern = '格式不正确'
       }
     }
-    if (ruleItem.minLength && ruleItem.minLength) {
+    if (ruleItem.minLength) {
       if (data[ruleItem.key].length < ruleItem.minLength) {
-        errors[ruleItem.key] = { minLength: '密码长度不能小于6' }
+        ensureObject(errors, ruleItem.key)
+        errors[ruleItem.key].minLength = '密码长度不能小于6'
       }
     }
   })
   return errors
+}
+
+
+function ensureObject(obj, key) {
+  if (Object.prototype.toString.call(obj[key]) !== '[object Object]') {
+    obj[key] = {}
+  }
 }
