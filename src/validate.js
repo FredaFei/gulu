@@ -1,50 +1,61 @@
-export default function validate(data, rules) {
-  let errors = {}
-  rules.forEach(ruleItem => {
-    let value = data[ruleItem.key]
-    if (ruleItem.required) {
-      let errorText = validate.required(value)
-      if(errorText){
-        ensureObject(errors, ruleItem.key)
-        errors[ruleItem.key].required = errorText
-        return
-      }
-    }
-    let validators = Object.keys(ruleItem).filter(key=>key!=='key'&&key!=='required')
-    validators.forEach(validator=>{
-      if(validator){
-        let errorText = validate[validator](value, ruleItem[validator])
-        if(errorText){
+export default class Validator {
+  constructor() {}
+  static add(name,fn){
+    console.log(this);
+    Validator.prototype[name] = fn
+  }
+  validate(data, rules) {
+    let errors = {}
+    rules.forEach(ruleItem => {
+      let value = data[ruleItem.key]
+      if (ruleItem.required) {
+        let errorText = this.required(value)
+        if (errorText) {
           ensureObject(errors, ruleItem.key)
-          errors[ruleItem.key][validator] = errorText
+          errors[ruleItem.key].required = errorText
+          return
         }
       }
+      let validators = Object.keys(ruleItem).filter(
+        key => key !== 'key' && key !== 'required'
+      )
+      validators.forEach(validator => {
+        if (validator) {
+          let errorText = this[validator](value, ruleItem[validator])
+          if (errorText) {
+            ensureObject(errors, ruleItem.key)
+            errors[ruleItem.key][validator] = errorText
+          }
+        } else {
+          throw `不存在的验证器${validator}`
+        }
+      })
     })
-  })
-  return errors
-}
-validate.required = value => {
-  if (!value && value !== 0) {
-    return '必填'
+    return errors
   }
-}
-validate.pattern = (value, pattern) => {
-  if (pattern === 'email') {
-    pattern = /^.+@.+$/
+  required(value) {
+    if (!value && value !== 0) {
+      return '必填'
+    }
   }
-  if (pattern.test(value) === false) {
-    return '格式不正确'
+  pattern(value, pattern) {
+    if (pattern === 'email') {
+      pattern = /^.+@.+$/
+    }
+    if (pattern.test(value) === false) {
+      return '格式不正确'
+    }
   }
-}
-validate.minLength = (value, minLength) => {
-  if (value.length < minLength) {
-    return `密码长度不能小于${minLength}`
+  minLength(value, minLength) {
+    if (value.length < minLength) {
+      return `密码长度不能小于${minLength}`
+    }
   }
-}
 
-validate.maxLength = (value, maxLength) => {
-  if (value.length < maxLength) {
-    return `密码长度不能大于${maxLength}`
+  maxLength(value, maxLength) {
+    if (value.length < maxLength) {
+      return `密码长度不能大于${maxLength}`
+    }
   }
 }
 
