@@ -84,6 +84,18 @@ describe('validate', () => {
     expect(errors.password.pattern).to.exist
     expect(errors.password.minLength).to.exist
   })
+  it('pattern & maxLength.', () => {
+    var data = {
+      password: '1100000'
+    }
+    var rules = [
+      { key: 'password', pattern: /^\d+$/, maxLength: 10 }
+    ]
+    let errors = validate(data, rules)
+    console.log(errors)
+    expect(errors.password.pattern).to.not.exist
+    expect(errors.password.maxLength).to.exist
+  })
   xit('pattern 格式正确.', () => {
     var data = {
       email: '',

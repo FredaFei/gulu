@@ -10,20 +10,16 @@ export default function validate(data, rules) {
         return
       }
     }
-    if (ruleItem.pattern) {
-      let errorText = validate.pattern(value, ruleItem.pattern)
-      if(errorText){
-        ensureObject(errors, ruleItem.key)
-        errors[ruleItem.key].pattern = errorText
+    let validators = Object.keys(ruleItem).filter(key=>key!=='key'&&key!=='required')
+    validators.forEach(validator=>{
+      if(validator){
+        let errorText = validate[validator](value, ruleItem[validator])
+        if(errorText){
+          ensureObject(errors, ruleItem.key)
+          errors[ruleItem.key][validator] = errorText
+        }
       }
-    }
-    if (ruleItem.minLength) {
-      let errorText = validate.minLength(value, ruleItem.minLength)
-      if(errorText){
-        ensureObject(errors, ruleItem.key)
-        errors[ruleItem.key].minLength = errorText
-      }
-    }
+    })
   })
   return errors
 }
@@ -42,7 +38,13 @@ validate.pattern = (value, pattern) => {
 }
 validate.minLength = (value, minLength) => {
   if (value.length < minLength) {
-    return '密码长度不能小于6'
+    return `密码长度不能小于${minLength}`
+  }
+}
+
+validate.maxLength = (value, maxLength) => {
+  if (value.length < maxLength) {
+    return `密码长度不能大于${maxLength}`
   }
 }
 
