@@ -1,11 +1,27 @@
 <template>
   <div class="g-pager">
-    <span class="g-pager-item" v-for="(page,index) in pages" :key="index"
-    :class="{'active':currentPage===page}" @click="goPage(page)">{{page}}</span>
+    <span class="g-pager-item prev" @click="goPage(currentPage-1)" :class="{disabled:currentPage===1}">
+      <g-icon name="left"></g-icon>
+    </span>
+    <template v-for="(page,index) in pages">
+      <template v-if="page===currentPage">
+        <span class="g-pager-item active" @click="goPage(page)">{{page}}</span>
+      </template>
+      <template v-else-if="page==='...'">
+        <g-icon class="g-pager-item separator" name="ellipsis"></g-icon>
+      </template>
+      <template v-else>
+        <span class="g-pager-item" @click="goPage(page)">{{page}}</span>
+      </template>
+    </template>
+    <span class="g-pager-item next" @click="goPage(currentPage+1)" :class="{disabled:currentPage===totalPage}">
+      <g-icon name="right"></g-icon>
+    </span>
   </div>
 </template>
 
 <script>
+import GIcon from '../icon'
 function unique(arr) {
   let obj = {}
   arr.forEach(item => {
@@ -15,6 +31,7 @@ function unique(arr) {
 }
 export default {
   name: 'guluPagination',
+  components: { GIcon },
   props: {
     currentPage: {
       type: Number,
@@ -29,20 +46,19 @@ export default {
       default: true
     },
   },
-  data() {
-    let pages = unique([1, this.currentPage, 
-      this.totalPage, 
-      this.currentPage - 1, this.currentPage - 2, 
-      this.currentPage + 1, this.currentPage + 2
-    ].filter(a=>a>=1&&a<=this.totalPage)
-    .sort((a,b)=>a-b))
-    .reduce((prev,current,index,array)=>{
-      prev.push(current)
-      array[index+1]!==undefined && array[index+1] - array[index] > 1 && prev.push('...')
-      return prev
-    },[])
-    return {
-      pages
+  computed: {
+    pages(){
+      return unique([1, this.currentPage, 
+        this.totalPage, 
+        this.currentPage - 1, this.currentPage - 2, 
+        this.currentPage + 1, this.currentPage + 2
+      ].filter(a=>a>=1&&a<=this.totalPage)
+      .sort((a,b)=>a-b))
+      .reduce((prev,current,index,array)=>{
+        prev.push(current)
+        array[index+1]!==undefined && array[index+1] - array[index] > 1 && prev.push('...')
+        return prev
+      },[])
     }
   },
   methods: {
@@ -59,23 +75,31 @@ export default {
 @import "var";
 .g-pager {
   $font-size: 14px;
+  $width: 28px;
+  $height: 28px;
+  display: flex; justify-content: flex-start; align-items: center;
   &-item {
     display: inline-flex;
     justify-content: center;
     align-items: center;
-    border-radius: $border-radius;
-    border: 1px solid $gray;
     padding: 0 4px;
     font-size: $font-size;
     text-align: center;
     color: $color;
-    min-width: 28px;
-    height: 28px;
+    min-width: $width;
+    height: $height;
     margin: 0 4px;
+    border-radius: $border-radius;
+    border: 1px solid $gray;
     cursor: pointer;
     user-select: none;
+    &.separator {border: none;}
     &.active {
       border-color: $blue;
+    }
+    &.disabled{
+      background: $gray;
+      svg { fill: darken($gray, 30%); }
     }
   }
 }
