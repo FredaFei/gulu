@@ -8,7 +8,9 @@
         <span class="g-pager-item active" @click="goPage(page)">{{page}}</span>
       </template>
       <template v-else-if="page==='...'">
-        <g-icon class="g-pager-item separator" name="ellipsis"></g-icon>
+        <span class="g-pager-item separator">
+          <g-icon name="ellipsis"></g-icon>
+        </span>
       </template>
       <template v-else>
         <span class="g-pager-item" @click="goPage(page)">{{page}}</span>
@@ -93,12 +95,13 @@ export default {
     border: 1px solid $gray;
     cursor: pointer;
     user-select: none;
+    transition: all .25s;
     &.separator {border: none;}
-    &.active {
+    &.active,&:hover {
       border-color: $blue;
     }
     &.disabled{
-      background: $gray;
+      cursor: not-allowed;
       svg { fill: darken($gray, 30%); }
     }
   }
