@@ -1,5 +1,5 @@
 <template>
-  <div class="g-pager">
+  <div class="g-pager" :class="{hide:hideOnSinglePage===true &&totalPage<=1}">
     <span class="g-pager-item prev" @click="goPage(currentPage-1)" :class="{disabled:currentPage===1}">
       <g-icon name="left"></g-icon>
     </span>
@@ -13,7 +13,7 @@
         </span>
       </template>
       <template v-else>
-        <span class="g-pager-item" @click="goPage(page)">{{page}}</span>
+        <span class="g-pager-item other" :data-page="page" @click="goPage(page)">{{page}}</span>
       </template>
     </template>
     <span class="g-pager-item next" @click="goPage(currentPage+1)" :class="{disabled:currentPage===totalPage}">
@@ -80,6 +80,7 @@ export default {
   $width: 28px;
   $height: 28px;
   display: flex; justify-content: flex-start; align-items: center;
+  &.hide{display: none;}
   &-item {
     display: inline-flex;
     justify-content: center;
