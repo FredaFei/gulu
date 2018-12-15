@@ -1,6 +1,6 @@
 <template>
   <div id="demo">
-    <g-pager :current-page="currentPage" :total-page="20" :current-page.sync="currentPage"></g-pager>
+    <g-pager :current-page="currentPage" :total-page="1" :current-page.sync="currentPage"></g-pager>
   </div>
 </template>
 
@@ -12,7 +12,7 @@ Vue.component('g-pager', Pager)
 export default {
   data() {
     return {
-      currentPage: 6
+      currentPage: 1
     }
   },
 }

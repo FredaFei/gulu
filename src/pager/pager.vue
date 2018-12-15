@@ -5,7 +5,7 @@
     </span>
     <template v-for="(page,index) in pages">
       <template v-if="page===currentPage">
-        <span class="g-pager-item active" @click="goPage(page)">{{page}}</span>
+        <span class="g-pager-item active" :data-current="page" @click="goPage(page)">{{page}}</span>
       </template>
       <template v-else-if="page==='...'">
         <span class="g-pager-item separator">
