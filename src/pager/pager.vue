@@ -103,6 +103,9 @@ export default {
     }
     &.disabled{
       cursor: not-allowed;
+      &:hover{
+        border-color: $gray;
+      }
       svg { fill: darken($gray, 30%); }
     }
   }

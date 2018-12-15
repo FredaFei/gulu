@@ -30,6 +30,7 @@ module.exports = {
           '/components/cascader',
           '/components/collapse',
           '/components/nav',
+          '/components/pager',
         ]
       },
     ]
