@@ -1,20 +1,29 @@
 <template>
   <div id="demo">
-    <g-pager :current-page="currentPage" :total-page="1" :current-page.sync="currentPage"></g-pager>
+    <g-button icon="upload">上传文件</g-button>
+    <g-uploader :name="file" action="https://node-server-upload.herokuapp.com/" :size-limit="2*1024*1024"
+    :parse-reponse="parseReponse"></g-uploader>
   </div>
 </template>
 
 <script>
 import Vue from 'vue'
-import Pager from './pager/pager'
-Vue.component('g-pager', Pager)
+import Uploader from './uploader/uploader'
+import Button from './button/button'
+// import GIcon from '../icon'
+Vue.component('g-uploader', Uploader)
+Vue.component('g-button', Button)
+// Vue.component('g-icon', GIcon)
 
 export default {
   data() {
     return {
-      currentPage: 1
+
     }
   },
+  method: {
+    parseReponse(){}
+  }
 }
 
 </script>
