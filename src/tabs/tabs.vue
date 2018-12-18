@@ -1,5 +1,5 @@
 <template>
-    <div class="tabs-content" :class="classes">
+    <div class="g-tabs-content" :class="classes">
         <slot></slot>
     </div>
 </template>
@@ -75,7 +75,7 @@ export default {
 </script>
 
 <style lang="scss">
-.tabs-content {
+.g-tabs-content {
     position: relative;
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-    <div class="tabs-header">
+    <div class="g-tabs-header">
         <slot></slot>
         <div class="line" ref="line"></div>
         <div class="action-wrapper">
@@ -24,7 +24,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.tabs-header {
+.g-tabs-header {
     display: flex;
     justify-content: flex-start;
     border-bottom: 1px solid #ddd;

@@ -1,5 +1,5 @@
 <template>
-    <div class="tabs-item" :data-name="name" @click="onClick" :class="classes">
+    <div class="g-tabs-item" :data-name="name" @click="onClick" :class="classes">
         <slot></slot>
     </div>
 </template>
@@ -50,7 +50,7 @@ export default {
 
 <style lang="scss" scoped>
 $blue: #1890ff;
-.tabs-item {
+.g-tabs-item {
     flex-shrink: 0;
     padding: 1em;
     display: flex;
