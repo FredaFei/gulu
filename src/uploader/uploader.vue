@@ -7,6 +7,7 @@
     <div class="preview-list" v-for="img in fileList" :key="img.name">
       <img :src="img.url" alt="preview" ref="preview">
       <span class="name">{{img.name}}</span>
+      <button class="del" @click="onDeleteFile(img)">X</button>
     </div>
   </div>
 </template>
@@ -66,26 +67,35 @@ export default {
     uploadFile(file) {
       let formData = new FormData();
       formData.append(this.name, file)
-      let {name,size,type} = file
-      this.doUploadFile(formData,(response)=>{
+      let { name, size, type } = file
+      this.doUploadFile(formData, (response) => {
         let url = this.parseReponse(response)
         // this.url = url
-        while (this.fileList.filter(n=>n.name===name).length>0) {
+        while (this.fileList.filter(n => n.name === name).length > 0) {
           let dotIndex = name.lastIndexOf('.')
-          let nameWithoutExtension = name.substring(0,dotIndex)
+          let nameWithoutExtension = name.substring(0, dotIndex)
           let extension = name.substring(dotIndex)
           name = nameWithoutExtension + '(1)' + extension
         }
-        this.$emit('update:fileList',[...this.fileList,{name,size,type,url}])
+        this.$emit('update:fileList', [...this.fileList, { name, size, type, url }])
       })
     },
-    doUploadFile(formData,successFn) {
+    doUploadFile(formData, successFn) {
       let xhr = new XMLHttpRequest();
       xhr.open(this.method, this.action);
       xhr.onload = () => {
         successFn(xhr.response)
       }
       xhr.send(formData)
+    },
+    onDeleteFile(file) {
+      let yes = window.confirm('确定删除该文件吗？')
+      if (yes) {
+        let copy = [...this.fileList]
+        let index = copy.indexOf(file)
+        copy.splice(index,1)
+        this.$emit('update:fileList', copy)
+      }
     }
   },
 
