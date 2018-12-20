@@ -1,8 +1,9 @@
 <template>
   <div id="demo">
-    <g-button icon="upload">上传文件</g-button>
-    <g-uploader :name="file" action="https://node-server-upload.herokuapp.com/" :size-limit="2*1024*1024"
-    :parse-reponse="parseReponse"></g-uploader>
+    <g-uploader name="file" action="http://127.0.0.1:3000/upload" :file-list.sync="fileList" :size-limit="2*1024*1024"
+    :parse-reponse="parseReponse">
+      <g-button icon="upload">上传文件</g-button>
+    </g-uploader>
   </div>
 </template>
 
@@ -18,11 +19,14 @@ Vue.component('g-button', Button)
 export default {
   data() {
     return {
-
+      fileList: []
     }
   },
-  method: {
-    parseReponse(){}
+  methods: {
+    parseReponse(data){
+      let {id} = JSON.parse(data)
+      return `http://127.0.0.1:3000/preview/${id}`
+    }
   }
 }
 
