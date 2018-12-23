@@ -1,19 +1,29 @@
 <template>
-  <div class="g-upload-wrapper">
-    <div class="g-upload-content" @click="onClickUploadFile">
+  <div class="g-uploader">
+    <div class="g-uploader-content" @click="onClickUploadFile">
       <slot></slot>
     </div>
+    <ol class="g-uploader-preview-list">
+      <li v-for="file in fileList" :key="file.name">
+        <template v-if="file.status==='uploading'">
+          <g-icon name="loading" class="g-uploader-spin"></g-icon>
+        </template>
+        <template v-if="file.type.indexOf('image')===0">
+          <img :src="file.url" class="g-uploader-preview">
+        </template>
+        <template v-else>
+          <div class="g-uploader-defaultImage"></div>
+        </template>
+        <span class="g-uploader-name">{{file.name}}</span>
+        <button class="g-uploader-remove" @click="onDeleteFile(file)">X</button>
+        <template v-if="file.status==='fail'">fail</template>
+      </li>
+    </ol>
     <div class="temp" ref="temp" style="overflow:hidden;width:0;height:0;"></div>
-    <div class="preview-list" v-for="img in fileList" :key="img.name">
-      <template v-if="img.status==='uploading'">loading</template>
-      <img :src="img.url" alt="preview" ref="preview">
-      <span class="name">{{img.name}}</span>
-      <button class="del" @click="onDeleteFile(img)">X</button>
-      <template v-if="img.status==='fail'">fail</template>
-    </div>
   </div>
 </template>
 <script>
+import GIcon from '../icon'
 export default {
   name: 'guluUploader',
   props: {
@@ -42,6 +52,7 @@ export default {
       required: true
     }
   },
+  components: { GIcon },
   data() {
     return {
       url: 'about:blank'
@@ -78,7 +89,7 @@ export default {
         this.afterUploadFile(newName, url)
       }, (xhr) => {
         console.log(xhr)
-        this.uploadFileError(xhr,newName)
+        this.uploadFileError(xhr, newName)
       })
     },
     beforeUploadFile(rowFile, name) {
@@ -95,7 +106,7 @@ export default {
       copyFileList.splice(index, 1, copyFile)
       this.$emit('update:fileList', copyFileList)
     },
-    uploadFileError(xhr,newName) {
+    uploadFileError(xhr, newName) {
       let file = this.fileList.filter(f => f.name === newName)[0]
       let index = this.fileList.indexOf(file)
       let copyFile = { ...file }
@@ -104,7 +115,7 @@ export default {
       copyFileList.splice(index, 1, copyFile)
       this.$emit('update:fileList', copyFileList)
       let error
-      if(xhr.status === 0){
+      if (xhr.status === 0) {
         error = '网络无法连接'
       }
       this.$emit('error', error)
@@ -143,5 +154,37 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-
+@import "var";
+.g-uploader {
+  &-preview-list {
+    list-style: none;
+    >li {
+      display: flex;
+      align-items: center;
+      border: 1px solid darken($gray, 10%);
+      margin: 8px 0;
+    }
+  }
+  &-defaultImage,
+  &-preview {
+    width: 32px;
+    height: 32px;
+    margin-right: 8px;
+  }
+  &-preview {
+    border: none;
+  }
+  &-name {
+    margin-right: auto;
+  }
+  &-remove {
+    width: 32px;
+    height: 32px;
+  }
+  &-spin {
+    width: 32px;
+    height: 32px;
+    @include spin;
+  }
+}
 </style>

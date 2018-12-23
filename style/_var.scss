@@ -1,12 +1,15 @@
 @keyframes spin {
-    0% {
-        transform: rotate(0deg);
-    }
-    100% {
-        transform: rotate(360deg);
-    }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
+@mixin spin {
+  animation: spin 1.2s infinite linear;
+}
 
 $color: #333;
 $light-color: #666;
@@ -20,7 +23,6 @@ $border-radius: 4px;
 $border-active-bg: #eee;
 $border-color: #999;
 $border-color-hover: #666;
-
 $input-font-size: 14px;
 $input-border-color: rgba(102, 102, 102, 1);
 $input-border-color-hover: #666;
