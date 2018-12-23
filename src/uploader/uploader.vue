@@ -130,7 +130,7 @@ export default {
       let copyFileList = [...this.fileList]
       copyFileList.splice(index, 1, copyFile)
       this.$emit('update:fileList', copyFileList)
-      this.$emit('addFile', copyFile)
+      this.$emit('uploaded')
     },
     uploadFileError(xhr, newName) {
       let file = this.fileList.filter(f => f.name === newName)[0]
