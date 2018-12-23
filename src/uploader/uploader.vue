@@ -5,6 +5,7 @@
     </div>
     <div class="temp" ref="temp" style="overflow:hidden;width:0;height:0;"></div>
     <div class="preview-list" v-for="img in fileList" :key="img.name">
+      <span v-if="img.status==='uploading'">loading</span>
       <img :src="img.url" alt="preview" ref="preview">
       <span class="name">{{img.name}}</span>
       <button class="del" @click="onDeleteFile(img)">X</button>
@@ -42,7 +43,7 @@ export default {
   },
   data() {
     return {
-      // url: 'about:blank'
+      url: 'about:blank'
     }
   },
   mounted() {
@@ -52,8 +53,7 @@ export default {
     onClickUploadFile() {
       let input = this.createInput()
       input.addEventListener('change', () => {
-        let file = input.files[0]
-        this.uploadFile(file)
+        this.uploadFile(input.files[0])
         input.remove()
       })
       input.click()
@@ -64,21 +64,40 @@ export default {
       this.$refs.temp.appendChild(input)
       return input
     },
-    uploadFile(file) {
+    uploadFile(rowFile) {
       let formData = new FormData();
-      formData.append(this.name, file)
-      let { name, size, type } = file
+      formData.append(this.name, rowFile)
+      let { name, size, type } = rowFile
+      let newName = this.generatorName(name)
+      this.beforeUploadFile(rowFile, newName)
       this.doUploadFile(formData, (response) => {
         let url = this.parseReponse(response)
         // this.url = url
-        while (this.fileList.filter(n => n.name === name).length > 0) {
-          let dotIndex = name.lastIndexOf('.')
-          let nameWithoutExtension = name.substring(0, dotIndex)
-          let extension = name.substring(dotIndex)
-          name = nameWithoutExtension + '(1)' + extension
-        }
-        this.$emit('update:fileList', [...this.fileList, { name, size, type, url }])
+        this.afterUploadFile(newName, url)
       })
+    },
+    beforeUploadFile(rowFile, name) {
+      let { size, type } = rowFile
+      this.$emit('update:fileList', [...this.fileList, { name, size, type, status: 'uploading' }])
+    },
+    afterUploadFile(name,url) {
+      let file = this.fileList.filter(f => f.name === name)[0]
+      let index = this.fileList.indexOf(file)
+      let copyFile = {...file}
+      copyFile.url = url
+      copyFile.status = 'success'
+      let copyFileList = [...this.fileList]
+      copyFileList.splice(index, 1, copyFile)
+      this.$emit('update:fileList', copyFileList)
+    },
+    generatorName(name) {
+      while (this.fileList.filter(n => n.name === name).length > 0) {
+        let dotIndex = name.lastIndexOf('.')
+        let nameWithoutExtension = name.substring(0, dotIndex)
+        let extension = name.substring(dotIndex)
+        name = nameWithoutExtension + '(1)' + extension
+      }
+      return name
     },
     doUploadFile(formData, successFn) {
       let xhr = new XMLHttpRequest();
@@ -93,7 +112,7 @@ export default {
       if (yes) {
         let copy = [...this.fileList]
         let index = copy.indexOf(file)
-        copy.splice(index,1)
+        copy.splice(index, 1)
         this.$emit('update:fileList', copy)
       }
     }
