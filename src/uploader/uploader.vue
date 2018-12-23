@@ -60,6 +60,7 @@ export default {
       input.click()
     },
     createInput() {
+      this.$refs.temp.innerHTML = ''
       let input = document.createElement('input')
       input.type = 'file'
       this.$refs.temp.appendChild(input)
@@ -75,9 +76,9 @@ export default {
         let url = this.parseReponse(response)
         // this.url = url
         this.afterUploadFile(newName, url)
-      }, () => {
-        console.log(this.fileList)
-        this.uploadFileError(newName)
+      }, (xhr) => {
+        console.log(xhr)
+        this.uploadFileError(xhr,newName)
       })
     },
     beforeUploadFile(rowFile, name) {
@@ -94,16 +95,19 @@ export default {
       copyFileList.splice(index, 1, copyFile)
       this.$emit('update:fileList', copyFileList)
     },
-    uploadFileError(newName) {
+    uploadFileError(xhr,newName) {
       let file = this.fileList.filter(f => f.name === newName)[0]
       let index = this.fileList.indexOf(file)
-      console.log(this.fileList)
       let copyFile = { ...file }
-      console.log(copyFile)
       copyFile.status = 'fail'
       let copyFileList = [...this.fileList]
       copyFileList.splice(index, 1, copyFile)
       this.$emit('update:fileList', copyFileList)
+      let error
+      if(xhr.status === 0){
+        error = '网络无法连接'
+      }
+      this.$emit('error', error)
     },
     generatorName(name) {
       while (this.fileList.filter(n => n.name === name).length > 0) {
@@ -121,7 +125,7 @@ export default {
         successFn(xhr.response)
       }
       xhr.onerror = () => {
-        errorFn()
+        errorFn(xhr)
       }
       xhr.send(formData)
     },
