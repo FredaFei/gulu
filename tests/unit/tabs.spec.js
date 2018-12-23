@@ -44,8 +44,7 @@ describe('Tabs', () => {
       })
       setTimeout(() => {
         const element = wrapper.find('.tabs-item[data-name="music"]') 
-        expect(element.exists()).to.be.true
-        expect(element.classes('active')).to.be.true
+        expect(wrapper.find('.g-tabs-pane[data-name="music"]').isVisible()).to.be.true
         done()
       })
     })

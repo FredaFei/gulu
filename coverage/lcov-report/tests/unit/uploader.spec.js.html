@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <title>Code coverage report for tests\unit\collapse.spec.js</title>
+    <title>Code coverage report for tests\unit\uploader.spec.js</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../prettify.css" />
     <link rel="stylesheet" href="../../base.css" />
@@ -16,13 +16,13 @@
 <div class='wrapper'>
   <div class='pad1'>
     <h1>
-      <a href="../../index.html">all files</a> / <a href="index.html">tests/unit/</a> collapse.spec.js
+      <a href="../../index.html">all files</a> / <a href="index.html">tests/unit/</a> uploader.spec.js
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>17/17</span>
+        <span class='fraction'>25/25</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
@@ -32,12 +32,12 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>6/6</span>
+        <span class='fraction'>8/8</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>17/17</span>
+        <span class='fraction'>25/25</span>
       </div>
     </div>
   </div>
@@ -98,7 +98,11 @@
 53
 54
 55
-56</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+56
+57
+58
+59
+60</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
@@ -109,25 +113,19 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
-<span class="cline-any cline-yes">1×</span>
-<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
@@ -140,8 +138,13 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -149,63 +152,72 @@
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import chai, { expect } from 'chai'
 import sinon from 'sinon'
 import sinonChai from 'sinon-chai'
 chai.use(sinonChai)
+&nbsp;
 import { mount } from '@vue/test-utils'
-&nbsp;
 import Vue from 'vue'
-import Collapse from '../../src/collapse/collapse'
-import CollapseItem from '../../src/collapse/collapseItem'
+import Uploader from '../../src/uploader/uploader'
+import http from '../../src/http'
 &nbsp;
-Vue.component('g-collapse-item', CollapseItem)
-&nbsp;
-describe('Collapse', () =&gt; {
+describe('Uploader', () =&gt; {
   it('存在.', () =&gt; {
-    expect(Collapse).to.be.ok
+    expect(Uploader).to.be.ok
   })
-  it('selected 默认为第一个子元素.', (done) =&gt; {
-    const wrapper = mount(Collapse, {
-      slots: {
-        default: `
-        &lt;g-collapse-item title="title_1" name="1"&gt;&lt;span id="content_1"&gt;content_1&lt;/span&gt;&lt;/g-collapse-item&gt;
-        &lt;g-collapse-item title="title_2" name="2"&gt;&lt;span id="content_2"&gt;content_2&lt;/span&gt;&lt;/g-collapse-item&gt;
-        &lt;g-collapse-item title="title_3" name="3"&gt;&lt;span id="content_3"&gt;content_3&lt;/span&gt;&lt;/g-collapse-item&gt;
-        &lt;g-collapse-item title="title_4" name="4"&gt;&lt;span id="content_4"&gt;content_4&lt;/span&gt;&lt;/g-collapse-item&gt;
-        `
-      }
+  it('可以上传一个.', done =&gt; {
+    let stub = sinon.stub(http, 'post').callsFake((url, options) =&gt; {
+      setTimeout(function() {
+        options.success(JSON.stringify({ id: '1212' }))
+      }, 100)
     })
-    setTimeout(() =&gt; {
-      expect(wrapper.find('#content_1').exists()).to.be.true
-      done()
-    })
-  })
-  it('可以设置 single.', (done) =&gt; {
-    const wrapper = mount(Collapse, {
+    const wrapper = mount(Uploader, {
       propsData: {
-        single: true,
-        selected: ['1']
+        name: 'files',
+        action: '/upload',
+        method: 'post',
+        parseReponse: data =&gt; {
+          let { id } = JSON.parse(data)
+          return `/preview/${id}`
+        },
+        fileList: []
       },
       slots: {
-        default: `
-        &lt;g-collapse-item title="title_1" name="1"&gt;&lt;span id="content_1"&gt;content_1&lt;/span&gt;&lt;/g-collapse-item&gt;
-        &lt;g-collapse-item title="title_2" name="2"&gt;&lt;span id="content_2"&gt;content_2&lt;/span&gt;&lt;/g-collapse-item&gt;
-        &lt;g-collapse-item title="title_3" name="3"&gt;&lt;span id="content_3"&gt;content_3&lt;/span&gt;&lt;/g-collapse-item&gt;
-        &lt;g-collapse-item title="title_4" name="4"&gt;&lt;span id="content_4"&gt;content_4&lt;/span&gt;&lt;/g-collapse-item&gt;
-        `
+        default: `&lt;button id="x"&gt;click me&lt;/button&gt;`
+      },
+      listeners: {
+        'update:fileList': fileList =&gt; {
+          wrapper.setProps({ fileList })
+        },
+        uploaded: () =&gt; {
+          expect(wrapper.find('use').exists()).to.eq(false)
+          expect(wrapper.props().fileList[0].url).to.eq('/preview/1212')
+          stub.restore()
+          done()
+        }
       }
     })
-    setTimeout(() =&gt; {
-      wrapper.find('[data-name="2"]').trigger('click')
-      expect(wrapper.contains('#content_1')).to.be.false
-      expect(wrapper.find('#content_2').exists()).to.be.true
-      done()
-    })
+    wrapper.find('#x').trigger('click')
+    let inputWrapper = wrapper.find('input[type="file"]')
+    let input = inputWrapper.element
+    const file1 = new File(['hahaha'], 'a.png')
+&nbsp;
+    const data = new DataTransfer()
+    data.items.add(file1)
+    input.files = data.files
+&nbsp;
+    let use = wrapper.find('use').element
+    expect(use.getAttribute('xlink:href')).to.eq('#i-loading')
   })
 })
 &nbsp;</pre></td></tr>
