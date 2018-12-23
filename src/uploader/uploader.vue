@@ -14,9 +14,8 @@
         <template v-else>
           <div class="g-uploader-defaultImage"></div>
         </template>
-        <span class="g-uploader-name">{{file.name}}</span>
+        <span class="g-uploader-name" :class="{[file.status]: file.status}">{{file.name}}</span>
         <button class="g-uploader-remove" @click="onDeleteFile(file)">X</button>
-        <template v-if="file.status==='fail'">fail</template>
       </li>
     </ol>
     <div class="temp" ref="temp" style="overflow:hidden;width:0;height:0;"></div>
@@ -194,6 +193,12 @@ export default {
   }
   &-name {
     margin-right: auto;
+    &.success {
+      color: green;
+    }
+    &.fail {
+      color: red;
+    }
   }
   &-remove {
     width: 32px;

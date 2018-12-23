@@ -31,6 +31,7 @@ module.exports = {
           '/components/collapse',
           '/components/nav',
           '/components/pager',
+          '/components/uploader',
         ]
       },
     ]
