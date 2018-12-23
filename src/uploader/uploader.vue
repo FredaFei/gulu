@@ -5,10 +5,11 @@
     </div>
     <div class="temp" ref="temp" style="overflow:hidden;width:0;height:0;"></div>
     <div class="preview-list" v-for="img in fileList" :key="img.name">
-      <span v-if="img.status==='uploading'">loading</span>
+      <template v-if="img.status==='uploading'">loading</template>
       <img :src="img.url" alt="preview" ref="preview">
       <span class="name">{{img.name}}</span>
       <button class="del" @click="onDeleteFile(img)">X</button>
+      <template v-if="img.status==='fail'">fail</template>
     </div>
   </div>
 </template>
@@ -74,18 +75,32 @@ export default {
         let url = this.parseReponse(response)
         // this.url = url
         this.afterUploadFile(newName, url)
+      }, () => {
+        console.log(this.fileList)
+        this.uploadFileError(newName)
       })
     },
     beforeUploadFile(rowFile, name) {
       let { size, type } = rowFile
       this.$emit('update:fileList', [...this.fileList, { name, size, type, status: 'uploading' }])
     },
-    afterUploadFile(name,url) {
+    afterUploadFile(name, url) {
       let file = this.fileList.filter(f => f.name === name)[0]
       let index = this.fileList.indexOf(file)
-      let copyFile = {...file}
+      let copyFile = { ...file }
       copyFile.url = url
       copyFile.status = 'success'
+      let copyFileList = [...this.fileList]
+      copyFileList.splice(index, 1, copyFile)
+      this.$emit('update:fileList', copyFileList)
+    },
+    uploadFileError(newName) {
+      let file = this.fileList.filter(f => f.name === newName)[0]
+      let index = this.fileList.indexOf(file)
+      console.log(this.fileList)
+      let copyFile = { ...file }
+      console.log(copyFile)
+      copyFile.status = 'fail'
       let copyFileList = [...this.fileList]
       copyFileList.splice(index, 1, copyFile)
       this.$emit('update:fileList', copyFileList)
@@ -99,11 +114,14 @@ export default {
       }
       return name
     },
-    doUploadFile(formData, successFn) {
+    doUploadFile(formData, successFn, errorFn) {
       let xhr = new XMLHttpRequest();
       xhr.open(this.method, this.action);
       xhr.onload = () => {
         successFn(xhr.response)
+      }
+      xhr.onerror = () => {
+        errorFn()
       }
       xhr.send(formData)
     },
