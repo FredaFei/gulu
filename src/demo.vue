@@ -1,8 +1,8 @@
 <template>
   <div id="demo">
     {{error}}
-    <g-uploader name="file" action="http://127.0.0.1:3000/upload" :file-list.sync="fileList" 
-    :size-limit="3*1024" :parse-reponse="parseReponse" @error="error=$event" >
+    <g-uploader name="files" action="http://127.0.0.1:3000/upload" :file-list.sync="fileList" 
+    :size-limit="3*1024*1024" :parse-reponse="parseReponse" @error="error=$event">
       <g-button icon="upload">上传文件</g-button>
     </g-uploader>
   </div>

@@ -64,7 +64,7 @@ export default {
     onClickUploadFile() {
       let input = this.createInput()
       input.addEventListener('change', () => {
-        this.uploadFile(input.files[0])
+        this.uploadFiles(input.files)
         input.remove()
       })
       input.click()
@@ -73,35 +73,49 @@ export default {
       this.$refs.temp.innerHTML = ''
       let input = document.createElement('input')
       input.type = 'file'
+      input.multiple = true
       this.$refs.temp.appendChild(input)
       return input
     },
-    uploadFile(rowFile) {
-      let formData = new FormData();
-      formData.append(this.name, rowFile)
-      let { name, size, type } = rowFile
-      console.log(rowFile)
-      let newName = this.generatorName(name)
-      if(!this.beforeUploadFile(rowFile, newName)){return false}
-      this.doUploadFile(formData, (response) => {
-        let url = this.parseReponse(response)
-        this.afterUploadFile(newName, url)
-      }, (xhr) => {
-        console.log(xhr)
-        this.uploadFileError(xhr, newName)
-      })
-    },
-    beforeUploadFile(rowFile, name) {
-      let { size, type } = rowFile
-      if (size > this.sizeLimit) {
-        this.$emit('error', '文件过大了哦！')
-        return false
-      } else {
-        this.$emit('update:fileList', [...this.fileList, { name, size, type, status: 'uploading' }])
-        return true
+    uploadFiles(rowFiles) {
+      let newNames = []
+      for (let i = 0; i < rowFiles.length; i++) {
+        let rowFile = rowFiles[i]
+        let { name, size, type } = rowFile
+        let newName = this.generatorName(name)
+        newNames[i] = newName
+      }
+      if (!this.beforeUploadFiles(rowFiles, newNames)) { return false }
+      for (let i = 0; i < rowFiles.length; i++) {
+        let rowFile = rowFiles[i]
+        let formData = new FormData();
+        formData.append(this.name, rowFile)
+        this.doUploadFiles(formData, (response) => {
+          let url = this.parseReponse(response)
+          this.afterUploadFiles(newNames[i], url)
+        }, (xhr) => {
+          this.uploadFileError(xhr, newNames[i])
+        })
       }
     },
-    afterUploadFile(name, url) {
+    beforeUploadFiles(rowFiles, newNames) {
+      rowFiles = Array.from(rowFiles)
+      for (let i = 0; i < rowFiles.length; i++) {
+        let rowFile = rowFiles[i]
+        let { size, type } = rowFile
+        if (size > this.sizeLimit) {
+          this.$emit('error', '文件过大了哦！')
+          return false
+        }
+      }
+      let tempFiles = rowFiles.map((rowFile, index) => {
+        let { size, type } = rowFile
+        return { name: newNames[index], size, type, status: 'uploading' }
+      })
+      this.$emit('update:fileList', [...this.fileList, ...tempFiles])
+      return true
+    },
+    afterUploadFiles(name, url) {
       let file = this.fileList.filter(f => f.name === name)[0]
       let index = this.fileList.indexOf(file)
       let copyFile = { ...file }
@@ -110,6 +124,7 @@ export default {
       let copyFileList = [...this.fileList]
       copyFileList.splice(index, 1, copyFile)
       this.$emit('update:fileList', copyFileList)
+      this.$emit('addFile', copyFile)
     },
     uploadFileError(xhr, newName) {
       let file = this.fileList.filter(f => f.name === newName)[0]
@@ -134,7 +149,7 @@ export default {
       }
       return name
     },
-    doUploadFile(formData, successFn, errorFn) {
+    doUploadFiles(formData, successFn, errorFn) {
       let xhr = new XMLHttpRequest();
       xhr.open(this.method, this.action);
       xhr.onload = () => {
