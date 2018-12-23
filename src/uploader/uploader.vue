@@ -39,6 +39,10 @@ export default {
       type: String,
       default: 'POST'
     },
+    accept: {
+      type: String,
+      default: 'image/*'
+    },
     sizeLimit: {
       type: Number
     },
@@ -73,6 +77,7 @@ export default {
       this.$refs.temp.innerHTML = ''
       let input = document.createElement('input')
       input.type = 'file'
+      input.accept = this.accept
       input.multiple = true
       this.$refs.temp.appendChild(input)
       return input
