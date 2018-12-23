@@ -24,6 +24,7 @@
 </template>
 <script>
 import GIcon from '../icon'
+import http from '../http'
 export default {
   name: 'guluUploader',
   props: {
@@ -154,16 +155,8 @@ export default {
       }
       return name
     },
-    doUploadFiles(formData, successFn, errorFn) {
-      let xhr = new XMLHttpRequest();
-      xhr.open(this.method, this.action);
-      xhr.onload = () => {
-        successFn(xhr.response)
-      }
-      xhr.onerror = () => {
-        errorFn(xhr)
-      }
-      xhr.send(formData)
+    doUploadFiles(formData, success, error) {
+      http[this.method.toLocaleLowerCase()](this.action, { data: formData, success, error })
     },
     onDeleteFile(file) {
       let yes = window.confirm('确定删除该文件吗？')
