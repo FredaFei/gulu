@@ -1,7 +1,8 @@
 <template>
   <div id="demo">
-    <g-uploader name="file" action="http://127.0.0.1:3000/upload" :file-list.sync="fileList" :size-limit="2*1024*1024"
-    :parse-reponse="parseReponse" @error="onError">
+    {{error}}
+    <g-uploader name="file" action="http://127.0.0.1:3000/upload" :file-list.sync="fileList" 
+    :size-limit="3*1024" :parse-reponse="parseReponse" @error="error=$event" >
       <g-button icon="upload">上传文件</g-button>
     </g-uploader>
   </div>
@@ -19,7 +20,8 @@ Vue.component('g-button', Button)
 export default {
   data() {
     return {
-      fileList: []
+      fileList: [],
+      error: ''
     }
   },
   methods: {
@@ -27,9 +29,6 @@ export default {
       let {id} = JSON.parse(data)
       return `http://127.0.0.1:3000/preview/${id}`
     },
-    onError(msg){
-      alert(msg)
-    }
   }
 }
 

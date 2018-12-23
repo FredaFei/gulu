@@ -40,8 +40,7 @@ export default {
       default: 'POST'
     },
     sizeLimit: {
-      type: Number,
-      default: 3 * 1024 * 1024
+      type: Number
     },
     fileList: {
       type: Array,
@@ -81,11 +80,11 @@ export default {
       let formData = new FormData();
       formData.append(this.name, rowFile)
       let { name, size, type } = rowFile
+      console.log(rowFile)
       let newName = this.generatorName(name)
-      this.beforeUploadFile(rowFile, newName)
+      if(!this.beforeUploadFile(rowFile, newName)){return false}
       this.doUploadFile(formData, (response) => {
         let url = this.parseReponse(response)
-        // this.url = url
         this.afterUploadFile(newName, url)
       }, (xhr) => {
         console.log(xhr)
@@ -94,7 +93,13 @@ export default {
     },
     beforeUploadFile(rowFile, name) {
       let { size, type } = rowFile
-      this.$emit('update:fileList', [...this.fileList, { name, size, type, status: 'uploading' }])
+      if (size > this.sizeLimit) {
+        this.$emit('error', '文件过大了哦！')
+        return false
+      } else {
+        this.$emit('update:fileList', [...this.fileList, { name, size, type, status: 'uploading' }])
+        return true
+      }
     },
     afterUploadFile(name, url) {
       let file = this.fileList.filter(f => f.name === name)[0]
