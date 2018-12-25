@@ -1,34 +1,73 @@
 <template>
   <div id="demo">
-    {{error}}
-    <g-uploader name="files" action="http://127.0.0.1:3000/upload" :file-list.sync="fileList" 
-    :size-limit="3*1024*1024" :parse-reponse="parseReponse" @error="error=$event" accept="image/png">
-      <g-button icon="upload">上传文件</g-button>
-    </g-uploader>
+    <g-table :data-source="dataSource" :columns="columns"></g-table>
   </div>
 </template>
 
 <script>
 import Vue from 'vue'
-import Uploader from './uploader/uploader'
-import Button from './button/button'
-// import GIcon from '../icon'
-Vue.component('g-uploader', Uploader)
-Vue.component('g-button', Button)
-// Vue.component('g-icon', GIcon)
+import Table from './table/table'
+Vue.component('g-table', Table)
 
 export default {
   data() {
     return {
-      fileList: [],
-      error: ''
+      columns: [
+        {
+          text: '姓名',
+          field: 'name',
+        },{
+          text: '班级',
+          field: 'class',
+        },{
+          text: '体重',
+          field: 'weigth',
+        },{
+          text: '身高',
+          field: 'height',
+        }
+      ],
+      dataSource: [
+        {
+          id: 1,
+          name: '李三',
+          class: '十二班',
+          weigth: '130',
+          height: '170cm',
+        },
+        {
+          id: 2,
+          name: '张三',
+          class: '二班',
+          weigth: '140',
+          height: '180cm',
+        },
+        {
+          id: 3,
+          name: '吴三',
+          class: '三班',
+          weigth: '120',
+          height: '180cm',
+        },
+        {
+          id: 4,
+          name: '刘三',
+          class: '五班',
+          weigth: '120',
+          height: '180cm',
+        },
+        {
+          id: 5,
+          name: '李莉',
+          class: '八班',
+          weigth: '100',
+          height: '180cm',
+        },
+      ]
     }
   },
   methods: {
-    parseReponse(data){
-      let {id} = JSON.parse(data)
-      return `http://127.0.0.1:3000/preview/${id}`
-    },
+
   }
 }
 
