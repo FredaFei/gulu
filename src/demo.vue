@@ -1,6 +1,11 @@
 <template>
   <div id="demo">
+    <h1>实例一</h1>
     <g-table :data-source="dataSource" :columns="columns"></g-table>
+    <h1>实例二</h1>
+    <g-table :data-source="dataSource" :columns="columns" :striped="false"></g-table>
+    <h1>实例三</h1>
+    <g-table :data-source="dataSource" :columns="columns" :border="true" :compact="true" :number-visiable="false"></g-table>
   </div>
 </template>
 
