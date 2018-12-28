@@ -1,27 +1,27 @@
 <template>
-  <svg class="g-icon">
+  <svg class="g-icon" @click="$emit('click',$event)">
     <use :xlink:href="`#i-${name}`"></use>
   </svg>
 </template>
 
 <script>
-import './svg.js'
+import "./svg.js";
 export default {
-  name: 'guluIcon',
+  name: "guluIcon",
   props: {
     name: {
       type: String,
-      default: ''
+      default: ""
     }
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>
 .g-icon {
   width: 1em;
   height: 1em;
-  vertical-align: -0.10em;
+  vertical-align: -0.1em;
   fill: currentColor;
   overflow: hidden;
 }
