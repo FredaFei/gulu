@@ -1,30 +1,35 @@
 <template>
   <div class="g-table-wrapper">
-    <table class="g-table" :class="{border,striped,compact}">
-      <thead>
-        <tr>
-          <th><input type="checkbox" @click="onChangeAllItems" :checked="areAllCheckedItems" ref="allChecked" /></th>
-          <th v-if="numberVisiable">#</th>
-          <th v-for="col in columns" :key="col.field">
-            <div class="g-table-head">{{col.text}}
-              <span class="g-table-sorter" v-if="orderBy[col.field]" @click="onChangeOrderBy(col.field)">
-                <g-icon name="asc" :class="{active: orderBy[col.field]==='asc'}"></g-icon>
-                <g-icon name="desc" :class="{active: orderBy[col.field]==='desc'}"></g-icon>
-              </span>
-            </div>
-          </th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="(data,index) in dataSource" :key="data.id">
-          <td><input type="checkbox" :checked="inSelectedItems(data)" @click="onChangeItem(data,$event)" /></td>
-          <td v-if="numberVisiable">{{index+1}}</td>
-          <template v-for="col in columns">
-            <td :key="col.field">{{data[col.field]}}</td>
-          </template>
-        </tr>
-      </tbody>
-    </table>
+    <div class="g-table-content" :style="{height}" ref="tableContent">
+      <table class="g-table" :class="{border,striped,compact}" ref="gTable">
+        <thead>
+          <tr>
+            <th><input type="checkbox" @click="onChangeAllItems" :checked="areAllCheckedItems" ref="allChecked" /></th>
+            <th v-if="numberVisiable">#</th>
+            <th v-for="col in columns" :key="col.field">
+              <div class="g-table-head">{{col.text}}
+                <span class="g-table-sorter" v-if="orderBy[col.field]" @click="onChangeOrderBy(col.field)">
+                  <g-icon name="asc" :class="{active: orderBy[col.field]==='asc'}"></g-icon>
+                  <g-icon name="desc" :class="{active: orderBy[col.field]==='desc'}"></g-icon>
+                </span>
+              </div>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="(data,index) in dataSource" :key="data.id">
+            <td><input type="checkbox" :checked="inSelectedItems(data)" @click="onChangeItem(data,$event)" /></td>
+            <td v-if="numberVisiable">{{index+1}}</td>
+            <template v-for="col in columns">
+              <td :key="col.field">{{data[col.field]}}</td>
+            </template>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="g-table-loading" v-if="loading">
+      <g-icon name="loading"></g-icon>
+    </div>
   </div>
 </template>
 
@@ -48,9 +53,10 @@ export default {
     orderBy: {
       type: Object,
       default: () => ({})
-      // validator(object) {
-      //   object.keys();
-      // }
+    },
+    loading: {
+      type: Boolean,
+      default: false
     },
     selectedItems: {
       type: Array,
@@ -71,6 +77,9 @@ export default {
     compact: {
       type: Boolean,
       default: false
+    },
+    height: {
+      type: String
     }
   },
   computed: {
@@ -89,6 +98,26 @@ export default {
       }
       return equal;
     }
+  },
+  mounted() {
+    let newTable = this.$refs.gTable.cloneNode(true);
+    newTable.classList.add("g-table-copy");
+    let thead = Array.from(this.$refs.gTable.children).filter(
+      node => node.tagName.toLowerCase() === "thead"
+    )[0];
+    let thead2;
+    Array.from(newTable.children).map(node => {
+      if (node.tagName.toLowerCase() === "tbody") {
+        node.remove();
+      } else {
+        thead2 = node;
+      }
+    });
+    Array.from(thead.children[0].children).map((th, index) => {
+      let { width } = th.getBoundingClientRect();
+      thead2.children[0].children[index].style.width = `${width}px`;
+    });
+    this.$refs.tableContent.appendChild(newTable);
   },
   watch: {
     selectedItems() {
@@ -202,6 +231,35 @@ export default {
       &:nth-child(2) {
         top: -2px;
       }
+    }
+  }
+  &-wrapper {
+    position: relative;
+  }
+  &-content {
+    overflow: auto;
+  }
+  &-copy {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: #fff;
+  }
+  &-loading {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.8);
+    svg {
+      width: 50px;
+      height: 50px;
+      @include spin;
     }
   }
 }
