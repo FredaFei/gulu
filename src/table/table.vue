@@ -5,7 +5,14 @@
         <tr>
           <th><input type="checkbox" @click="onChangeAllItems" :checked="areAllCheckedItems" ref="allChecked" /></th>
           <th v-if="numberVisiable">#</th>
-          <th v-for="col in columns" :key="col.field">{{col.text}}</th>
+          <th v-for="col in columns" :key="col.field">
+            <div class="g-table-head">{{col.text}}
+              <span class="g-table-sorter" v-if="orderBy[col.field]" @click="onChangeOrderBy(col.field)">
+                <g-icon name="asc" :class="{active: orderBy[col.field]==='asc'}"></g-icon>
+                <g-icon name="desc" :class="{active: orderBy[col.field]==='desc'}"></g-icon>
+              </span>
+            </div>
+          </th>
         </tr>
       </thead>
       <tbody>
@@ -22,8 +29,10 @@
 </template>
 
 <script>
+import GIcon from "../icon";
 export default {
   name: "guluTable",
+  components: { GIcon },
   props: {
     columns: {
       type: Array,
@@ -35,6 +44,13 @@ export default {
       validator(array) {
         return array.every(i => i.id !== undefined);
       }
+    },
+    orderBy: {
+      type: Object,
+      default: () => ({})
+      // validator(object) {
+      //   object.keys();
+      // }
     },
     selectedItems: {
       type: Array,
@@ -109,6 +125,18 @@ export default {
       } else {
         this.$emit("update:selectedItems", []);
       }
+    },
+    onChangeOrderBy(key) {
+      let oldSort = this.orderBy[key];
+      let copy = JSON.parse(JSON.stringify(this.orderBy));
+      if (oldSort === "asc") {
+        copy[key] = "desc";
+      } else if (oldSort === "desc") {
+        copy[key] = true;
+      } else {
+        copy[key] = "asc";
+      }
+      this.$emit("update:orderBy", copy);
     }
   }
 };
@@ -150,6 +178,30 @@ export default {
     th,
     td {
       padding: 4px;
+    }
+  }
+  &-head {
+    display: flex;
+    align-items: center;
+  }
+  &-sorter {
+    display: inline-flex;
+    flex-direction: column;
+    svg {
+      fill: $gray;
+      width: 16px;
+      height: 16px;
+      margin: 0 6px;
+      position: relative;
+      &.active {
+        fill: red;
+      }
+      &:first-child {
+        bottom: -2px;
+      }
+      &:nth-child(2) {
+        top: -2px;
+      }
     }
   }
 }

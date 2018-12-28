@@ -2,7 +2,7 @@
   <div id="demo">
     {{selectedItems}}
     <h1>实例一</h1>
-    <g-table :data-source="dataSource" :columns="columns" :selected-items.sync="selectedItems"></g-table>
+    <g-table :data-source="dataSource" :columns="columns" :selected-items.sync="selectedItems" :order-by.sync="orderBy"></g-table>
     <h1>实例二</h1>
     <g-table :data-source="dataSource" :columns="columns" :striped="false"></g-table>
     <h1>实例三</h1>
@@ -73,7 +73,11 @@ export default {
           weigth: "100",
           height: "180cm"
         }
-      ]
+      ],
+      orderBy: {
+        weigth: "desc",
+        height: "asc"
+      }
     };
   },
   methods: {}
