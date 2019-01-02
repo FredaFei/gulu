@@ -165,7 +165,11 @@ export default {
 body {
   font-size: 14px;
 }
-
+::-webkit-scrollbar {
+  display: none;
+  width: 0px;
+  height: 0px;
+}
 #demo {
   padding: 20px;
 }
