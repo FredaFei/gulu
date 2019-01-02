@@ -1,7 +1,7 @@
 <template>
   <div id="demo">
     <h1>实例一</h1>
-    <g-table :data-source="dataSource" :columns="columns" :border="true" :selected-items.sync="selectedItems" :loading="loading" :order-by.sync="orderBy" @update:orderBy="xx" height="400px"></g-table>
+    <g-table :data-source="dataSource" :columns="columns" :border="true" :selected-items.sync="selectedItems" :loading="loading" :order-by.sync="orderBy" @update:orderBy="xx" :height="400"></g-table>
     <h1>实例二</h1>
     <g-table :data-source="dataSource" :columns="columns" :striped="false"></g-table>
     <h1>实例三</h1>
@@ -21,19 +21,23 @@ export default {
       columns: [
         {
           text: "姓名",
-          field: "name"
+          field: "name",
+          width: 200
         },
         {
           text: "班级",
-          field: "class"
+          field: "class",
+          width: 200
         },
         {
           text: "体重",
-          field: "weigth"
+          field: "weigth",
+          width: 200
         },
         {
           text: "身高",
-          field: "height"
+          field: "height",
+          width: 200
         }
       ],
       dataSource: [
@@ -136,6 +140,7 @@ export default {
           height: "180cm"
         }
       ],
+      height: 50,
       loading: false,
       orderBy: {
         weigth: "desc",
@@ -149,7 +154,7 @@ export default {
       setTimeout(() => {
         this.dataSource = this.dataSource.sort((a, b) => a.weigth < b.weigth);
         this.loading = false;
-      }, 3000);
+      }, 500);
     }
   }
 };
@@ -165,11 +170,7 @@ export default {
 body {
   font-size: 14px;
 }
-::-webkit-scrollbar {
-  display: none;
-  width: 0px;
-  height: 0px;
-}
+
 #demo {
   padding: 20px;
 }

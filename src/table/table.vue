@@ -4,9 +4,9 @@
       <table class="g-table" :class="{border,striped,compact}" ref="gTable">
         <thead>
           <tr>
-            <th><input type="checkbox" @click="onChangeAllItems" :checked="areAllCheckedItems" ref="allChecked" /></th>
-            <th v-if="numberVisiable">#</th>
-            <th v-for="col in columns" :key="col.field">
+            <th style="width: 60px"><input type="checkbox" @click="onChangeAllItems" :checked="areAllCheckedItems" ref="allChecked" /></th>
+            <th v-if="numberVisiable" style="width: 100px">#</th>
+            <th v-for="col in columns" :key="col.field" :width="col.width">
               <div class="g-table-head">{{col.text}}
                 <span class="g-table-sorter" v-if="orderBy[col.field]" @click="onChangeOrderBy(col.field)">
                   <g-icon name="asc" :class="{active: orderBy[col.field]==='asc'}"></g-icon>
@@ -18,10 +18,10 @@
         </thead>
         <tbody>
           <tr v-for="(data,index) in dataSource" :key="data.id">
-            <td><input type="checkbox" :checked="inSelectedItems(data)" @click="onChangeItem(data,$event)" /></td>
-            <td v-if="numberVisiable">{{index+1}}</td>
+            <td width="60"><input type="checkbox" :checked="inSelectedItems(data)" @click="onChangeItem(data,$event)" /></td>
+            <td v-if="numberVisiable" width="100">{{index+1}}</td>
             <template v-for="col in columns">
-              <td :key="col.field">{{data[col.field]}}</td>
+              <td :key="col.field" :width="col.width">{{data[col.field]}}</td>
             </template>
           </tr>
         </tbody>
@@ -50,6 +50,9 @@ export default {
         return array.every(i => i.id !== undefined);
       }
     },
+    height: {
+      type: Number
+    },
     orderBy: {
       type: Object,
       default: () => ({})
@@ -77,10 +80,12 @@ export default {
     compact: {
       type: Boolean,
       default: false
-    },
-    height: {
-      type: String
     }
+  },
+  data() {
+    return {
+      newTable: {}
+    };
   },
   computed: {
     areAllCheckedItems() {
@@ -100,23 +105,14 @@ export default {
     }
   },
   mounted() {
-    let newTable = this.$refs.gTable.cloneNode(true);
+    let newTable = this.$refs.gTable.cloneNode(false);
+    this.newTable = newTable;
     newTable.classList.add("g-table-copy");
-    let thead = Array.from(this.$refs.gTable.children).filter(
-      node => node.tagName.toLowerCase() === "thead"
-    )[0];
-    let thead2;
-    Array.from(newTable.children).map(node => {
-      if (node.tagName.toLowerCase() === "tbody") {
-        node.remove();
-      } else {
-        thead2 = node;
-      }
-    });
-    Array.from(thead.children[0].children).map((th, index) => {
-      let { width } = th.getBoundingClientRect();
-      thead2.children[0].children[index].style.width = `${width}px`;
-    });
+    let tHeader = this.$refs.gTable.children[0];
+    let { height } = tHeader.getBoundingClientRect();
+    this.$refs.tableContent.style.marginTop = `${height}px`;
+    this.$refs.tableContent.style.height = this.height - height + "px";
+    newTable.appendChild(tHeader);
     this.$refs.tableContent.appendChild(newTable);
   },
   watch: {
@@ -173,6 +169,11 @@ export default {
 
 <style lang="scss" scoped>
 @import "var";
+::-webkit-scrollbar {
+  display: none;
+  width: 0px;
+  height: 0px;
+}
 .g-table {
   $gray: darken($gray, 10%);
   width: 100%;
@@ -235,6 +236,7 @@ export default {
   }
   &-wrapper {
     position: relative;
+    overflow: auto;
   }
   &-content {
     overflow: auto;
