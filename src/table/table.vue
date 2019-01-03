@@ -4,6 +4,7 @@
       <table class="g-table" :class="{border,striped,compact}" ref="gTable">
         <thead>
           <tr>
+            <th style="width: 60px" class="g-table-center"></th>
             <th style="width: 60px"><input type="checkbox" @click="onChangeAllItems" :checked="areAllCheckedItems" ref="allChecked" /></th>
             <th v-if="numberVisiable" style="width: 100px">#</th>
             <th v-for="col in columns" :key="col.field" :width="col.width">
@@ -17,13 +18,25 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="(data,index) in dataSource" :key="data.id">
-            <td width="60"><input type="checkbox" :checked="inSelectedItems(data)" @click="onChangeItem(data,$event)" /></td>
-            <td v-if="numberVisiable" width="100">{{index+1}}</td>
-            <template v-for="col in columns">
-              <td :key="col.field" :width="col.width">{{data[col.field]}}</td>
-            </template>
-          </tr>
+          <template v-for="(data,index) in dataSource">
+            <tr :key="data.id">
+              <td width="60" v-if="data.description" class="g-table-center">
+                <g-icon class="g-table-expend" name="right" @click="expendItem(data.id)"></g-icon>
+              </td>
+              <td width="60"><input type="checkbox" :checked="inSelectedItems(data)" @click="onChangeItem(data,$event)" /></td>
+              <td v-if="numberVisiable" width="100">{{index+1}}</td>
+              <template v-for="col in columns">
+                <td :key="col.field" :width="col.width">{{data[col.field]}}</td>
+              </template>
+            </tr>
+            <tr :key="`${data.id}-expendFiled`" v-if="inExpendIds(data.id)">
+              <td width="60" v-if="data.description" class="g-table-center"></td>
+              <td :colspan="`${columns.length+2}`">
+                <p>{{data.description}}</p>
+              </td>
+            </tr>
+          </template>
+
         </tbody>
       </table>
     </div>
@@ -84,7 +97,8 @@ export default {
   },
   data() {
     return {
-      newTable: {}
+      newTable: {},
+      expendIds: []
     };
   },
   computed: {
@@ -127,6 +141,16 @@ export default {
     }
   },
   methods: {
+    expendItem(id) {
+      if (this.inExpendIds(id)) {
+        this.expendIds.splice(this.expendIds.indexOf(id), 1);
+      } else {
+        this.expendIds.push(id);
+      }
+    },
+    inExpendIds(id) {
+      return this.expendIds.includes(id);
+    },
     inSelectedItems(item) {
       return this.selectedItems.filter(i => i.id === item.id).length > 0
         ? true
@@ -263,6 +287,11 @@ export default {
       height: 50px;
       @include spin;
     }
+  }
+  & &-center {
+    text-align: center;
+  }
+  &-expend {
   }
 }
 </style>

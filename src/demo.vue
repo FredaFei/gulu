@@ -46,98 +46,112 @@ export default {
           name: "李三",
           class: "十二班",
           weigth: "130",
-          height: "170cm"
+          height: "170cm",
+          description: "这里是说明备注哦~"
         },
         {
           id: 2,
           name: "张三",
           class: "二班",
           weigth: "140",
-          height: "180cm"
+          height: "180cm",
+          description: "这里是说明备注哦~"
         },
         {
           id: 3,
           name: "吴三",
           class: "三班",
           weigth: "120",
-          height: "180cm"
+          height: "180cm",
+          description: "这里是说明备注哦~"
         },
         {
           id: 4,
           name: "刘三",
           class: "五班",
           weigth: "120",
-          height: "180cm"
+          height: "180cm",
+          description: "这里是说明备注哦~"
         },
         {
           id: 5,
           name: "李莉",
           class: "八班",
           weigth: "100",
-          height: "180cm"
+          height: "180cm",
+          description: "这里是说明备注哦~"
         },
         {
           id: 6,
           name: "李三",
           class: "十二班",
           weigth: "130",
-          height: "170cm"
+          height: "170cm",
+          description: "这里是说明备注哦~"
         },
         {
           id: 7,
           name: "张三",
           class: "二班",
           weigth: "140",
-          height: "180cm"
+          height: "180cm",
+          description: "这里是说明备注哦~"
         },
         {
           id: 8,
           name: "吴三",
           class: "三班",
           weigth: "120",
-          height: "180cm"
+          height: "180cm",
+          description: "这里是说明备注哦~"
         },
         {
           id: 9,
           name: "刘三",
           class: "五班",
           weigth: "120",
-          height: "180cm"
+          height: "180cm",
+          description: "这里是说明备注哦~"
         },
         {
           id: 10,
           name: "李莉",
           class: "八班",
           weigth: "100",
-          height: "180cm"
+          height: "180cm",
+          description: "这里是说明备注哦~"
         },
         {
           id: 11,
           name: "张三",
           class: "二班",
           weigth: "140",
-          height: "180cm"
+          height: "180cm",
+          description: "这里是说明备注哦~"
         },
         {
           id: 12,
           name: "吴三",
           class: "三班",
           weigth: "120",
-          height: "180cm"
+          height: "180cm",
+          description: "这里是说明备注哦~"
         },
         {
           id: 13,
           name: "刘三",
           class: "五班",
           weigth: "120",
-          height: "180cm"
+          height: "180cm",
+          description: "这里是说明备注哦~"
         },
         {
           id: 14,
           name: "李莉",
           class: "八班",
           weigth: "100",
-          height: "180cm"
+          height: "180cm",
+          description: "这里是说明备注哦~"
         }
       ],
       height: 50,
