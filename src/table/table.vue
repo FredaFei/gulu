@@ -4,9 +4,9 @@
       <table class="g-table" :class="{border,striped,compact}" ref="gTable">
         <thead>
           <tr>
-            <th style="width: 60px" class="g-table-center"></th>
-            <th style="width: 60px"><input type="checkbox" @click="onChangeAllItems" :checked="areAllCheckedItems" ref="allChecked" /></th>
-            <th v-if="numberVisiable" style="width: 100px">#</th>
+            <th class="g-table-expend-field g-table-center" v-if="expendField"></th>
+            <th class="g-table-checkbox" v-if="checkable"><input type="checkbox" @click="onChangeAllItems" :checked="areAllCheckedItems" ref="allChecked" /></th>
+            <th v-if="numberVisiable" class="g-table-number">#</th>
             <th v-for="col in columns" :key="col.field" :width="col.width">
               <div class="g-table-head">{{col.text}}
                 <span class="g-table-sorter" v-if="orderBy[col.field]" @click="onChangeOrderBy(col.field)">
@@ -20,20 +20,20 @@
         <tbody>
           <template v-for="(data,index) in dataSource">
             <tr :key="data.id">
-              <td width="60" v-if="data.description" class="g-table-center">
+              <td class="g-table-expend-field g-table-center" v-if="expendField">
                 <g-icon class="g-table-expend-icon" :class="{'active': inExpendIds(data.id)}" name="right" @click="expendItem(data.id)"></g-icon>
               </td>
-              <td width="60"><input type="checkbox" :checked="inSelectedItems(data)" @click="onChangeItem(data,$event)" /></td>
-              <td v-if="numberVisiable" width="100">{{index+1}}</td>
+              <td class="g-table-checkbox" v-if="checkable"><input type="checkbox" :checked="inSelectedItems(data)" @click="onChangeItem(data,$event)" /></td>
+              <td v-if="numberVisiable" class="g-table-number">{{index+1}}</td>
               <template v-for="col in columns">
                 <td :key="col.field" :width="col.width">{{data[col.field]}}</td>
               </template>
             </tr>
-            <transition name="slide-fade">
+            <transition name="slide-fade" :key="`${data.id}-expendFiled`">
               <tr :key="`${data.id}-expendFiled`" class="g-table-expend-filed" v-if="inExpendIds(data.id)">
-                <td width="60" v-if="data.description" class="g-table-center"></td>
-                <td :colspan="`${columns.length+2}`">
-                  <p>{{data.description}}</p>
+                <td class="g-table-expend-field g-table-center"></td>
+                <td :colspan="`${columns.length+expendedCellColSpan}`">
+                  <p>{{data.description || '空'}}</p>
                 </td>
               </tr>
             </transition>
@@ -68,11 +68,18 @@ export default {
     height: {
       type: Number
     },
+    expendField: {
+      type: String
+    },
     orderBy: {
       type: Object,
       default: () => ({})
     },
     loading: {
+      type: Boolean,
+      default: false
+    },
+    checkable: {
       type: Boolean,
       default: false
     },
@@ -118,6 +125,16 @@ export default {
         }
       }
       return equal;
+    },
+    expendedCellColSpan() {
+      let count = 1;
+      if (this.checkable) {
+        count += 1;
+      }
+      if (this.expendField) {
+        count += 1;
+      }
+      return count;
     }
   },
   mounted() {
@@ -250,7 +267,7 @@ export default {
       margin: 0 6px;
       position: relative;
       &.active {
-        fill: red;
+        fill: $blue;
       }
       &:first-child {
         bottom: -2px;
@@ -297,6 +314,19 @@ export default {
     transition: transform 0.25s;
     &.active {
       transform: rotate(90deg);
+    }
+  }
+  &-checkbox,
+  &-number {
+    min-width: 60px;
+    width: 60px;
+  }
+  &-expend-field {
+    min-width: 40px;
+    width: 40px;
+    svg {
+      width: 20px;
+      height: 20px;
     }
   }
 }

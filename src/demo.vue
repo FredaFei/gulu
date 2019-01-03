@@ -1,11 +1,11 @@
 <template>
   <div id="demo">
     <h1>实例一</h1>
-    <g-table :data-source="dataSource" :columns="columns" :border="true" :selected-items.sync="selectedItems" :loading="loading" :order-by.sync="orderBy" @update:orderBy="xx" :height="400"></g-table>
+    <g-table :data-source="dataSource" :columns="columns" :border="true" expend-field="description" checkable :selected-items.sync="selectedItems" :loading="loading" :order-by.sync="orderBy" @update:orderBy="xx" :height="400"></g-table>
     <h1>实例二</h1>
-    <g-table :data-source="dataSource" :columns="columns" :striped="false"></g-table>
+    <g-table :data-source="dataSource1" :columns="columns" :striped="false" expend-field="description"></g-table>
     <h1>实例三</h1>
-    <g-table :data-source="dataSource" :columns="columns" :border="true" :compact="true" :number-visiable="false"></g-table>
+    <g-table :data-source="dataSource2" :columns="columns" :border="true" :compact="true" :number-visiable="false"></g-table>
   </div>
 </template>
 
@@ -46,8 +46,7 @@ export default {
           name: "李三",
           class: "十二班",
           weigth: "130",
-          height: "170cm",
-          description: "这里是说明备注哦~"
+          height: "170cm"
         },
         {
           id: 2,
@@ -152,6 +151,39 @@ export default {
           weigth: "100",
           height: "180cm",
           description: "这里是说明备注哦~"
+        }
+      ],
+      dataSource1: [
+        {
+          id: 1000,
+          name: "李三",
+          class: "十二班",
+          weigth: "130",
+          height: "170cm"
+        },
+        {
+          id: 2000,
+          name: "张三",
+          class: "二班",
+          weigth: "140",
+          height: "180cm",
+          description: "这里是说明备注哦~"
+        }
+      ],
+      dataSource2: [
+        {
+          id: 30000,
+          name: "李三",
+          class: "十二班",
+          weigth: "130",
+          height: "170cm"
+        },
+        {
+          id: 40000,
+          name: "张三",
+          class: "二班",
+          weigth: "140",
+          height: "180cm"
         }
       ],
       height: 50,
