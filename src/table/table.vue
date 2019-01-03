@@ -15,6 +15,7 @@
                 </span>
               </div>
             </th>
+            <th v-if="$scopedSlots.default" ref="actionsHead"></th>
           </tr>
         </thead>
         <tbody>
@@ -28,6 +29,11 @@
               <template v-for="col in columns">
                 <td :key="col.field" :width="col.width">{{data[col.field]}}</td>
               </template>
+              <td v-if="$scopedSlots.default">
+                <div ref="actions">
+                  <slot></slot>
+                </div>
+              </td>
             </tr>
             <transition name="slide-fade" :key="`${data.id}-expendFiled`">
               <tr :key="`${data.id}-expendFiled`" class="g-table-expend-filed" v-if="inExpendIds(data.id)">
@@ -147,6 +153,29 @@ export default {
     this.$refs.tableContent.style.height = this.height - height + "px";
     newTable.appendChild(tHeader);
     this.$refs.tableContent.appendChild(newTable);
+    if (this.$scopedSlots.default) {
+      let node = this.$refs.actions[0];
+      let { width } = node.getBoundingClientRect();
+      let parentNode = node.parentNode;
+      let styles = getComputedStyle(parentNode);
+      let paddingLeft = styles.getPropertyValue("padding-left");
+      let paddingRight = styles.getPropertyValue("padding-right");
+      let borderLeft = styles.getPropertyValue("border-left-width");
+      let borderRight = styles.getPropertyValue("border-right-width");
+      let width2 =
+        width +
+        parseInt(paddingLeft) +
+        parseInt(paddingRight) +
+        parseInt(borderLeft) +
+        parseInt(borderRight);
+      this.$refs.actionsHead.style.width = `${width2}px`;
+      this.$refs.actions.map(node => {
+        console.log(node.parentNode);
+        node.parentNode.style.width = `${width2}px`;
+      });
+      console.log(width2);
+      console.log(node);
+    }
   },
   watch: {
     selectedItems() {

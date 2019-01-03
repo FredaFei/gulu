@@ -1,7 +1,12 @@
 <template>
   <div id="demo">
     <h1>实例一</h1>
-    <g-table :data-source="dataSource" :columns="columns" :border="true" expend-field="description" checkable :selected-items.sync="selectedItems" :loading="loading" :order-by.sync="orderBy" @update:orderBy="xx" :height="400"></g-table>
+    <g-table :data-source="dataSource" :columns="columns" :border="true" expend-field="description" checkable :selected-items.sync="selectedItems" :loading="loading" :order-by.sync="orderBy" @update:orderBy="xx" :height="400">
+      <template slot-scope="slotProps">
+        <button>编辑</button>
+        <button>删除</button>
+      </template>
+    </g-table>
     <h1>实例二</h1>
     <g-table :data-source="dataSource1" :columns="columns" :striped="false" expend-field="description"></g-table>
     <h1>实例三</h1>
@@ -36,8 +41,7 @@ export default {
         },
         {
           text: "身高",
-          field: "height",
-          width: 200
+          field: "height"
         }
       ],
       dataSource: [
