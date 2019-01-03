@@ -11,6 +11,18 @@
   animation: spin 1.2s infinite linear;
 }
 
+.slide-fade-enter-active {
+  transition: all 0.3s ease;
+}
+.slide-fade-leave-active {
+  transition: all 0.3s ease;
+}
+.slide-fade-enter,
+.slide-fade-leave-to {
+  transform: translateX(10px);
+  opacity: 0;
+}
+
 $color: #333;
 $light-color: #666;
 $gray: #eee;

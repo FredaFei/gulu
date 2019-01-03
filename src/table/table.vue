@@ -21,7 +21,7 @@
           <template v-for="(data,index) in dataSource">
             <tr :key="data.id">
               <td width="60" v-if="data.description" class="g-table-center">
-                <g-icon class="g-table-expend" name="right" @click="expendItem(data.id)"></g-icon>
+                <g-icon class="g-table-expend-icon" :class="{'active': inExpendIds(data.id)}" name="right" @click="expendItem(data.id)"></g-icon>
               </td>
               <td width="60"><input type="checkbox" :checked="inSelectedItems(data)" @click="onChangeItem(data,$event)" /></td>
               <td v-if="numberVisiable" width="100">{{index+1}}</td>
@@ -29,12 +29,14 @@
                 <td :key="col.field" :width="col.width">{{data[col.field]}}</td>
               </template>
             </tr>
-            <tr :key="`${data.id}-expendFiled`" v-if="inExpendIds(data.id)">
-              <td width="60" v-if="data.description" class="g-table-center"></td>
-              <td :colspan="`${columns.length+2}`">
-                <p>{{data.description}}</p>
-              </td>
-            </tr>
+            <transition name="slide-fade">
+              <tr :key="`${data.id}-expendFiled`" class="g-table-expend-filed" v-if="inExpendIds(data.id)">
+                <td width="60" v-if="data.description" class="g-table-center"></td>
+                <td :colspan="`${columns.length+2}`">
+                  <p>{{data.description}}</p>
+                </td>
+              </tr>
+            </transition>
           </template>
 
         </tbody>
@@ -291,7 +293,11 @@ export default {
   & &-center {
     text-align: center;
   }
-  &-expend {
+  &-expend-icon {
+    transition: transform 0.25s;
+    &.active {
+      transform: rotate(90deg);
+    }
   }
 }
 </style>
