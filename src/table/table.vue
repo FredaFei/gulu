@@ -154,43 +154,9 @@ export default {
     }
   },
   mounted() {
-    this.columns = this.$slots.default.map(node => {
-      let { text, field, width } = node.componentOptions.propsData
-      let render = node.data.scopedSlots && node.data.scopedSlots.default
-      return { text, field, width, render }
-    })
-    let newTable = this.$refs.gTable.cloneNode(false);
-    this.newTable = newTable;
-    newTable.classList.add("g-table-copy");
-    let tHeader = this.$refs.gTable.children[0];
-    this.$nextTick(() => {
-      let { height } = tHeader.getBoundingClientRect();
-      this.$refs.tableContent.style.marginTop = `${height}px`;
-      this.$refs.tableContent.style.height = this.height - height + "px";
-      newTable.appendChild(tHeader);
-      this.$refs.tableContent.appendChild(newTable);
-    });
-
-    if (this.$scopedSlots.default) {
-      let node = this.$refs.actions[0];
-      let { width } = node.getBoundingClientRect();
-      let parentNode = node.parentNode;
-      let styles = getComputedStyle(parentNode);
-      let paddingLeft = styles.getPropertyValue("padding-left");
-      let paddingRight = styles.getPropertyValue("padding-right");
-      let borderLeft = styles.getPropertyValue("border-left-width");
-      let borderRight = styles.getPropertyValue("border-right-width");
-      let width2 =
-        width +
-        parseInt(paddingLeft) +
-        parseInt(paddingRight) +
-        parseInt(borderLeft) +
-        parseInt(borderRight);
-      this.$refs.actionsHead.style.width = `${width2}px`;
-      this.$refs.actions.map(node => {
-        node.parentNode.style.width = `${width2}px`;
-      });
-    }
+    this.createColumns()
+    this.doFixedHeader()
+    this.doResponseCells()
   },
   watch: {
     selectedItems() {
@@ -204,6 +170,48 @@ export default {
     }
   },
   methods: {
+    createColumns() {
+      this.columns = this.$slots.default.map(node => {
+        let { text, field, width } = node.componentOptions.propsData
+        let render = node.data.scopedSlots && node.data.scopedSlots.default
+        return { text, field, width, render }
+      })
+    },
+    doResponseCells() {
+      if (this.$scopedSlots.default) {
+        let node = this.$refs.actions[0];
+        let { width } = node.getBoundingClientRect();
+        let parentNode = node.parentNode;
+        let styles = getComputedStyle(parentNode);
+        let paddingLeft = styles.getPropertyValue("padding-left");
+        let paddingRight = styles.getPropertyValue("padding-right");
+        let borderLeft = styles.getPropertyValue("border-left-width");
+        let borderRight = styles.getPropertyValue("border-right-width");
+        let width2 =
+          width +
+          parseInt(paddingLeft) +
+          parseInt(paddingRight) +
+          parseInt(borderLeft) +
+          parseInt(borderRight);
+        this.$refs.actionsHead.style.width = `${width2}px`;
+        this.$refs.actions.map(node => {
+          node.parentNode.style.width = `${width2}px`;
+        });
+      }
+    },
+    doFixedHeader() {
+      let newTable = this.$refs.gTable.cloneNode(false);
+      this.newTable = newTable;
+      newTable.classList.add("g-table-copy");
+      let tHeader = this.$refs.gTable.children[0];
+      this.$nextTick(() => {
+        let { height } = tHeader.getBoundingClientRect();
+        this.$refs.tableContent.style.marginTop = `${height}px`;
+        this.$refs.tableContent.style.height = this.height - height + "px";
+        newTable.appendChild(tHeader);
+        this.$refs.tableContent.appendChild(newTable);
+      });
+    },
     expendItem(id) {
       if (this.inExpendIds(id)) {
         this.expendIds.splice(this.expendIds.indexOf(id), 1);
