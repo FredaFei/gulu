@@ -12,18 +12,37 @@ export default {
   mounted() {
     let parent = this.$refs.scrollParent;
     let child = this.$refs.scrollChild;
+    let {
+      paddingTop,
+      paddingBottom,
+      borderTopWidth,
+      borderBottomWidth
+    } = window.getComputedStyle(this.$refs.scrollParent);
+    paddingTop = parseInt(paddingTop);
+    paddingBottom = parseInt(paddingBottom);
+    borderTopWidth = parseInt(borderTopWidth);
+    borderBottomWidth = parseInt(borderBottomWidth);
     let translateY = 0;
+    let { height: parentHeight } = parent.getBoundingClientRect();
+    let { height: childHeight } = child.getBoundingClientRect();
+    let maxHeight =
+      childHeight -
+      parentHeight +
+      (paddingTop + paddingBottom + borderTopWidth + borderBottomWidth);
     parent.addEventListener("wheel", e => {
-      // console.log(e);
-      if (e.deltaY > 0) {
-        translateY -= 10;
-        child.style.transform = `translateY(${translateY}px)`;
-      } else if (e.deltaY < 0) {
-        translateY += 10;
-        child.style.transform = `translateY(${translateY}px)`;
-      } else if ((e.deltaY = 0)) {
-        console.log("stay");
+      if (e.deltaY > 20) {
+        translateY -= 20 * 3;
+      } else if (e.deltaY < -20) {
+        translateY -= -20 * 3;
+      } else if (e.deltaY === 0) {
+        translateY -= e.deltaY;
       }
+      if (translateY > 0) {
+        translateY = 0;
+      } else if (translateY < -maxHeight) {
+        translateY = -maxHeight;
+      }
+      child.style.transform = `translateY(${translateY}px)`;
     });
     parent.addEventListener("touchmove", e => {
       console.log(e);
@@ -40,7 +59,7 @@ export default {
     border: 5px solid red;
   }
   &-content {
-    transition: transform 0.2s;
+    transition: transform 0.1s ease;
     border: 5px solid blue;
   }
 }

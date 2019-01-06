@@ -18,7 +18,7 @@
         <button @click="onRemove(slotProps.data)">删除</button>
       </template>
     </g-table>
-    <g-scroll>
+    <g-scroll class="scroll">
       <div class="view">
         <h3>1</h3>
         <h3>2</h3>
@@ -239,9 +239,11 @@ body {
 #demo {
   padding: 20px;
 }
-.view {
+.scroll {
   width: 400px;
   height: 400px;
+}
+.view {
   font-size: 16px;
 }
 </style>
