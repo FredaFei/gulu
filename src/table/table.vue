@@ -177,6 +177,9 @@ export default {
       console.log(node);
     }
   },
+  beforeDestroy() {
+    this.newTable.remove();
+  },
   watch: {
     selectedItems() {
       if (this.selectedItems.length === 0) {
