@@ -1,49 +1,58 @@
 <template>
   <div id="demo">
     <h1>实例一</h1>
-    <g-table :data-source="dataSource" :columns="columns" :border="true" expend-field="description" checkable :selected-items.sync="selectedItems" :loading="loading" :order-by.sync="orderBy" @update:orderBy="xx" :height="400">
+    <g-table :data-source="dataSource" :border="true" expend-field="description" checkable :selected-items.sync="selectedItems" :loading="loading" :order-by.sync="orderBy" @update:orderBy="xx" :height="400">
+      <g-table-column text="姓名" field="name" :width="200">
+        <template slot-scope="props">
+          <a :href="`/user/${props.value}`">{{props.value}}</a>
+        </template>
+      </g-table-column>
+      <g-table-column text="班级" field="class" :width="200"></g-table-column>
+      <g-table-column text="体重" field="weigth">
+        <template slot-scope="props">
+          <h1>{{props.value}}</h1>
+        </template>
+      </g-table-column>
       <template slot-scope="slotProps">
-        <button>编辑</button>
-        <button>删除</button>
+        <button @click="onEdit(slotProps.data)">编辑</button>
+        <button @click="onRemove(slotProps.data)">删除</button>
       </template>
     </g-table>
-    <h1>实例二</h1>
-    <g-table :data-source="dataSource1" :columns="columns" :striped="false" expend-field="description"></g-table>
-    <h1>实例三</h1>
-    <g-table :data-source="dataSource2" :columns="columns" :border="true" :compact="true" :number-visiable="false"></g-table>
   </div>
 </template>
 
 <script>
 import Vue from "vue";
 import Table from "./table/table";
+import TableColumn from "./table/tableColumn";
 Vue.component("g-table", Table);
+Vue.component("g-table-column", TableColumn);
 
 export default {
   data() {
     return {
       selectedItems: [],
-      columns: [
-        {
-          text: "姓名",
-          field: "name",
-          width: 200
-        },
-        {
-          text: "班级",
-          field: "class",
-          width: 200
-        },
-        {
-          text: "体重",
-          field: "weigth",
-          width: 200
-        },
-        {
-          text: "身高",
-          field: "height"
-        }
-      ],
+      // columns: [
+      //   {
+      //     text: "姓名",
+      //     field: "name",
+      //     width: 200
+      //   },
+      //   {
+      //     text: "班级",
+      //     field: "class",
+      //     width: 200
+      //   },
+      //   {
+      //     text: "体重",
+      //     field: "weigth",
+      //     width: 200
+      //   },
+      //   {
+      //     text: "身高",
+      //     field: "height"
+      //   }
+      // ],
       dataSource: [
         {
           id: 1,
@@ -199,6 +208,12 @@ export default {
     };
   },
   methods: {
+    onEdit(item){
+      alert(item.id)
+    },
+    onRemove(item){
+      console.log(item)
+    },
     xx() {
       this.loading = true;
       setTimeout(() => {

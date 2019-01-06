@@ -7,7 +7,7 @@
             <th class="g-table-expend-field g-table-center" v-if="expendField"></th>
             <th class="g-table-checkbox" v-if="checkable"><input type="checkbox" @click="onChangeAllItems" :checked="areAllCheckedItems" ref="allChecked" /></th>
             <th v-if="numberVisiable" class="g-table-number">#</th>
-            <th v-for="col in columns" :key="col.field" :width="col.width">
+            <th v-for="col in columns" :key="col.field" :style="{width:col.width+ 'px'}">
               <div class="g-table-head">{{col.text}}
                 <span class="g-table-sorter" v-if="orderBy[col.field]" @click="onChangeOrderBy(col.field)">
                   <g-icon name="asc" :class="{active: orderBy[col.field]==='asc'}"></g-icon>
@@ -27,11 +27,18 @@
               <td class="g-table-checkbox" v-if="checkable"><input type="checkbox" :checked="inSelectedItems(data)" @click="onChangeItem(data,$event)" /></td>
               <td v-if="numberVisiable" class="g-table-number">{{index+1}}</td>
               <template v-for="col in columns">
-                <td :key="col.field" :width="col.width">{{data[col.field]}}</td>
+                <td :key="col.field" :style="{width:col.width+'px'}">
+                  <template v-if="col.render">
+                    <vnodes :vnodes="col.render({value: data[col.field]})"></vnodes>
+                  </template>
+                  <template v-else>
+                    {{data[col.field]}}
+                  </template>
+                </td>
               </template>
               <td v-if="$scopedSlots.default">
-                <div ref="actions">
-                  <slot></slot>
+                <div ref="actions" style="display: inline-block;">
+                  <slot :data="data"></slot>
                 </div>
               </td>
             </tr>
@@ -58,12 +65,14 @@
 import GIcon from "../icon";
 export default {
   name: "guluTable",
-  components: { GIcon },
+  components: {
+    GIcon,
+    vnodes: {
+      functional: true,
+      render: (h, context) => context.props.vnodes
+    }
+  },
   props: {
-    columns: {
-      type: Array,
-      default: () => []
-    },
     dataSource: {
       type: Array,
       default: () => [],
@@ -113,7 +122,8 @@ export default {
   data() {
     return {
       newTable: {},
-      expendIds: []
+      expendIds: [],
+      columns: []
     };
   },
   computed: {
@@ -144,38 +154,9 @@ export default {
     }
   },
   mounted() {
-    let newTable = this.$refs.gTable.cloneNode(false);
-    this.newTable = newTable;
-    newTable.classList.add("g-table-copy");
-    let tHeader = this.$refs.gTable.children[0];
-    let { height } = tHeader.getBoundingClientRect();
-    this.$refs.tableContent.style.marginTop = `${height}px`;
-    this.$refs.tableContent.style.height = this.height - height + "px";
-    newTable.appendChild(tHeader);
-    this.$refs.tableContent.appendChild(newTable);
-    if (this.$scopedSlots.default) {
-      let node = this.$refs.actions[0];
-      let { width } = node.getBoundingClientRect();
-      let parentNode = node.parentNode;
-      let styles = getComputedStyle(parentNode);
-      let paddingLeft = styles.getPropertyValue("padding-left");
-      let paddingRight = styles.getPropertyValue("padding-right");
-      let borderLeft = styles.getPropertyValue("border-left-width");
-      let borderRight = styles.getPropertyValue("border-right-width");
-      let width2 =
-        width +
-        parseInt(paddingLeft) +
-        parseInt(paddingRight) +
-        parseInt(borderLeft) +
-        parseInt(borderRight);
-      this.$refs.actionsHead.style.width = `${width2}px`;
-      this.$refs.actions.map(node => {
-        console.log(node.parentNode);
-        node.parentNode.style.width = `${width2}px`;
-      });
-      console.log(width2);
-      console.log(node);
-    }
+    this.createColumns()
+    this.doFixedHeader()
+    this.doResponseCells()
   },
   beforeDestroy() {
     this.newTable.remove();
@@ -192,6 +173,48 @@ export default {
     }
   },
   methods: {
+    createColumns() {
+      this.columns = this.$slots.default.map(node => {
+        let { text, field, width } = node.componentOptions.propsData
+        let render = node.data.scopedSlots && node.data.scopedSlots.default
+        return { text, field, width, render }
+      })
+    },
+    doResponseCells() {
+      if (this.$scopedSlots.default) {
+        let node = this.$refs.actions[0];
+        let { width } = node.getBoundingClientRect();
+        let parentNode = node.parentNode;
+        let styles = getComputedStyle(parentNode);
+        let paddingLeft = styles.getPropertyValue("padding-left");
+        let paddingRight = styles.getPropertyValue("padding-right");
+        let borderLeft = styles.getPropertyValue("border-left-width");
+        let borderRight = styles.getPropertyValue("border-right-width");
+        let width2 =
+          width +
+          parseInt(paddingLeft) +
+          parseInt(paddingRight) +
+          parseInt(borderLeft) +
+          parseInt(borderRight);
+        this.$refs.actionsHead.style.width = `${width2}px`;
+        this.$refs.actions.map(node => {
+          node.parentNode.style.width = `${width2}px`;
+        });
+      }
+    },
+    doFixedHeader() {
+      let newTable = this.$refs.gTable.cloneNode(false);
+      this.newTable = newTable;
+      newTable.classList.add("g-table-copy");
+      let tHeader = this.$refs.gTable.children[0];
+      this.$nextTick(() => {
+        let { height } = tHeader.getBoundingClientRect();
+        this.$refs.tableContent.style.marginTop = `${height}px`;
+        this.$refs.tableContent.style.height = this.height - height + "px";
+        newTable.appendChild(tHeader);
+        this.$refs.tableContent.appendChild(newTable);
+      });
+    },
     expendItem(id) {
       if (this.inExpendIds(id)) {
         this.expendIds.splice(this.expendIds.indexOf(id), 1);
@@ -249,19 +272,19 @@ export default {
   width: 0px;
   height: 0px;
 }
+
 .g-table {
   $gray: darken($gray, 10%);
   width: 100%;
   border-collapse: collapse;
   border-spacing: 0;
+  border-bottom: 1px solid $gray;
   th,
   td {
     text-align: left;
     padding: 8px;
-    border-bottom: 1px solid $gray;
   }
   &.border {
-    border: 1px solid $gray;
     th,
     td {
       border: 1px solid $gray;
@@ -269,7 +292,7 @@ export default {
   }
   &.striped {
     tbody {
-      > tr {
+      >tr {
         &:nth-child(odd) {
           background: white;
         }
