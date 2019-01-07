@@ -1,23 +1,5 @@
 <template>
   <div id="demo">
-    <h1>实例一</h1>
-    <g-table :data-source="dataSource" :border="true" expend-field="description" checkable :selected-items.sync="selectedItems" :loading="loading" :order-by.sync="orderBy" @update:orderBy="xx" :height="400">
-      <g-table-column text="姓名" field="name" :width="200">
-        <template slot-scope="props">
-          <a :href="`/user/${props.value}`">{{props.value}}</a>
-        </template>
-      </g-table-column>
-      <g-table-column text="班级" field="class" :width="200"></g-table-column>
-      <g-table-column text="体重" field="weigth">
-        <template slot-scope="props">
-          <h1>{{props.value}}</h1>
-        </template>
-      </g-table-column>
-      <template slot-scope="slotProps">
-        <button @click="onEdit(slotProps.data)">编辑</button>
-        <button @click="onRemove(slotProps.data)">删除</button>
-      </template>
-    </g-table>
     <g-scroll class="scroll">
       <div class="view">
         <h3>1</h3>
@@ -72,6 +54,24 @@
         <h3>50</h3>
       </div>
     </g-scroll>
+    <h1>实例一</h1>
+    <g-table :data-source="dataSource" :border="true" expend-field="description" checkable :selected-items.sync="selectedItems" :loading="loading" :order-by.sync="orderBy" @update:orderBy="xx" :height="400">
+      <g-table-column text="姓名" field="name" :width="200">
+        <template slot-scope="props">
+          <a :href="`/user/${props.value}`">{{props.value}}</a>
+        </template>
+      </g-table-column>
+      <g-table-column text="班级" field="class" :width="200"></g-table-column>
+      <g-table-column text="体重" field="weigth">
+        <template slot-scope="props">
+          <h1>{{props.value}}</h1>
+        </template>
+      </g-table-column>
+      <template slot-scope="slotProps">
+        <button @click="onEdit(slotProps.data)">编辑</button>
+        <button @click="onRemove(slotProps.data)">删除</button>
+      </template>
+    </g-table>
   </div>
 </template>
 

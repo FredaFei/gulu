@@ -3,6 +3,11 @@
     <div class="g-scroll-content" ref="scrollChild">
       <slot></slot>
     </div>
+    <div class="g-scroll-track">
+      <div class="g-scroll-bar" ref="scrollBar">
+        <div class="g-scroll-bar-inner"></div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -41,12 +46,23 @@ export default {
         translateY = 0;
       } else if (translateY < -maxHeight) {
         translateY = -maxHeight;
+      } else {
+        e.preventDefault()
       }
       child.style.transform = `translateY(${translateY}px)`;
     });
+    this.updateScrollBar(parentHeight,childHeight)
     parent.addEventListener("touchmove", e => {
       console.log(e);
     });
+  },
+  methods: {
+    updateScrollBar(parentHeight,childHeight){
+       let barHeight = (parentHeight * parentHeight)/childHeight
+       console.log(barHeight)
+       let scrollBar = this.$refs.scrollBar
+       scrollBar.style.height = barHeight + 'px'
+    }
   }
 };
 </script>
@@ -56,11 +72,39 @@ export default {
   &-wrapper {
     overflow: hidden;
     box-sizing: border-box;
-    border: 5px solid red;
+    border: 1px solid red;
+    position: relative;
   }
   &-content {
     transition: transform 0.1s ease;
-    border: 5px solid blue;
+    border: 1px solid blue;
+  }
+  &-track {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 14px;
+    height: 100%;
+    border-left: 1px solid #e8e7e8;
+    background: #fafafa;
+    opacity: .9;
+  }
+  &-bar {
+    position: absolute;
+    top: -1px;
+    left: 50%;
+    margin-left: -4px;
+    padding: 4px 0;
+    width: 8px;
+    height: 40px;
+    &-inner {
+      height: 100%;
+      border-radius: 4px;
+      background:#cacaca;
+      &:hover {
+        background: #7d7d7d;
+      }
+    }
   }
 }
 </style>
