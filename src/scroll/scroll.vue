@@ -1,9 +1,9 @@
 <template>
-  <div class="g-scroll-wrapper" ref="scrollParent">
+  <div class="g-scroll-wrapper" ref="scrollParent" @mouseenter="onMouseEnter" @mouseleave="onMouseLeave">
     <div class="g-scroll-content" ref="scrollChild">
       <slot></slot>
     </div>
-    <div class="g-scroll-track">
+    <div class="g-scroll-track" v-show="scrollBarVisible">
       <div class="g-scroll-bar" ref="scrollBar">
         <div class="g-scroll-bar-inner"></div>
       </div>
@@ -14,6 +14,11 @@
 <script>
 export default {
   name: "gScroll",
+  data() {
+    return {
+      scrollBarVisible: false
+    };
+  },
   mounted() {
     let parent = this.$refs.scrollParent;
     let child = this.$refs.scrollChild;
@@ -47,21 +52,29 @@ export default {
       } else if (translateY < -maxHeight) {
         translateY = -maxHeight;
       } else {
-        e.preventDefault()
+        e.preventDefault();
       }
       child.style.transform = `translateY(${translateY}px)`;
+      this.updateScrollBar(parentHeight, childHeight, translateY);
     });
-    this.updateScrollBar(parentHeight,childHeight)
+    this.updateScrollBar(parentHeight, childHeight, translateY);
     parent.addEventListener("touchmove", e => {
       console.log(e);
     });
   },
   methods: {
-    updateScrollBar(parentHeight,childHeight){
-       let barHeight = (parentHeight * parentHeight)/childHeight
-       console.log(barHeight)
-       let scrollBar = this.$refs.scrollBar
-       scrollBar.style.height = barHeight + 'px'
+    updateScrollBar(parentHeight, childHeight, translateY) {
+      let barHeight = (parentHeight * parentHeight) / childHeight;
+      let scrollBar = this.$refs.scrollBar;
+      scrollBar.style.height = barHeight + "px";
+      let y = (translateY * parentHeight) / childHeight;
+      scrollBar.style.transform = `translateY(${-y}px)`;
+    },
+    onMouseEnter() {
+      this.scrollBarVisible = true;
+    },
+    onMouseLeave() {
+      this.scrollBarVisible = false;
     }
   }
 };
@@ -87,7 +100,7 @@ export default {
     height: 100%;
     border-left: 1px solid #e8e7e8;
     background: #fafafa;
-    opacity: .9;
+    opacity: 0.9;
   }
   &-bar {
     position: absolute;
@@ -100,7 +113,7 @@ export default {
     &-inner {
       height: 100%;
       border-radius: 4px;
-      background:#cacaca;
+      background: #cacaca;
       &:hover {
         background: #7d7d7d;
       }

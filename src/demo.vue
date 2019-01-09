@@ -240,7 +240,6 @@ body {
   padding: 20px;
 }
 .scroll {
-  width: 400px;
   height: 400px;
 }
 .view {
