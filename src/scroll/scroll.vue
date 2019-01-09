@@ -1,5 +1,5 @@
 <template>
-  <div class="g-scroll-wrapper" ref="scrollParent" @mouseenter="onMouseEnter" @mouseleave="onMouseLeave">
+  <div class="g-scroll-wrapper" ref="scrollParent" @mouseenter="onMouseEnter" @mouseleave="onMouseLeave" @touchstart="onTouchStart" @touchmove="onTouchMove" @touchend="onTouchEnd">
     <div class="g-scroll-content" ref="scrollChild">
       <slot></slot>
     </div>
@@ -58,9 +58,6 @@ export default {
       this.updateScrollBar(parentHeight, childHeight, translateY);
     });
     this.updateScrollBar(parentHeight, childHeight, translateY);
-    parent.addEventListener("touchmove", e => {
-      console.log(e);
-    });
   },
   methods: {
     updateScrollBar(parentHeight, childHeight, translateY) {
@@ -75,6 +72,19 @@ export default {
     },
     onMouseLeave() {
       this.scrollBarVisible = false;
+    },
+    onTouchStart(e) {
+      console.log(e);
+      if (e.touches.length > 1) {
+        return;
+      }
+      this.startTouch = e.touches[0];
+    },
+    onTouchMove(e) {
+      console.log(e);
+    },
+    onTouchEnd(e) {
+      // console.log(e);
     }
   }
 };
