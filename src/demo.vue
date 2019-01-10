@@ -2,7 +2,7 @@
   <div id="demo">
     <g-scroll class="scroll">
       <div class="view">
-        <h3>1</h3>
+        <h3>1 this is a test text this is a test text this is a test text this is a test text this is a test text this is a test text</h3>
         <h3>2</h3>
         <h3>3</h3>
         <h3>4</h3>

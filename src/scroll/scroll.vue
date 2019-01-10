@@ -19,9 +19,11 @@ export default {
       scrollBarVisible: false,
       contentY: 0,
       scrollBarY: 0,
-      scrollBarY: undefined,
+      touchScrollY: 0,
       startPosition: undefined,
       endPosition: undefined,
+      touchStartPosition: undefined,
+      touchEndPosition: undefined,
       isScrolling: false
     };
   },
@@ -99,7 +101,6 @@ export default {
       this.startPosition = { x: e.screenX, y: e.screenY };
     },
     onMouseMoveScrollBar(e) {
-      console.log("Move");
       if (!this.isScrolling) {
         return;
       }
@@ -133,14 +134,35 @@ export default {
       this.scrollBarVisible = false;
     },
     onTouchStart(e) {
-      console.log(e);
+      e.preventDefault();
       if (e.touches.length > 1) {
         return;
       }
-      this.startTouch = e.touches[0];
+      this.touchStartPosition = {
+        x: e.touches[0].pageX,
+        y: e.touches[0].pageY
+      };
     },
     onTouchMove(e) {
-      console.log(e);
+      this.touchEndPosition = { x: e.touches[0].pageX, y: e.touches[0].pageY };
+      // 滚动
+      let delta = {
+        x: this.touchStartPosition.x - this.touchEndPosition.x,
+        y: this.touchStartPosition.y - this.touchEndPosition.y
+      };
+      this.touchScrollY = this.calculateTouchScrollY(delta);
+      this.contentY =
+        -(this.childHeight * this.touchScrollY) / this.parentHeight;
+      this.touchStartPosition = this.touchEndPosition;
+    },
+    calculateTouchScrollY(delta) {
+      let newValue = parseInt(this.touchScrollY) + delta.y;
+      if (newValue < 0) {
+        newValue = 0;
+      } else if (newValue > this.maxScrollHeight) {
+        newValue = this.maxScrollHeight;
+      }
+      return newValue;
     },
     onTouchEnd(e) {
       // console.log(e);
@@ -158,6 +180,7 @@ export default {
     position: relative;
   }
   &-content {
+    -webkit-overflow-scrolling: touch;
     transition: transform 0.1s ease;
     border: 1px solid blue;
   }
