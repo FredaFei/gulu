@@ -1,10 +1,10 @@
 <template>
-  <div class="g-scroll-wrapper" ref="scrollParent" @mouseenter="onMouseEnter" @mouseleave="onMouseLeave" @touchstart="onTouchStart" @touchmove="onTouchMove" @touchend="onTouchEnd">
-    <div class="g-scroll-content" ref="scrollChild">
+  <div class="g-scroll-wrapper" ref="scrollParent" @wheel="onWheel" @mouseenter="onMouseEnter" @mouseleave="onMouseLeave" @touchstart="onTouchStart" @touchmove="onTouchMove" @touchend="onTouchEnd">
+    <div class="g-scroll-content" ref="scrollChild" :style="{transform: `translateY(${contentY}px)`}">
       <slot></slot>
     </div>
     <div class="g-scroll-track" v-show="scrollBarVisible">
-      <div class="g-scroll-bar" ref="scrollBar">
+      <div class="g-scroll-bar" ref="scrollBar" @mousedown="onMouseDownScrollBar" @selectstart="onSelecteStartScrollBar">
         <div class="g-scroll-bar-inner"></div>
       </div>
     </div>
@@ -16,56 +16,115 @@ export default {
   name: "gScroll",
   data() {
     return {
-      scrollBarVisible: false
+      scrollBarVisible: false,
+      contentY: 0,
+      scrollBarY: 0,
+      scrollBarY: undefined,
+      startPosition: undefined,
+      endPosition: undefined,
+      isScrolling: false
     };
   },
+  computed: {
+    childHeight() {
+      return this.$refs.scrollChild.getBoundingClientRect().height;
+    },
+    parentHeight() {
+      return this.$refs.scrollParent.getBoundingClientRect().height;
+    },
+    maxScrollHeight() {
+      return this.parentHeight - this.barHeight;
+    }
+  },
   mounted() {
-    let parent = this.$refs.scrollParent;
-    let child = this.$refs.scrollChild;
-    let {
-      paddingTop,
-      paddingBottom,
-      borderTopWidth,
-      borderBottomWidth
-    } = window.getComputedStyle(this.$refs.scrollParent);
-    paddingTop = parseInt(paddingTop);
-    paddingBottom = parseInt(paddingBottom);
-    borderTopWidth = parseInt(borderTopWidth);
-    borderBottomWidth = parseInt(borderBottomWidth);
-    let translateY = 0;
-    let { height: parentHeight } = parent.getBoundingClientRect();
-    let { height: childHeight } = child.getBoundingClientRect();
-    let maxHeight =
-      childHeight -
-      parentHeight +
-      (paddingTop + paddingBottom + borderTopWidth + borderBottomWidth);
-    parent.addEventListener("wheel", e => {
-      if (e.deltaY > 20) {
-        translateY -= 20 * 3;
-      } else if (e.deltaY < -20) {
-        translateY -= -20 * 3;
-      } else if (e.deltaY === 0) {
-        translateY -= e.deltaY;
-      }
-      if (translateY > 0) {
-        translateY = 0;
-      } else if (translateY < -maxHeight) {
-        translateY = -maxHeight;
-      } else {
-        e.preventDefault();
-      }
-      child.style.transform = `translateY(${translateY}px)`;
-      this.updateScrollBar(parentHeight, childHeight, translateY);
-    });
-    this.updateScrollBar(parentHeight, childHeight, translateY);
+    document.addEventListener("mousemove", e => this.onMouseMoveScrollBar(e));
+    document.addEventListener("mouseup", e => this.onMouseUpScrollBar(e));
+    this.updateScrollBar();
   },
   methods: {
-    updateScrollBar(parentHeight, childHeight, translateY) {
-      let barHeight = (parentHeight * parentHeight) / childHeight;
-      let scrollBar = this.$refs.scrollBar;
-      scrollBar.style.height = barHeight + "px";
-      let y = (translateY * parentHeight) / childHeight;
-      scrollBar.style.transform = `translateY(${-y}px)`;
+    calculateContentYFromDeltaY(delta) {
+      let contentY = this.contentY;
+      if (delta > 20) {
+        contentY -= 20 * 3;
+      } else if (delta < -20) {
+        contentY -= -20 * 3;
+      } else if (delta === 0) {
+        contentY -= delta;
+      }
+      return contentY;
+    },
+    calculateContentYMax() {
+      let {
+        paddingTop,
+        paddingBottom,
+        borderTopWidth,
+        borderBottomWidth
+      } = window.getComputedStyle(this.$refs.scrollParent);
+      paddingTop = parseInt(paddingTop);
+      paddingBottom = parseInt(paddingBottom);
+      borderTopWidth = parseInt(borderTopWidth);
+      borderBottomWidth = parseInt(borderBottomWidth);
+      let maxHeight =
+        this.childHeight -
+        this.parentHeight +
+        (paddingTop + paddingBottom + borderTopWidth + borderBottomWidth);
+      return maxHeight;
+    },
+    onWheel(e) {
+      this.updateContentY(e.deltaY, () => e.preventDefault());
+      this.updateScrollBar();
+    },
+    updateContentY(deltaY, callback) {
+      this.contentY = this.calculateContentYFromDeltaY(deltaY);
+      let maxHeight = this.calculateContentYMax();
+      if (this.contentY > 0) {
+        this.contentY = 0;
+      } else if (this.contentY < -maxHeight) {
+        this.contentY = -maxHeight;
+      } else {
+        callback && callback();
+      }
+    },
+    calculateScrollBarY(delta) {
+      let newValue = parseInt(this.scrollBarY) + delta.y;
+      if (newValue < 0) {
+        newValue = 0;
+      } else if (newValue > this.maxScrollHeight) {
+        newValue = this.maxScrollHeight;
+      }
+      return newValue;
+    },
+    onMouseDownScrollBar(e) {
+      this.isScrolling = true;
+      this.startPosition = { x: e.screenX, y: e.screenY };
+    },
+    onMouseMoveScrollBar(e) {
+      console.log("Move");
+      if (!this.isScrolling) {
+        return;
+      }
+      this.endPosition = { x: e.screenX, y: e.screenY };
+      let delta = {
+        x: this.endPosition.x - this.startPosition.x,
+        y: this.endPosition.y - this.startPosition.y
+      };
+      this.scrollBarY = this.calculateScrollBarY(delta);
+      this.contentY = -(this.childHeight * this.scrollBarY) / this.parentHeight;
+      this.startPosition = this.endPosition;
+      this.$refs.scrollBar.style.transform = `translateY(${this.scrollBarY}px)`;
+    },
+    onMouseUpScrollBar(e) {
+      this.isScrolling = false;
+    },
+    onSelecteStartScrollBar(e) {
+      e.preventDefault();
+    },
+    updateScrollBar() {
+      let { parentHeight, childHeight, contentY } = this;
+      this.barHeight = (parentHeight * parentHeight) / childHeight;
+      this.scrollBarY = -(parentHeight * contentY) / childHeight;
+      this.$refs.scrollBar.style.height = this.barHeight + "px";
+      this.$refs.scrollBar.style.transform = `translateY(${this.scrollBarY}px)`;
     },
     onMouseEnter() {
       this.scrollBarVisible = true;
