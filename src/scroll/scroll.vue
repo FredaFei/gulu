@@ -124,8 +124,8 @@ export default {
         callback && callback();
       }
     },
-    calculateScrollBarY(delta) {
-      let newValue = parseInt(this.scrollBarY) + delta.y;
+    calculateScrollY(name, delta) {
+      let newValue = parseInt(this[name]) + delta.y;
       if (newValue < 0) {
         newValue = 0;
       } else if (newValue > this.maxScrollHeight) {
@@ -146,7 +146,7 @@ export default {
         x: this.endPosition.x - this.startPosition.x,
         y: this.endPosition.y - this.startPosition.y
       };
-      this.scrollBarY = this.calculateScrollBarY(delta);
+      this.scrollBarY = this.calculateScrollY("scrollBarY", delta);
       this.contentY = -(this.childHeight * this.scrollBarY) / this.parentHeight;
       this.startPosition = this.endPosition;
       this.$refs.scrollBar.style.transform = `translateY(${this.scrollBarY}px)`;
@@ -187,19 +187,10 @@ export default {
         x: this.touchStartPosition.x - this.touchEndPosition.x,
         y: this.touchStartPosition.y - this.touchEndPosition.y
       };
-      this.touchScrollY = this.calculateTouchScrollY(delta);
+      this.touchScrollY = this.calculateScrollY("touchScrollY", delta);
       this.contentY =
         -(this.childHeight * this.touchScrollY) / this.parentHeight;
       this.touchStartPosition = this.touchEndPosition;
-    },
-    calculateTouchScrollY(delta) {
-      let newValue = parseInt(this.touchScrollY) + delta.y;
-      if (newValue < 0) {
-        newValue = 0;
-      } else if (newValue > this.maxScrollHeight) {
-        newValue = this.maxScrollHeight;
-      }
-      return newValue;
     },
     onTouchEnd(e) {
       // console.log(e);
@@ -218,7 +209,6 @@ export default {
   }
   &-content {
     -webkit-overflow-scrolling: touch;
-    // transition: transform 0.1s ease;
     transition-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1);
     transition-duration: 0.1s;
     border: 1px solid blue;
