@@ -24,13 +24,11 @@ export default {
       endPosition: undefined,
       touchStartPosition: undefined,
       touchEndPosition: undefined,
+      remoteResources: false,
       isScrolling: false
     };
   },
   computed: {
-    childHeight() {
-      return this.$refs.scrollChild.getBoundingClientRect().height;
-    },
     parentHeight() {
       return this.$refs.scrollParent.getBoundingClientRect().height;
     },
@@ -39,11 +37,39 @@ export default {
     }
   },
   mounted() {
-    document.addEventListener("mousemove", e => this.onMouseMoveScrollBar(e));
-    document.addEventListener("mouseup", e => this.onMouseUpScrollBar(e));
+    this.childHeight = this.$refs.scrollChild.getBoundingClientRect().height;
+    this.listenToDocument();
+    this.listenToRemoteResources();
+    this.listenToDomChange();
     this.updateScrollBar();
   },
   methods: {
+    listenToRemoteResources() {
+      let tags = this.$refs.scrollParent.querySelectorAll("img,video,audio");
+      Array.from(tags).map(tag => {
+        if (tag.hasAttribute("data-gulu-listened")) {
+          return;
+        }
+        tag.setAttribute("data-gulu-listened", "yes");
+        tag.addEventListener("load", () => {
+          this.updateScrollBar();
+          this.childHeight = this.$refs.scrollChild.getBoundingClientRect().height;
+        });
+      });
+    },
+    listenToDomChange() {
+      const targetNode = this.$refs.scrollChild;
+      const config = { attributes: true, childList: true, subtree: true };
+      const callback = () => {
+        this.listenToRemoteResources();
+      };
+      const observer = new MutationObserver(callback);
+      observer.observe(targetNode, config);
+    },
+    listenToDocument() {
+      document.addEventListener("mousemove", e => this.onMouseMoveScrollBar(e));
+      document.addEventListener("mouseup", e => this.onMouseUpScrollBar(e));
+    },
     calculateContentYFromDeltaY(delta) {
       let contentY = this.contentY;
       if (delta > 20) {
