@@ -24,7 +24,7 @@ export default {
       endPosition: undefined,
       touchStartPosition: undefined,
       touchEndPosition: undefined,
-      remoteResources: false,
+      childHeight: undefined,
       isScrolling: false
     };
   },
@@ -43,6 +43,10 @@ export default {
     this.listenToDomChange();
     this.updateScrollBar();
   },
+  beforeDestroy() {
+    document.removeEventListener("mousemove", this.onMouseEvent);
+    document.removeEventListener("mouseup", this.onMouseEvent);
+  },
   methods: {
     listenToRemoteResources() {
       let tags = this.$refs.scrollParent.querySelectorAll("img,video,audio");
@@ -52,8 +56,8 @@ export default {
         }
         tag.setAttribute("data-gulu-listened", "yes");
         tag.addEventListener("load", () => {
-          this.updateScrollBar();
           this.childHeight = this.$refs.scrollChild.getBoundingClientRect().height;
+          this.updateScrollBar();
         });
       });
     },
@@ -67,8 +71,8 @@ export default {
       observer.observe(targetNode, config);
     },
     listenToDocument() {
-      document.addEventListener("mousemove", e => this.onMouseMoveScrollBar(e));
-      document.addEventListener("mouseup", e => this.onMouseUpScrollBar(e));
+      document.addEventListener("mousemove", this.onMouseEvent);
+      document.addEventListener("mouseup", this.onMouseEvent);
     },
     calculateContentYFromDeltaY(delta) {
       let contentY = this.contentY;
@@ -97,6 +101,13 @@ export default {
         this.parentHeight +
         (paddingTop + paddingBottom + borderTopWidth + borderBottomWidth);
       return maxHeight;
+    },
+    onMouseEvent(e) {
+      if (e.type === "mousemove") {
+        this.onMouseMoveScrollBar(e);
+      } else if (e.type === "mouseup") {
+        this.onMouseUpScrollBar(e);
+      }
     },
     onWheel(e) {
       this.updateContentY(e.deltaY, () => e.preventDefault());
@@ -207,7 +218,9 @@ export default {
   }
   &-content {
     -webkit-overflow-scrolling: touch;
-    transition: transform 0.1s ease;
+    // transition: transform 0.1s ease;
+    transition-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1);
+    transition-duration: 0.1s;
     border: 1px solid blue;
   }
   &-track {
