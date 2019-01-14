@@ -8,7 +8,7 @@
 
 <script>
 export default {
-  name: 'guluSlideItem',
+  name: "guluSlideItem",
   props: {
     name: {
       type: String,
@@ -18,31 +18,35 @@ export default {
   data() {
     return {
       selected: undefined,
-      reverse: false,
-    }
+      reverse: false
+    };
   },
   computed: {
     visible() {
-      return this.selected === this.name
+      return this.selected === this.name;
     }
+  },
+  created() {
+    this.$parent && this.$parent.updateItems();
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>
-.g-slides-item {}
+.g-slides-item {
+}
 
 .slide-leave-active {
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;  
+  width: 100%;
   height: 100%;
 }
 
 .slide-enter-active,
 .slide-leave-active {
-  transition: all .2s ease;
+  transition: all 0.2s ease;
 }
 
 .slide-enter {

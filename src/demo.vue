@@ -1,5 +1,11 @@
 <template>
   <div id="demo">
+    <g-slides :selected.sync="selected" class="slides-item slide-box">
+      <g-slides-item :name="n+''" v-for="n in slides">
+        <div class="slides-item">slide {{n}}</div>
+      </g-slides-item>
+    </g-slides>
+
     <g-scroll class="scroll">
       <div class="view">
         <p><img src="https://desk-fd.zol-img.com.cn/t_s960x600c5/g4/M08/08/02/Cg-4WlS13_OIAi_tAAwNAaRPTQ0AASnYAGZ4gUADA0Z950.jpg" alt=""></p>
@@ -89,14 +95,22 @@ import Vue from "vue";
 import Table from "./table/table";
 import TableColumn from "./table/tableColumn";
 import Scroll from "./scroll/scroll";
+
+import Slides from "./slides/slides";
+import SlidesItem from "./slides/slidesItem";
+
 Vue.component("g-table", Table);
 Vue.component("g-table-column", TableColumn);
 Vue.component("g-scroll", Scroll);
+Vue.component("g-slides", Slides);
+Vue.component("g-slides-item", SlidesItem);
 
 export default {
   data() {
     return {
+      selected: "",
       selectedItems: [],
+      slides: 0,
       dataSource: [
         {
           id: 1,
@@ -218,6 +232,11 @@ export default {
       }
     };
   },
+  created() {
+    setTimeout(() => {
+      this.slides = 4;
+    }, 1000);
+  },
   methods: {
     onEdit(item) {
       alert(item.id);
@@ -253,5 +272,13 @@ body {
 }
 .view {
   font-size: 16px;
+}
+.slide-box {
+  margin-bottom: 40px;
+}
+.slides-item {
+  width: 100%;
+  height: 150px;
+  background: #dddddd;
 }
 </style>

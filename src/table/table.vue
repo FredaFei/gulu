@@ -51,7 +51,6 @@
               </tr>
             </transition>
           </template>
-
         </tbody>
       </table>
     </div>
@@ -154,9 +153,9 @@ export default {
     }
   },
   mounted() {
-    this.createColumns()
-    this.doFixedHeader()
-    this.doResponseCells()
+    this.createColumns();
+    this.doFixedHeader();
+    this.doResponseCells();
   },
   beforeDestroy() {
     this.newTable.remove();
@@ -175,10 +174,10 @@ export default {
   methods: {
     createColumns() {
       this.columns = this.$slots.default.map(node => {
-        let { text, field, width } = node.componentOptions.propsData
-        let render = node.data.scopedSlots && node.data.scopedSlots.default
-        return { text, field, width, render }
-      })
+        let { text, field, width } = node.componentOptions.propsData;
+        let render = node.data.scopedSlots && node.data.scopedSlots.default;
+        return { text, field, width, render };
+      });
     },
     doResponseCells() {
       if (this.$scopedSlots.default) {
@@ -292,7 +291,7 @@ export default {
   }
   &.striped {
     tbody {
-      >tr {
+      > tr {
         &:nth-child(odd) {
           background: white;
         }
