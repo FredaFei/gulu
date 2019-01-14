@@ -59,6 +59,9 @@ export default {
   updated() {
     this.updateChildren();
   },
+  destroyed() {
+    this.pause();
+  },
   methods: {
     updateItems() {
       this.items = this.$children.filter(
