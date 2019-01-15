@@ -1,6 +1,6 @@
 <template>
   <div id="demo">
-    <g-slides :selected.sync="selected" class="slides-item slide-box">
+    <g-slides :selected.sync="selected" class="slide-box">
       <g-slides-item :name="n+''" v-for="n in slides">
         <div class="slides-item">slide {{n}}</div>
       </g-slides-item>
@@ -275,10 +275,8 @@ body {
 }
 .slide-box {
   margin-bottom: 40px;
-}
-.slides-item {
   width: 100%;
   height: 150px;
-  background: #dddddd;
+  background: #eee;
 }
 </style>

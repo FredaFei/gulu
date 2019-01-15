@@ -1,6 +1,6 @@
 <template>
-  <div class="g-slides-wrapper">
-    <div class="g-slides-window" @mouseenter="onMouseEnter" @mouseleave="onMouseLeave">
+  <div class="g-slides-wrapper" ref="slidesWrapper">
+    <div class="g-slides-window" ref="slidesWindow" @mouseenter="onMouseEnter" @mouseleave="onMouseLeave">
       <slot></slot>
     </div>
     <div class="g-slides-dots">
@@ -54,7 +54,8 @@ export default {
     this.updateItems();
     this.updateChildren();
     this.autoPlay && this.playAutomatically();
-    this.childrenLength = this.items.length;
+    let node = this.$refs.slidesWrapper.getBoundingClientRect();
+    this.$refs.slidesWindow.style.height = node.height + "px";
   },
   updated() {
     this.updateChildren();
@@ -112,6 +113,7 @@ export default {
     },
     updateChildren() {
       let selected = this.getSelected();
+      this.childrenLength = this.items.length;
       this.items.forEach(vm => {
         let reverse =
           this.selectedIndex > this.lastSelectedIndex ? false : true;
