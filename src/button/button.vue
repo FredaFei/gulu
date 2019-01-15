@@ -1,37 +1,41 @@
 <template>
-  <button class="g-button" :class="{[`icon-${iconPosition}`]:true}" @click="$emit('click')">
+  <button class="g-button" :class="{[`icon-${iconPosition}`]:true,'icon-disabled':disabled}" :disabled="disabled" @click="$emit('click')">
     <g-icon class="icon" v-if="icon&&!loading" :name="icon"></g-icon>
     <g-icon class="icon loading" v-if="loading" name="loading"></g-icon>
     <div class="g-button-content">
-      <slot/>
+      <slot />
     </div>
   </button>
 </template>
 <script>
-import GIcon from '../icon'
+import GIcon from "../icon";
 export default {
-  name: 'guluButton',
+  name: "guluButton",
   components: {
     GIcon
   },
   props: {
     icon: {
       type: String,
-      default: ''
+      default: ""
     },
     iconPosition: {
       type: String,
-      default: 'left',
+      default: "left",
       validator(value) {
-        return value === 'left' || value === 'right'
+        return value === "left" || value === "right";
       }
     },
     loading: {
       type: Boolean,
       default: false
+    },
+    disabled: {
+      type: Boolean,
+      default: false
     }
   }
-}
+};
 </script>
 <style lang="scss" scoped>
 @import "var";
@@ -46,31 +50,38 @@ export default {
   justify-content: center;
   align-items: center;
   vertical-align: middle;
-  &>.loading {
+  transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+  & + .g-button {
+    margin-left: 0.5em;
+  }
+  & > .loading {
     @include spin;
   }
-  >.g-button-content {
+  > .g-button-content {
     line-height: 1em;
   }
   &.icon-left {
-    >.icon {
+    > .icon {
       order: 1;
       margin-right: 0.1em;
     }
-    >.g-button-content {
+    > .g-button-content {
       order: 2;
     }
   }
   &.icon-right {
-    >.icon {
+    > .icon {
       order: 2;
       margin-left: 0.1em;
     }
-    >.g-button-content {
+    > .g-button-content {
       order: 1;
     }
   }
-  &:hover {
+  &.icon-disabled {
+    cursor: not-allowed;
+  }
+  &:not(.icon-disabled):hover {
     border-color: $border-color-hover;
   }
 
