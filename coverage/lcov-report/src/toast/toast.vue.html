@@ -205,7 +205,14 @@
 160
 161
 162
-163</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+163
+164
+165
+166
+167
+168
+169
+170</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -225,21 +232,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4×</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3×</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -251,16 +244,34 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5×</span>
 <span class="cline-any cline-yes">4×</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4×</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4×</span>
-<span class="cline-any cline-yes">3×</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -367,36 +378,39 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">&lt;template&gt;
-    &lt;div class="wrapper" :class="`position-${position}`"&gt;
-        &lt;div class="toast"&gt;
-            &lt;div class="content" :class="toastClass"&gt;
-                &lt;div v-if="enableHtml" v-html="$slots.default[0]"&gt;&lt;/div&gt;
-                &lt;slot v-else&gt;&lt;/slot&gt;
-            &lt;/div&gt;
-            &lt;span class="close" v-if="closeButton&amp;&amp;!autoClose" @click="onClose"&gt;{{closeButton.text}}&lt;/span&gt;
-        &lt;/div&gt;
+  &lt;div class="g-toast-wrapper" :class="`position-${position}`" :style="{'z-index': zIndex}"&gt;
+    &lt;div class="g-toast-inner"&gt;
+      &lt;div class="g-toast-content" :class="toastClass"&gt;
+        &lt;div v-if="enableHtml" v-html="$slots.default[0]"&gt;&lt;/div&gt;
+        &lt;slot v-else&gt;&lt;/slot&gt;
+      &lt;/div&gt;
+      &lt;span class="g-toast-close" v-if="closeButton&amp;&amp;!autoClose" @click="onClose"&gt;{{closeButton.text}}&lt;/span&gt;
     &lt;/div&gt;
+  &lt;/div&gt;
 &lt;/template&gt;
 &nbsp;
 &lt;script&gt;
 export default {
-  name: 'gTaost',
+  name: "gTaost",
   props: {
     autoClose: {
       type: [Boolean, Number],
       default: 3,
       validator(val) {
-        return val === false || typeof val === 'number'
+        return val === false || typeof val === "number";
       }
     },
     closeButton: {
       type: Object,
       default: () =&gt; {
         return {
-          text: '关闭',
+          text: "关闭",
           callback: undefined
-        }
+        };
       }
     },
     enableHtml: {
@@ -405,41 +419,45 @@ export default {
     },
     position: {
       type: String,
-      default: 'middle',
+      default: "middle",
       validator(val) {
-        return ['top', 'middle', 'bottom'].includes(val)
+        return ["top", "middle", "bottom"].includes(val);
       }
+    },
+    zIndex: {
+      type: [String, Number],
+      default: 1
     }
   },
   computed: {
     toastClass() {
-      return [{ border: !this.autoClose }]
+      return [{ border: !this.autoClose }];
     }
   },
   mounted() {
-    this.execAutoClose()
+    this.execAutoClose();
   },
   methods: {
     execAutoClose() {
       if (this.autoClose) {
         setTimeout(() =&gt; <span class="fstat-no" title="function not covered" >{</span>
-<span class="cstat-no" title="statement not covered" >          this.close()</span>
-        }, this.autoClose * 1000)
+<span class="cstat-no" title="statement not covered" >          this.close();</span>
+        }, this.autoClose * 1000);
       }
     },
     close() {
-      this.$el.remove()
-      this.$emit('close')
-      this.$destroy()
+      this.$el.remove();
+      this.$emit("close");
+      this.$destroy();
     },
     onClose() {
-      this.close()
-      <span class="missing-if-branch" title="else path not taken" >E</span>if (this.closeButton &amp;&amp; typeof this.closeButton.callback === 'function') {
-        this.closeButton.callback(this) // this === toast
+      this.close();
+      <span class="missing-if-branch" title="else path not taken" >E</span>if (this.closeButton &amp;&amp; typeof this.closeButton.callback === "function") {
+        this.closeButton.callback(this); // this === toast
       }
     }
   }
-}
+};
 &lt;/script&gt;
 &nbsp;
 &lt;style lang="scss" scoped&gt;
@@ -447,7 +465,6 @@ $toast-bg: rgba(0, 0, 0, 0.75);
 $box-shadow: rgba(0, 0, 0, 0.5);
 $border-color: #666;
 $animation: 0.2s linear;
-// todo 离开的动画
 @keyframes fade-in {
   0% {
     opacity: 0;
@@ -479,32 +496,35 @@ $animation: 0.2s linear;
   }
 }
 &nbsp;
-.wrapper {
-  position: fixed;
-  left: 50%;
-  transform: translateX(-50%);
-  &amp;.position-top {
-    top: 0;
-    border-radius: 0 0 4px 4px;
-    .toast {
-      animation: slide-down $animation;
+.g-toast {
+  &amp;-wrapper {
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+    &amp;.position-top {
+      top: 0;
+      border-radius: 0 0 4px 4px;
+      .g-toast-inner {
+        animation: slide-down $animation;
+      }
+    }
+    &amp;.position-middle {
+      top: 50%;
+      transform: translate(-50%, -50%);
+      .g-toast-inner {
+        animation: fade-in $animation;
+      }
+    }
+    &amp;.position-bottom {
+      bottom: 0;
+      border-radius: 4px 4px 0 0;
+      .g-toast-inner {
+        animation: slide-up $animation;
+      }
     }
   }
-  &amp;.position-middle {
-    top: 50%;
-    transform: translate(-50%, -50%);
-    .toast {
-      animation: fade-in $animation;
-    }
-  }
-  &amp;.position-bottom {
-    bottom: 0;
-    border-radius: 4px 4px 0 0;
-    .toast {
-      animation: slide-up $animation;
-    }
-  }
-  .toast {
+&nbsp;
+  &amp;-inner {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -514,7 +534,7 @@ $animation: 0.2s linear;
     background: $toast-bg;
     border-radius: 4px;
     box-shadow: 0 1px 3px 0 $box-shadow;
-    .content {
+    .g-toast-content {
       flex: 1;
       padding: 12px 0;
       &amp;.border {
@@ -522,9 +542,10 @@ $animation: 0.2s linear;
         border-right: 1px solid $border-color;
       }
     }
-    .close {
+    .g-toast-close {
       flex-shrink: 0;
       margin-left: 16px;
+      cursor: pointer;
     }
   }
 }
@@ -535,7 +556,7 @@ $animation: 0.2s linear;
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Fri Jan 11 2019 16:44:33 GMT+0800 (中国标准时间)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Jan 21 2019 15:15:13 GMT+0800 (中国标准时间)
 </div>
 </div>
 <script src="../../prettify.js"></script>

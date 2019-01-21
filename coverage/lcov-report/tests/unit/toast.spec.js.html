@@ -20,9 +20,9 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">93.55% </span>
+        <span class="strong">94.12% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>29/31</span>
+        <span class='fraction'>32/34</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
@@ -30,14 +30,14 @@
         <span class='fraction'>0/0</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">88.89% </span>
+        <span class="strong">90% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>8/9</span>
+        <span class='fraction'>9/10</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">93.55% </span>
+        <span class="strong">94.12% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>29/31</span>
+        <span class='fraction'>32/34</span>
       </div>
     </div>
   </div>
@@ -112,7 +112,11 @@
 67
 68
 69
-70</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+70
+71
+72
+73
+74</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
@@ -129,7 +133,7 @@
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
-<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">5×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
@@ -177,6 +181,10 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -191,64 +199,68 @@ import Vue from 'vue'
 import Toast from '../../src/toast/toast'
 &nbsp;
 describe('Toast', () =&gt; {
-    it('存在.', () =&gt; {
-        expect(Toast).to.be.ok
+  it('存在.', () =&gt; {
+    expect(Toast).to.be.ok
+  })
+  describe('props', done =&gt; {
+    const Constructor = Vue.extend(Toast)
+    let vm
+    afterEach(() =&gt; {
+      vm.$destroy()
     })
-    describe('props', done =&gt; {
-        const Constructor = Vue.extend(Toast)
-        let vm
-        afterEach(() =&gt; {
-            vm.$destroy()
-        })
-        it('可以设置 autoClose.', () =&gt; {
-            const div = document.createElement('div')
-            document.body.appendChild(div)
-            vm = new Constructor({
-                propsData: {
-                    autoClose: 3
-                }
-            }).$mount(div)
-            vm.$on('close', () =&gt; <span class="fstat-no" title="function not covered" >{</span>
-<span class="cstat-no" title="statement not covered" >                expect(document.body.contains(vm.$el)).to.eq(false)</span>
-<span class="cstat-no" title="statement not covered" >                done()</span>
-            })
-        })
-        it('接受 closeButton 属性', () =&gt; {
-            const callback = sinon.fake()
-            vm = new Constructor({
-                propsData: {
-                    autoClose: false,
-                    closeButton: {
-                        text: '关闭',
-                        callback
-                    }
-                }
-            }).$mount()
-            let closeElement = vm.$el.querySelector('.close')
-            expect(closeElement.textContent.trim()).to.eq('关闭')
-            closeElement.click()
-            expect(callback).to.have.been.called
-        })
-        it('接受 enableHtml 属性', () =&gt; {
-            vm = new Constructor({
-                propsData: {
-                    enableHtml: true
-                }
-            })
-            vm.$slots.default = ['&lt;strong id="test"&gt;test strong&lt;/strong&gt;']
-            vm.$mount()
-            let strong = vm.$el.querySelector('#test')
-            expect(strong).to.exist
-        })
-        it('接受 position 属性', () =&gt; {
-            vm = new Constructor({
-                propsData: {
-                    position: 'top'
-                }
-            }).$mount()
-            expect(vm.$el.classList.contains('position-top')).to.eq(true)
-        })
+    it('可以设置 autoClose.', () =&gt; {
+      const div = document.createElement('div')
+      document.body.appendChild(div)
+      vm = new Constructor({
+        propsData: {
+          autoClose: 3
+        }
+      }).$mount(div)
+      vm.$on('close', () =&gt; <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >        expect(document.body.contains(vm.$el)).to.eq(false)</span>
+<span class="cstat-no" title="statement not covered" >        done()</span>
+      })
     })
+    it('接受 closeButton 属性', () =&gt; {
+      const callback = sinon.fake()
+      vm = new Constructor({
+        propsData: {
+          autoClose: false,
+          closeButton: {
+            text: '关闭',
+            callback
+          }
+        }
+      }).$mount()
+      let closeElement = vm.$el.querySelector('.g-toast-close')
+      expect(closeElement.textContent.trim()).to.eq('关闭')
+      closeElement.click()
+      expect(callback).to.have.been.called
+    })
+    it('接受 enableHtml 属性', () =&gt; {
+      vm = new Constructor({
+        propsData: {
+          enableHtml: true
+        }
+      })
+      vm.$slots.default = ['&lt;strong id="test"&gt;test strong&lt;/strong&gt;']
+      vm.$mount()
+      let strong = vm.$el.querySelector('#test')
+      expect(strong).to.exist
+    })
+    it('接受 position 属性', () =&gt; {
+      vm = new Constructor({
+        propsData: {
+          position: 'top'
+        }
+      }).$mount()
+      expect(vm.$el.classList.contains('position-top')).to.eq(true)
+    })
+    it('可以设置 zIndex.', () =&gt; {
+      vm = new Constructor({ propsData: { zIndex: 99 } }).$mount()
+      expect(vm.$el.style.zIndex).to.eq('99')
+    })
+  })
 })
 &nbsp;</pre></td></tr>
 </table></pre>
@@ -256,7 +268,7 @@ describe('Toast', () =&gt; {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Fri Jan 11 2019 16:44:33 GMT+0800 (中国标准时间)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Jan 21 2019 15:15:13 GMT+0800 (中国标准时间)
 </div>
 </div>
 <script src="../../prettify.js"></script>

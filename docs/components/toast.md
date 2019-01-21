@@ -7,7 +7,7 @@ sidebarDepth: 2
   <toast-demo-1/>
 </ClientOnly>
 
-``` vue{4}
+```vue{4}
 <template>
   <div>
     <g-button @click="showTaost1">默认</g-button>
@@ -17,7 +17,8 @@ sidebarDepth: 2
   </div>
 </template>
 ```
-``` js{4}
+
+```js{4}
 import Button from '../../../src/button/button'
 import Toast from '../../../src/toast/toast'
 import plugin from '../../../src/plugin.js'
@@ -28,11 +29,6 @@ export default {
   components: {
     GButton: Button,
     GToast: Toast
-  },
-  data() {
-    return {
-      selectedTabs: 'sport'
-    }
   },
   methods: {
     showTaost1() {
@@ -76,15 +72,19 @@ export default {
   }
 }
 ```
+
 ### API
 
-| 参数           | 说明           | 类型      |默认值        |          可选值|
-| ------------- |:--------------:| --------:|------------:|--------------:|
-| autoClose          | 默认显示关闭按钮  | Boolean/Number   | 3          | -             |
-| closeButton  | 自定义关闭按钮    | Object   | -       | -      | -
-| position       | 设置显示位置   | String  | middle      | top/bottom          |
-| enableHtml    | 是否允许内容为HTML   | Boolean | false         | true
+| 参数        |        说明         |           类型 | 默认值 |     可选值 |
+| ----------- | :-----------------: | -------------: | -----: | ---------: |
+| autoClose   |  默认显示关闭按钮   | Boolean/Number |      3 |          - |
+| closeButton |   自定义关闭按钮    |         Object |      - |          - | - |
+| position    |    设置显示位置     |         String | middle | top/bottom |
+| enableHtml  | 是否允许内容为 HTML |        Boolean |  false |       true |
 
+::: tip
+toast 组件在实际项目中使用时，会出现层级覆盖的问题，可以通过 zIndex 参数设置层级值，或者用户手动设置 CSS 中的 z-index 属性值 。
+:::
 ::: warning
 enableHtml 设置为 true 存在网站被攻击的风险
 :::

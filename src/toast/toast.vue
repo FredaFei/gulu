@@ -1,33 +1,33 @@
 <template>
-    <div class="wrapper" :class="`position-${position}`">
-        <div class="toast">
-            <div class="content" :class="toastClass">
-                <div v-if="enableHtml" v-html="$slots.default[0]"></div>
-                <slot v-else></slot>
-            </div>
-            <span class="close" v-if="closeButton&&!autoClose" @click="onClose">{{closeButton.text}}</span>
-        </div>
+  <div class="g-toast-wrapper" :class="`position-${position}`" :style="{'z-index': zIndex}">
+    <div class="g-toast-inner">
+      <div class="g-toast-content" :class="toastClass">
+        <div v-if="enableHtml" v-html="$slots.default[0]"></div>
+        <slot v-else></slot>
+      </div>
+      <span class="g-toast-close" v-if="closeButton&&!autoClose" @click="onClose">{{closeButton.text}}</span>
     </div>
+  </div>
 </template>
 
 <script>
 export default {
-  name: 'gTaost',
+  name: "gTaost",
   props: {
     autoClose: {
       type: [Boolean, Number],
       default: 3,
       validator(val) {
-        return val === false || typeof val === 'number'
+        return val === false || typeof val === "number";
       }
     },
     closeButton: {
       type: Object,
       default: () => {
         return {
-          text: '关闭',
+          text: "关闭",
           callback: undefined
-        }
+        };
       }
     },
     enableHtml: {
@@ -36,41 +36,45 @@ export default {
     },
     position: {
       type: String,
-      default: 'middle',
+      default: "middle",
       validator(val) {
-        return ['top', 'middle', 'bottom'].includes(val)
+        return ["top", "middle", "bottom"].includes(val);
       }
+    },
+    zIndex: {
+      type: [String, Number],
+      default: 1
     }
   },
   computed: {
     toastClass() {
-      return [{ border: !this.autoClose }]
+      return [{ border: !this.autoClose }];
     }
   },
   mounted() {
-    this.execAutoClose()
+    this.execAutoClose();
   },
   methods: {
     execAutoClose() {
       if (this.autoClose) {
         setTimeout(() => {
-          this.close()
-        }, this.autoClose * 1000)
+          this.close();
+        }, this.autoClose * 1000);
       }
     },
     close() {
-      this.$el.remove()
-      this.$emit('close')
-      this.$destroy()
+      this.$el.remove();
+      this.$emit("close");
+      this.$destroy();
     },
     onClose() {
-      this.close()
-      if (this.closeButton && typeof this.closeButton.callback === 'function') {
-        this.closeButton.callback(this) // this === toast
+      this.close();
+      if (this.closeButton && typeof this.closeButton.callback === "function") {
+        this.closeButton.callback(this); // this === toast
       }
     }
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>
@@ -78,7 +82,6 @@ $toast-bg: rgba(0, 0, 0, 0.75);
 $box-shadow: rgba(0, 0, 0, 0.5);
 $border-color: #666;
 $animation: 0.2s linear;
-// todo 离开的动画
 @keyframes fade-in {
   0% {
     opacity: 0;
@@ -110,32 +113,35 @@ $animation: 0.2s linear;
   }
 }
 
-.wrapper {
-  position: fixed;
-  left: 50%;
-  transform: translateX(-50%);
-  &.position-top {
-    top: 0;
-    border-radius: 0 0 4px 4px;
-    .toast {
-      animation: slide-down $animation;
+.g-toast {
+  &-wrapper {
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+    &.position-top {
+      top: 0;
+      border-radius: 0 0 4px 4px;
+      .g-toast-inner {
+        animation: slide-down $animation;
+      }
+    }
+    &.position-middle {
+      top: 50%;
+      transform: translate(-50%, -50%);
+      .g-toast-inner {
+        animation: fade-in $animation;
+      }
+    }
+    &.position-bottom {
+      bottom: 0;
+      border-radius: 4px 4px 0 0;
+      .g-toast-inner {
+        animation: slide-up $animation;
+      }
     }
   }
-  &.position-middle {
-    top: 50%;
-    transform: translate(-50%, -50%);
-    .toast {
-      animation: fade-in $animation;
-    }
-  }
-  &.position-bottom {
-    bottom: 0;
-    border-radius: 4px 4px 0 0;
-    .toast {
-      animation: slide-up $animation;
-    }
-  }
-  .toast {
+
+  &-inner {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -145,7 +151,7 @@ $animation: 0.2s linear;
     background: $toast-bg;
     border-radius: 4px;
     box-shadow: 0 1px 3px 0 $box-shadow;
-    .content {
+    .g-toast-content {
       flex: 1;
       padding: 12px 0;
       &.border {
@@ -153,9 +159,10 @@ $animation: 0.2s linear;
         border-right: 1px solid $border-color;
       }
     }
-    .close {
+    .g-toast-close {
       flex-shrink: 0;
       margin-left: 16px;
+      cursor: pointer;
     }
   }
 }
