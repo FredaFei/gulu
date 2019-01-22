@@ -1,12 +1,6 @@
 <template>
   <div id="demo">
-    <g-slides :selected.sync="selected" class="slide-box">
-      <g-slides-item :name="n+''" v-for="n in slides">
-        <div class="slides-item">slide {{n}}</div>
-      </g-slides-item>
-    </g-slides>
-
-    <g-scroll class="scroll">
+    <!-- <g-scroll class="scroll">
       <div class="view">
         <p><img src="https://desk-fd.zol-img.com.cn/t_s960x600c5/g4/M08/08/02/Cg-4WlS13_OIAi_tAAwNAaRPTQ0AASnYAGZ4gUADA0Z950.jpg" alt=""></p>
         <p><img src="https://desk-fd.zol-img.com.cn/t_s960x600c5/g4/M08/08/02/Cg-4WlS13_OIAi_tAAwNAaRPTQ0AASnYAGZ4gUADA0Z950.jpg" alt=""></p>
@@ -86,7 +80,36 @@
         <button @click="onEdit(slotProps.data)">编辑</button>
         <button @click="onRemove(slotProps.data)">删除</button>
       </template>
-    </g-table>
+    </g-table> -->
+    selected: {{selected}}
+    <g-collapse :selected.sync="selected" single>
+      <g-collapse-item title="葡萄" name="葡萄">
+        <div>葡萄，这是葡萄的说明</div>
+      </g-collapse-item>
+      <g-collapse-item title="苹果" name="苹果">
+        <div>苹果，这是苹果的说明</div>
+      </g-collapse-item>
+      <g-collapse-item title="橙子" name="橙子">
+        <div>橙子，这是橙子的说明</div>
+      </g-collapse-item>
+    </g-collapse>
+    <br><br><br><br>
+    selected1: {{selected1}}
+    <g-collapse :selected.sync="selected1">
+      <g-collapse-item title="葡萄2" name="葡萄2">
+        <template slot="title">
+          一致性 Consistency <g-icon name="loading"></g-icon>
+        </template>
+        <div>葡萄2，这是葡萄的说明</div>
+      </g-collapse-item>
+      <g-collapse-item title="苹果2" name="苹果2">
+        <div>苹果2，这是苹果的说明</div>
+      </g-collapse-item>
+      <g-collapse-item title="橙子2" name="橙子2">
+        <div>橙子2，这是橙子的说明</div>
+      </g-collapse-item>
+    </g-collapse>
+
   </div>
 </template>
 
@@ -96,21 +119,22 @@ import Table from "./table/table";
 import TableColumn from "./table/tableColumn";
 import Scroll from "./scroll/scroll";
 
-import Slides from "./slides/slides";
-import SlidesItem from "./slides/slidesItem";
-
+import Collapse from "./collapse/collapse";
+import CollapseItem from "./collapse/collapseItem";
+import Icon from "./icon";
 Vue.component("g-table", Table);
 Vue.component("g-table-column", TableColumn);
 Vue.component("g-scroll", Scroll);
-Vue.component("g-slides", Slides);
-Vue.component("g-slides-item", SlidesItem);
+Vue.component("g-collapse", Collapse);
+Vue.component("g-collapse-item", CollapseItem);
+Vue.component("g-icon", Icon);
 
 export default {
   data() {
     return {
-      selected: "",
+      selected: [],
+      selected1: [],
       selectedItems: [],
-      slides: 0,
       dataSource: [
         {
           id: 1,
@@ -232,11 +256,7 @@ export default {
       }
     };
   },
-  created() {
-    setTimeout(() => {
-      this.slides = 4;
-    }, 1000);
-  },
+  created() {},
   methods: {
     onEdit(item) {
       alert(item.id);
