@@ -1,6 +1,5 @@
 <template>
   <div>
-    <h3>代码演示</h3>
     <h5>基础用法</h5>
     <p>默认居中显示，3 秒后自动消失。</p>
     <g-button @click="showTaost1">顶部</g-button>

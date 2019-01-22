@@ -3,17 +3,26 @@ title: 'Toast'
 sidebarDepth: 2
 ---
 
+### 效果预览
+
 <ClientOnly>
   <toast-demo-1/>
 </ClientOnly>
 
+### 使用方式
+
 ```vue{4}
 <template>
   <div>
-    <g-button @click="showTaost1">默认</g-button>
-    <g-button @click="showTaost2">手动关闭</g-button>
-    <g-button @click="showTaost3">居中</g-button>
-    <g-button @click="showTaost4">底部</g-button>
+    <h5>基础用法</h5>
+    <p>默认居中显示，3 秒后自动消失。</p>
+    <g-button @click="showTaost1">顶部</g-button>
+    <g-button @click="showTaost2">居中</g-button>
+    <g-button @click="showTaost3">底部</g-button>
+    <h5>手动关闭</h5>
+    <g-button @click="showTaost4">顶部</g-button>
+    <h5>使用HTML片段</h5>
+    <g-button @click="showTaost5">顶部</g-button>
   </div>
 </template>
 ```
@@ -35,37 +44,44 @@ export default {
       this.$toast(
         `i am a toast!i am a toast! ${parseInt(Math.random() * 100)}`,
         {
-          autoClose: 3
+          position: 'top',
+          zIndex: 9999
         }
       )
     },
     showTaost2() {
       this.$toast(
-        `i am a toast!i am a toast! ${parseInt(Math.random() * 100)}`,
-        {
-          autoClose: false,
-          position: 'top'
-        }
+        `i am a toast!i am a toast!  ${parseInt(Math.random() * 100)}`
       )
     },
     showTaost3() {
+      this.$toast(
+        `i am a toast!i am a toast! ${parseInt(Math.random() * 100)}`,
+        {
+          position: 'bottom'
+        }
+      )
+    },
+    showTaost4() {
       this.$toast('i am a toast!', {
         autoClose: false,
-        position: 'middle',
+        zIndex: 9999,
+        position: 'top',
         closeButton: {
           text: '关闭',
           callback() {
-            console.log('i know')
+            alert('我点击了关闭~')
           }
         }
       })
     },
-    showTaost4() {
+    showTaost5() {
       this.$toast(
-        'i am a toast!i am a toast! <strong id="test">test strong</strong>',
+        'i am a toast!i am a toast! <a href="https://www.baidu.com"> baidu.com</a>',
         {
-          position: 'bottom',
-          enableHtml: true
+          position: 'top',
+          enableHtml: true,
+          zIndex: 9999
         }
       )
     }
@@ -77,9 +93,10 @@ export default {
 
 | 参数        |        说明         |           类型 | 默认值 |     可选值 |
 | ----------- | :-----------------: | -------------: | -----: | ---------: |
-| autoClose   |  默认显示关闭按钮   | Boolean/Number |      3 |          - |
-| closeButton |   自定义关闭按钮    |         Object |      - |          - | - |
+| autoClose   |  默认显示关闭按钮   | Boolean/Number |      3 |         —— |
+| closeButton |   自定义关闭按钮    |         Object |     —— |         —— | —— |
 | position    |    设置显示位置     |         String | middle | top/bottom |
+| zIndex      |    设置 CSS 层级    |  String/Number |      1 |         —— |
 | enableHtml  | 是否允许内容为 HTML |        Boolean |  false |       true |
 
 ::: tip
