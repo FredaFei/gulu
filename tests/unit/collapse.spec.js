@@ -14,41 +14,30 @@ describe('Collapse', () => {
   it('存在.', () => {
     expect(Collapse).to.be.ok
   })
-  it('selected 默认为第一个子元素.', (done) => {
-    const wrapper = mount(Collapse, {
-      slots: {
-        default: `
-        <g-collapse-item title="title_1" name="1"><span id="content_1">content_1</span></g-collapse-item>
-        <g-collapse-item title="title_2" name="2"><span id="content_2">content_2</span></g-collapse-item>
-        <g-collapse-item title="title_3" name="3"><span id="content_3">content_3</span></g-collapse-item>
-        <g-collapse-item title="title_4" name="4"><span id="content_4">content_4</span></g-collapse-item>
-        `
-      }
-    })
-    setTimeout(() => {
-      expect(wrapper.find('#content_1').exists()).to.be.true
-      done()
-    })
-  })
-  it('可以设置 single.', (done) => {
+  it('可以设置 single.', done => {
+    const callback = sinon.fake()
     const wrapper = mount(Collapse, {
       propsData: {
         single: true,
-        selected: ['1']
+        selected: ['apple'],
+        attachToDocument: true
       },
       slots: {
         default: `
-        <g-collapse-item title="title_1" name="1"><span id="content_1">content_1</span></g-collapse-item>
-        <g-collapse-item title="title_2" name="2"><span id="content_2">content_2</span></g-collapse-item>
-        <g-collapse-item title="title_3" name="3"><span id="content_3">content_3</span></g-collapse-item>
-        <g-collapse-item title="title_4" name="4"><span id="content_4">content_4</span></g-collapse-item>
+        <g-collapse-item title="title_1" name="apple"><span id="content_1">content_1</span></g-collapse-item>
+        <g-collapse-item title="title_2" name="orange"><span id="content_2">content_2</span></g-collapse-item>
         `
+      },
+      listeners: {
+        'update:selected': callback
       }
     })
     setTimeout(() => {
-      wrapper.find('[data-name="2"]').trigger('click')
-      expect(wrapper.contains('#content_1')).to.be.false
-      expect(wrapper.find('#content_2').exists()).to.be.true
+      expect(wrapper.find('[data-name="apple"].active').exists()).to.be.true
+      wrapper.find('[data-name="orange"]').trigger('click')
+      expect(callback).to.have.been.calledWith(['orange'])
+      expect(wrapper.find('[data-name="orange"].active').exists()).to.be.true
+      expect(wrapper.find('[data-name="apple"].active').exists()).to.be.false
       done()
     })
   })

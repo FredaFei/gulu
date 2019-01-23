@@ -22,7 +22,7 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>17/17</span>
+        <span class='fraction'>15/15</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
@@ -32,12 +32,12 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>6/6</span>
+        <span class='fraction'>4/4</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>17/17</span>
+        <span class='fraction'>15/15</span>
       </div>
     </div>
   </div>
@@ -87,18 +87,7 @@
 42
 43
 44
-45
-46
-47
-48
-49
-50
-51
-52
-53
-54
-55
-56</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+45</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
@@ -116,21 +105,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1×</span>
-<span class="cline-any cline-yes">1×</span>
-<span class="cline-any cline-yes">1×</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -145,6 +119,10 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
@@ -169,41 +147,30 @@ describe('Collapse', () =&gt; {
   it('存在.', () =&gt; {
     expect(Collapse).to.be.ok
   })
-  it('selected 默认为第一个子元素.', (done) =&gt; {
-    const wrapper = mount(Collapse, {
-      slots: {
-        default: `
-        &lt;g-collapse-item title="title_1" name="1"&gt;&lt;span id="content_1"&gt;content_1&lt;/span&gt;&lt;/g-collapse-item&gt;
-        &lt;g-collapse-item title="title_2" name="2"&gt;&lt;span id="content_2"&gt;content_2&lt;/span&gt;&lt;/g-collapse-item&gt;
-        &lt;g-collapse-item title="title_3" name="3"&gt;&lt;span id="content_3"&gt;content_3&lt;/span&gt;&lt;/g-collapse-item&gt;
-        &lt;g-collapse-item title="title_4" name="4"&gt;&lt;span id="content_4"&gt;content_4&lt;/span&gt;&lt;/g-collapse-item&gt;
-        `
-      }
-    })
-    setTimeout(() =&gt; {
-      expect(wrapper.find('#content_1').exists()).to.be.true
-      done()
-    })
-  })
-  it('可以设置 single.', (done) =&gt; {
+  it('可以设置 single.', done =&gt; {
+    const callback = sinon.fake()
     const wrapper = mount(Collapse, {
       propsData: {
         single: true,
-        selected: ['1']
+        selected: ['apple'],
+        attachToDocument: true
       },
       slots: {
         default: `
-        &lt;g-collapse-item title="title_1" name="1"&gt;&lt;span id="content_1"&gt;content_1&lt;/span&gt;&lt;/g-collapse-item&gt;
-        &lt;g-collapse-item title="title_2" name="2"&gt;&lt;span id="content_2"&gt;content_2&lt;/span&gt;&lt;/g-collapse-item&gt;
-        &lt;g-collapse-item title="title_3" name="3"&gt;&lt;span id="content_3"&gt;content_3&lt;/span&gt;&lt;/g-collapse-item&gt;
-        &lt;g-collapse-item title="title_4" name="4"&gt;&lt;span id="content_4"&gt;content_4&lt;/span&gt;&lt;/g-collapse-item&gt;
+        &lt;g-collapse-item title="title_1" name="apple"&gt;&lt;span id="content_1"&gt;content_1&lt;/span&gt;&lt;/g-collapse-item&gt;
+        &lt;g-collapse-item title="title_2" name="orange"&gt;&lt;span id="content_2"&gt;content_2&lt;/span&gt;&lt;/g-collapse-item&gt;
         `
+      },
+      listeners: {
+        'update:selected': callback
       }
     })
     setTimeout(() =&gt; {
-      wrapper.find('[data-name="2"]').trigger('click')
-      expect(wrapper.contains('#content_1')).to.be.false
-      expect(wrapper.find('#content_2').exists()).to.be.true
+      expect(wrapper.find('[data-name="apple"].active').exists()).to.be.true
+      wrapper.find('[data-name="orange"]').trigger('click')
+      expect(callback).to.have.been.calledWith(['orange'])
+      expect(wrapper.find('[data-name="orange"].active').exists()).to.be.true
+      expect(wrapper.find('[data-name="apple"].active').exists()).to.be.false
       done()
     })
   })
@@ -214,7 +181,7 @@ describe('Collapse', () =&gt; {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Jan 21 2019 15:15:13 GMT+0800 (中国标准时间)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Jan 23 2019 16:32:13 GMT+0800 (中国标准时间)
 </div>
 </div>
 <script src="../../prettify.js"></script>

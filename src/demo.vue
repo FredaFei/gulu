@@ -81,7 +81,6 @@
         <button @click="onRemove(slotProps.data)">删除</button>
       </template>
     </g-table> -->
-    selected: {{selected}}
     <g-collapse :selected.sync="selected" single>
       <g-collapse-item title="葡萄" name="葡萄">
         <div>葡萄，这是葡萄的说明</div>
@@ -94,19 +93,25 @@
       </g-collapse-item>
     </g-collapse>
     <br><br><br><br>
-    selected1: {{selected1}}
     <g-collapse :selected.sync="selected1">
       <g-collapse-item title="葡萄2" name="葡萄2">
         <template slot="title">
           一致性 Consistency <g-icon name="loading"></g-icon>
         </template>
-        <div>葡萄2，这是葡萄的说明</div>
+        <div>葡萄2，与现实生活一致：与现实生活的流程、逻辑保持一致，遵循用户习惯的语言和概念；
+          在界面中一致：所有的元素和结构需保持一致，比如：设计样式、图标和文本、元素的位置等。</div>
       </g-collapse-item>
       <g-collapse-item title="苹果2" name="苹果2">
-        <div>苹果2，这是苹果的说明</div>
+        <div>苹果2，与现实生活一致：与现实生活的流程、逻辑保持一致，遵循用户习惯的语言和概念；
+          在界面中一致：所有的元素和结构需保持一致，比如：设计样式、图标和文本、元素的位置等。</div>
       </g-collapse-item>
       <g-collapse-item title="橙子2" name="橙子2">
-        <div>橙子2，这是橙子的说明</div>
+        <div>橙子2，与现实生活一致：与现实生活的流程、逻辑保持一致，遵循用户习惯的语言和概念；
+          在界面中一致：所有的元素和结构需保持一致，比如：设计样式、图标和文本、元素的位置等。</div>
+      </g-collapse-item>
+      <g-collapse-item title="橙子444" name="橙子222">
+        <!-- <div>橙子2，与现实生活一致：与现实生活的流程、逻辑保持一致，遵循用户习惯的语言和概念；
+          在界面中一致：所有的元素和结构需保持一致，比如：设计样式、图标和文本、元素的位置等。</div> -->
       </g-collapse-item>
     </g-collapse>
 

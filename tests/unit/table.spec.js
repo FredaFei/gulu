@@ -44,6 +44,5 @@ describe('Table', () => {
         `
       }
     })
-    console.log(wrapper.html())
   })
 })

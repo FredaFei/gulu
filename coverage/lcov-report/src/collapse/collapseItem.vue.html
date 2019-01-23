@@ -20,9 +20,9 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">87.5% </span>
+        <span class="strong">83.33% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>7/8</span>
+        <span class='fraction'>5/6</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">70% </span>
@@ -35,9 +35,9 @@
         <span class='fraction'>4/4</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">87.5% </span>
+        <span class="strong">83.33% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>7/8</span>
+        <span class='fraction'>5/6</span>
       </div>
     </div>
   </div>
@@ -118,7 +118,26 @@
 73
 74
 75
-76</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -142,17 +161,28 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">10×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">10×</span>
-<span class="cline-any cline-yes">12×</span>
-<span class="cline-any cline-yes">3×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">9×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -160,7 +190,15 @@
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -194,78 +232,97 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">&lt;template&gt;
-    &lt;div class="collapse-item"&gt;
-        &lt;div class="title" @click="toggle" :data-name="name"&gt;{{title}}&lt;/div&gt;
-        &lt;div class="content" ref="content" v-if="open"&gt;
-            &lt;slot&gt;&lt;/slot&gt;
-        &lt;/div&gt;
+  &lt;div class="gulu-collapse-item"&gt;
+    &lt;div class="gulu-collapse-item-name" :data-name="name" :class="{'active': open}" @click="onToggle"&gt;
+      &lt;g-icon name="right" :class="['g-icon-animation',{'active': open}]" v-if="visibleIcon"&gt;&lt;/g-icon&gt;
+      &lt;slot name="title"&gt;{{title}}&lt;/slot&gt;
     &lt;/div&gt;
+    &lt;g-collapse-transition&gt;
+      &lt;div class="gulu-collapse-item-content" v-show="open"&gt;
+        &lt;div class="gulu-collapse-item-inner"&gt;
+          &lt;slot&gt;&lt;/slot&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/g-collapse-transition&gt;
+  &lt;/div&gt;
 &lt;/template&gt;
 &nbsp;
 &lt;script&gt;
+import GCollapseTransition from "../collapseTransition";
+import GIcon from "../icon";
 export default {
-    name: 'guluCollapseItem',
-    inject: ['eventBus'],
-    props: {
-        title: {
-            type: String,
-            required: true
-        },
-        name: {
-            type: String,
-            required: true
-        }
+  name: "guluCollapseItem",
+  inject: ["eventBus"],
+  components: { GIcon, GCollapseTransition },
+  props: {
+    title: {
+      type: String
     },
-    data() {
-        return {
-            open: false
-        }
+    name: {
+      type: String,
+      required: true
     },
-    mounted() {
-        this.eventBus &amp;&amp; this.eventBus.$on('update:selected', names =&gt; {
-            if (names.indexOf(this.name) &gt;= 0) {
-                this.open = true
-            } else {
-                this.open = false
-            }
-        })
-    },
-    methods: {
-        toggle() {
-            <span class="missing-if-branch" title="if path not taken" >I</span>if (this.open) {
-<span class="cstat-no" title="statement not covered" >                this.eventBus &amp;&amp; this.eventBus.$emit('update:removeSelected', this.name)</span>
-            } else {
-                this.eventBus &amp;&amp; this.eventBus.$emit('update:addSelected', this.name)
-            }
-        }
+    visibleIcon: {
+      type: Boolean,
+      default: true
     }
-}
+  },
+  data() {
+    return {
+      open: false,
+      dataset: {}
+    };
+  },
+  created() {
+    this.eventBus &amp;&amp;
+      this.eventBus.$on("update:selected", selected =&gt; {
+        this.open = selected.indexOf(this.name) &gt;= 0 ? true : false;
+      });
+  },
+  methods: {
+    onToggle() {
+      <span class="missing-if-branch" title="if path not taken" >I</span>if (this.open) {
+<span class="cstat-no" title="statement not covered" >        this.eventBus &amp;&amp;</span>
+          this.eventBus.$emit("update:removeSelected", this.name);
+      } else {
+        this.eventBus &amp;&amp; this.eventBus.$emit("update:addSelected", this.name);
+      }
+    }
+  }
+};
 &lt;/script&gt;
 &nbsp;
 &lt;style lang="scss" scoped&gt;
 @import "var";
-.collapse-item {
+.gulu-collapse-item {
+  &amp;-name {
     font-size: $font-size;
-    &gt;.title {
-        margin-bottom: -1px;
-        padding: 10px 12px;
-        border-bottom: 1px solid rgba(204, 204, 204, 1);
+    color: $color;
+    line-height: 40px;
+    cursor: pointer;
+    border-bottom: 1px solid $border-color;
+    transition: border-bottom-color 0.25s;
+    &amp;.active {
+      border-bottom-color: transparent;
     }
-    &amp;:first-child {
-        &gt;.title {
-            border-top-left-radius: $border-radius;
-            border-top-right-radius: $border-radius;
-        }
+    .g-icon-animation {
+      margin-right: 0.3em;
+      transition: transform 0.25s;
     }
-    &amp;:last-child {
-        &gt;.title:last-child {
-            border-bottom-left-radius: $border-radius;
-            border-bottom-right-radius: $border-radius;
-        }
+    .active {
+      transform: rotate(90deg);
     }
-    .content {
-        padding: 0 12px;
-    }
+  }
+  &amp;-content {
+    transition: all 0.25s;
+    background-color: #fff;
+    overflow: hidden;
+    box-sizing: border-box;
+    border-bottom: 1px solid $border-color;
+  }
+  &amp;-inner {
+    padding: 4px 0;
+  }
 }
 &lt;/style&gt;
 &nbsp;</pre></td></tr>
@@ -274,7 +331,7 @@ export default {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Jan 21 2019 15:15:13 GMT+0800 (中国标准时间)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Jan 23 2019 16:32:13 GMT+0800 (中国标准时间)
 </div>
 </div>
 <script src="../../prettify.js"></script>

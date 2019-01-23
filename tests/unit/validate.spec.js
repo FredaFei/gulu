@@ -145,7 +145,6 @@ describe('Validator', () => {
       }
     })
     let validator1 = new Validator()
-    console.log(validator1.validate(data, rules))
     let validator2 = new Validator()
     expect(() => {
       validator1.validate(data, rules)

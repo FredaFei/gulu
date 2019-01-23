@@ -1,23 +1,26 @@
 <template>
-  <div class="gulu-collapse-item" :data-name="name">
-    <div class="gulu-collapse-item-name" @click="onToggle">
-      <g-icon name="right" :class="['g-icon-animation',{'vertical': open}]"></g-icon>
+  <div class="gulu-collapse-item">
+    <div class="gulu-collapse-item-name" :data-name="name" :class="{'active': open}" @click="onToggle">
+      <g-icon name="right" :class="['g-icon-animation',{'active': open}]" v-if="visibleIcon"></g-icon>
       <slot name="title">{{title}}</slot>
     </div>
-    <transition name="slide">
+    <g-collapse-transition>
       <div class="gulu-collapse-item-content" v-show="open">
-        <slot></slot>
+        <div class="gulu-collapse-item-inner">
+          <slot></slot>
+        </div>
       </div>
-    </transition>
+    </g-collapse-transition>
   </div>
 </template>
 
 <script>
+import GCollapseTransition from "../collapseTransition";
 import GIcon from "../icon";
 export default {
   name: "guluCollapseItem",
   inject: ["eventBus"],
-  components: { GIcon },
+  components: { GIcon, GCollapseTransition },
   props: {
     title: {
       type: String
@@ -25,17 +28,23 @@ export default {
     name: {
       type: String,
       required: true
+    },
+    visibleIcon: {
+      type: Boolean,
+      default: true
     }
   },
   data() {
     return {
-      open: false
+      open: false,
+      dataset: {}
     };
   },
   created() {
-    this.eventBus.$on("update:selected", selected => {
-      this.open = selected.indexOf(this.name) >= 0 ? true : false;
-    });
+    this.eventBus &&
+      this.eventBus.$on("update:selected", selected => {
+        this.open = selected.indexOf(this.name) >= 0 ? true : false;
+      });
   },
   methods: {
     onToggle() {
@@ -52,38 +61,34 @@ export default {
 
 <style lang="scss" scoped>
 @import "var";
-
-.slide-enter-active,
-.slide-leave-active {
-  opacity: 1;
-  transition: all 0.25s;
-  // height: 27px;
-}
-.slide-enter,
-.slide-leave-to {
-  opacity: 0;
-  // transform: translateY(-100%);
-  // height: 0;
-}
-
 .gulu-collapse-item {
-  & + .gulu-collapse-item {
-    border-top: 1px solid blue;
-  }
   &-name {
     font-size: $font-size;
     color: $color;
+    line-height: 40px;
     cursor: pointer;
+    border-bottom: 1px solid $border-color;
+    transition: border-bottom-color 0.25s;
+    &.active {
+      border-bottom-color: transparent;
+    }
     .g-icon-animation {
+      margin-right: 0.3em;
       transition: transform 0.25s;
     }
-    .vertical {
+    .active {
       transform: rotate(90deg);
     }
   }
   &-content {
-    padding: 4px 0;
+    transition: all 0.25s;
+    background-color: #fff;
     overflow: hidden;
+    box-sizing: border-box;
+    border-bottom: 1px solid $border-color;
+  }
+  &-inner {
+    padding: 4px 0;
   }
 }
 </style>

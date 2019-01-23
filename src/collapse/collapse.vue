@@ -11,7 +11,8 @@ export default {
   props: {
     selected: {
       type: Array,
-      default: () => []
+      default: () => [],
+      required: true
     },
     single: {
       type: Boolean,
@@ -59,7 +60,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "var";
 .gulu-collapse-wrapper {
-  border: 1px solid red;
+  border-top: 1px solid $border-color;
 }
 </style>

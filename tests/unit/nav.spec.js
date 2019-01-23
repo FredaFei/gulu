@@ -3,7 +3,7 @@ import sinon from 'sinon'
 import sinonChai from 'sinon-chai'
 chai.use(sinonChai)
 
-import { mount, shallowMount } from '@vue/test-utils'
+import { mount } from '@vue/test-utils'
 import Vue from 'vue'
 import Nav from '../../src/nav/nav'
 import NavItem from '../../src/nav/navItem'
