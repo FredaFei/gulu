@@ -41,6 +41,20 @@ export default {
 }
 ```
 
+```css{4}
+p {
+  color: #5e6d82;
+  font-size: 14px;
+}
+.section {
+  margin-bottom: 40px;
+  .desc {
+    text-indent: 2em;
+    margin-bottom: 20px;
+  }
+}
+```
+
 ### API
 
 | 参数         |        说明        |     类型 | 默认值 | 可选值 |

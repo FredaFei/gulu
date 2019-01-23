@@ -89,6 +89,7 @@ export default {
   }
   &-inner {
     padding: 4px 0;
+    font-size: 15px;
   }
 }
 </style>

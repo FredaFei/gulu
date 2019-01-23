@@ -3,48 +3,132 @@ title: 'Collapse'
 sidebarDepth: 2
 ---
 
+### 效果预览
+
 <ClientOnly>
   <collapse-demo-1/>
-  <collapse-demo-2/>
 </ClientOnly>
 
-``` vue{4}
+### 使用方式
+
+```vue{4}
 <template>
-  <div class="box">
-    <g-collapse :selected.sync="selectedTab1">
-      <g-collapse-item title="title_1" name="1">content_1</g-collapse-item>
-      <g-collapse-item title="title_2" name="2">content_2</g-collapse-item>
-      <g-collapse-item title="title_3" name="3">content_3</g-collapse-item>
-      <g-collapse-item title="title_4" name="4">content_4</g-collapse-item>
-    </g-collapse>
-    <g-collapse :selected.sync="selectedTab2" single>
-      <g-collapse-item title="title_1" name="1">content_1</g-collapse-item>
-      <g-collapse-item title="title_2" name="2">content_2</g-collapse-item>
-      <g-collapse-item title="title_3" name="3">content_3</g-collapse-item>
-      <g-collapse-item title="title_4" name="4">content_4</g-collapse-item>
-    </g-collapse>
+  <div>
+    <div class="section">
+      <div><strong>基础用法</strong></div>
+      <p>可同时展开多个</p>
+      <g-collapse :selected.sync="selected1">
+        <g-collapse-item title="风之谷 風の谷のナウシカ (1984)" name="1">
+          <div class="desc">
+            电影剧情：影片讲述千年前世界的产业文明达致巅峰后，经历一场称为“火之七日”的战争而毁于一旦。世界被一种由菌类构成，名叫腐海的新生态体系所掩盖，只有巨型昆虫能够适应其中，而人类们生活在仅存的小面积土地上，在面对巨型昆虫和会释放瘴气的腐海森林包围威胁下积极求存的故事。
+          </div>
+        </g-collapse-item>
+        <g-collapse-item title="之城 天空の城ラピュタ‎ (1986)" name="2">
+          <div class="desc">
+            电影剧情：作为“天上人间”的天空之城一直存在，但“王族后裔”希达却决定离开这里，来到凡间，与人类少年巴鲁相识，两人一同经历被觊觎统治世界的海盗追击，直到最后两人一起保护天空之城不落入恶人之手的故事。
+          </div>
+        </g-collapse-item>
+        <g-collapse-item title="龙猫 となりのトトロ‎ (1988)" name="3">
+          <div class="desc">
+            电影剧情：小月和小妹是一对亲姐妹，他们刚刚搬到一处处于田间的新家，但由于妈妈生病，爸爸上班，只能由小月来照顾妹妹，而该影片是从妹妹的视角出发，她能够看到“煤煤虫”、甚至是藏于山野深处的龙猫、狸猫电车等。
+          </div>
+        </g-collapse-item>
+        <g-collapse-item title="千与千寻 千と千尋の神隠し (2001)" name="4">
+          <div class="desc">剧情介绍：10岁的荻野千寻在半价的途中与父母走失，并进去一个“不工作就会被变成猪被吃掉”的灵异小镇，而千寻的父母却不幸被变成了猪，千寻只能靠自己的力量拯救父母，以回到现实世界当中。</div>
+        </g-collapse-item>
+      </g-collapse>
+    </div>
+    <div class="section">
+      <div><strong>手风琴效果</strong></div>
+      <p>每次只能展开一个</p>
+      <g-collapse :selected.sync="selected2" single>
+        <g-collapse-item title="哈尔的移动城堡 ハウルの動く城 (2004)" name="1">
+          <div class="desc">电影剧情：这部剧场版动画以战争前夜为背景，描述住在小镇的三姐妹，其中的大姐苏菲是位制作帽子的专家，但她却因此得罪了女巫，从18岁的美少女变成了90岁的老太婆。她惊恐地逃出家里，但又进入了一座移动的城堡，她和不能与人相恋但懂魔法的哈尔，谱出了一段战地恋曲，并且和城堡里的其他人一起想办法解开身上的魔咒。其中的城堡部分带有19世纪末钢铁工厂的特殊风格。</div>
+        </g-collapse-item>
+        <g-collapse-item title="悬崖上的金鱼姬 崖の上のポニョ (2008)" name="2">
+          <div class="desc">电影剧情：故事描述一个住在深海里的人鱼波妞，为了跟小男孩宗介一同生活，一心一意想变成人类;同时也描述了五岁大的宗介如何信守承诺的故事。</div>
+        </g-collapse-item>
+        <g-collapse-item title="起风了 風立ちぬ (2013)" name="3">
+          <div class="desc">
+            电影剧情：自幼对飞机抱有情绪的二郎与意大利飞机设计师普罗尼建立了穿越时空的友谊，长大成人后的二郎在事业遭遇挫折，另一方面爱人遭受病痛的折磨，两人的爱情成为当时动荡年代的缩影。
+          </div>
+        </g-collapse-item>
+        <g-collapse-item title="猫的报恩 猫の恩返し (2002)" name="4">
+          <div class="desc">
+            电影剧情：17岁的高中生小春因为就下猫国王子，而受到猫们集体的报恩行动，最终小春跟猫一样长出了耳朵和尾巴，并将与被她就下的猫国王子结婚，最后小春在“猫男爵”的帮助下成功回到现实当中。
+          </div>
+        </g-collapse-item>
+      </g-collapse>
+    </div>
+    <div class="section">
+      <div><strong>自定义标题</strong></div>
+      <p>每次只能展开一个</p>
+      <g-collapse :selected.sync="selected3" single>
+        <g-collapse-item title="虞美人盛开的山坡 コクリコ坂から (2011)" name="1">
+          <div class="desc">
+            电影剧情：20世纪60年代初，从二战的沉重打击中复苏的日本，正以极快的速度在世人的注视下重新确立自己的地位。位于横滨某个海港小镇，松崎家四姐弟和住客过着平凡的生活。16岁的姐姐海（长泽雅美 配音）照顾所有人的衣食起居，清晨则例行升起祈愿平安航行的信号旗。偶然的机会，海结识了同校新闻部的男孩风间俊（冈田准一 配音），校园生活平添一道靓丽的色彩。与此同时，东京奥运会召开在即，学校内俊和一群好友所栖身的古旧建筑“拉丁区”面临拆毁的命运。为了保护心中的圣地，俊、海以及同好们联合起来。在此过程中，他们心中某种隐秘的情愫悄然滋长，但是意想不到的命运却挡在了彼此的面前……
+            　　本片根据根据高桥千鹤、佐山哲郎1980年1~8月发表在少女杂志《好朋友（なかよし）》上的同名漫画改编。
+          </div>
+        </g-collapse-item>
+        <g-collapse-item title="地海传说 ゲド戦記 (2006)" name="2">
+          <div class="desc">
+            电影剧情：早在远古时期，人类和龙和谐地生活在一起，然而野心勃勃的人类选择了海洋和大地，栖身东方国度；渴望自由的龙则选择风和火，隐藏在西方世界，两者从此不再有交集。直到某天，两条龙出现在人类的世界，并且相互厮杀，这一事件给人类带来难以估量的影响。上千头牲畜死亡，无数农作物枯死，干旱、饥荒、瘟疫蔓延，世界逐渐失衡，人类社会崩溃在即。大法师格德四处寻找灾难的根源，在这一过程中他遇见了惧怕影子的17岁少年——英拉德王子亚刃。这注定以一段不平凡的旅程……
+          </div>
+        </g-collapse-item>
+        <g-collapse-item title="幽灵公主 もののけ姫 (1997)" :visibleIcon="false" name="3">
+          <template slot="title">幽灵公主 もののけ姫 (1997)
+            <g-icon name="thumbs-up"></g-icon>
+          </template>
+          <div class="desc">
+            电影剧情：为了拯救危难中的村民，阿斯达卡的右手中了凶煞神的诅咒。他卡只好离开亲人往西方流浪以寻找解除诅咒的方法。旅途中他遇到了由幻姬大人带领的穷苦村民在麒麟兽的森林里开采铁矿，提炼矿石。
+            　　白狼神莫娜和她养大的人类女孩“幽灵公主”桑对幻姬恨之入骨，因为她们觉得幻姬带领众人破坏了森林。想帮助人类的阿斯达卡被桑深深吸引，他理解她，但为了帮助穷人又不得不和她作战。一次战斗中，阿斯达卡被麒麟兽所救，他的立场更加摇摆不定。
+            　　这时，以疙瘩和尚为首的一群人来杀麒麟兽，幻姬以火枪击毙了麒麟，麒麟的头被疙瘩和尚抢走。愤怒的麒麟的灵魂为夺回自己的头，大肆破坏着森林。阿斯达卡和桑联手决定帮麒麟夺回头颅。
+          </div>
+        </g-collapse-item>
+        <g-collapse-item title="侧耳倾听 耳をすませば (1995)" name="4">
+          <div class="desc">
+            电影剧情：正在读初三的月岛滴滴是一个喜欢看书的女孩，她每次都能在借书卡上看到一个叫天泽圣司名字，因此她对这个人充满了好奇。
+            　　滴滴一直喜欢写诗，有一天她跟好友夕子在讨论写诗的事，夕子告诉滴滴自己收到了情书，但事实上夕子已有了喜欢的人。更没有想到的是，夕子喜欢的杉村喜欢的是滴滴，滴滴一时间感到十分困惑。
+            　　滴滴无意中来到了一个小店，原来店主是圣司的爷爷。认识了圣司之后，听到了圣司对自己理想的追求之后，也激发了滴滴对自己理想的追求之念。当圣司离开了到意大利学习做小提琴时，滴滴决定要专心写作。当滴滴完成了作品之后，她发现原来自己高估了自己，就这样她选择继续考高中，这时她非常想念圣司。
+            　　一天凌晨，她站到窗边，突然看到了一个熟悉的身影……
+          </div>
+        </g-collapse-item>
+        </g-collapse-item>
+        <g-collapse-item title="红猪 紅の豚 (1992)" name="5">
+          <div class="desc">
+            电影剧情：罗森是一战中意大利空军的王牌飞行员，但却被施了魔法变了一头猪。虽然变了猪，但罗森还是继续他的老本行，成了一位赏金猎人，专门打击在亚地里亚海空域作恶的空中劫匪。红猪侠一时威名远扬，令劫匪们闻风丧胆。匪徒们为了对付罗森，请来了超级飞行员卡基斯。卡基斯在于罗森对决中趁他发动机故障将其击落。罗森把飞机送到老朋友比克罗处修理时，遇上了比克罗的孙女菲欧。菲欧帮罗森修好了飞机，两人一起再度翱翔蓝天对付空中劫匪。
+            　　这时，卡基斯出现了，他对菲欧一见钟情。为了争夺菲欧的爱，卡基斯向罗森提出决斗。于是两人再次浴血蓝空。
+          </div>
+        </g-collapse-item>
+      </g-collapse>
+    </div>
   </div>
 </template>
 ```
-``` js{4}
-import Collapse from '../../../src/collapse/collapse'
-import CollapseItem from '../../../src/collapse/collapseItem'
+
+```js{4}
+import GCollapse from '../../../src/collapse/collapse'
+import GCollapseItem from '../../../src/collapse/collapseItem'
+import GIcon from '../../../src/icon'
 export default {
   components: {
-    GCollapse: Collapse,
-    GCollapseItem: CollapseItem
+    GCollapse,
+    GCollapseItem,
+    GIcon
   },
-  data(){
+  data() {
     return {
-      selectedTab1: ['1', '3'],
-      selectedTab2: ['3']
+      selected1: ['1', '3'],
+      selected2: ['1'],
+      selected3: ['3']
     }
   }
 }
 ```
+
 ### API
 
-| 参数           | 说明           | 类型      |默认值        |          可选值|
-| ------------- |:--------------:| --------:|------------:|--------------:|
-| selected         | 默认展示的面板  | Array   | -          | -             |
-| single  | 是否仅展示一个面板    | Boolean   | false        | true     |
+| 参数     |        说明        |    类型 | 默认值 | 可选值 |
+| -------- | :----------------: | ------: | -----: | -----: |
+| selected |   默认展示的面板   |   Array |      - |      - |
+| single   | 是否仅展示一个面板 | Boolean |  false |   true |
