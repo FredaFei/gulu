@@ -81,39 +81,7 @@
         <button @click="onRemove(slotProps.data)">删除</button>
       </template>
     </g-table> -->
-    <g-collapse :selected.sync="selected" single>
-      <g-collapse-item title="葡萄" name="葡萄">
-        <div>葡萄，这是葡萄的说明</div>
-      </g-collapse-item>
-      <g-collapse-item title="苹果" name="苹果">
-        <div>苹果，这是苹果的说明</div>
-      </g-collapse-item>
-      <g-collapse-item title="橙子" name="橙子">
-        <div>橙子，这是橙子的说明</div>
-      </g-collapse-item>
-    </g-collapse>
-    <br><br><br><br>
-    <g-collapse :selected.sync="selected1">
-      <g-collapse-item title="葡萄2" name="葡萄2">
-        <template slot="title">
-          一致性 Consistency <g-icon name="loading"></g-icon>
-        </template>
-        <div>葡萄2，与现实生活一致：与现实生活的流程、逻辑保持一致，遵循用户习惯的语言和概念；
-          在界面中一致：所有的元素和结构需保持一致，比如：设计样式、图标和文本、元素的位置等。</div>
-      </g-collapse-item>
-      <g-collapse-item title="苹果2" name="苹果2">
-        <div>苹果2，与现实生活一致：与现实生活的流程、逻辑保持一致，遵循用户习惯的语言和概念；
-          在界面中一致：所有的元素和结构需保持一致，比如：设计样式、图标和文本、元素的位置等。</div>
-      </g-collapse-item>
-      <g-collapse-item title="橙子2" name="橙子2">
-        <div>橙子2，与现实生活一致：与现实生活的流程、逻辑保持一致，遵循用户习惯的语言和概念；
-          在界面中一致：所有的元素和结构需保持一致，比如：设计样式、图标和文本、元素的位置等。</div>
-      </g-collapse-item>
-      <g-collapse-item title="橙子444" name="橙子222">
-        <!-- <div>橙子2，与现实生活一致：与现实生活的流程、逻辑保持一致，遵循用户习惯的语言和概念；
-          在界面中一致：所有的元素和结构需保持一致，比如：设计样式、图标和文本、元素的位置等。</div> -->
-      </g-collapse-item>
-    </g-collapse>
+    <g-date-picker></g-date-picker>
 
   </div>
 </template>
@@ -124,15 +92,13 @@ import Table from "./table/table";
 import TableColumn from "./table/tableColumn";
 import Scroll from "./scroll/scroll";
 
-import Collapse from "./collapse/collapse";
-import CollapseItem from "./collapse/collapseItem";
+import DatePicker from "./datePicker/datePicker";
 import Icon from "./icon";
 Vue.component("g-table", Table);
 Vue.component("g-table-column", TableColumn);
 Vue.component("g-scroll", Scroll);
-Vue.component("g-collapse", Collapse);
-Vue.component("g-collapse-item", CollapseItem);
 Vue.component("g-icon", Icon);
+Vue.component("g-date-picker", DatePicker);
 
 export default {
   data() {

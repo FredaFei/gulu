@@ -10,7 +10,7 @@ module.exports = {
     nav: [
       { text: 'Home', link: '/' },
       { text: 'Guide', link: '/get-started' },
-      { text: 'External', link: 'https://google.com' },
+      { text: 'External', link: 'https://google.com' }
     ],
     sidebar: [
       '/install/',
@@ -21,22 +21,22 @@ module.exports = {
         children: [
           '/components/button',
           '/components/input',
-          '/components/popover',
           '/components/toast',
+          '/components/collapse',
           '/components/grid',
           '/components/layout',
           '/components/tabs',
           '/components/slides',
           '/components/cascader',
-          '/components/collapse',
           '/components/nav',
           '/components/pager',
-          '/components/uploader',
+          '/components/popover',
+          '/components/uploader'
         ]
-      },
+      }
     ]
   },
   scss: {
-    includePaths: [path.join(__dirname,'../../style')]
+    includePaths: [path.join(__dirname, '../../style')]
   }
 }
