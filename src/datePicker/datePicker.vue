@@ -1,11 +1,26 @@
 <template>
   <div class="g-date-picker-wrapper">
-    <div class="g-date-picker-input">
-      <g-input></g-input>
-    </div>
-    <div class="g-date-picker-pop">
-      <g-popover></g-popover>
-    </div>
+    <g-popover position="bottom">
+    <g-input></g-input>
+      <template slot="popover">
+        <div class="g-date-picker-pop">
+          <div class="g-date-picker-pop-nav">
+            <g-icon name="double-left"></g-icon>
+            <g-icon name="left"></g-icon>
+            <span @click="onClickYear">2018年</span>
+            <span @click="onClickMonth">10月</span>
+            <g-icon name="double-right"></g-icon>
+            <g-icon name="right"></g-icon>
+          </div>
+          <div class="g-date-picker-pop-panes">
+            <div class="g-date-picker-pop-content" v-if="mode==='years'">年</div>
+            <div class="g-date-picker-pop-content" v-else-if="mode==='months'">月</div>
+            <div class="g-date-picker-pop-content" v-else>日</div>
+          </div>
+          <div class="g-date-picker-pop-actions"></div>
+        </div>
+      </template>
+    </g-popover>
   </div>
 </template>
 
@@ -20,7 +35,17 @@ export default {
     GIcon,
     GInput
   },
-  props: {}
+  props: {},
+  data() {
+    return {
+      mode: "years"
+    };
+  },
+  methods: {
+    onClickYear() {},
+    onClickMonth() {}
+    // onClickMonth(){},
+  }
 };
 </script>
 
