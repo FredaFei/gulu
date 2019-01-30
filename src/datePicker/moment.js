@@ -7,6 +7,13 @@ export default {
     let [year, month, day] = getYearMonthDate(date)
     return new Date(year, month + 1, 0)
   },
+  range(begin, end) {
+    let arr = []
+    for (let i = begin; i < end; i++) {
+      arr.push(i)
+    }
+    return arr
+  },
   getYearMonthDate
 }
 function getYearMonthDate(date) {
