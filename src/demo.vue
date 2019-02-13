@@ -81,7 +81,7 @@
         <button @click="onRemove(slotProps.data)">删除</button>
       </template>
     </g-table> -->
-    <g-date-picker></g-date-picker>
+    <g-date-picker :value.sync="date"></g-date-picker>
 
   </div>
 </template>
@@ -103,6 +103,7 @@ Vue.component("g-date-picker", DatePicker);
 export default {
   data() {
     return {
+      date: "",
       selected: [],
       selected1: [],
       selectedItems: [],

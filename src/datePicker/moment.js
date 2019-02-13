@@ -14,6 +14,14 @@ export default {
     }
     return arr
   },
+  addMonth(date, count) {
+    let [year, month, day] = getYearMonthDate(date)
+    return new Date(year, month + count, day)
+  },
+  addYear(date, count) {
+    let [year, month, day] = getYearMonthDate(date)
+    return new Date(year + count, month, day)
+  },
   getYearMonthDate
 }
 function getYearMonthDate(date) {

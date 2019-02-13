@@ -1,15 +1,15 @@
 <template>
   <div class="g-date-picker-wrapper" ref="datePicker">
     <g-popover position="bottom" :container="popoverContainer" @open="onOpen">
-      <g-input></g-input>
+      <g-input :value="formattedValue" type="text" @change="onChange" @input="onInput"></g-input>
       <template slot="popover">
         <div class="g-date-picker-pop" @selectstart.prevent>
           <div class="g-date-picker-pop-nav">
             <g-icon name="double-left" @click="onClickPrevYear" :class="classes('prev-year')"></g-icon>
             <g-icon name="left" @click="onClickPrevMonth" :class="classes('prev-month')"></g-icon>
             <div @click="onClickMonth">
-              <span :class="classes('current-year')">2018年</span>
-              <span :class="classes('current-month')">10月</span>
+              <span :class="classes('current-year')">{{display.year}}年</span>
+              <span :class="classes('current-month')">{{display.month+1}}月</span>
             </div>
             <g-icon name="double-right" @click="onClickNextYear" :class="classes('next-year')"></g-icon>
             <g-icon name="right" @click="onClickNextMonth" :class="classes('next-month')"></g-icon>
@@ -21,7 +21,8 @@
                   <span :class="classes('week')" v-for="n in weeksMap" :key="n">{{n}}</span>
                 </div>
                 <div :class="classes('row')" v-for="i in moment.range(1,7)" :key="i">
-                  <span :class="[classes('col'),{'currentMonth': isCurrentMonth(getVisibleDate(i,j))}]" :key="j" v-for="j in moment.range(1,8)">{{visibleDate[(i-1)*7+j-1].getDate()}}</span>
+                  <div :class="[classes('col'),{'currentMonth': isCurrentMonth(getVisibleDate(i,j)),
+                  'selectedDay': isSelectedDay(getVisibleDate(i,j)),'today': isToday(getVisibleDate(i,j))}]" :key="j" v-for="j in moment.range(1,8)" @click="onSelectedDay(visibleDate[(i-1)*7+j-1])"><span>{{visibleDate[(i-1)*7+j-1].getDate()}}</span></div>
                 </div>
               </template>
               <template v-else>
@@ -58,12 +59,12 @@ export default {
     }
   },
   data() {
-    let [year, month] = moment.getYearMonthDate(this.value || new Date());
+    let [year, month, day] = moment.getYearMonthDate(this.value || new Date());
     return {
       mode: "month",
       weeksMap: ["日", "一", "二", "三", "四", "五", "六"],
       moment,
-      display: { year, month },
+      display: { year, month, day },
       popoverContainer: null
     };
   },
@@ -72,7 +73,7 @@ export default {
   },
   computed: {
     visibleDate() {
-      let date = new Date();
+      let date = this.value || new Date();
       let firstDay = moment.firstDayOfMonth(date);
       let lastDay = moment.lastDayOfMonth(date);
       let [year, month, day] = moment.getYearMonthDate(date);
@@ -93,6 +94,13 @@ export default {
         arr3.push(new Date(year, month + 1, i));
       }
       return [...arr2, ...arr1, ...arr3];
+    },
+    formattedValue() {
+      if (!this.value) {
+        return "";
+      }
+      let [year, month, day] = moment.getYearMonthDate(this.value);
+      return `${year}-${month + 1}-${day}`;
     }
   },
   methods: {
@@ -101,8 +109,29 @@ export default {
     },
     isCurrentMonth(date) {
       let [year1, month1] = moment.getYearMonthDate(date);
-      console.log(year1, month1);
       return year1 === this.display.year && month1 === this.display.month;
+    },
+    isSelectedDay(date) {
+      let [year1, month1, day1] = moment.getYearMonthDate(date);
+      return (
+        year1 === this.display.year &&
+        month1 === this.display.month &&
+        day1 === this.display.day
+      );
+    },
+    isToday(date) {
+      let [year, month, day] = moment.getYearMonthDate(date);
+      let [year1, month1, day1] = moment.getYearMonthDate(new Date());
+      return year1 === year && month1 === month && day1 === day;
+    },
+    onChange() {},
+    onInput() {},
+    onSelectedDay(date) {
+      let [year, month, day] = moment.getYearMonthDate(date);
+      this.display.year = year;
+      this.display.month = month;
+      this.display.day = day;
+      this.$emit("update:value", date);
     },
     onClickMonth() {
       if (this.mode === "month") {
@@ -111,10 +140,38 @@ export default {
         this.mode = "month";
       }
     },
-    onClickPrevYear() {},
-    onClickPrevMonth() {},
-    onClickNextYear() {},
-    onClickNextMonth() {},
+    onClickPrevYear() {
+      let oldDate = new Date(this.display.year, this.display.month);
+      let newDate = moment.addYear(oldDate, -1);
+      let [year, month] = moment.getYearMonthDate(newDate);
+      this.display.year = year;
+      this.display.month = month;
+      this.$emit("update:value", newDate);
+    },
+    onClickPrevMonth() {
+      let oldDate = new Date(this.display.year, this.display.month);
+      let newDate = moment.addMonth(oldDate, -1);
+      let [year, month] = moment.getYearMonthDate(newDate);
+      this.display.year = year;
+      this.display.month = month;
+      this.$emit("update:value", newDate);
+    },
+    onClickNextYear() {
+      let oldDate = new Date(this.display.year, this.display.month);
+      let newDate = moment.addYear(oldDate, 1);
+      let [year, month] = moment.getYearMonthDate(newDate);
+      this.display.year = year;
+      this.display.month = month;
+      this.$emit("update:value", newDate);
+    },
+    onClickNextMonth() {
+      let oldDate = new Date(this.display.year, this.display.month);
+      let newDate = moment.addMonth(oldDate, 1);
+      let [year, month] = moment.getYearMonthDate(newDate);
+      this.display.year = year;
+      this.display.month = month;
+      this.$emit("update:value", newDate);
+    },
     onOpen() {
       this.mode = "month";
     },
@@ -180,15 +237,36 @@ export default {
   &-week,
   &-col {
     width: 36px;
-    line-height: 30px;
+    height: 30px;
+    padding: 3px 0;
     text-align: center;
     font-size: 14px;
     cursor: pointer;
   }
   &-col {
     color: #999;
+    position: relative;
     &.currentMonth {
       color: #333;
+    }
+    &.today {
+      color: $blue;
+    }
+    span {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 28px;
+      line-height: 28px;
+      text-align: center;
+    }
+    &.selectedDay {
+      span {
+        border-radius: 50%;
+        background: $blue;
+        color: #fff;
+      }
     }
   }
   &-select-month {
