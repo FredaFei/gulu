@@ -1,6 +1,6 @@
 <template>
   <div class="g-date-picker-wrapper" ref="datePicker">
-    <g-popover position="bottom" :container="popoverContainer" @open="onOpen">
+    <g-popover position="bottom" ref="popover" :container="popoverContainer" @open="onOpen">
       <g-input :value="formattedValue" type="text" @change="onChange" @input="onInput"></g-input>
       <template slot="popover">
         <div class="g-date-picker-pop" @selectstart.prevent>
@@ -100,7 +100,7 @@ export default {
         return "";
       }
       let [year, month, day] = moment.getYearMonthDate(this.value);
-      return `${year}-${month + 1}-${day}`;
+      return `${year}-${moment.pad2(month + 1)}-${moment.pad2(day)}`;
     }
   },
   methods: {
@@ -124,14 +124,28 @@ export default {
       let [year1, month1, day1] = moment.getYearMonthDate(new Date());
       return year1 === year && month1 === month && day1 === day;
     },
-    onChange() {},
-    onInput() {},
+    onChange(e) {},
+    onInput(value) {
+      console.log(value);
+      let regExp = /^\d{4}-\d{2}-\d{2}$/g;
+      if (value.match(regExp)) {
+        let [year, month, day] = value.split("-");
+        year = year - 0;
+        month = month - 1;
+        day = day - 0;
+        this.$emit("update:value", new Date(year, month, day));
+        this.display.year = year;
+        this.display.month = month;
+        this.display.day = day;
+      }
+    },
     onSelectedDay(date) {
       let [year, month, day] = moment.getYearMonthDate(date);
       this.display.year = year;
       this.display.month = month;
       this.display.day = day;
       this.$emit("update:value", date);
+      this.$refs.popover.close();
     },
     onClickMonth() {
       if (this.mode === "month") {

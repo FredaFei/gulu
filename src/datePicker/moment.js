@@ -22,6 +22,12 @@ export default {
     let [year, month, day] = getYearMonthDate(date)
     return new Date(year + count, month, day)
   },
+  pad2(number) {
+    if (typeof number !== 'number') {
+      throw new Error('wrong param')
+    }
+    return (number >= 10 ? '' : '0') + number
+  },
   getYearMonthDate
 }
 function getYearMonthDate(date) {
