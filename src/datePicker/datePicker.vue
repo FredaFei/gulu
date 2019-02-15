@@ -20,9 +20,11 @@
                 <div :class="classes('weeks')">
                   <span :class="classes('week')" v-for="n in weeksMap" :key="n">{{n}}</span>
                 </div>
-                <div :class="classes('row')" v-for="i in moment.range(1,7)" :key="i">
-                  <div :class="[classes('col'),{'currentMonth': isCurrentMonth(getVisibleDate(i,j)),
+                <div :class="classes('tables')">
+                  <div :class="classes('row')" v-for="i in moment.range(1,7)" :key="i">
+                    <div :class="[classes('col'),{'currentMonth': isCurrentMonth(getVisibleDate(i,j)),
                   'selectedDay': isSelectedDay(getVisibleDate(i,j)),'today': isToday(getVisibleDate(i,j))}]" :key="j" v-for="j in moment.range(1,8)" @click="onClickCell(visibleDate[(i-1)*7+j-1])"><span>{{visibleDate[(i-1)*7+j-1].getDate()}}</span></div>
+                  </div>
                 </div>
               </template>
               <template v-else>
@@ -33,7 +35,8 @@
             </div>
           </div>
           <div class="g-date-picker-pop-actions">
-            <button>确定</button>
+            <g-button @click="onClickToday">今天</g-button>
+            <g-button @click="onClickClear">清除</g-button>
           </div>
         </div>
       </template>
@@ -44,6 +47,7 @@
 <script>
 import GPopover from "../popover/popover";
 import GIcon from "../icon";
+import GButton from "../button/button";
 import GInput from "../input/input";
 import moment from "./moment";
 export default {
@@ -51,6 +55,7 @@ export default {
   components: {
     GPopover,
     GIcon,
+    GButton,
     GInput
   },
   props: {
@@ -177,6 +182,14 @@ export default {
       let [year, month] = moment.getYearMonthDate(newDate);
       this.display = { year, month };
     },
+    onClickToday() {
+      this.$emit("update:value", new Date());
+      this.$refs.popover.close();
+    },
+    onClickClear() {
+      this.$emit("update:value", undefined);
+      this.$refs.popover.close();
+    },
     onOpen() {
       this.mode = "month";
     },
@@ -276,7 +289,14 @@ export default {
   }
   &-select-month {
     width: 250px;
-    height: 211px;
+    height: 223px;
+  }
+  &-tables {
+    padding: 6px 0;
+  }
+  &-actions {
+    padding-top: 10px;
+    border-top: 1px solid $gray;
   }
 }
 </style>
