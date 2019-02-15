@@ -1,7 +1,7 @@
 <template>
   <div class="g-date-picker-wrapper" ref="datePicker">
     <g-popover position="bottom" ref="popover" :container="popoverContainer" @open="onOpen">
-      <g-input :value="formattedValue" type="text" @change="onChange" @input="onInput" ref="input"></g-input>
+      <g-input :value="formattedValue" type="text" @keyupEnter="onEnter" @blur="onBlur" @change="onChange" @input="onInput" ref="input"></g-input>
       <template slot="popover">
         <div class="g-date-picker-pop" @selectstart.prevent>
           <div class="g-date-picker-pop-nav">
@@ -101,6 +101,7 @@ export default {
       return [...arr2, ...arr1, ...arr3];
     },
     formattedValue() {
+      console.log(this.value);
       if (!this.value) {
         return "";
       }
@@ -129,8 +130,22 @@ export default {
       let [year1, month1, day1] = moment.getYearMonthDate(new Date());
       return year1 === year && month1 === month && day1 === day;
     },
+    onEnter() {
+      this.$refs.popover.close();
+      this.onBlur();
+    },
+    onBlur() {
+      let inputs = [...document.getElementsByTagName("input")];
+      inputs.forEach(n => n.blur());
+    },
     onChange(value) {
-      this.$emit("update:value", value);
+      if (!value) {
+        this.$emit("update:value", undefined);
+        return;
+      }
+      let regExp = /^\d{4}-\d{2}-\d{2}$/g;
+      let newValue = value.match(regExp) ? value : this.formattedValue;
+      this.$refs.input.setRawValue(newValue);
     },
     onInput(value) {
       let regExp = /^\d{4}-\d{2}-\d{2}$/g;
