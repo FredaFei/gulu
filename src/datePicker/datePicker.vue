@@ -1,7 +1,7 @@
 <template>
   <div class="g-date-picker-wrapper" ref="datePicker">
     <g-popover position="bottom" ref="popover" :container="popoverContainer" @open="onOpen">
-      <g-input :value="formattedValue" type="text" @change="onChange" @input="onInput"></g-input>
+      <g-input :value="formattedValue" type="text" @change="onChange" @input="onInput" ref="input"></g-input>
       <template slot="popover">
         <div class="g-date-picker-pop" @selectstart.prevent>
           <div class="g-date-picker-pop-nav">
@@ -22,7 +22,7 @@
                 </div>
                 <div :class="classes('row')" v-for="i in moment.range(1,7)" :key="i">
                   <div :class="[classes('col'),{'currentMonth': isCurrentMonth(getVisibleDate(i,j)),
-                  'selectedDay': isSelectedDay(getVisibleDate(i,j)),'today': isToday(getVisibleDate(i,j))}]" :key="j" v-for="j in moment.range(1,8)" @click="onSelectedDay(visibleDate[(i-1)*7+j-1])"><span>{{visibleDate[(i-1)*7+j-1].getDate()}}</span></div>
+                  'selectedDay': isSelectedDay(getVisibleDate(i,j)),'today': isToday(getVisibleDate(i,j))}]" :key="j" v-for="j in moment.range(1,8)" @click="onClickCell(visibleDate[(i-1)*7+j-1])"><span>{{visibleDate[(i-1)*7+j-1].getDate()}}</span></div>
                 </div>
               </template>
               <template v-else>
@@ -55,16 +55,16 @@ export default {
   },
   props: {
     value: {
-      type: Date
+      type: [Date, String]
     }
   },
   data() {
-    let [year, month, day] = moment.getYearMonthDate(this.value || new Date());
+    let [year, month] = moment.getYearMonthDate(this.value || new Date());
     return {
       mode: "month",
       weeksMap: ["日", "一", "二", "三", "四", "五", "六"],
       moment,
-      display: { year, month, day },
+      display: { year, month },
       popoverContainer: null
     };
   },
@@ -73,7 +73,7 @@ export default {
   },
   computed: {
     visibleDate() {
-      let date = this.value || new Date();
+      let date = new Date(this.display.year, this.display.month, 1);
       let firstDay = moment.firstDayOfMonth(date);
       let lastDay = moment.lastDayOfMonth(date);
       let [year, month, day] = moment.getYearMonthDate(date);
@@ -112,38 +112,37 @@ export default {
       return year1 === this.display.year && month1 === this.display.month;
     },
     isSelectedDay(date) {
+      if (!this.value) {
+        return false;
+      }
       let [year1, month1, day1] = moment.getYearMonthDate(date);
-      return (
-        year1 === this.display.year &&
-        month1 === this.display.month &&
-        day1 === this.display.day
-      );
+      let [year, month, day] = moment.getYearMonthDate(this.value);
+      return year1 === year && month1 === month && day1 === day;
     },
     isToday(date) {
       let [year, month, day] = moment.getYearMonthDate(date);
       let [year1, month1, day1] = moment.getYearMonthDate(new Date());
       return year1 === year && month1 === month && day1 === day;
     },
-    onChange(e) {},
+    onChange(value) {
+      this.$emit("update:value", value);
+    },
     onInput(value) {
-      console.log(value);
       let regExp = /^\d{4}-\d{2}-\d{2}$/g;
       if (value.match(regExp)) {
         let [year, month, day] = value.split("-");
         year = year - 0;
         month = month - 1;
-        day = day - 0;
-        this.$emit("update:value", new Date(year, month, day));
-        this.display.year = year;
-        this.display.month = month;
-        this.display.day = day;
+        let newDate = new Date(year, month, day);
+        if (this.isCurrentMonth(newDate)) {
+          this.display = { year, month };
+          this.$emit("update:value", newDate);
+        }
       }
     },
-    onSelectedDay(date) {
-      let [year, month, day] = moment.getYearMonthDate(date);
-      this.display.year = year;
-      this.display.month = month;
-      this.display.day = day;
+    onClickCell(date) {
+      let [year, month] = moment.getYearMonthDate(date);
+      this.display = { year, month };
       this.$emit("update:value", date);
       this.$refs.popover.close();
     },
@@ -158,33 +157,25 @@ export default {
       let oldDate = new Date(this.display.year, this.display.month);
       let newDate = moment.addYear(oldDate, -1);
       let [year, month] = moment.getYearMonthDate(newDate);
-      this.display.year = year;
-      this.display.month = month;
-      this.$emit("update:value", newDate);
+      this.display = { year, month };
     },
     onClickPrevMonth() {
       let oldDate = new Date(this.display.year, this.display.month);
       let newDate = moment.addMonth(oldDate, -1);
       let [year, month] = moment.getYearMonthDate(newDate);
-      this.display.year = year;
-      this.display.month = month;
-      this.$emit("update:value", newDate);
+      this.display = { year, month };
     },
     onClickNextYear() {
       let oldDate = new Date(this.display.year, this.display.month);
       let newDate = moment.addYear(oldDate, 1);
       let [year, month] = moment.getYearMonthDate(newDate);
-      this.display.year = year;
-      this.display.month = month;
-      this.$emit("update:value", newDate);
+      this.display = { year, month };
     },
     onClickNextMonth() {
       let oldDate = new Date(this.display.year, this.display.month);
       let newDate = moment.addMonth(oldDate, 1);
       let [year, month] = moment.getYearMonthDate(newDate);
-      this.display.year = year;
-      this.display.month = month;
-      this.$emit("update:value", newDate);
+      this.display = { year, month };
     },
     onOpen() {
       this.mode = "month";
