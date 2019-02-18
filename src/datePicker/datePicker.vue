@@ -1,7 +1,7 @@
 <template>
   <div class="g-date-picker-wrapper" ref="datePicker">
     <g-popover position="bottom" ref="popover" :container="popoverContainer" @open="onOpen">
-      <g-input :value="formattedValue" type="text" @keyupEnter="onEnter" @blur="onBlur" @change="onChange" @input="onInput" ref="input"></g-input>
+      <g-input :value="formattedValue" :placeholder="placeholder" :disabled="disabled" readonly type="text" @keyupEnter="onEnter" @blur="onBlur" @change="onChange" @input="onInput" ref="input"></g-input>
       <template slot="popover">
         <div class="g-date-picker-pop" @selectstart.prevent>
           <div class="g-date-picker-pop-nav">
@@ -61,6 +61,13 @@ export default {
   props: {
     value: {
       type: [Date, String]
+    },
+    placeholder: {
+      type: String
+    },
+    disabled: {
+      type: Boolean,
+      default: false
     }
   },
   data() {
