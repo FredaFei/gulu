@@ -1,5 +1,5 @@
 ---
-title: 'Popover'
+title: 'Popover 气泡卡片'
 sidebarDepth: 2
 ---
 
@@ -7,7 +7,7 @@ sidebarDepth: 2
   <popover-demo-1/>
 </ClientOnly>
 
-``` vue{4}
+```vue{4}
 <template>
   <div>
     <g-popover position="left">
@@ -37,11 +37,12 @@ sidebarDepth: 2
   </div>
 </template>
 ```
-``` js{4}
+
+```js{4}
 import Popover from '../../../src/popover/popover'
 export default {
   components: {
-    'GPopover': Popover
+    GPopover: Popover
   },
   methods: {
     selectedFn() {
@@ -50,8 +51,9 @@ export default {
   }
 }
 ```
-``` css
-.box{
+
+```css
+.box {
   display: inline-block;
   padding: 10px 16px;
   font-size: 16px;
@@ -60,23 +62,24 @@ export default {
   border: 1px solid #ddd;
   border-radius: 4px;
 }
-.pop-body{
+.pop-body {
   width: 200px;
-  .title{
+  .title {
     padding: 8px 0;
     font-size: 18px;
     color: #333333;
     font-weight: 700;
     border-bottom: 1px solid #ddd;
   }
-  p{
+  p {
     line-height: normal;
   }
 }
 ```
+
 ### API
 
-| 参数           | 说明           | 类型      |默认值        |          可选值|
-| ------------- |:--------------:| --------:|------------:|--------------:|
-| position      | 卡片内容的位置  | String   | top          | right/bottom/left |
-| trigger       | 卡片内容触发方式    | String   | click       | hover      |
+| 参数     |       说明       |   类型 | 默认值 |            可选值 |
+| -------- | :--------------: | -----: | -----: | ----------------: |
+| position |  卡片内容的位置  | String |    top | right/bottom/left |
+| trigger  | 卡片内容触发方式 | String |  click |             hover |

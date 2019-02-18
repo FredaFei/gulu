@@ -1,5 +1,5 @@
 ---
-title: 'Layout'
+title: 'Layout 布局'
 sidebarDepth: 2
 ---
 
@@ -7,7 +7,7 @@ sidebarDepth: 2
   <layout-demo-1/>
 </ClientOnly>
 
-``` vue{4}
+```vue{4}
 <template>
   <div class="box">
     <div style="padding-top: 16px;">
@@ -195,7 +195,8 @@ sidebarDepth: 2
   </div>
 </template>
 ```
-``` js{4}
+
+```js{4}
 import Col from '../../../src/grid/gCol'
 import Row from '../../../src/grid/gRow'
 export default {
@@ -206,29 +207,30 @@ export default {
 }
 ```
 
-``` css{4}
+```css{4}
 .box {
   padding: 20px;
   z-index: 100;
   position: relative;
 }
 ```
+
 ### API
 
 #### Row
 
-| 参数           | 说明           | 类型      |默认值        |          可选值|
-| ------------- |:--------------:| --------:|------------:|--------------:|
-| gutter         | 栅格间隔  | String/Number   | -         | -             |
-| align  | flex 布局下的水平对齐方式    | String   | left       |  center/right     |
+| 参数   |           说明            |          类型 | 默认值 |       可选值 |
+| ------ | :-----------------------: | ------------: | -----: | -----------: |
+| gutter |         栅格间隔          | String/Number |      - |            - |
+| align  | flex 布局下的水平对齐方式 |        String |   left | center/right |
 
 #### Col
 
-| 参数           | 说明           | 类型      |默认值        |          可选值|
-| ------------- |:--------------:| --------:|------------:|--------------:|
-| span       | 栅格占位格数，为 0 时相当于 display: none   | String/Number  | -      | -         |
-| offset       | 栅格左侧的间隔格数，间隔内不可以有栅格   | String/Number  | -      | -         |
-| phone       | <576px，响应式栅格   | Object  | -      | -         |
-| ipad       | ≥576px，响应式栅格   | Object  | -      | -         |
-| narrowPc       | ≥769px，响应式栅格   | Object  | -      | -         |
-| pc       | ≥993px，响应式栅格   | Object  | -      | -         |
+| 参数     |                   说明                    |          类型 | 默认值 | 可选值 |
+| -------- | :---------------------------------------: | ------------: | -----: | -----: |
+| span     | 栅格占位格数，为 0 时相当于 display: none | String/Number |      - |      - |
+| offset   |  栅格左侧的间隔格数，间隔内不可以有栅格   | String/Number |      - |      - |
+| phone    |            <576px，响应式栅格             |        Object |      - |      - |
+| ipad     |            ≥576px，响应式栅格             |        Object |      - |      - |
+| narrowPc |            ≥769px，响应式栅格             |        Object |      - |      - |
+| pc       |            ≥993px，响应式栅格             |        Object |      - |      - |

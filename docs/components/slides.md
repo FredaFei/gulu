@@ -1,5 +1,5 @@
 ---
-title: 'Slides'
+title: 'Slides 轮播'
 sidebarDepth: 2
 ---
 
@@ -7,7 +7,7 @@ sidebarDepth: 2
   <slides-demo-1/>
 </ClientOnly>
 
-``` vue{4}
+```vue{4}
 <template>
   <div class="box">
     <g-slides :selected.sync="selected">
@@ -24,7 +24,8 @@ sidebarDepth: 2
   </div>
 </template>
 ```
-``` js{4}
+
+```js{4}
 import Slides from '../../../src/slides/slides'
 import SlidesItem from '../../../src/slides/slidesItem'
 export default {
@@ -32,7 +33,7 @@ export default {
     GSlides: Slides,
     GSlidesItem: SlidesItem
   },
-  data(){
+  data() {
     return {
       selected: ''
     }
@@ -40,8 +41,8 @@ export default {
 }
 ```
 
-``` css{4}
-.box{
+```css{4}
+.box {
   padding: 20px;
 }
 .slides-item {
@@ -50,11 +51,11 @@ export default {
   background: #dddddd;
 }
 ```
+
 ### API
 
-| 参数           | 说明           | 类型      |默认值        |          可选值|
-| ------------- |:--------------:| --------:|------------:|--------------:|
-| selected         | 默认切换值  | String   | -          | -             |
-| autoPlay  | 是否自动切换    | Boolean   | true       | false     |
-| autoPlayDelay       | 自动切换频率   | Number  | 2000      | -         |
-
+| 参数          |     说明     |    类型 | 默认值 | 可选值 |
+| ------------- | :----------: | ------: | -----: | -----: |
+| selected      |  默认切换值  |  String |      - |      - |
+| autoPlay      | 是否自动切换 | Boolean |   true |  false |
+| autoPlayDelay | 自动切换频率 |  Number |   2000 |      - |

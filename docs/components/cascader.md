@@ -1,5 +1,5 @@
 ---
-title: 'Cascader'
+title: 'Cascader 级联选择'
 sidebarDepth: 2
 ---
 
@@ -7,14 +7,20 @@ sidebarDepth: 2
   <cascader-demo-1/>
 </ClientOnly>
 
-``` vue{4}
+```vue{4}
 <template>
   <div class="box">
-    <g-cascader :source.sync="source" :load-data="loadData" :selected.sync="selected" popover-height="200px"></g-cascader>
+    <g-cascader
+      :source.sync="source"
+      :load-data="loadData"
+      :selected.sync="selected"
+      popover-height="200px"
+    ></g-cascader>
   </div>
 </template>
 ```
-``` js{4}
+
+```js{4}
 import Cascader from '../../../src/cascader/cascader'
 import CascaderItem from '../../../src/cascader/cascaderItem'
 import db from '../../../tests/fixtures/db'
@@ -59,22 +65,23 @@ export default {
 }
 ```
 
-``` css{4}
+```css{4}
 .box {
   padding: 20px;
   z-index: 100;
   position: relative;
 }
 ```
+
 ### API
 
-| 参数           | 说明           | 类型      |默认值        |          可选值|
-| ------------- |:--------------:| --------:|------------:|--------------:|
-| selected         | 指定选中项  | Array   | []         | -             |
-| source  | 数据源    | Array   | []       | -     |
-| popoverHeight       | 浮层预设高度   | String  | -      | -         |
-| loadData       | 用于动态加载选项   | Function  | -      | -         |
+| 参数          |       说明       |     类型 | 默认值 | 可选值 |
+| ------------- | :--------------: | -------: | -----: | -----: |
+| selected      |    指定选中项    |    Array |     [] |      - |
+| source        |      数据源      |    Array |     [] |      - |
+| popoverHeight |   浮层预设高度   |   String |      - |      - |
+| loadData      | 用于动态加载选项 | Function |      - |      - |
 
 ::: tip
-loadData是动态加载数据时需要设置的，若数据时静态的只需要设置source即可
+loadData 是动态加载数据时需要设置的，若数据时静态的只需要设置 source 即可
 :::

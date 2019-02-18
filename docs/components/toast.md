@@ -1,5 +1,5 @@
 ---
-title: 'Toast'
+title: 'Toast 全局提示'
 sidebarDepth: 2
 ---
 

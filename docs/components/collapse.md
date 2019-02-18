@@ -1,5 +1,5 @@
 ---
-title: 'Collapse'
+title: 'Collapse 折叠面板'
 sidebarDepth: 2
 ---
 

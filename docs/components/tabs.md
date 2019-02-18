@@ -1,5 +1,5 @@
 ---
-title: 'Tabs'
+title: 'Tabs 标签页'
 sidebarDepth: 2
 ---
 
@@ -7,7 +7,7 @@ sidebarDepth: 2
   <tabs-demo-1/>
 </ClientOnly>
 
-``` vue{4}
+```vue{4}
 <template>
   <div>
     <g-tabs :selected.sync="selectedTabs" @update:selected="selectedFn">
@@ -27,7 +27,8 @@ sidebarDepth: 2
     </g-tabs>
 </template>
 ```
-``` js{4}
+
+```js{4}
 import Icon from '../../../src/icon'
 import Tabs from '../../../src/tabs/tabs'
 import TabsHeader from '../../../src/tabs/tabsHeader'
@@ -36,16 +37,16 @@ import TabsBody from '../../../src/tabs/tabsBody'
 import TabsPane from '../../../src/tabs/tabsPane'
 export default {
   components: {
-    'GIcon': Icon,
-    'GTabs': Tabs,
-    'GTabsHeader': TabsHeader,
-    'GTabsItem': TabsItem,
-    'GTabsBody': TabsBody,
-    'GTabsPane': TabsPane
+    GIcon: Icon,
+    GTabs: Tabs,
+    GTabsHeader: TabsHeader,
+    GTabsItem: TabsItem,
+    GTabsBody: TabsBody,
+    GTabsPane: TabsPane
   },
-  data(){
+  data() {
     return {
-      selectedTabs: 'sport',
+      selectedTabs: 'sport'
     }
   },
   methods: {
@@ -55,21 +56,23 @@ export default {
   }
 }
 ```
-``` css
-.row{
+
+```css
+.row {
   margin-bottom: 14px;
 }
 ```
+
 ### API
 
-| 参数           | 说明           | 类型      |默认值        |          可选值|
-| ------------- |:--------------:| --------:|------------:|--------------:|
-| selected       | 选中的  | String/Number   | -          | -             |
-| readonly       | 是否只读状态    | Boolean   | false       | true      |
-| disabled       | 是否禁用状态   | Boolean  | false      | true          |
-| iconType       | 设置验证时提示信息的图标类型   |String      | -       | - |
-| message        | 输入框验证时的提示信息   | String | -          | - |
-| input        | 输入框输入时的回调   | String | -          | - |
-| change        | 输入框内容变化时的回调   | Function | -          | - |
-| focus        | 输入框聚焦时的回调   | Function | -          | - |
-| blur        | 输入框失去焦点时的回调   | Function | -          | - |
+| 参数     |             说明             |          类型 | 默认值 | 可选值 |
+| -------- | :--------------------------: | ------------: | -----: | -----: |
+| selected |            选中的            | String/Number |      - |      - |
+| readonly |         是否只读状态         |       Boolean |  false |   true |
+| disabled |         是否禁用状态         |       Boolean |  false |   true |
+| iconType | 设置验证时提示信息的图标类型 |        String |      - |      - |
+| message  |    输入框验证时的提示信息    |        String |      - |      - |
+| input    |      输入框输入时的回调      |        String |      - |      - |
+| change   |    输入框内容变化时的回调    |      Function |      - |      - |
+| focus    |      输入框聚焦时的回调      |      Function |      - |      - |
+| blur     |    输入框失去焦点时的回调    |      Function |      - |      - |
