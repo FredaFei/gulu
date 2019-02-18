@@ -131,6 +131,9 @@ export default {
       return year1 === year && month1 === month && day1 === day;
     },
     onEnter() {
+      if (!this.formattedValue) {
+        return false;
+      }
       this.$refs.popover.close();
       this.onBlur();
     },
@@ -143,9 +146,19 @@ export default {
         this.$emit("update:value", undefined);
         return;
       }
-      let regExp = /^\d{4}-\d{2}-\d{2}$/g;
-      let newValue = value.match(regExp) ? value : this.formattedValue;
-      this.$refs.input.setRawValue(newValue);
+      this.$refs.input.setRawValue(this.formattedValue);
+    },
+    updateInputValue(year, month, day) {
+      let currentMonthFirstDay = new Date(year, month, 1);
+      let newDate = new Date(year, month, day);
+      let lastDay = moment.lastDayOfMonth(currentMonthFirstDay).getDate();
+      // 当输入的日大于当前月的最后一天时，有两种交互方案：1.展示上次的日期
+      // 2.display.year +=1。当前选择的是1方案
+      if (day > lastDay) {
+        let [year1, month1, day1] = this.formattedValue.split("-");
+        newDate = new Date(year1, month1 - 1, day1);
+      }
+      return newDate;
     },
     onInput(value) {
       let regExp = /^\d{4}-\d{2}-\d{2}$/g;
@@ -153,11 +166,10 @@ export default {
         let [year, month, day] = value.split("-");
         year = year - 0;
         month = month - 1;
-        let newDate = new Date(year, month, day);
-        if (this.isCurrentMonth(newDate)) {
-          this.display = { year, month };
-          this.$emit("update:value", newDate);
-        }
+        day = day - 0;
+        this.display = { year, month };
+        let newDate = this.updateInputValue(year, month, day);
+        this.$emit("update:value", newDate);
       }
     },
     onClickCell(date) {
@@ -173,29 +185,23 @@ export default {
         this.mode = "month";
       }
     },
-    onClickPrevYear() {
+    controlPlate(type, count) {
       let oldDate = new Date(this.display.year, this.display.month);
-      let newDate = moment.addYear(oldDate, -1);
+      let newDate = moment[type](oldDate, count);
       let [year, month] = moment.getYearMonthDate(newDate);
       this.display = { year, month };
+    },
+    onClickPrevYear() {
+      this.controlPlate("addYear", -1);
     },
     onClickPrevMonth() {
-      let oldDate = new Date(this.display.year, this.display.month);
-      let newDate = moment.addMonth(oldDate, -1);
-      let [year, month] = moment.getYearMonthDate(newDate);
-      this.display = { year, month };
+      this.controlPlate("addMonth", -1);
     },
     onClickNextYear() {
-      let oldDate = new Date(this.display.year, this.display.month);
-      let newDate = moment.addYear(oldDate, 1);
-      let [year, month] = moment.getYearMonthDate(newDate);
-      this.display = { year, month };
+      this.controlPlate("addYear", 1);
     },
     onClickNextMonth() {
-      let oldDate = new Date(this.display.year, this.display.month);
-      let newDate = moment.addMonth(oldDate, 1);
-      let [year, month] = moment.getYearMonthDate(newDate);
-      this.display = { year, month };
+      this.controlPlate("addMonth", 1);
     },
     onClickToday() {
       this.$emit("update:value", new Date());
