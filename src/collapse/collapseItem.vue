@@ -36,8 +36,7 @@ export default {
   },
   data() {
     return {
-      open: false,
-      dataset: {}
+      open: false
     };
   },
   created() {

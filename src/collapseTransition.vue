@@ -14,10 +14,8 @@ export default {
   },
   methods: {
     beforeEnter(el) {
-      console.log(el);
       this.dataset.oldPaddingTop = el.style.paddingTop;
       this.dataset.oldPaddingBottom = el.style.paddingBottom;
-
       el.style.height = "0";
       el.style.paddingTop = 0;
       el.style.paddingBottom = 0;
@@ -74,5 +72,3 @@ export default {
   }
 };
 </script>
-<style>
-</style>

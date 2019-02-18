@@ -128,7 +128,17 @@ export default {
 
 ### API
 
+### Collapse
+
 | 参数     |        说明        |    类型 | 默认值 | 可选值 |
 | -------- | :----------------: | ------: | -----: | -----: |
 | selected |   默认展示的面板   |   Array |      - |      - |
 | single   | 是否仅展示一个面板 | Boolean |  false |   true |
+
+### CollapseItem
+
+| 参数        |           说明           |    类型 | 默认值 | 可选值 |
+| ----------- | :----------------------: | ------: | -----: | -----: |
+| visibleIcon | 是否展示当前面板上的图标 | Boolean |   true |      - |
+| title       |        面板头内容        |  String |      - |      - |
+| name        |     当前 面板的 key      |  String |      - |      - |
