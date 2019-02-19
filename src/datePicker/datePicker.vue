@@ -1,40 +1,63 @@
 <template>
   <div class="g-date-picker-wrapper" ref="datePicker">
     <g-popover position="bottom" ref="popover" :container="popoverContainer" @open="onOpen">
-      <g-input :value="formattedValue" :placeholder="placeholder" :disabled="disabled" readonly type="text" @keyupEnter="onEnter" @blur="onBlur" @change="onChange" @input="onInput" ref="input"></g-input>
+      <g-input :value="formattedValue" :placeholder="placeholder" :disabled="disabled" :readonly="readonly" type="text" @keyupEnter="onEnter" @blur="onBlur" @change="onChange" @input="onInput" ref="input"></g-input>
       <template slot="popover">
         <div class="g-date-picker-pop" @selectstart.prevent>
           <div class="g-date-picker-pop-nav">
-            <g-icon name="double-left" @click="onClickPrevYear" :class="classes('prev-year')"></g-icon>
-            <g-icon name="left" @click="onClickPrevMonth" :class="classes('prev-month')"></g-icon>
-            <div @click="onClickMonth">
-              <span :class="classes('current-year')">{{display.year}}年</span>
-              <span :class="classes('current-month')">{{display.month+1}}月</span>
-            </div>
-            <g-icon name="double-right" @click="onClickNextYear" :class="classes('next-year')"></g-icon>
-            <g-icon name="right" @click="onClickNextMonth" :class="classes('next-month')"></g-icon>
+            <template v-if="mode==='date'">
+              <g-icon name="double-left" @click="onClickPrevYear" :class="classes('prev-year')"></g-icon>
+              <g-icon name="left" @click="onClickPrevMonth" :class="classes('prev-month')"></g-icon>
+              <div>
+                <span :class="classes('current-year')" @click="onClickChangeMode('year')">{{display.year}}年</span>
+                <span :class="classes('current-month')" @click="onClickChangeMode('month')">{{display.month+1}}月</span>
+              </div>
+              <g-icon name="double-right" @click="onClickNextYear" :class="classes('next-year')"></g-icon>
+              <g-icon name="right" @click="onClickNextMonth" :class="classes('next-month')"></g-icon>
+            </template>
+            <template v-else-if="mode==='year'">
+              <g-icon name="double-left" @click="onClickPrevYear" :class="classes('prev-year')"></g-icon>
+              <div>
+                <span :class="classes('current-year')" @click="onClickChangeMode">{{display.year-10}}-{{display.year+10}}</span>
+              </div>
+              <g-icon name="double-right" @click="onClickNextYear" :class="classes('next-year')"></g-icon>
+            </template>
+            <template v-else>
+              <g-icon name="double-left" @click="onClickPrevYear" :class="classes('prev-year')"></g-icon>
+              <div>
+                <span :class="classes('current-month')" @click="onClickChangeMode('year')">{{display.year}}</span>
+              </div>
+              <g-icon name="double-right" @click="onClickNextYear" :class="classes('next-year')"></g-icon>
+            </template>
           </div>
           <div class="g-date-picker-pop-panes">
             <div class="g-date-picker-pop-content">
-              <template v-if="mode==='month'">
+              <template v-if="mode==='date'">
                 <div :class="classes('weeks')">
                   <span :class="classes('week')" v-for="n in weeksMap" :key="n">{{n}}</span>
                 </div>
                 <div :class="classes('tables')">
                   <div :class="classes('row')" v-for="i in moment.range(1,7)" :key="i">
                     <div :class="[classes('col'),{'currentMonth': isCurrentMonth(getVisibleDate(i,j)),
-                  'selectedDay': isSelectedDay(getVisibleDate(i,j)),'today': isToday(getVisibleDate(i,j))}]" :key="j" v-for="j in moment.range(1,8)" @click="onClickCell(visibleDate[(i-1)*7+j-1])"><span>{{visibleDate[(i-1)*7+j-1].getDate()}}</span></div>
+                  'selectedDay': isSelectedDay(getVisibleDate(i,j)),'today': isToday(getVisibleDate(i,j))}]" :key="j" v-for="j in moment.range(1,8)" @click="onClickCell(visibleDate[(i-1)*7+j-1])"><span class="day">{{visibleDate[(i-1)*7+j-1].getDate()}}</span></div>
                   </div>
+                </div>
+              </template>
+              <template v-else-if="mode==='year'">
+                <div :class="classes('select-year')">
+                  year
                 </div>
               </template>
               <template v-else>
                 <div :class="classes('select-month')">
-                  safdsfdsfdsfds
+                  <div :class="classes('row')" v-for="i in moment.range(1,5)" :key="i+'month'">
+                    <div :class="[classes('col'),{activeMonth:currentMonth===monthMap[(i-1)*3+j-1]}]" v-for="j in moment.range(1,4)" :key="monthMap[(i-1)*3+j-1]" @click="onClickMonth((i-1)*3+j-1)"><span>{{monthMap[(i-1)*3+j-1]}}</span></div>
+                  </div>
                 </div>
               </template>
             </div>
           </div>
-          <div class="g-date-picker-pop-actions">
+          <div class="g-date-picker-pop-actions" v-show="mode==='date'">
             <g-button @click="onClickToday">今天</g-button>
             <g-button @click="onClickClear">清除</g-button>
           </div>
@@ -73,9 +96,24 @@ export default {
   data() {
     let [year, month] = moment.getYearMonthDate(this.value || new Date());
     return {
-      mode: "month",
+      mode: "date",
       weeksMap: ["日", "一", "二", "三", "四", "五", "六"],
+      monthMap: [
+        "一月",
+        "二月",
+        "三月",
+        "四月",
+        "五月",
+        "六月",
+        "七月",
+        "八月",
+        "九月",
+        "十月",
+        "十一月",
+        "十二月"
+      ],
       moment,
+      currentMonth: "一月",
       display: { year, month },
       popoverContainer: null
     };
@@ -185,12 +223,8 @@ export default {
       this.$emit("update:value", date);
       this.$refs.popover.close();
     },
-    onClickMonth() {
-      if (this.mode === "month") {
-        this.mode = "day";
-      } else {
-        this.mode = "month";
-      }
+    onClickChangeMode(name) {
+      this.mode = name;
     },
     controlPlate(type, count) {
       let oldDate = new Date(this.display.year, this.display.month);
@@ -217,6 +251,11 @@ export default {
     onClickClear() {
       this.$emit("update:value", undefined);
       this.$refs.popover.close();
+    },
+    onClickMonth(index) {
+      this.currentMonth = this.monthMap[index];
+      this.display.month = index;
+      this.mode = "date";
     },
     onOpen() {
       this.mode = "month";
@@ -298,7 +337,7 @@ export default {
     &.today {
       color: $blue;
     }
-    span {
+    .day {
       position: absolute;
       top: 50%;
       left: 50%;
@@ -306,18 +345,19 @@ export default {
       width: 28px;
       line-height: 28px;
       text-align: center;
+      transition: background 0.3s ease;
     }
     &.selectedDay {
-      span {
-        border-radius: 50%;
+      .day {
         background: $blue;
         color: #fff;
       }
     }
   }
+  &-select-year,
   &-select-month {
     width: 250px;
-    height: 223px;
+    height: 266px;
   }
   &-tables {
     padding: 6px 0;
@@ -325,6 +365,34 @@ export default {
   &-actions {
     padding-top: 10px;
     border-top: 1px solid $gray;
+  }
+  &-select-month {
+    .g-date-picker-pop-row {
+      width: 100%;
+      padding: 16px 0;
+    }
+    .g-date-picker-pop-col {
+      flex: 1;
+      width: 33.33%;
+      color: #333;
+      span {
+        padding: 2px 4px;
+        display: inline-block;
+        border-radius: 2px;
+        transition: background 0.3s ease;
+        &:hover {
+          background: #e6f7ff;
+          color: $blue;
+          cursor: pointer;
+        }
+      }
+      &.activeMonth {
+        span {
+          background: $blue;
+          color: #fff;
+        }
+      }
+    }
   }
 }
 </style>

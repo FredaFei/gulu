@@ -1,19 +1,18 @@
 <template>
-    <div class="cascader-wrapper" ref="cascaderWrapper">
-        <div class="cascader" @click="toggle">
-            {{ result }}
-        </div>
-        <div class="popover-wrapper" v-if="popoverVisible">
-            <gulu-cascader-item :source-items="source" :selected="selected" :loading-item="loadingItem"
-            @update:selected="onUpdateSelected" :load-data="loadData" :height="popoverHeight"></gulu-cascader-item>
-        </div>
+  <div class="cascader-wrapper" ref="cascaderWrapper">
+    <div class="cascader" @click="toggle">
+      {{ result }}
     </div>
+    <div class="popover-wrapper" v-if="popoverVisible">
+      <gulu-cascader-item :source-items="source" :selected="selected" :loading-item="loadingItem" @update:selected="onUpdateSelected" :load-data="loadData" :height="popoverHeight"></gulu-cascader-item>
+    </div>
+  </div>
 </template>
 
 <script>
-import guluCascaderItem from './cascaderItem'
+import guluCascaderItem from "./cascaderItem";
 export default {
-  name: 'guluCascader',
+  name: "guluCascader",
   components: { guluCascaderItem },
   props: {
     source: {
@@ -36,93 +35,93 @@ export default {
     return {
       popoverVisible: false,
       loadingItem: {}
-    }
+    };
   },
   computed: {
     result() {
-      return this.selected.map(item => item.name).join('/')
+      return this.selected.map(item => item.name).join("/");
     }
   },
   methods: {
     onClickDocument(e) {
-      let { cascaderWrapper } = this.$refs
+      let { cascaderWrapper } = this.$refs;
       if (cascaderWrapper === e.target || cascaderWrapper.contains(e.target)) {
-        return
+        return;
       }
-      this.close()
+      this.close();
     },
     open() {
-      this.popoverVisible = true
+      this.popoverVisible = true;
       this.$nextTick(() => {
-        document.addEventListener('click', this.onClickDocument)
-      })
+        document.addEventListener("click", this.onClickDocument);
+      });
     },
     close() {
-      this.popoverVisible = false
+      this.popoverVisible = false;
       this.$nextTick(() => {
-        document.removeEventListener('click', this.onClickDocument)
-      })
+        document.removeEventListener("click", this.onClickDocument);
+      });
     },
     toggle() {
       if (this.popoverVisible === true) {
-        this.close()
+        this.close();
       } else {
-        this.open()
+        this.open();
       }
     },
     onUpdateSelected(newSelected) {
-      this.$emit('update:selected', newSelected)
-      let lastItem = newSelected[newSelected.length - 1]
+      this.$emit("update:selected", newSelected);
+      let lastItem = newSelected[newSelected.length - 1];
       let simplest = (children, id) => {
-        return children.filter(item => item.id === id)[0]
-      }
+        return children.filter(item => item.id === id)[0];
+      };
       let complex = (children, id) => {
-        let hasChildrem = []
-        let noChildrem = []
+        let hasChildrem = [];
+        let noChildrem = [];
         children.forEach(item => {
           if (item.children) {
-            hasChildrem.push(item)
+            hasChildrem.push(item);
           } else {
-            noChildrem.push(item)
+            noChildrem.push(item);
           }
-        })
-        let found = simplest(noChildrem, id)
+        });
+        let found = simplest(noChildrem, id);
         if (found) {
-          return found
+          return found;
         } else {
-          found = simplest(hasChildrem, id)
+          found = simplest(hasChildrem, id);
           if (found) {
-            return found
+            return found;
           } else {
             for (let i = 0; i < hasChildrem.length; i++) {
-              found = complex(hasChildrem[i].children, id)
+              found = complex(hasChildrem[i].children, id);
               if (found) {
-                return found
+                return found;
               }
             }
-            return undefined
+            return undefined;
           }
         }
-      }
+      };
       let updateSource = result => {
-        this.loadingItem = {}
+        this.loadingItem = {};
         // 找到原来的id，添加children属性
-        let copy = JSON.parse(JSON.stringify(this.source))
-        let toUpdate = complex(copy, lastItem.id)
-        toUpdate.children = result
-        this.$emit('update:source', copy)
-      }
+        let copy = JSON.parse(JSON.stringify(this.source));
+        let toUpdate = complex(copy, lastItem.id);
+        toUpdate.children = result;
+        this.$emit("update:source", copy);
+      };
       if (this.loadData && !lastItem.isLeaf) {
-        this.loadData(lastItem, updateSource)
-        this.loadingItem = lastItem
+        this.loadData(lastItem, updateSource);
+        this.loadingItem = lastItem;
       }
     }
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>
-@import '../../style/_var';
+@import "../../style/_var";
 .cascader-wrapper {
   display: inline-flex;
   justify-content: flex-start;
