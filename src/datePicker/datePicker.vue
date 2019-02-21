@@ -16,11 +16,11 @@
               <g-icon name="right" @click="onClickNextMonth" :class="classes('next-month')"></g-icon>
             </template>
             <template v-else-if="mode==='year'">
-              <g-icon name="double-left" @click="onClickPrevYear" :class="classes('prev-year')"></g-icon>
+              <g-icon name="double-left" @click="onClickPrevRangeYear" :class="classes('prev-year')"></g-icon>
               <div>
-                <span :class="classes('current-year')" @click="onClickChangeMode">{{display.year-10}}-{{display.year+10}}</span>
+                <span :class="classes('current-year')" @click="onClickChangeMode">{{visibleYears[1]}}-{{visibleYears[10]}}</span>
               </div>
-              <g-icon name="double-right" @click="onClickNextYear" :class="classes('next-year')"></g-icon>
+              <g-icon name="double-right" @click="onClickNextRangeYear" :class="classes('next-year')"></g-icon>
             </template>
             <template v-else>
               <g-icon name="double-left" @click="onClickPrevYear" :class="classes('prev-year')"></g-icon>
@@ -45,7 +45,11 @@
               </template>
               <template v-else-if="mode==='year'">
                 <div :class="classes('select-year')">
-                  year
+                  <div :class="classes('row')" v-for="i in moment.range(1,5)" :key="i+'year'">
+                    <div :class="[classes('col'),{selectedYear:isSelectedYear(visibleYears[(i-1)*3+j-1]),'prevOrNext': isFirstOrLast(i,j)}]" v-for="j in moment.range(1,4)" :key="visibleYears[(i-1)*3+j-1]" @click="onClickMonth((i-1)*3+j-1)">
+                      <span>{{visibleYears[(i-1)*3+j-1]}}</span>
+                    </div>
+                  </div>
                 </div>
               </template>
               <template v-else>
@@ -89,6 +93,10 @@ export default {
       type: String
     },
     disabled: {
+      type: Boolean,
+      default: false
+    },
+    readonly: {
       type: Boolean,
       default: false
     }
@@ -145,8 +153,11 @@ export default {
       }
       return [...arr2, ...arr1, ...arr3];
     },
+    visibleYears() {
+      let start = Math.floor(this.display.year / 10) * 10;
+      return Array.from({ length: 12 }, (val, index) => start - 1 + index);
+    },
     formattedValue() {
-      console.log(this.value);
       if (!this.value) {
         return "";
       }
@@ -170,10 +181,21 @@ export default {
       let [year, month, day] = moment.getYearMonthDate(this.value);
       return year1 === year && month1 === month && day1 === day;
     },
+    isSelectedYear(year) {
+      if (!this.value) {
+        return false;
+      }
+      let [year1] = moment.getYearMonthDate(this.value);
+      return year1 === year;
+    },
     isToday(date) {
       let [year, month, day] = moment.getYearMonthDate(date);
       let [year1, month1, day1] = moment.getYearMonthDate(new Date());
       return year1 === year && month1 === month && day1 === day;
+    },
+    isFirstOrLast(row, col) {
+      let index = (row - 1) * 3 + col - 1;
+      return index === 0 || index === this.visibleYears.length - 1;
     },
     onEnter() {
       if (!this.formattedValue) {
@@ -232,6 +254,8 @@ export default {
       let [year, month] = moment.getYearMonthDate(newDate);
       this.display = { year, month };
     },
+    onClickPrevRangeYear() {},
+    onClickNextRangeYear() {},
     onClickPrevYear() {
       this.controlPlate("addYear", -1);
     },
@@ -365,6 +389,39 @@ export default {
   &-actions {
     padding-top: 10px;
     border-top: 1px solid $gray;
+  }
+  &-select-year {
+    .g-date-picker-pop-row {
+      width: 100%;
+      padding: 16px 0;
+    }
+    .g-date-picker-pop-col {
+      flex: 1;
+      width: 33.33%;
+      color: #333;
+      &.selectedYear {
+        span {
+          background: $blue;
+          color: #fff;
+        }
+      }
+      &.prevOrNext {
+        span {
+          color: rgba(0, 0, 0, 0.25);
+        }
+      }
+      span {
+        padding: 2px 4px;
+        display: inline-block;
+        border-radius: 2px;
+        transition: background 0.3s ease;
+        &:hover {
+          background: #e6f7ff;
+          color: $blue;
+          cursor: pointer;
+        }
+      }
+    }
   }
   &-select-month {
     .g-date-picker-pop-row {
