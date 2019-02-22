@@ -2,7 +2,7 @@
   <div>
     <h3>代码演示</h3>
     <h4>click 触发</h4>
-    <g-popover position="left">
+    <g-popover position="left" z-index="1000">
       <template slot="popover">
         <div class="pop-body">
           <div class="title">标题</div>
@@ -12,9 +12,9 @@
           </div>
         </div>
       </template>
-      <span class="box" @click="selectedFn">left</span>
+      <g-button>left</g-button>
     </g-popover>
-    <g-popover position="top">
+    <g-popover position="top" z-index="1000">
       <template slot="popover">
         <div class="pop-body">
           <div class="title">标题</div>
@@ -24,91 +24,86 @@
           </div>
         </div>
       </template>
-      <span class="box" @click="selectedFn">top</span>
+      <g-button>top</g-button>
     </g-popover>
-    
-    <g-popover position="right">
+
+    <g-popover position="right" z-index="1000">
       <template slot="popover">
         this is a content
       </template>
-      <span class="box" @click="selectedFn">right</span>
+      <g-button>right</g-button>
     </g-popover>
-    
-    <g-popover position="bottom">
+
+    <g-popover position="bottom" z-index="1000">
       <template slot="popover" slot-scope="{close}">
         <div class="pop-body">
           <div class="title">标题</div>
           <div class="info">
+            <p>内部触发关闭</p>
             <p>这里是内容</p>
-            <p>这里是内容</p>
-            <span class="box">关闭</span>
+            <g-button @click="close">关闭</g-button>
           </div>
         </div>
       </template>
-      <span class="box" @click="selectedFn">bottom</span>
+      <g-button>bottom</g-button>
     </g-popover>
 
     <h4>hover 触发</h4>
-    <g-popover position="left" trigger="hover">
+    <g-popover position="left" trigger="hover" z-index="1000">
       <template slot="popover">
         this is a content
       </template>
-      <span class="box">left</span>
+      <g-button>left</g-button>
     </g-popover>
-    <g-popover position="top" trigger="hover">
+    <g-popover position="top" trigger="hover" z-index="1000">
       <template slot="popover">
         this is a content
       </template>
-      <span class="box">top</span>
+      <g-button>top</g-button>
     </g-popover>
-    <g-popover position="right" trigger="hover">
+    <g-popover position="right" trigger="hover" z-index="1000">
       <template slot="popover">
         this is a content
       </template>
-      <span class="box">right</span>
+      <g-button>right</g-button>
     </g-popover>
-    <g-popover position="bottom" trigger="hover">
+    <g-popover position="bottom" trigger="hover" z-index="1000">
       <template slot="popover">
         this is a content
       </template>
-      <span class="box">bottom</span>
+      <g-button>bottom</g-button>
     </g-popover>
-    <h3>使用方式</h3>
+    <h4>禁止触发</h4>
+
+    <g-popover position="left" trigger="hover" disabled>
+      <template slot="popover">
+        this is a content
+      </template>
+      <g-button>left</g-button>
+    </g-popover>
   </div>
 </template>
 <script>
-import Popover from '../../../src/popover/popover'
+import GPopover from "../../../src/popover/popover";
+import GButton from "../../../src/button/button";
 export default {
   components: {
-    'GPopover': Popover
-  },
-  methods: {
-    selectedFn() {
-      console.log('popover')
-    }
+    GPopover,
+    GButton
   }
-}
+};
 </script>
 <style lang="scss">
-.box{
-  display: inline-block;
-  padding: 10px 16px;
-  font-size: 16px;
-  color: #333333;
-  background: #ffffff;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-}
-.pop-body{
+.pop-body {
   width: 200px;
-  .title{
+  .title {
     padding: 8px 0;
     font-size: 18px;
     color: #333333;
     font-weight: 700;
     border-bottom: 1px solid #ddd;
   }
-  p{
+  p {
     line-height: normal;
   }
 }
