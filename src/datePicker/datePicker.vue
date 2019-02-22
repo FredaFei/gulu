@@ -16,11 +16,11 @@
               <g-icon name="right" @click="onClickNextMonth" :class="classes('next-month')"></g-icon>
             </template>
             <template v-else-if="mode==='year'">
-              <g-icon name="double-left" @click="onClickPrevRangeYear" :class="classes('prev-year')"></g-icon>
+              <g-icon name="double-left" @click="onClickRangeYear(0)" :class="classes('prev-year')"></g-icon>
               <div>
-                <span :class="classes('current-year')" @click="onClickChangeMode">{{visibleYears[1]}}-{{visibleYears[10]}}</span>
+                <span :class="classes('current-year')">{{visibleYears[1]}}-{{visibleYears[10]}}</span>
               </div>
-              <g-icon name="double-right" @click="onClickNextRangeYear" :class="classes('next-year')"></g-icon>
+              <g-icon name="double-right" @click="onClickRangeYear(11)" :class="classes('next-year')"></g-icon>
             </template>
             <template v-else>
               <g-icon name="double-left" @click="onClickPrevYear" :class="classes('prev-year')"></g-icon>
@@ -39,14 +39,14 @@
                 <div :class="classes('tables')">
                   <div :class="classes('row')" v-for="i in moment.range(1,7)" :key="i">
                     <div :class="[classes('col'),{'currentMonth': isCurrentMonth(getVisibleDate(i,j)),
-                  'selectedDay': isSelectedDay(getVisibleDate(i,j)),'today': isToday(getVisibleDate(i,j))}]" :key="j" v-for="j in moment.range(1,8)" @click="onClickCell(visibleDate[(i-1)*7+j-1])"><span class="day">{{visibleDate[(i-1)*7+j-1].getDate()}}</span></div>
+                  'selectedDate': isSelectedDate(getVisibleDate(i,j)),'selectedDay': isSelectedDay(getVisibleDate(i,j)),'today': isToday(getVisibleDate(i,j))}]" :key="j" v-for="j in moment.range(1,8)" @click="onClickCell(visibleDate[(i-1)*7+j-1])"><span class="day">{{visibleDate[(i-1)*7+j-1].getDate()}}</span></div>
                   </div>
                 </div>
               </template>
               <template v-else-if="mode==='year'">
                 <div :class="classes('select-year')">
                   <div :class="classes('row')" v-for="i in moment.range(1,5)" :key="i+'year'">
-                    <div :class="[classes('col'),{selectedYear:isSelectedYear(visibleYears[(i-1)*3+j-1]),'prevOrNext': isFirstOrLast(i,j)}]" v-for="j in moment.range(1,4)" :key="visibleYears[(i-1)*3+j-1]" @click="onClickMonth((i-1)*3+j-1)">
+                    <div :class="[classes('col'),{selectedYear:isSelectedYear(visibleYears[(i-1)*3+j-1]),'prevOrNext': isFirstOrLast(i,j)}]" v-for="j in moment.range(1,4)" :key="visibleYears[(i-1)*3+j-1]" @click="onClickYear((i-1)*3+j-1)">
                       <span>{{visibleYears[(i-1)*3+j-1]}}</span>
                     </div>
                   </div>
@@ -55,7 +55,7 @@
               <template v-else>
                 <div :class="classes('select-month')">
                   <div :class="classes('row')" v-for="i in moment.range(1,5)" :key="i+'month'">
-                    <div :class="[classes('col'),{activeMonth:currentMonth===monthMap[(i-1)*3+j-1]}]" v-for="j in moment.range(1,4)" :key="monthMap[(i-1)*3+j-1]" @click="onClickMonth((i-1)*3+j-1)"><span>{{monthMap[(i-1)*3+j-1]}}</span></div>
+                    <div :class="[classes('col'),{'selectedMonth':isSelectedMonth((i-1)*3+j-1)}]" v-for="j in moment.range(1,4)" :key="monthMap[(i-1)*3+j-1]" @click="onClickMonth((i-1)*3+j-1)"><span>{{monthMap[(i-1)*3+j-1]}}</span></div>
                   </div>
                 </div>
               </template>
@@ -121,7 +121,6 @@ export default {
         "十二月"
       ],
       moment,
-      currentMonth: "一月",
       display: { year, month },
       popoverContainer: null
     };
@@ -173,7 +172,7 @@ export default {
       let [year1, month1] = moment.getYearMonthDate(date);
       return year1 === this.display.year && month1 === this.display.month;
     },
-    isSelectedDay(date) {
+    isSelectedDate(date) {
       if (!this.value) {
         return false;
       }
@@ -181,11 +180,20 @@ export default {
       let [year, month, day] = moment.getYearMonthDate(this.value);
       return year1 === year && month1 === month && day1 === day;
     },
-    isSelectedYear(year) {
+    isSelectedDay(date) {
       if (!this.value) {
         return false;
       }
-      let [year1] = moment.getYearMonthDate(this.value);
+
+      let [year1, month1, day1] = moment.getYearMonthDate(date);
+      let [year, month, day] = moment.getYearMonthDate(this.value);
+      return this.isCurrentMonth(date) && day1 === day;
+    },
+    isSelectedMonth(index) {
+      return this.display.month === index;
+    },
+    isSelectedYear(year) {
+      let { year: year1 } = this.display;
       return year1 === year;
     },
     isToday(date) {
@@ -196,6 +204,10 @@ export default {
     isFirstOrLast(row, col) {
       let index = (row - 1) * 3 + col - 1;
       return index === 0 || index === this.visibleYears.length - 1;
+    },
+    onClickMonth(index) {
+      this.display.month = index;
+      this.mode = "date";
     },
     onEnter() {
       if (!this.formattedValue) {
@@ -254,8 +266,13 @@ export default {
       let [year, month] = moment.getYearMonthDate(newDate);
       this.display = { year, month };
     },
-    onClickPrevRangeYear() {},
-    onClickNextRangeYear() {},
+    onClickRangeYear(index) {
+      this.display.year = this.visibleYears[index];
+    },
+    onClickYear(index) {
+      this.display.year = this.visibleYears[index];
+      this.mode = "date";
+    },
     onClickPrevYear() {
       this.controlPlate("addYear", -1);
     },
@@ -274,15 +291,12 @@ export default {
     },
     onClickClear() {
       this.$emit("update:value", undefined);
+      let [year, month] = moment.getYearMonthDate(new Date());
+      this.display = { year, month };
       this.$refs.popover.close();
     },
-    onClickMonth(index) {
-      this.currentMonth = this.monthMap[index];
-      this.display.month = index;
-      this.mode = "date";
-    },
     onOpen() {
-      this.mode = "month";
+      this.mode = "date";
     },
     classes(name) {
       return `g-date-picker-pop-${name}`;
@@ -294,6 +308,9 @@ export default {
 <style lang="scss" scoped>
 @import "var";
 .g-date-picker-pop {
+  .g-icon:hover {
+    color: $blue;
+  }
   &-nav {
     position: relative;
     line-height: 32px;
@@ -369,9 +386,17 @@ export default {
       width: 28px;
       line-height: 28px;
       text-align: center;
-      transition: background 0.3s ease;
+      transition: background 0.2s ease;
+      &:hover {
+        background: #e6f7ff;
+      }
     }
     &.selectedDay {
+      .day {
+        background: #d1e9ff;
+      }
+    }
+    &.selectedDate {
       .day {
         background: $blue;
         color: #fff;
@@ -443,7 +468,7 @@ export default {
           cursor: pointer;
         }
       }
-      &.activeMonth {
+      &.selectedMonth {
         span {
           background: $blue;
           color: #fff;
