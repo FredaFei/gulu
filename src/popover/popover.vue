@@ -1,8 +1,10 @@
 <template>
   <div class="popover-wrapper" ref="popoverWrapper">
-    <div class="popover-content" ref="popoverContent" v-if="isVisible" :class="`position-${position}`">
-      <slot name="popover" :close="close"></slot>
-    </div>
+    <transition name="fade">
+      <div class="popover-content" ref="popoverContent" v-if="isVisible" :class="`position-${position}`">
+        <slot name="popover" :close="close"></slot>
+      </div>
+    </transition>
     <div class="trigger" ref="trigger" style="display:inline-block">
       <slot></slot>
     </div>
@@ -29,6 +31,14 @@ export default {
     },
     container: {
       type: Element
+    },
+    disabled: {
+      type: Boolean,
+      default: false
+    },
+    zIndex: {
+      type: [String, Number],
+      default: 10
     }
   },
   data() {
@@ -53,11 +63,16 @@ export default {
     }
   },
   mounted() {
+    if (this.disabled) {
+      return false;
+    }
     this.addPopoverListeners();
   },
   beforeDestroy() {
-    this.putBackContent();
-    this.removePopoverListeners();
+    if (!this.disabled) {
+      this.putBackContent();
+      this.removePopoverListeners();
+    }
   },
   methods: {
     addPopoverListeners() {
@@ -109,6 +124,7 @@ export default {
       };
       popoverContent.style.top = positions[this.position]["top"] + "px";
       popoverContent.style.left = positions[this.position]["left"] + "px";
+      popoverContent.style.zIndex = this.zIndex;
     },
     onClickDocument(e) {
       if (
