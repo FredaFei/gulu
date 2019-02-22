@@ -1,5 +1,5 @@
 <template>
-  <div class="popover-wrapper" ref="popoverWrapper">
+  <div class="popover-wrapper" ref="popoverWrapper" :data-zindex="zIndex">
     <transition name="fade">
       <div class="popover-content" ref="popoverContent" v-if="isVisible" :class="`position-${position}`">
         <slot name="popover" :close="close"></slot>

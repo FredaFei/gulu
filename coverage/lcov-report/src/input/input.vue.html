@@ -20,9 +20,9 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">100% </span>
+        <span class="strong">0% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>0/0</span>
+        <span class='fraction'>0/1</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
@@ -30,18 +30,18 @@
         <span class='fraction'>0/0</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">100% </span>
+        <span class="strong">0% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>0/0</span>
+        <span class='fraction'>0/1</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">100% </span>
+        <span class="strong">0% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>0/0</span>
+        <span class='fraction'>0/1</span>
       </div>
     </div>
   </div>
-  <div class='status-line high'></div>
+  <div class='status-line low'></div>
 <pre><table class="coverage">
 <tr><td class="line-count quiet">1
 2
@@ -147,7 +147,8 @@
 102
 103
 104
-105</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+105
+106</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -187,6 +188,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -252,107 +254,108 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">&lt;template&gt;
-    &lt;div class="wrapper" :class="[`${iconType}`]"&gt;
-        &lt;input type="text" :value="value" :disabled="disabled" :readonly="readonly"
-        @input="$emit('input',$event.target.value)"
-        @change="$emit('change',$event.target.value)"
-        @focus="$emit('focus',$event.target.value)"
-        @blur="$emit('blur',$event.target.value)"&gt;
-        &lt;template v-if="iconType"&gt;
-            &lt;g-icon class="icon" :name="iconType"&gt;&lt;/g-icon&gt;
-            &lt;span :class="[`message ${iconType}-message`]"&gt;{{message}}&lt;/span&gt;
-        &lt;/template&gt;
-    &lt;/div&gt;
+  &lt;div class="wrapper" :class="[`${iconType}`]"&gt;
+    &lt;input type="text" :value="value" :disabled="disabled" :readonly="readonly" ref="input" @input="$emit('input',$event.target.value)" @keyup.enter="$emit('keyupEnter',$event.target.value)" @change="$emit('change',$event.target.value)" @focus="$emit('focus',$event.target.value)" @blur="$emit('blur',$event.target.value)"&gt;
+    &lt;template v-if="iconType"&gt;
+      &lt;g-icon class="icon" :name="iconType"&gt;&lt;/g-icon&gt;
+      &lt;span :class="[`message ${iconType}-message`]"&gt;{{message}}&lt;/span&gt;
+    &lt;/template&gt;
+  &lt;/div&gt;
 &lt;/template&gt;
 &nbsp;
 &lt;script&gt;
-import GIcon from '../icon'
+import GIcon from "../icon";
 export default {
-    name: 'guluInput',
-    components: {
-        GIcon
+  name: "guluInput",
+  components: {
+    GIcon
+  },
+  props: {
+    value: {
+      type: String
     },
-    props: {
-        value: {
-            type: String
-        },
-        disabled: {
-            type: Boolean,
-            default: false
-        },
-        readonly: {
-            type: Boolean,
-            default: false
-        },
-        iconType: {
-            type: String,
-            default: ''
-        },
-        message: {
-            type: String,
-            default: ''
-        }
+    disabled: {
+      type: Boolean,
+      default: false
+    },
+    readonly: {
+      type: Boolean,
+      default: false
+    },
+    iconType: {
+      type: String,
+      default: ""
+    },
+    message: {
+      type: String,
+      default: ""
     }
-}
+  },
+  methods: {
+    setRawValue(value) <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >      this.$refs.input.value = value;</span>
+    }
+  }
+};
 &lt;/script&gt;
 &nbsp;
 &lt;style lang="scss" scoped&gt;
 @import "var";
 .wrapper {
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    font-size: $input-font-size;
-    &gt; :not(:last-child) {
-        margin-right: 0.5em;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  font-size: $input-font-size;
+  &gt; :not(:last-child) {
+    margin-right: 0.5em;
+  }
+  &amp; &gt; .message {
+    font-size: 12px;
+  }
+  &gt; input {
+    width: 128px;
+    padding: 0 8px;
+    height: 32px;
+    font-size: inherit;
+    border: 1px solid $input-border-color;
+    border-radius: $border-radius;
+    &amp;:hover {
+      border-color: $input-border-color-hover;
     }
-    &amp; &gt; .message {
-        font-size: 12px;
+    &amp;:focus {
+      outline: none;
+      box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
     }
+    &amp;[disabled],
+    &amp;[readonly] {
+      color: #bbb;
+      background: #fff;
+      border-color: #bbb;
+      cursor: not-allowed;
+    }
+  }
+  &amp;.error {
     &gt; input {
-        width: 128px;
-        padding: 0 8px;
-        height: 32px;
-        font-size: inherit;
-        border: 1px solid $input-border-color;
-        border-radius: $border-radius;
-        &amp;:hover {
-            border-color: $input-border-color-hover;
-        }
-        &amp;:focus {
-            outline: none;
-            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
-        }
-        &amp;[disabled],
-        &amp;[readonly] {
-            color: #bbb;
-            background: #fff;
-            border-color: #bbb;
-            cursor: not-allowed;
-        }
+      border-color: $error-color;
     }
-    &amp;.error {
-        &gt; input {
-            border-color: $error-color;
-        }
-        &gt; .icon {
-            fill: $error-color;
-        }
-        &gt; .error-message {
-            color: $error-color;
-        }
+    &gt; .icon {
+      fill: $error-color;
     }
-    &amp;.info {
-        &gt; input {
-            border-color: $info-color;
-        }
-        &gt; .icon {
-            fill: $info-color;
-        }
-        &gt; .info-message {
-            color: $info-color;
-        }
+    &gt; .error-message {
+      color: $error-color;
     }
+  }
+  &amp;.info {
+    &gt; input {
+      border-color: $info-color;
+    }
+    &gt; .icon {
+      fill: $info-color;
+    }
+    &gt; .info-message {
+      color: $info-color;
+    }
+  }
 }
 &lt;/style&gt;
 &nbsp;</pre></td></tr>
@@ -361,7 +364,7 @@ export default {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Thu Jan 24 2019 11:53:13 GMT+0800 (中国标准时间)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Fri Feb 22 2019 17:39:45 GMT+0800 (中国标准时间)
 </div>
 </div>
 <script src="../../prettify.js"></script>
