@@ -82,9 +82,9 @@
       </template>
     </g-table> -->
     <g-date-picker :value.sync="x1"></g-date-picker>
-    <!-- <g-date-picker :value.sync="x2"></g-date-picker>
-    <g-date-picker :value.sync="x3"></g-date-picker>
-    <g-date-picker :value.sync="x4"></g-date-picker> -->
+    <g-date-picker :value.sync="x2" disabled></g-date-picker>
+    <!-- <g-date-picker :value.sync="x3"></g-date-picker> -->
+    <!-- <g-date-picker :value.sync="x4"></g-date-picker> -->
 
   </div>
 </template>

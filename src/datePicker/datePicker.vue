@@ -1,6 +1,6 @@
 <template>
   <div class="g-date-picker-wrapper" ref="datePicker">
-    <g-popover position="bottom" ref="popover" :container="popoverContainer" @open="onOpen">
+    <g-popover position="bottom" ref="popover" :container="popoverContainer" @open="onOpen" :disabled="disabled">
       <g-input :value="formattedValue" :placeholder="placeholder" :disabled="disabled" :readonly="readonly" type="text" @keyupEnter="onEnter" @blur="onBlur" @change="onChange" @input="onInput" ref="input"></g-input>
       <template slot="popover">
         <div class="g-date-picker-pop" @selectstart.prevent>
@@ -197,6 +197,9 @@ export default {
       return year1 === year;
     },
     isToday(date) {
+      if (!this.isCurrentMonth(date)) {
+        return false;
+      }
       let [year, month, day] = moment.getYearMonthDate(date);
       let [year1, month1, day1] = moment.getYearMonthDate(new Date());
       return year1 === year && month1 === month && day1 === day;
