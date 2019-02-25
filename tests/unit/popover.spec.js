@@ -76,24 +76,4 @@ describe('Popover', () => {
     wrapper.find('button').trigger('click')
     expect(wrapper.attributes('data-zindex')).to.be.eq('100')
   })
-  it('scopedSlots', () => {
-    const wrapper = shallowMount(Popover, {
-      attachToDocument: true,
-      slots: {
-        default: {
-          template: `<button id="xx">click me</button>`
-        }
-      },
-      scopedSlots: {
-        popover: `<div class="pp" slot-scope="close">click</div>`
-      }
-    })
-    wrapper.find('button').trigger('click')
-    expect(wrapper.find('.popover-content').exists()).to.eq(true)
-    console.log(wrapper.html())
-    wrapper.find('.pp').trigger('click')
-    // expect(wrapper.find('.popover-content').element).to.not.exist
-    console.log(wrapper.find('.popover-content').element)
-    console.log(wrapper.html())
-  })
 })

@@ -46,22 +46,6 @@ export default {
       isVisible: false
     };
   },
-  computed: {
-    openEvent() {
-      if (this.trigger === "click") {
-        return "click";
-      } else {
-        return "mouseenter";
-      }
-    },
-    closeEvent() {
-      if (this.trigger === "click") {
-        return "click";
-      } else {
-        return "mouseleave";
-      }
-    }
-  },
   mounted() {
     if (this.disabled) {
       return false;
@@ -69,8 +53,8 @@ export default {
     this.addPopoverListeners();
   },
   beforeDestroy() {
+    this.putBackContent();
     if (!this.disabled) {
-      this.putBackContent();
       this.removePopoverListeners();
     }
   },
@@ -96,7 +80,9 @@ export default {
       if (!popoverContent) {
         return;
       }
-      popoverWrapper.appendChild(popoverContent);
+      if (popoverWrapper.nodeType === Node.ELEMENT_NODE) {
+        popoverWrapper.appendChild(popoverContent);
+      }
     },
     positionContent() {
       const { popoverContent, trigger } = this.$refs;
