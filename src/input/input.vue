@@ -1,9 +1,13 @@
 <template>
-  <div class="wrapper" :class="[`${iconType}`]">
-    <input type="text" :value="value" :disabled="disabled" :readonly="readonly" ref="input" @input="$emit('input',$event.target.value)" @keyup.enter="$emit('keyupEnter',$event.target.value)" @change="$emit('change',$event.target.value)" @focus="$emit('focus',$event.target.value)" @blur="$emit('blur',$event.target.value)">
-    <template v-if="iconType">
-      <g-icon class="icon" :name="iconType"></g-icon>
-      <span :class="[`message ${iconType}-message`]">{{message}}</span>
+  <div class="g-input-wrapper" @mouseenter="hovering=true" @mouseleave="hovering=false">
+    <template v-if="type=='textarea'">
+      <textarea :rows="rows" :value="nativeValue" :placeholder="placeholder" :disabled="disabled" :readonly="readonly" ref="textarea" @input="onInput" @focus="onFocus" @change="onChange" @blur="onBlur"></textarea>
+    </template>
+    <template v-else>
+      <g-icon class="icon prefix" :name="prefix" v-if="prefix"></g-icon>
+      <input type="text" class="inputbox" :value="nativeValue" :placeholder="placeholder" :disabled="disabled" :readonly="readonly" ref="input" @input="onInput" @keyup.enter="onKeyup" @focus="onFocus" @change="onChange" @blur="onBlur">
+      <g-icon class="icon suffix" :name="suffix" v-if="suffix"></g-icon>
+      <g-icon class="icon suffix" name="delete" v-if="visibleClear" @click="onClear"></g-icon>
     </template>
   </div>
 </template>
@@ -17,9 +21,13 @@ export default {
   },
   props: {
     value: {
-      type: String
+      type: [String, Number]
     },
     disabled: {
+      type: Boolean,
+      default: false
+    },
+    clearable: {
       type: Boolean,
       default: false
     },
@@ -27,18 +35,78 @@ export default {
       type: Boolean,
       default: false
     },
-    iconType: {
+    placeholder: {
       type: String,
       default: ""
     },
-    message: {
+    prefix: {
       type: String,
       default: ""
+    },
+    suffix: {
+      type: String,
+      default: ""
+    },
+    type: {
+      type: String,
+      default: "text",
+      validator(val) {
+        return ["number", "text", "textarea"].indexOf(val) > -1;
+      }
+    },
+    rows: {
+      type: Number,
+      default: 2
+    }
+  },
+  data() {
+    return {
+      focused: false,
+      hovering: false
+    };
+  },
+  computed: {
+    visibleClear() {
+      return (
+        this.clearable &&
+        !this.disabled &&
+        !this.readonly &&
+        !!this.nativeValue &&
+        (this.hovering || this.focused)
+      );
+    },
+    nativeValue() {
+      return !this.value ? "" : this.value;
     }
   },
   methods: {
     setRawValue(value) {
       this.$refs.input.value = value;
+    },
+    onInput(event) {
+      this.focused = true;
+      this.$emit("input", event.target.value);
+    },
+    onKeyup(event) {
+      this.focused = false;
+      this.$emit("keyupEnter", event);
+    },
+    onChange(event) {
+      this.focused = true;
+      this.$emit("change", event);
+    },
+    onBlur(event) {
+      this.focused = false;
+      this.$emit("blur", event);
+    },
+    onFocus(event) {
+      this.focused = true;
+      this.$emit("focus", event);
+    },
+    onClear() {
+      this.$emit("input", "");
+      this.$emit("change", "");
+      this.$emit("clear");
     }
   }
 };
@@ -46,21 +114,39 @@ export default {
 
 <style lang="scss" scoped>
 @import "var";
-.wrapper {
+.g-input-wrapper {
   display: inline-flex;
-  justify-content: center;
   align-items: center;
   font-size: $input-font-size;
-  > :not(:last-child) {
-    margin-right: 0.5em;
+  width: 100%;
+  position: relative;
+  .prefix,
+  .suffix {
+    position: absolute;
+    top: 50%;
+    z-index: 2;
+    color: #bbb;
+    fill: #bbb;
+    line-height: 0;
+    transform: translateY(-50%);
   }
-  & > .message {
-    font-size: 12px;
+  .prefix {
+    left: 0.8em;
   }
-  > input {
-    width: 128px;
-    padding: 0 8px;
-    height: 32px;
+  .suffix {
+    right: 0.3em;
+  }
+  > .inputbox:not(:first-child) {
+    padding-left: 30px;
+  }
+  > .inputbox:not(:last-child) {
+    padding-right: 22px;
+  }
+  > textarea,
+  > .inputbox {
+    width: 100%;
+    padding: 2px 8px;
+    line-height: 28px;
     font-size: inherit;
     border: 1px solid $input-border-color;
     border-radius: $border-radius;
@@ -79,27 +165,9 @@ export default {
       cursor: not-allowed;
     }
   }
-  &.error {
-    > input {
-      border-color: $error-color;
-    }
-    > .icon {
-      fill: $error-color;
-    }
-    > .error-message {
-      color: $error-color;
-    }
-  }
-  &.info {
-    > input {
-      border-color: $info-color;
-    }
-    > .icon {
-      fill: $info-color;
-    }
-    > .info-message {
-      color: $info-color;
-    }
+  > textarea {
+    height: auto;
+    line-height: 1.5;
   }
 }
 </style>
