@@ -1,7 +1,7 @@
 <template>
   <div class="g-date-picker-wrapper" ref="datePicker">
     <g-popover position="bottom" ref="popover" :container="popoverContainer" @open="onOpen" :disabled="disabled">
-      <g-input :value="formattedValue" :placeholder="placeholder" :disabled="disabled" :readonly="readonly" type="text" @keyupEnter="onEnter" @blur="onBlur" @change="onChange" @input="onInput" ref="input"></g-input>
+      <g-input :value="formattedValue" clearable prefix="date" @clear="onClickClear" :placeholder="placeholder" :disabled="disabled" :readonly="readonly" type="text" @keyup-enter="onEnter" @blur="onBlur" @change="onChange" @input="onInput" ref="input"></g-input>
       <template slot="popover">
         <div class="g-date-picker-pop" @selectstart.prevent>
           <div class="g-date-picker-pop-nav">
@@ -90,7 +90,8 @@ export default {
       type: [Date, String]
     },
     placeholder: {
-      type: String
+      type: String,
+      default: "请选择日期"
     },
     disabled: {
       type: Boolean,
@@ -223,9 +224,9 @@ export default {
       let inputs = [...document.getElementsByTagName("input")];
       inputs.forEach(n => n.blur());
     },
-    onChange(value) {
-      if (!value) {
-        this.$emit("update:value", undefined);
+    onChange(event) {
+      if (!event || !event.target.value) {
+        this.$emit("input", undefined);
         return;
       }
       this.$refs.input.setRawValue(this.formattedValue);
@@ -251,13 +252,13 @@ export default {
         day = day - 0;
         this.display = { year, month };
         let newDate = this.updateInputValue(year, month, day);
-        this.$emit("update:value", newDate);
+        this.$emit("input", newDate);
       }
     },
     onClickCell(date) {
       let [year, month] = moment.getYearMonthDate(date);
       this.display = { year, month };
-      this.$emit("update:value", date);
+      this.$emit("input", date);
       this.$refs.popover.close();
     },
     onClickChangeMode(name) {
@@ -289,11 +290,11 @@ export default {
       this.controlPlate("addMonth", 1);
     },
     onClickToday() {
-      this.$emit("update:value", new Date());
+      this.$emit("input", new Date());
       this.$refs.popover.close();
     },
     onClickClear() {
-      this.$emit("update:value", undefined);
+      this.$emit("input", undefined);
       let [year, month] = moment.getYearMonthDate(new Date());
       this.display = { year, month };
       this.$refs.popover.close();
@@ -310,171 +311,176 @@ export default {
 
 <style lang="scss" scoped>
 @import "var";
-.g-date-picker-pop {
-  .g-icon:hover {
-    color: $blue;
+.g-date-picker-wrapper {
+  .g-popover-wrapper {
+    width: 200px;
   }
-  &-nav {
-    position: relative;
-    line-height: 32px;
-    text-align: center;
-    margin-bottom: 6px;
-  }
-  &-prev-month,
-  &-next-month,
-  &-prev-year,
-  &-next-year {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    cursor: pointer;
-  }
-  &-prev-month {
-    position: absolute;
-    left: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-  }
-  &-next-month {
-    right: 10px;
-  }
-  &-prev-year {
-    left: -10px;
-  }
-  &-next-year {
-    right: -10px;
-  }
-  &-current-year,
-  &-current-month {
-    font-size: 16px;
-    font-weight: 500;
-    cursor: pointer;
-  }
-  &-current-month {
-    margin-left: 6px;
-  }
-  &-weeks,
-  &-row {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: row;
-  }
-  &-weeks {
-    border-bottom: 1px solid $gray;
-  }
-  &-week,
-  &-col {
-    width: 36px;
-    height: 30px;
-    padding: 3px 0;
-    text-align: center;
-    font-size: 14px;
-    cursor: pointer;
-  }
-  &-col {
-    color: #999;
-    position: relative;
-    &.currentMonth {
-      color: #333;
-    }
-    &.today {
+  .g-date-picker-pop {
+    .g-icon:hover {
       color: $blue;
     }
-    .day {
+    &-nav {
+      position: relative;
+      line-height: 32px;
+      text-align: center;
+      margin-bottom: 6px;
+    }
+    &-prev-month,
+    &-next-month,
+    &-prev-year,
+    &-next-year {
       position: absolute;
       top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 28px;
-      line-height: 28px;
+      transform: translateY(-50%);
+      cursor: pointer;
+    }
+    &-prev-month {
+      position: absolute;
+      left: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+    &-next-month {
+      right: 10px;
+    }
+    &-prev-year {
+      left: -10px;
+    }
+    &-next-year {
+      right: -10px;
+    }
+    &-current-year,
+    &-current-month {
+      font-size: 16px;
+      font-weight: 500;
+      cursor: pointer;
+    }
+    &-current-month {
+      margin-left: 6px;
+    }
+    &-weeks,
+    &-row {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: row;
+    }
+    &-weeks {
+      border-bottom: 1px solid $gray;
+    }
+    &-week,
+    &-col {
+      width: 36px;
+      height: 30px;
+      padding: 3px 0;
       text-align: center;
-      transition: background 0.2s ease;
-      &:hover {
-        background: #e6f7ff;
-      }
+      font-size: 14px;
+      cursor: pointer;
     }
-    &.selectedDay {
+    &-col {
+      color: #999;
+      position: relative;
+      &.currentMonth {
+        color: #333;
+      }
+      &.today {
+        color: $blue;
+      }
       .day {
-        background: #d1e9ff;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 28px;
+        line-height: 28px;
+        text-align: center;
+        transition: background 0.2s ease;
+        &:hover {
+          background: #e6f7ff;
+        }
       }
-    }
-    &.selectedDate {
-      .day {
-        background: $blue;
-        color: #fff;
+      &.selectedDay {
+        .day {
+          background: #d1e9ff;
+        }
       }
-    }
-  }
-  &-select-year,
-  &-select-month {
-    width: 250px;
-    height: 266px;
-  }
-  &-tables {
-    padding: 6px 0;
-  }
-  &-actions {
-    padding-top: 10px;
-    border-top: 1px solid $gray;
-  }
-  &-select-year {
-    .g-date-picker-pop-row {
-      width: 100%;
-      padding: 16px 0;
-    }
-    .g-date-picker-pop-col {
-      flex: 1;
-      width: 33.33%;
-      color: #333;
-      &.selectedYear {
-        span {
+      &.selectedDate {
+        .day {
           background: $blue;
           color: #fff;
         }
       }
-      &.prevOrNext {
-        span {
-          color: rgba(0, 0, 0, 0.25);
-        }
+    }
+    &-select-year,
+    &-select-month {
+      width: 250px;
+      height: 266px;
+    }
+    &-tables {
+      padding: 6px 0;
+    }
+    &-actions {
+      padding-top: 10px;
+      border-top: 1px solid $gray;
+    }
+    &-select-year {
+      .g-date-picker-pop-row {
+        width: 100%;
+        padding: 16px 0;
       }
-      span {
-        padding: 2px 4px;
-        display: inline-block;
-        border-radius: 2px;
-        transition: background 0.3s ease;
-        &:hover {
-          background: #e6f7ff;
-          color: $blue;
-          cursor: pointer;
+      .g-date-picker-pop-col {
+        flex: 1;
+        width: 33.33%;
+        color: #333;
+        &.selectedYear {
+          span {
+            background: $blue;
+            color: #fff;
+          }
+        }
+        &.prevOrNext {
+          span {
+            color: rgba(0, 0, 0, 0.25);
+          }
+        }
+        span {
+          padding: 2px 4px;
+          display: inline-block;
+          border-radius: 2px;
+          transition: background 0.3s ease;
+          &:hover {
+            background: #e6f7ff;
+            color: $blue;
+            cursor: pointer;
+          }
         }
       }
     }
-  }
-  &-select-month {
-    .g-date-picker-pop-row {
-      width: 100%;
-      padding: 16px 0;
-    }
-    .g-date-picker-pop-col {
-      flex: 1;
-      width: 33.33%;
-      color: #333;
-      span {
-        padding: 2px 4px;
-        display: inline-block;
-        border-radius: 2px;
-        transition: background 0.3s ease;
-        &:hover {
-          background: #e6f7ff;
-          color: $blue;
-          cursor: pointer;
-        }
+    &-select-month {
+      .g-date-picker-pop-row {
+        width: 100%;
+        padding: 16px 0;
       }
-      &.selectedMonth {
+      .g-date-picker-pop-col {
+        flex: 1;
+        width: 33.33%;
+        color: #333;
         span {
-          background: $blue;
-          color: #fff;
+          padding: 2px 4px;
+          display: inline-block;
+          border-radius: 2px;
+          transition: background 0.3s ease;
+          &:hover {
+            background: #e6f7ff;
+            color: $blue;
+            cursor: pointer;
+          }
+        }
+        &.selectedMonth {
+          span {
+            background: $blue;
+            color: #fff;
+          }
         }
       }
     }
