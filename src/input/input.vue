@@ -7,7 +7,7 @@
       <g-icon class="icon prefix" :name="prefix" v-if="prefix"></g-icon>
       <input type="text" class="inputbox" :value="nativeValue" :placeholder="placeholder" :disabled="disabled" :readonly="readonly" ref="input" @input="onInput" @keyup.enter="onKeyup" @focus="onFocus" @change="onChange" @blur="onBlur">
       <g-icon class="icon suffix" :name="suffix" v-if="suffix"></g-icon>
-      <g-icon class="icon suffix clear" name="delete" v-if="visibleClear" @click="onClear"></g-icon>
+      <g-icon class="icon suffix clear" name="delete" v-if="visibleClear" @click.stop="onClear"></g-icon>
     </template>
   </div>
 </template>
