@@ -1,6 +1,5 @@
 <template>
   <div>
-    <h3>代码演示</h3>
     <div class="box">
       <h4>基础用法</h4>
       <g-input v-model="v1"></g-input>

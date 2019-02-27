@@ -3,9 +3,13 @@ title: 'Input 输入框'
 sidebarDepth: 2
 ---
 
+### 效果预览
+
 <ClientOnly>
   <input-demo-1/>
 </ClientOnly>
+
+### 使用方式
 
 ```vue{4}
 <template>
