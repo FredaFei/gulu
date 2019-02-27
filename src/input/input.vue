@@ -1,5 +1,5 @@
 <template>
-  <div class="g-input-wrapper" @mouseenter="hovering=true" @mouseleave="hovering=false">
+  <div class="g-input-wrapper" @mouseenter="hovering=true" @mouseleave="hovering=false" ref="gInput">
     <template v-if="type=='textarea'">
       <textarea :rows="rows" :value="nativeValue" :placeholder="placeholder" :disabled="disabled" :readonly="readonly" ref="textarea" @input="onInput" @focus="onFocus" @change="onChange" @blur="onBlur"></textarea>
     </template>
@@ -7,7 +7,7 @@
       <g-icon class="icon prefix" :name="prefix" v-if="prefix"></g-icon>
       <input type="text" class="inputbox" :value="nativeValue" :placeholder="placeholder" :disabled="disabled" :readonly="readonly" ref="input" @input="onInput" @keyup.enter="onKeyup" @focus="onFocus" @change="onChange" @blur="onBlur">
       <g-icon class="icon suffix" :name="suffix" v-if="suffix"></g-icon>
-      <g-icon class="icon suffix" name="delete" v-if="visibleClear" @click="onClear"></g-icon>
+      <g-icon class="icon suffix clear" name="delete" v-if="visibleClear" @click="onClear"></g-icon>
     </template>
   </div>
 </template>
@@ -37,7 +37,7 @@ export default {
     },
     placeholder: {
       type: String,
-      default: ""
+      default: "请输入内容"
     },
     prefix: {
       type: String,
@@ -51,7 +51,7 @@ export default {
       type: String,
       default: "text",
       validator(val) {
-        return ["number", "text", "textarea"].indexOf(val) > -1;
+        return ["text", "textarea"].indexOf(val) > -1;
       }
     },
     rows: {
@@ -89,7 +89,7 @@ export default {
     },
     onKeyup(event) {
       this.focused = false;
-      this.$emit("keyupEnter", event);
+      this.$emit("keyup-enter", event);
     },
     onChange(event) {
       this.focused = true;
