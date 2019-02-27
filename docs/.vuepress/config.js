@@ -21,6 +21,7 @@ module.exports = {
         children: [
           '/components/button',
           '/components/input',
+          '/components/datePicker',
           '/components/toast',
           '/components/collapse',
           '/components/grid',
