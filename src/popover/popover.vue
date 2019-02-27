@@ -1,11 +1,11 @@
 <template>
-  <div class="popover-wrapper" ref="popoverWrapper" :data-zindex="zIndex">
+  <div class="g-popover-wrapper" ref="popoverWrapper" :data-zindex="zIndex">
     <transition name="fade">
-      <div class="popover-content" ref="popoverContent" v-if="isVisible" :class="`position-${position}`">
+      <div class="g-popover-content" ref="popoverContent" v-if="isVisible" :class="`position-${position}`">
         <slot name="popover" :close="close"></slot>
       </div>
     </transition>
-    <div class="trigger" ref="trigger" style="display:inline-block">
+    <div class="g-popover-trigger" ref="trigger">
       <slot></slot>
     </div>
   </div>
@@ -149,7 +149,8 @@ export default {
       );
     },
     onClick(event) {
-      if (this.$refs.trigger.contains(event.target)) {
+      let isContains = this.$refs.trigger.contains(event.target);
+      if (isContains) {
         if (this.isVisible === true) {
           this.close();
         } else {
@@ -162,13 +163,15 @@ export default {
 </script>
 <style lang="scss" scoped>
 @import "var";
-.popover-wrapper {
+.g-popover-wrapper {
   display: inline-block;
   vertical-align: top;
   position: relative;
+  .g-popover-trigger {
+    display: inline-block;
+  }
 }
-
-.popover-content {
+.g-popover-content {
   position: absolute;
   padding: 0.5em 1em;
   max-width: 20em;

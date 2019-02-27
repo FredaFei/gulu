@@ -22,7 +22,7 @@ describe('Popover', () => {
       }
     })
     wrapper.find('button').trigger('click')
-    let classs = wrapper.find('.popover-content').classes()
+    let classs = wrapper.find('.g-popover-content').classes()
     expect(classs).to.include('position-bottom')
   })
   it('trigger默认为click', () => {
@@ -34,7 +34,7 @@ describe('Popover', () => {
       }
     })
     wrapper.find('button').trigger('click')
-    expect(wrapper.find('.popover-content').exists()).to.eq(true)
+    expect(wrapper.find('.g-popover-content').exists()).to.eq(true)
   })
   it('可以设置  trigger为hover', () => {
     const wrapper = mount(Popover, {
@@ -42,11 +42,11 @@ describe('Popover', () => {
         trigger: 'hover'
       }
     })
-    expect(wrapper.find('.popover-content').element).to.not.exist
-    wrapper.find('.popover-wrapper').trigger('mouseenter')
-    expect(wrapper.find('.popover-content').element).to.exist
-    wrapper.find('.popover-wrapper').trigger('mouseleave')
-    expect(wrapper.find('.popover-content').element).to.not.exist
+    expect(wrapper.find('.g-popover-content').element).to.not.exist
+    wrapper.find('.g-popover-wrapper').trigger('mouseenter')
+    expect(wrapper.find('.g-popover-content').element).to.exist
+    wrapper.find('.g-popover-wrapper').trigger('mouseleave')
+    expect(wrapper.find('.g-popover-content').element).to.not.exist
   })
   it('可以设置 disabled.', () => {
     const wrapper = mount(Popover, {
@@ -60,7 +60,7 @@ describe('Popover', () => {
       }
     })
     wrapper.find('button').trigger('click')
-    expect(wrapper.find('.popover-content').exists()).to.eq(false)
+    expect(wrapper.find('.g-popover-content').exists()).to.eq(false)
   })
   it('可以设置 zIndex.', () => {
     const wrapper = mount(Popover, {
