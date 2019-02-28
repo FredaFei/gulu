@@ -54,8 +54,6 @@ export default {
     this.updateItems();
     this.updateChildren();
     this.autoPlay && this.playAutomatically();
-    let node = this.$refs.slidesWrapper.getBoundingClientRect();
-    this.$refs.slidesWindow.style.height = node.height + "px";
   },
   updated() {
     this.updateChildren();
@@ -91,7 +89,7 @@ export default {
       this.pause();
     },
     onMouseLeave() {
-      this.playAutomatically();
+      this.autoPlay && this.playAutomatically();
     },
     pause() {
       window.clearTimeout(this.timerId);

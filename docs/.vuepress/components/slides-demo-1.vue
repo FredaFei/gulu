@@ -1,7 +1,7 @@
 <template>
-  <div class="box">
-    <h3>代码演示</h3>
-    <g-slides :selected.sync="selected">
+  <div>
+    <h4>基础用法</h4>
+    <g-slides :selected.sync="selected1">
       <g-slides-item name="1">
         <div class="slides-item">slide 1</div>
       </g-slides-item>
@@ -12,33 +12,42 @@
         <div class="slides-item">slide 3</div>
       </g-slides-item>
     </g-slides>
-    <h3>使用方式</h3>
+    <h4>手动播放</h4>
+    <g-slides :selected.sync="selected2" :auto-play="false">
+      <g-slides-item name="11">
+        <div class="slides-item">slide 1</div>
+      </g-slides-item>
+      <g-slides-item name="12">
+        <div class="slides-item">slide 2</div>
+      </g-slides-item>
+      <g-slides-item name="13">
+        <div class="slides-item">slide 3</div>
+      </g-slides-item>
+    </g-slides>
   </div>
 </template>
 
 <script>
-import Slides from '../../../src/slides/slides'
-import SlidesItem from '../../../src/slides/slidesItem'
+import GSlides from "../../../src/slides/slides";
+import GSlidesItem from "../../../src/slides/slidesItem";
 export default {
   components: {
-    GSlides: Slides,
-    GSlidesItem: SlidesItem
+    GSlides,
+    GSlidesItem
   },
-  data(){
+  data() {
     return {
-      selected: ''
-    }
+      selected1: "",
+      selected2: ""
+    };
   }
-}
+};
 </script>
 
 <style>
-.box{
-  padding: 20px;
-}
 .slides-item {
   width: 100%;
   height: 150px;
-  background: #dddddd;
+  background: #99a9bf;
 }
 </style>
