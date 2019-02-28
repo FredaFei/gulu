@@ -3,28 +3,17 @@ title: 'Tabs 标签页'
 sidebarDepth: 2
 ---
 
+### 效果预览
+
 <ClientOnly>
-  <tabs-demo-1/>
+<tabs-demo-1/>
 </ClientOnly>
+
+### 使用方式
 
 ```vue{4}
 <template>
-  <div>
-    <g-tabs :selected.sync="selectedTabs" @update:selected="selectedFn">
-      <g-tabs-header>
-        <g-tabs-item name="sport">
-          <g-icon name="settings"></g-icon>
-          sport
-        </g-tabs-item>
-        <g-tabs-item name="music">music</g-tabs-item>
-        <g-tabs-item name="moving">moving</g-tabs-item>
-      </g-tabs-header>
-      <g-tabs-body>
-        <g-tabs-pane name="sport">sport content</g-tabs-pane>
-        <g-tabs-pane name="music">music content</g-tabs-pane>
-        <g-tabs-pane name="moving">moving content</g-tabs-pane>
-      </g-tabs-body>
-    </g-tabs>
+  <div></div>
 </template>
 ```
 
@@ -76,3 +65,13 @@ export default {
 | change   |    输入框内容变化时的回调    |      Function |      - |      - |
 | focus    |      输入框聚焦时的回调      |      Function |      - |      - |
 | blur     |    输入框失去焦点时的回调    |      Function |      - |      - |
+
+### Events
+
+| 事件名称 |      说明      | 回调参数 |
+| -------- | :------------: | -------: |
+| click    | 点击按钮时触发 |       —— |
+
+::: tip
+icon 和 loading 只能任选其一，不能同时设置
+:::
