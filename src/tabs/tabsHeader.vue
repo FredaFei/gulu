@@ -14,30 +14,34 @@ export default {
   name: "guluTabsHeader",
   inject: ["eventBus", "direction"],
   mounted() {
-    const margin = 0;
     this.eventBus &&
       this.eventBus.$on("update:selected", (name, vm) => {
-        // 当选中状态样式导致元素宽度变化时，会出现下划线的宽度与当前选中的tabItem宽度不一致
-        this.$nextTick(() => {
-          let {
-            left: left1,
-            top: top1
-          } = this.$refs.tabsHead.getBoundingClientRect();
-          let {
-            width,
-            left: left2,
-            height,
-            top: top2
-          } = vm.$el.getBoundingClientRect();
-          if (this.direction === "horizontal") {
-            this.$refs.line.style.width = `${width - margin * 2}px`;
-            this.$refs.line.style.left = `${left2 - left1 + margin}px`;
-          } else {
-            this.$refs.line.style.height = `${height - margin * 2}px`;
-            this.$refs.line.style.top = `${top2 - top1 + margin}px`;
-          }
-        });
+        this.calculateLineStyle(vm);
       });
+  },
+  methods: {
+    calculateLineStyle(vm) {
+      // 当选中状态样式导致元素宽度变化时，会出现下划线的宽度与当前选中的tabItem宽度不一致
+      this.$nextTick(() => {
+        let {
+          left: left1,
+          top: top1
+        } = this.$refs.tabsHead.getBoundingClientRect();
+        let {
+          width,
+          left: left2,
+          height,
+          top: top2
+        } = vm.$el.getBoundingClientRect();
+        if (this.direction === "horizontal") {
+          this.$refs.line.style.width = `${width}px`;
+          this.$refs.line.style.left = `${left2 - left1}px`;
+        } else {
+          this.$refs.line.style.height = `${height}px`;
+          this.$refs.line.style.top = `${top2 - top1}px`;
+        }
+      });
+    }
   }
 };
 </script>
