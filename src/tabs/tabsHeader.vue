@@ -1,19 +1,10 @@
 <template>
   <div :class="['g-tabs-header',{'vertical':direction=='vertical'}]" ref="tabsHead">
-    <template v-if="direction=='horizontal'">
-      <slot></slot>
-      <div class="line" ref="line"></div>
-      <div class="action-wrapper">
-        <slot name="actions"></slot>
-      </div>
-    </template>
-    <template v-else>
-      <slot></slot>
-      <div class="line" ref="line"></div>
-      <div class="action-wrapper">
-        <slot name="actions"></slot>
-      </div>
-    </template>
+    <slot></slot>
+    <div class="line" ref="line"></div>
+    <div class="action-wrapper">
+      <slot name="actions"></slot>
+    </div>
   </div>
 
 </template>
@@ -26,12 +17,12 @@ export default {
     const margin = 0;
     this.eventBus &&
       this.eventBus.$on("update:selected", (name, vm) => {
-        let {
-          left: left1,
-          top: top1
-        } = this.$refs.tabsHead.getBoundingClientRect();
         // 当选中状态样式导致元素宽度变化时，会出现下划线的宽度与当前选中的tabItem宽度不一致
         this.$nextTick(() => {
+          let {
+            left: left1,
+            top: top1
+          } = this.$refs.tabsHead.getBoundingClientRect();
           let {
             width,
             left: left2,
@@ -53,14 +44,16 @@ export default {
 
 <style lang="scss" scoped>
 .g-tabs-header {
-  display: flex;
   position: relative;
+  display: flex;
   justify-content: flex-start;
+  flex-shrink: 0;
   border-bottom: 1px solid #ddd;
   > .line {
     position: absolute;
-    bottom: 0;
+    bottom: -1px;
     border-bottom: 2px solid #1890ff;
+    box-sizing: border-box;
     transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
   }
   > .action-wrapper {
@@ -75,7 +68,7 @@ export default {
     border-right: 1px solid #ddd;
     border-bottom: none;
     > .line {
-      right: 0;
+      right: -1px;
       border-right: 2px solid #1890ff;
     }
   }

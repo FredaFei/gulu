@@ -51,7 +51,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-$blue: #1890ff;
+@import "var";
+$darkblue: #1890ff;
 .g-tabs-item {
   padding: 12px 16px;
   display: flex;
@@ -59,11 +60,20 @@ $blue: #1890ff;
   flex-shrink: 0;
   height: 100%;
   box-sizing: border-box;
-  &.vertical {
-    // flex-direction: column;
+  cursor: pointer;
+  transition: color 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+  &:hover {
+    color: $blue;
+  }
+  & + .g-tabs-item {
+    margin-left: 10px;
+  }
+  &.vertical + .g-tabs-item {
+    margin-top: 10px;
+    margin-left: 0;
   }
   &.active {
-    color: $blue;
+    color: $darkblue;
     font-weight: 700;
   }
   &.disabled {
