@@ -1,6 +1,6 @@
 {
   "name": "gulu",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "UI组件库",
   "private": true,
   "scripts": {
@@ -13,6 +13,10 @@
     "docs:build": "vuepress build docs"
   },
   "author": "freda",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/FredaFei/gulu/"
+  },
   "license": "MIT",
   "dependencies": {
     "vue": "^2.5.17"
