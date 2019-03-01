@@ -1,7 +1,7 @@
 import chai, { expect } from 'chai'
 import sinon from 'sinon'
 import sinonChai from 'sinon-chai'
-import { mount } from '@vue/test-utils'
+import { mount, shallowMount } from '@vue/test-utils'
 chai.use(sinonChai)
 
 import Vue from 'vue'
@@ -21,7 +21,7 @@ describe('TabsItem', () => {
   it('存在.', () => {
     expect(TabsItem).to.be.ok
   })
-  it('接受 name 属性 ', (done) => {
+  it('接受 name 属性 ', done => {
     const wrapper = mount(TabsItem, {
       propsData: {
         name: 'test2'
@@ -32,17 +32,39 @@ describe('TabsItem', () => {
       done()
     })
   })
-  it('可以设置 disabled .', (done) => {
+  it('可以设置 disabled .', done => {
     const callback = sinon.fake()
     const wrapper = mount(TabsItem, {
       propsData: {
         disabled: true,
         name: 'test2'
+      },
+      listeners: {
+        'update:selected': callback
       }
     })
-    expect(wrapper.classes('disabled')).to.be.true
     setTimeout(() => {
+      expect(wrapper.classes('disabled')).to.be.true
+      wrapper.find('.g-tabs-item[data-name="test2"]').trigger('click')
       expect(callback).to.have.not.been.called
+      done()
+    })
+  })
+  it('可以 click .', done => {
+    const callback = sinon.fake()
+    const wrapper = mount(TabsItem, {
+      propsData: {
+        name: 'test2'
+      },
+      listeners: {
+        'update:selected': callback
+      },
+      inject: ['eventBus'],
+      attachToDocument: true
+    })
+    setTimeout(() => {
+      wrapper.find('.g-tabs-item[data-name="test2"]').trigger('click')
+      // expect(callback).to.have.been.called()
       done()
     })
   })
