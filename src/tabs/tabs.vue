@@ -13,7 +13,6 @@ export default {
       type: String | Number,
       required: true
     },
-    // todo direction 待定
     direction: {
       type: String,
       default: "horizontal",

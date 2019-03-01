@@ -13,7 +13,71 @@ sidebarDepth: 2
 
 ```vue{4}
 <template>
-  <div></div>
+  <div>
+    <div class="box">
+      <h4>Tabs 默认定位</h4>
+      <g-tabs :selected.sync="selectedTabs1">
+        <g-tabs-header>
+          <g-tabs-item name="finance">财经</g-tabs-item>
+          <g-tabs-item name="sport">体育</g-tabs-item>
+          <g-tabs-item name="comic">娱乐</g-tabs-item>
+        </g-tabs-header>
+        <g-tabs-body>
+          <g-tabs-pane name="finance">财经 content</g-tabs-pane>
+          <g-tabs-pane name="sport">体育 content</g-tabs-pane>
+          <g-tabs-pane name="comic">娱乐 content</g-tabs-pane>
+        </g-tabs-body>
+      </g-tabs>
+    </div>
+    <div class="box">
+      <h4>Tabs 垂直定位</h4>
+      <g-tabs :selected.sync="selectedTabs2" direction="vertical">
+        <g-tabs-header>
+          <g-tabs-item name="finance">财经</g-tabs-item>
+          <g-tabs-item name="sport">体育</g-tabs-item>
+          <g-tabs-item name="comic">娱乐</g-tabs-item>
+        </g-tabs-header>
+        <g-tabs-body>
+          <g-tabs-pane name="finance">财经 content</g-tabs-pane>
+          <g-tabs-pane name="sport">体育 content</g-tabs-pane>
+          <g-tabs-pane name="comic">娱乐 content</g-tabs-pane>
+        </g-tabs-body>
+      </g-tabs>
+    </div>
+    <div class="box">
+      <h4>自定义tabs</h4>
+      <g-tabs :selected.sync="selectedTabs3">
+        <g-tabs-header>
+          <g-tabs-item name="finance"
+            >财经 <g-icon name="thumbs-up"></g-icon>
+          </g-tabs-item>
+          <g-tabs-item name="sport">体育</g-tabs-item>
+          <g-tabs-item name="comic">娱乐</g-tabs-item>
+          <g-button slot="actions">更多</g-button>
+        </g-tabs-header>
+        <g-tabs-body>
+          <g-tabs-pane name="finance">财经 content</g-tabs-pane>
+          <g-tabs-pane name="sport">体育 content</g-tabs-pane>
+          <g-tabs-pane name="comic">娱乐 content</g-tabs-pane>
+        </g-tabs-body>
+      </g-tabs>
+    </div>
+    <div class="box">
+      <h4>禁用状态</h4>
+      <g-tabs :selected.sync="selectedTabs4" direction="vertical">
+        <g-tabs-header>
+          <g-tabs-item name="finance">财经</g-tabs-item>
+          <g-tabs-item name="sport" disabled>体育</g-tabs-item>
+          <g-tabs-item name="comic">娱乐</g-tabs-item>
+        </g-tabs-header>
+        <g-tabs-body>
+          <g-tabs-pane name="finance">财经 content</g-tabs-pane>
+          <g-tabs-pane name="sport">体育 content</g-tabs-pane>
+          <g-tabs-pane name="comic">娱乐 content</g-tabs-pane>
+        </g-tabs-body>
+      </g-tabs>
+    </div>
+  </div>
 </template>
 ```
 
@@ -52,26 +116,29 @@ export default {
 }
 ```
 
-### API
+### Tabs.API
 
-| 参数     |             说明             |          类型 | 默认值 | 可选值 |
-| -------- | :--------------------------: | ------------: | -----: | -----: |
-| selected |            选中的            | String/Number |      - |      - |
-| readonly |         是否只读状态         |       Boolean |  false |   true |
-| disabled |         是否禁用状态         |       Boolean |  false |   true |
-| iconType | 设置验证时提示信息的图标类型 |        String |      - |      - |
-| message  |    输入框验证时的提示信息    |        String |      - |      - |
-| input    |      输入框输入时的回调      |        String |      - |      - |
-| change   |    输入框内容变化时的回调    |      Function |      - |      - |
-| focus    |      输入框聚焦时的回调      |      Function |      - |      - |
-| blur     |    输入框失去焦点时的回调    |      Function |      - |      - |
+| 参数      |           说明            |          类型 |     默认值 |   可选值 |
+| --------- | :-----------------------: | ------------: | ---------: | -------: |
+| selected  | 绑定值，选中选项卡的 name | String/Number |         —— |       —— |
+| direction |       tabs 展示位置       |        String | horizontal | vertical |
+| disabled  |       是否禁用状态        |       Boolean |      false |     true |
+
+### TabsHeader.API
+
+| 参数    |             说明             | 类型 | 默认值 | 可选值 |
+| ------- | :--------------------------: | ---: | -----: | -----: |
+| actions | 用户自定义选项卡外的插槽别名 |   —— |     —— |     —— |
+
+### TabsItem.API
+
+| 参数     |     说明     |    类型 | 默认值 | 可选值 |
+| -------- | :----------: | ------: | -----: | -----: |
+| name     |  选项卡别名  |  String |     —— |     —— |
+| disabled | 是否禁用状态 | Boolean |  false |   true |
 
 ### Events
 
 | 事件名称 |      说明      | 回调参数 |
 | -------- | :------------: | -------: |
 | click    | 点击按钮时触发 |       —— |
-
-::: tip
-icon 和 loading 只能任选其一，不能同时设置
-:::

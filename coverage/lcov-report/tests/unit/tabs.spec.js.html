@@ -22,7 +22,7 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>17/17</span>
+        <span class='fraction'>27/27</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
@@ -30,14 +30,14 @@
         <span class='fraction'>0/0</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">83.33% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>5/6</span>
+        <span class='fraction'>8/8</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>17/17</span>
+        <span class='fraction'>27/27</span>
       </div>
     </div>
   </div>
@@ -96,7 +96,47 @@
 51
 52
 53
-54</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
@@ -121,7 +161,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
-<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -145,8 +184,49 @@
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import chai, { expect } from 'chai'
@@ -172,14 +252,13 @@ describe('Tabs', () =&gt; {
   it('存在.', () =&gt; {
     expect(Tabs).to.be.ok
   })
-  describe('props', () =&gt; {
-    it('接受 selected 属性', (done) =&gt; {
-      const wrapper = mount(Tabs, {
-        propsData: {
-          selected: 'music'
-        },
-        slots: {
-          default: `
+  it('接受 selected 属性', done =&gt; {
+    const wrapper = mount(Tabs, {
+      propsData: {
+        selected: 'music'
+      },
+      slots: {
+        default: `
             &lt;g-tabs-header&gt;
                 &lt;g-tabs-item name="sport"&gt;sport&lt;/g-tabs-item&gt;
                 &lt;g-tabs-item name="music"&gt;music&lt;/g-tabs-item&gt;
@@ -191,15 +270,56 @@ describe('Tabs', () =&gt; {
                 &lt;g-tabs-pane name="moving"&gt;moving content&lt;/g-tabs-pane&gt;
             &lt;/g-tabs-body&gt;
               `
-        }
-      })
-      setTimeout(() =&gt; {
-        const element = wrapper.find('.tabs-item[data-name="music"]') 
-        expect(wrapper.find('.g-tabs-pane[data-name="music"]').isVisible()).to.be.true
-        done()
-      })
+      }
     })
-    xit('可以设置 direction .', () =&gt; <span class="fstat-no" title="function not covered" >{})</span>
+    setTimeout(() =&gt; {
+      const element = wrapper.find('.g-tabs-item[data-name="music"]')
+      expect(element.exists()).to.be.true
+      expect(wrapper.find('.g-tabs-pane[data-name="music"]').isVisible()).to.be
+        .true
+      done()
+    })
+  })
+  it('可以设置 direction .', done =&gt; {
+    const wrapper = mount(Tabs, {
+      propsData: {
+        selected: 'music',
+        direction: 'vertical'
+      },
+      slots: {
+        default: `
+            &lt;g-tabs-header&gt;
+                &lt;g-tabs-item name="sport"&gt;sport&lt;/g-tabs-item&gt;
+                &lt;g-tabs-item name="music"&gt;music&lt;/g-tabs-item&gt;
+                &lt;g-tabs-item name="moving"&gt;moving&lt;/g-tabs-item&gt;
+            &lt;/g-tabs-header&gt;
+            &lt;g-tabs-body&gt;
+                &lt;g-tabs-pane name="sport"&gt;sport content&lt;/g-tabs-pane&gt;
+                &lt;g-tabs-pane name="music"&gt;music content&lt;/g-tabs-pane&gt;
+                &lt;g-tabs-pane name="moving"&gt;moving content&lt;/g-tabs-pane&gt;
+            &lt;/g-tabs-body&gt;
+              `
+      }
+    })
+    setTimeout(() =&gt; {
+      const element = wrapper.find('.g-tabs-item[data-name="music"].vertical')
+      expect(element.exists()).to.be.true
+      done()
+    })
+  })
+  it('没有子组件时为空 .', done =&gt; {
+    const wrapper = mount(Tabs, {
+      propsData: {
+        selected: 'music'
+      },
+      slots: {
+        default: ''
+      }
+    })
+    setTimeout(() =&gt; {
+      expect(wrapper.isEmpty()).to.be.true
+      done()
+    })
   })
 })
 &nbsp;</pre></td></tr>
@@ -208,7 +328,7 @@ describe('Tabs', () =&gt; {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Feb 27 2019 16:10:21 GMT+0800 (中国标准时间)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Fri Mar 01 2019 14:19:40 GMT+0800 (中国标准时间)
 </div>
 </div>
 <script src="../../prettify.js"></script>

@@ -69,9 +69,9 @@ export default {
 
 | 参数          |     说明     |    类型 | 默认值 | 可选值 |
 | ------------- | :----------: | ------: | -----: | -----: |
-| selected      |  默认切换值  |  String |      - |      - |
+| selected      |  默认切换值  |  String |     —— |     —— |
 | autoPlay      | 是否自动切换 | Boolean |   true |  false |
-| autoPlayDelay | 自动切换频率 |  Number |   2000 |      - |
+| autoPlayDelay | 自动切换频率 |  Number |   2000 |     —— |
 
 ### Events
 

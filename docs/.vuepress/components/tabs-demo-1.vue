@@ -1,59 +1,100 @@
 <template>
   <div>
-    <h4>click 触发</h4>
-    <!-- <g-tabs :selected.sync="selectedTabs1">
-      <g-tabs-header>
-        <g-tabs-item name="sport1">财经</g-tabs-item>
-        <g-tabs-item name="music2" class="music2">music1</g-tabs-item>
-        <g-tabs-item name="moving3">moving1</g-tabs-item>
-      </g-tabs-header>
-      <g-tabs-body>
-        <g-tabs-pane name="sport1">sport content</g-tabs-pane>
-        <g-tabs-pane name="music2">music content</g-tabs-pane>
-        <g-tabs-pane name="moving3">moving content</g-tabs-pane>
-      </g-tabs-body>
-    </g-tabs> -->
-    <g-tabs :selected.sync="selectedTabs2" direction="vertical">
-      <g-tabs-header>
-        <g-tabs-item name="sport">
-          <g-icon name="settings"></g-icon>
-          <span>sport</span>
-        </g-tabs-item>
-        <g-tabs-item name="music">music</g-tabs-item>
-        <g-tabs-item name="moving">moving</g-tabs-item>
-      </g-tabs-header>
-      <g-tabs-body>
-        <g-tabs-pane name="sport">sport content</g-tabs-pane>
-        <g-tabs-pane name="music">music content</g-tabs-pane>
-        <g-tabs-pane name="moving">moving content</g-tabs-pane>
-      </g-tabs-body>
-    </g-tabs>
+    <div class="box">
+      <h4>Tabs 默认定位</h4>
+      <g-tabs :selected.sync="selectedTabs1">
+        <g-tabs-header>
+          <g-tabs-item name="finance">财经</g-tabs-item>
+          <g-tabs-item name="sport">体育</g-tabs-item>
+          <g-tabs-item name="comic">娱乐</g-tabs-item>
+        </g-tabs-header>
+        <g-tabs-body>
+          <g-tabs-pane name="finance">财经 content</g-tabs-pane>
+          <g-tabs-pane name="sport">体育 content</g-tabs-pane>
+          <g-tabs-pane name="comic">娱乐 content</g-tabs-pane>
+        </g-tabs-body>
+      </g-tabs>
+    </div>
+    <div class="box">
+      <h4>Tabs 垂直定位</h4>
+      <g-tabs :selected.sync="selectedTabs2" direction="vertical">
+        <g-tabs-header>
+          <g-tabs-item name="finance">财经</g-tabs-item>
+          <g-tabs-item name="sport">体育</g-tabs-item>
+          <g-tabs-item name="comic">娱乐</g-tabs-item>
+        </g-tabs-header>
+        <g-tabs-body>
+          <g-tabs-pane name="finance">财经 content</g-tabs-pane>
+          <g-tabs-pane name="sport">体育 content</g-tabs-pane>
+          <g-tabs-pane name="comic">娱乐 content</g-tabs-pane>
+        </g-tabs-body>
+      </g-tabs>
+    </div>
+    <div class="box">
+      <h4>自定义tabs</h4>
+      <g-tabs :selected.sync="selectedTabs3">
+        <g-tabs-header>
+          <g-tabs-item name="finance">财经 <g-icon name="thumbs-up"></g-icon>
+          </g-tabs-item>
+          <g-tabs-item name="sport">体育</g-tabs-item>
+          <g-tabs-item name="comic">娱乐</g-tabs-item>
+          <g-button slot="actions">更多</g-button>
+        </g-tabs-header>
+        <g-tabs-body>
+          <g-tabs-pane name="finance">财经 content</g-tabs-pane>
+          <g-tabs-pane name="sport">体育 content</g-tabs-pane>
+          <g-tabs-pane name="comic">娱乐 content</g-tabs-pane>
+        </g-tabs-body>
+      </g-tabs>
+    </div>
+    <div class="box">
+      <h4>禁用状态</h4>
+      <g-tabs :selected.sync="selectedTabs4" direction="vertical">
+        <g-tabs-header>
+          <g-tabs-item name="finance">财经</g-tabs-item>
+          <g-tabs-item name="sport" disabled>体育</g-tabs-item>
+          <g-tabs-item name="comic">娱乐</g-tabs-item>
+        </g-tabs-header>
+        <g-tabs-body>
+          <g-tabs-pane name="finance">财经 content</g-tabs-pane>
+          <g-tabs-pane name="sport">体育 content</g-tabs-pane>
+          <g-tabs-pane name="comic">娱乐 content</g-tabs-pane>
+        </g-tabs-body>
+      </g-tabs>
+    </div>
   </div>
 </template>
 <script>
-import Icon from "../../../src/icon";
-import Tabs from "../../../src/tabs/tabs";
-import TabsHeader from "../../../src/tabs/tabsHeader";
-import TabsItem from "../../../src/tabs/tabsItem";
-import TabsBody from "../../../src/tabs/tabsBody";
-import TabsPane from "../../../src/tabs/tabsPane";
+import GIcon from "../../../src/icon";
+import GButton from "../../../src/button/button";
+import GTabs from "../../../src/tabs/tabs";
+import GTabsHeader from "../../../src/tabs/tabsHeader";
+import GTabsItem from "../../../src/tabs/tabsItem";
+import GTabsBody from "../../../src/tabs/tabsBody";
+import GTabsPane from "../../../src/tabs/tabsPane";
 export default {
   components: {
-    GIcon: Icon,
-    GTabs: Tabs,
-    GTabsHeader: TabsHeader,
-    GTabsItem: TabsItem,
-    GTabsBody: TabsBody,
-    GTabsPane: TabsPane
+    GIcon,
+    GButton,
+    GTabs,
+    GTabsHeader,
+    GTabsItem,
+    GTabsBody,
+    GTabsPane
   },
   data() {
     return {
-      selectedTabs1: "sport1",
-      selectedTabs2: "sport"
+      selectedTabs1: "finance",
+      selectedTabs2: "comic",
+      selectedTabs3: "comic",
+      selectedTabs4: "comic"
     };
   }
 };
 </script>
 <style>
+.box {
+  padding-bottom: 14px;
+}
 </style>
 
