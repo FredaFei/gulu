@@ -13,10 +13,9 @@
 </template>
 <script>
 import Button from "../../../src/button/button";
-import Toast from "../../../src/toast/toast";
-import plugin from "../../../src/plugin.js";
+import Toast from "../../../src/toast";
 import Vue from "vue";
-Vue.use(plugin);
+Vue.use(Toast);
 
 export default {
   components: {
