@@ -9,9 +9,9 @@ import Nav from '../../src/nav/nav'
 import NavItem from '../../src/nav/navItem'
 import SubNav from '../../src/nav/subNav'
 
-Vue.component('g-nav', Nav)
-Vue.component('g-nav-item', NavItem)
-Vue.component('g-sub-nav', SubNav)
+Vue.component('am-nav', Nav)
+Vue.component('am-nav-item', NavItem)
+Vue.component('am-sub-nav', SubNav)
 
 describe('Nav', () => {
   it('nav.vue 存在.', () => {
@@ -25,12 +25,12 @@ describe('Nav', () => {
         },
         slots: {
           default: `
-            <g-nav-item name="music">
+            <am-nav-item name="music">
               <div>nav 1</div>
-            </g-nav-item>
-            <g-nav-item name="sport">
+            </am-nav-item>
+            <am-nav-item name="sport">
               <div>nav 3</div>
-            </g-nav-item>
+            </am-nav-item>
           `
         }
       })
@@ -47,12 +47,12 @@ describe('Nav', () => {
         },
         slots: {
           default: `
-            <g-nav-item name="music">
+            <am-nav-item name="music">
               <div>nav 1</div>
-            </g-nav-item>
-            <g-nav-item name="sport">
+            </am-nav-item>
+            <am-nav-item name="sport">
               <div>nav 3</div>
-            </g-nav-item>
+            </am-nav-item>
           `
         }
       })
@@ -71,12 +71,12 @@ describe('Nav', () => {
         },
         slots: {
           default: `
-            <g-nav-item name="music">
+            <am-nav-item name="music">
               <div>nav 1</div>
-            </g-nav-item>
-            <g-nav-item name="sport">
+            </am-nav-item>
+            <am-nav-item name="sport">
               <div>nav 3</div>
-            </g-nav-item>
+            </am-nav-item>
           `
         },
         listeners: {

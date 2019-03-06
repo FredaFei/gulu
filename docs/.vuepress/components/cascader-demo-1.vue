@@ -1,7 +1,7 @@
 <template>
   <div class="box">
     <h3>代码演示</h3>
-    <g-cascader :source.sync="source" :load-data="loadData" :selected.sync="selected" popover-height="200px"></g-cascader>
+    <am-cascader :source.sync="source" :load-data="loadData" :selected.sync="selected" popover-height="200px"></am-cascader>
     <h3>使用方式</h3>
   </div>
 </template>
@@ -27,8 +27,8 @@ function ajax(parentId = 0) {
 }
 export default {
   components: {
-    GCascader: Cascader,
-    GCascaderItem: CascaderItem
+    AmCascader: Cascader,
+    AmCascaderItem: CascaderItem
   },
   data() {
     return {

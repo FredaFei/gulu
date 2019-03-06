@@ -1,15 +1,14 @@
 <template>
-    <main>
-        <slot></slot>
-    </main>
+  <main>
+    <slot></slot>
+  </main>
 </template>
 
 <script>
 export default {
-    name: 'gHeader'
-}
+  name: "amHeader"
+};
 </script>
 
 <style lang="scss" scoped>
-
 </style>

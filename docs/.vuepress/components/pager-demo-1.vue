@@ -1,15 +1,15 @@
 <template>
   <div>
     <h3>代码演示</h3>
-      <g-pager :current-page="currentPage" :total-page="10" :current-page.sync="currentPage"></g-pager>
+      <am-pager :current-page="currentPage" :total-page="10" :current-page.sync="currentPage"></am-pager>
   </div>
 </template>
 <script>
-import GPager from '../../../src/pager/pager'
+import AmPager from '../../../src/pager/pager'
 
 export default {
   components: {
-    GPager
+    AmPager
   },
    data() {
     return {

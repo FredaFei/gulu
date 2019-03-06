@@ -818,19 +818,19 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">&lt;template&gt;
-  &lt;div class="g-table-wrapper"&gt;
-    &lt;div class="g-table-content" :style="{height}" ref="tableContent"&gt;
-      &lt;table class="g-table" :class="{border,striped,compact}" ref="gTable"&gt;
+  &lt;div class="am-table-wrapper"&gt;
+    &lt;div class="am-table-content" :style="{height}" ref="tableContent"&gt;
+      &lt;table class="am-table" :class="{border,striped,compact}" ref="gTable"&gt;
         &lt;thead&gt;
           &lt;tr&gt;
-            &lt;th class="g-table-expend-field g-table-center" v-if="expendField"&gt;&lt;/th&gt;
-            &lt;th class="g-table-checkbox" v-if="checkable"&gt;&lt;input type="checkbox" @click="onChangeAllItems" :checked="areAllCheckedItems" ref="allChecked" /&gt;&lt;/th&gt;
-            &lt;th v-if="numberVisiable" class="g-table-number"&gt;#&lt;/th&gt;
+            &lt;th class="am-table-expend-field am-table-center" v-if="expendField"&gt;&lt;/th&gt;
+            &lt;th class="am-table-checkbox" v-if="checkable"&gt;&lt;input type="checkbox" @click="onChangeAllItems" :checked="areAllCheckedItems" ref="allChecked" /&gt;&lt;/th&gt;
+            &lt;th v-if="numberVisiable" class="am-table-number"&gt;#&lt;/th&gt;
             &lt;th v-for="col in columns" :key="col.field" :style="{width:col.width+ 'px'}"&gt;
-              &lt;div class="g-table-head"&gt;{{col.text}}
-                &lt;span class="g-table-sorter" v-if="orderBy[col.field]" @click="onChangeOrderBy(col.field)"&gt;
-                  &lt;g-icon name="asc" :class="{active: orderBy[col.field]==='asc'}"&gt;&lt;/g-icon&gt;
-                  &lt;g-icon name="desc" :class="{active: orderBy[col.field]==='desc'}"&gt;&lt;/g-icon&gt;
+              &lt;div class="am-table-head"&gt;{{col.text}}
+                &lt;span class="am-table-sorter" v-if="orderBy[col.field]" @click="onChangeOrderBy(col.field)"&gt;
+                  &lt;am-icon name="asc" :class="{active: orderBy[col.field]==='asc'}"&gt;&lt;/am-icon&gt;
+                  &lt;am-icon name="desc" :class="{active: orderBy[col.field]==='desc'}"&gt;&lt;/am-icon&gt;
                 &lt;/span&gt;
               &lt;/div&gt;
             &lt;/th&gt;
@@ -840,11 +840,11 @@
         &lt;tbody&gt;
           &lt;template v-for="(data,index) in dataSource"&gt;
             &lt;tr :key="data.id"&gt;
-              &lt;td class="g-table-expend-field g-table-center" v-if="expendField"&gt;
-                &lt;g-icon class="g-table-expend-icon" :class="{'active': inExpendIds(data.id)}" name="right" @click="expendItem(data.id)"&gt;&lt;/g-icon&gt;
+              &lt;td class="am-table-expend-field am-table-center" v-if="expendField"&gt;
+                &lt;am-icon class="am-table-expend-icon" :class="{'active': inExpendIds(data.id)}" name="right" @click="expendItem(data.id)"&gt;&lt;/am-icon&gt;
               &lt;/td&gt;
-              &lt;td class="g-table-checkbox" v-if="checkable"&gt;&lt;input type="checkbox" :checked="inSelectedItems(data)" @click="onChangeItem(data,$event)" /&gt;&lt;/td&gt;
-              &lt;td v-if="numberVisiable" class="g-table-number"&gt;{{index+1}}&lt;/td&gt;
+              &lt;td class="am-table-checkbox" v-if="checkable"&gt;&lt;input type="checkbox" :checked="inSelectedItems(data)" @click="onChangeItem(data,$event)" /&gt;&lt;/td&gt;
+              &lt;td v-if="numberVisiable" class="am-table-number"&gt;{{index+1}}&lt;/td&gt;
               &lt;template v-for="col in columns"&gt;
                 &lt;td :key="col.field" :style="{width:col.width+'px'}"&gt;
                   &lt;template v-if="col.render"&gt;
@@ -862,8 +862,8 @@
               &lt;/td&gt;
             &lt;/tr&gt;
             &lt;transition name="slide-fade" :key="`${data.id}-expendFiled`"&gt;
-              &lt;tr :key="`${data.id}-expendFiled`" class="g-table-expend-filed" v-if="inExpendIds(data.id)"&gt;
-                &lt;td class="g-table-expend-field g-table-center"&gt;&lt;/td&gt;
+              &lt;tr :key="`${data.id}-expendFiled`" class="am-table-expend-filed" v-if="inExpendIds(data.id)"&gt;
+                &lt;td class="am-table-expend-field am-table-center"&gt;&lt;/td&gt;
                 &lt;td :colspan="`${columns.length+expendedCellColSpan}`"&gt;
                   &lt;p&gt;{{data.description || '空'}}&lt;/p&gt;
                 &lt;/td&gt;
@@ -873,18 +873,18 @@
         &lt;/tbody&gt;
       &lt;/table&gt;
     &lt;/div&gt;
-    &lt;div class="g-table-loading" v-if="loading"&gt;
-      &lt;g-icon name="loading"&gt;&lt;/g-icon&gt;
+    &lt;div class="am-table-loading" v-if="loading"&gt;
+      &lt;am-icon name="loading"&gt;&lt;/am-icon&gt;
     &lt;/div&gt;
   &lt;/div&gt;
 &lt;/template&gt;
 &nbsp;
 &lt;script&gt;
-import GIcon from "../icon";
+import AmIcon from "../icon";
 export default {
-  name: "guluTable",
+  name: "amTable",
   components: {
-    GIcon,
+    AmIcon,
     vnodes: {
       functional: true,
       render: (h, context) =&gt; <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >context.props.vnodes</span></span>
@@ -1004,8 +1004,8 @@ export default {
         let { width } = <span class="cstat-no" title="statement not covered" >node.getBoundingClientRect();</span>
         let parentNode = <span class="cstat-no" title="statement not covered" >node.parentNode;</span>
         let styles = <span class="cstat-no" title="statement not covered" >getComputedStyle(parentNode);</span>
-        let paddingLeft = <span class="cstat-no" title="statement not covered" >styles.getPropertyValue("padding-left");</span>
-        let paddingRight = <span class="cstat-no" title="statement not covered" >styles.getPropertyValue("padding-right");</span>
+        let paddingLeft = <span class="cstat-no" title="statement not covered" >styles.getPropertyValue("paddinam-left");</span>
+        let paddingRight = <span class="cstat-no" title="statement not covered" >styles.getPropertyValue("paddinam-right");</span>
         let borderLeft = <span class="cstat-no" title="statement not covered" >styles.getPropertyValue("border-left-width");</span>
         let borderRight = <span class="cstat-no" title="statement not covered" >styles.getPropertyValue("border-right-width");</span>
         let width2 =
@@ -1023,7 +1023,7 @@ export default {
     doFixedHeader() <span class="fstat-no" title="function not covered" >{</span>
       let newTable = <span class="cstat-no" title="statement not covered" >this.$refs.gTable.cloneNode(false);</span>
 <span class="cstat-no" title="statement not covered" >      this.newTable = newTable;</span>
-<span class="cstat-no" title="statement not covered" >      newTable.classList.add("g-table-copy");</span>
+<span class="cstat-no" title="statement not covered" >      newTable.classList.add("am-table-copy");</span>
       let tHeader = <span class="cstat-no" title="statement not covered" >this.$refs.gTable.children[0];</span>
 <span class="cstat-no" title="statement not covered" >      this.$nextTick(() =&gt; <span class="fstat-no" title="function not covered" >{</span></span>
         let { height } = <span class="cstat-no" title="statement not covered" >tHeader.getBoundingClientRect();</span>
@@ -1091,7 +1091,7 @@ export default {
   height: 0px;
 }
 &nbsp;
-.g-table {
+.am-table {
   $gray: darken($gray, 10%);
   width: 100%;
   border-collapse: collapse;
@@ -1210,7 +1210,7 @@ export default {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Fri Mar 01 2019 14:19:40 GMT+0800 (中国标准时间)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Mar 06 2019 11:21:01 GMT+0800 (中国标准时间)
 </div>
 </div>
 <script src="../../prettify.js"></script>

@@ -1,31 +1,31 @@
 <template>
-    <div class="g-button-group">
-        <slot/>
-    </div>
+  <div class="am-button-group">
+    <slot />
+  </div>
 </template>
 
 <script>
 export default {
-  name: 'guluButtonGroup',
+  name: "amButtonAmroup",
   mounted() {
     for (let node of this.$el.children) {
-      let name = node.nodeName.toLowerCase()
-      if (name !== 'button') {
+      let name = node.nodeName.toLowerCase();
+      if (name !== "button") {
         console.warn(
-          `g-button-group  组件的子元素应该全是 g-button, 但你写的是 ${name}`
-        )
+          `am-button-group  组件的子元素应该全是 am-button, 但你写的是 ${name}`
+        );
       }
     }
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>
 @import "var";
-.g-button-group {
+.am-button-group {
   display: inline-flex;
   vertical-align: middle;
-  > .g-button {
+  > .am-button {
     border-radius: 0;
     &:not(:first-child) {
       margin-left: -1px;

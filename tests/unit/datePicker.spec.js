@@ -53,7 +53,7 @@ describe('DatePicker', () => {
       }
     })
     wrapper.find('input').trigger('click')
-    expect(wrapper.find('.g-popover-content').exists()).to.eq(false)
+    expect(wrapper.find('.am-popover-content').exists()).to.eq(false)
   })
   it('可以设置 readonly.', () => {
     const wrapper = mount(DatePicker, {

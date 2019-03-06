@@ -1,11 +1,11 @@
 <template>
-  <div class="g-popover-wrapper" ref="popoverWrapper" :data-zindex="zIndex">
+  <div class="am-popover-wrapper" ref="popoverWrapper" :data-zindex="zIndex">
     <transition name="fade">
-      <div class="g-popover-content" ref="popoverContent" v-if="isVisible" :class="`position-${position}`">
+      <div class="am-popover-content" ref="popoverContent" v-if="isVisible" :class="`position-${position}`">
         <slot name="popover" :close="close"></slot>
       </div>
     </transition>
-    <div class="g-popover-trigger" ref="trigger">
+    <div class="am-popover-trigger" ref="trigger">
       <slot></slot>
     </div>
   </div>
@@ -13,7 +13,7 @@
 
 <script>
 export default {
-  name: "guluPopover",
+  name: "amPopover",
   props: {
     position: {
       type: String,
@@ -163,15 +163,15 @@ export default {
 </script>
 <style lang="scss" scoped>
 @import "var";
-.g-popover-wrapper {
+.am-popover-wrapper {
   display: inline-block;
   vertical-align: top;
   position: relative;
-  .g-popover-trigger {
+  .am-popover-trigger {
     display: inline-block;
   }
 }
-.g-popover-content {
+.am-popover-content {
   position: absolute;
   padding: 0.5em 1em;
   max-width: 20em;

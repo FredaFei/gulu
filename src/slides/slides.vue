@@ -1,25 +1,25 @@
 <template>
-  <div class="g-slides-wrapper" ref="slidesWrapper">
-    <div class="g-slides-window" ref="slidesWindow" @mouseenter="onMouseEnter" @mouseleave="onMouseLeave">
+  <div class="am-slides-wrapper" ref="slidesWrapper">
+    <div class="am-slides-window" ref="slidesWindow" @mouseenter="onMouseEnter" @mouseleave="onMouseLeave">
       <slot></slot>
     </div>
-    <div class="g-slides-dots">
+    <div class="am-slides-dots">
       <span class="arrow prev" @click="onClickPrev">
-        <g-icon name="left"></g-icon>
+        <am-icon name="left"></am-icon>
       </span>
       <span v-for="n in childrenLength" :key="n" :data-index="n-1" :class="{active: selectedIndex===n-1}" @click="select(n-1)">{{n}}</span>
       <span class="arrow next" @click="onClickNext">
-        <g-icon name="right"></g-icon>
+        <am-icon name="right"></am-icon>
       </span>
     </div>
   </div>
 </template>
 
 <script>
-import GIcon from "../icon";
+import AmIcon from "../icon";
 export default {
-  name: "guluSlide",
-  components: { GIcon },
+  name: "amSlides",
+  components: { AmIcon },
   props: {
     selected: {
       type: String
@@ -64,7 +64,7 @@ export default {
   methods: {
     updateItems() {
       this.items = this.$children.filter(
-        vm => vm.$options.name === "guluSlideItem"
+        vm => vm.$options.name === "amSlidesItem"
       );
     },
     playAutomatically() {
@@ -140,7 +140,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.g-slides {
+.am-slides {
   &-wrapper {
   }
   &-window {

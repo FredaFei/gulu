@@ -9,8 +9,8 @@ import Nav from '../../src/nav/nav'
 import NavItem from '../../src/nav/navItem'
 import SubNav from '../../src/nav/subNav'
 
-Vue.component('g-nav', Nav)
-Vue.component('g-nav-item', NavItem)
+Vue.component('am-nav', Nav)
+Vue.component('am-nav-item', NavItem)
 
 describe('NavItem', () => {
   it('navItem.vue 存在.', () => {
@@ -21,14 +21,14 @@ describe('NavItem', () => {
       const Component = {
         inject: ['root'],
         template: `
-          <g-nav-item name="music">
+          <am-nav-item name="music">
             <div>nav 1</div>
-          </g-nav-item>
+          </am-nav-item>
         `
       }
       const wrapper = shallowMount(Component, {
         provide: {
-          root () {
+          root() {
             return { root: this }
           }
         }

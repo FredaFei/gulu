@@ -7,7 +7,7 @@
 <script>
 import Vue from "vue";
 export default {
-  name: "guluCollapse",
+  name: "amCollapse",
   props: {
     selected: {
       type: Array,

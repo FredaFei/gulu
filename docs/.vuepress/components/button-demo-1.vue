@@ -1,27 +1,27 @@
 <template>
   <div>
     <p><strong>基础用法</strong></p>
-    <g-button>默认</g-button>
-    <g-button icon="settings">icon 默认左边</g-button>
-    <g-button icon="right" icon-position="right">icon 右边</g-button>
-    <g-button loading>加载中</g-button>
-    <g-button disabled>默认样式</g-button>
+    <am-button>默认</am-button>
+    <am-button icon="settings">icon 默认左边</am-button>
+    <am-button icon="right" icon-position="right">icon 右边</am-button>
+    <am-button loading>加载中</am-button>
+    <am-button disabled>默认样式</am-button>
     <p><strong>按钮组</strong></p>
-    <g-button-group>
-      <g-button icon="left">prev</g-button>
-      <g-button loading>加载中</g-button>
-      <g-button icon="right" icon-position="right">next</g-button>
-    </g-button-group>
+    <am-button-group>
+      <am-button icon="left">prev</am-button>
+      <am-button loading>加载中</am-button>
+      <am-button icon="right" icon-position="right">next</am-button>
+    </am-button-group>
 
   </div>
 </template>
 <script>
 import Button from "../../../src/button/button";
-import ButtonGroup from "../../../src/button/buttonGroup";
+import ButtonAmroup from "../../../src/button/buttonAmroup";
 export default {
   components: {
-    GButton: Button,
-    GButtonGroup: ButtonGroup
+    AmButton: Button,
+    AmButtonAmroup: ButtonAmroup
   }
 };
 </script>

@@ -1,39 +1,39 @@
 <template>
-  <div class="g-pager" :class="{hide:hideOnSinglePage===true &&totalPage<=1}">
-    <span class="g-pager-item prev" @click="goPage(currentPage-1)" :class="{disabled:currentPage===1}">
-      <g-icon name="left"></g-icon>
+  <div class="am-pager" :class="{hide:hideOnSinglePage===true &&totalPage<=1}">
+    <span class="am-pager-item prev" @click="goPage(currentPage-1)" :class="{disabled:currentPage===1}">
+      <am-icon name="left"></am-icon>
     </span>
     <template v-for="(page,index) in pages">
       <template v-if="page===currentPage">
-        <span class="g-pager-item active" :data-current="page" @click="goPage(page)">{{page}}</span>
+        <span class="am-pager-item active" :data-current="page" @click="goPage(page)">{{page}}</span>
       </template>
       <template v-else-if="page==='...'">
-        <span class="g-pager-item separator">
-          <g-icon name="ellipsis"></g-icon>
+        <span class="am-pager-item separator">
+          <am-icon name="ellipsis"></am-icon>
         </span>
       </template>
       <template v-else>
-        <span class="g-pager-item other" :data-page="page" @click="goPage(page)">{{page}}</span>
+        <span class="am-pager-item other" :data-page="page" @click="goPage(page)">{{page}}</span>
       </template>
     </template>
-    <span class="g-pager-item next" @click="goPage(currentPage+1)" :class="{disabled:currentPage===totalPage}">
-      <g-icon name="right"></g-icon>
+    <span class="am-pager-item next" @click="goPage(currentPage+1)" :class="{disabled:currentPage===totalPage}">
+      <am-icon name="right"></am-icon>
     </span>
   </div>
 </template>
 
 <script>
-import GIcon from '../icon'
+import AmIcon from "../icon";
 function unique(arr) {
-  let obj = {}
+  let obj = {};
   arr.forEach(item => {
-    obj[item] = true
-  })
-  return Object.keys(obj).map(a => parseInt(a, 10))
+    obj[item] = true;
+  });
+  return Object.keys(obj).map(a => parseInt(a, 10));
 }
 export default {
-  name: 'guluPagination',
-  components: { GIcon },
+  name: "amPagination",
+  components: { AmIcon },
   props: {
     currentPage: {
       type: Number,
@@ -46,41 +46,53 @@ export default {
     hideOnSinglePage: {
       type: Boolean,
       default: true
-    },
+    }
   },
   computed: {
-    pages(){
-      return unique([1, this.currentPage, 
-        this.totalPage, 
-        this.currentPage - 1, this.currentPage - 2, 
-        this.currentPage + 1, this.currentPage + 2
-      ].filter(a=>a>=1&&a<=this.totalPage)
-      .sort((a,b)=>a-b))
-      .reduce((prev,current,index,array)=>{
-        prev.push(current)
-        array[index+1]!==undefined && array[index+1] - array[index] > 1 && prev.push('...')
-        return prev
-      },[])
+    pages() {
+      return unique(
+        [
+          1,
+          this.currentPage,
+          this.totalPage,
+          this.currentPage - 1,
+          this.currentPage - 2,
+          this.currentPage + 1,
+          this.currentPage + 2
+        ]
+          .filter(a => a >= 1 && a <= this.totalPage)
+          .sort((a, b) => a - b)
+      ).reduce((prev, current, index, array) => {
+        prev.push(current);
+        array[index + 1] !== undefined &&
+          array[index + 1] - array[index] > 1 &&
+          prev.push("...");
+        return prev;
+      }, []);
     }
   },
   methods: {
-    goPage(n){
-      if(n>=1&&n<=this.totalPage){
-        this.$emit('update:currentPage',n)
+    goPage(n) {
+      if (n >= 1 && n <= this.totalPage) {
+        this.$emit("update:currentPage", n);
       }
     }
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>
 @import "var";
-.g-pager {
+.am-pager {
   $font-size: 14px;
   $width: 28px;
   $height: 28px;
-  display: flex; justify-content: flex-start; align-items: center;
-  &.hide{display: none;}
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  &.hide {
+    display: none;
+  }
   &-item {
     display: inline-flex;
     justify-content: center;
@@ -96,17 +108,22 @@ export default {
     border: 1px solid $gray;
     cursor: pointer;
     user-select: none;
-    transition: all .25s;
-    &.separator {border: none;}
-    &.active,&:hover {
+    transition: all 0.25s;
+    &.separator {
+      border: none;
+    }
+    &.active,
+    &:hover {
       border-color: $blue;
     }
-    &.disabled{
+    &.disabled {
       cursor: not-allowed;
-      &:hover{
+      &:hover {
         border-color: $gray;
       }
-      svg { fill: darken($gray, 30%); }
+      svg {
+        fill: darken($gray, 30%);
+      }
     }
   }
 }

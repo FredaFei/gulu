@@ -4,7 +4,7 @@
       {{ result }}
     </div>
     <div class="popover-wrapper" v-if="popoverVisible">
-      <gulu-cascader-item :source-items="source" :selected="selected" :loading-item="loadingItem" @update:selected="onUpdateSelected" :load-data="loadData" :height="popoverHeight"></gulu-cascader-item>
+      <gulu-cascader-item :source-items="source" :selected="selected" :loadinam-item="loadingItem" @update:selected="onUpdateSelected" :load-data="loadData" :height="popoverHeight"></gulu-cascader-item>
     </div>
   </div>
 </template>
@@ -12,7 +12,7 @@
 <script>
 import guluCascaderItem from "./cascaderItem";
 export default {
-  name: "guluCascader",
+  name: "amamCascader",
   components: { guluCascaderItem },
   props: {
     source: {

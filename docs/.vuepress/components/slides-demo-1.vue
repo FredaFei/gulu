@@ -1,39 +1,39 @@
 <template>
   <div>
     <h4>基础用法</h4>
-    <g-slides :selected.sync="selected1">
-      <g-slides-item name="1">
+    <am-slides :selected.sync="selected1">
+      <am-slides-item name="1">
         <div class="slides-item">slide 1</div>
-      </g-slides-item>
-      <g-slides-item name="2">
+      </am-slides-item>
+      <am-slides-item name="2">
         <div class="slides-item">slide 2</div>
-      </g-slides-item>
-      <g-slides-item name="3">
+      </am-slides-item>
+      <am-slides-item name="3">
         <div class="slides-item">slide 3</div>
-      </g-slides-item>
-    </g-slides>
+      </am-slides-item>
+    </am-slides>
     <h4>手动播放</h4>
-    <g-slides :selected.sync="selected2" :auto-play="false">
-      <g-slides-item name="11">
+    <am-slides :selected.sync="selected2" :auto-play="false">
+      <am-slides-item name="11">
         <div class="slides-item">slide 1</div>
-      </g-slides-item>
-      <g-slides-item name="12">
+      </am-slides-item>
+      <am-slides-item name="12">
         <div class="slides-item">slide 2</div>
-      </g-slides-item>
-      <g-slides-item name="13">
+      </am-slides-item>
+      <am-slides-item name="13">
         <div class="slides-item">slide 3</div>
-      </g-slides-item>
-    </g-slides>
+      </am-slides-item>
+    </am-slides>
   </div>
 </template>
 
 <script>
-import GSlides from "../../../src/slides/slides";
-import GSlidesItem from "../../../src/slides/slidesItem";
+import AmSlides from "../../../src/slides/slides";
+import AmSlidesItem from "../../../src/slides/slidesItem";
 export default {
   components: {
-    GSlides,
-    GSlidesItem
+    AmSlides,
+    AmSlidesItem
   },
   data() {
     return {

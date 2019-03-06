@@ -8,7 +8,7 @@ import Vue from 'vue'
 import Slides from '../../src/slides/slides'
 import SlidesItem from '../../src/slides/slidesItem'
 
-Vue.component('GSlidesItem', SlidesItem)
+Vue.component('AmSlidesItem', SlidesItem)
 describe('Slides', () => {
   it('存在.', () => {
     expect(Slides).to.be.ok
@@ -20,15 +20,15 @@ describe('Slides', () => {
       },
       slots: {
         default: `
-          <g-slides-item name="1">
+          <am-slides-item name="1">
             <div class="slides-item-1">slide 1</div>
-          </g-slides-item>
-          <g-slides-item name="2">
+          </am-slides-item>
+          <am-slides-item name="2">
             <div class="slides-item-2">slide 2</div>
-          </g-slides-item>
-          <g-slides-item name="3">
+          </am-slides-item>
+          <am-slides-item name="3">
             <div class="slides-item-3">slide 3</div>
-          </g-slides-item>
+          </am-slides-item>
         `
       }
     })
@@ -45,15 +45,15 @@ describe('Slides', () => {
       },
       slots: {
         default: `
-          <g-slides-item name="1">
+          <am-slides-item name="1">
             <div class="slides-item-1">slide 1</div>
-          </g-slides-item>
-          <g-slides-item name="2">
+          </am-slides-item>
+          <am-slides-item name="2">
             <div class="slides-item-2">slide 2</div>
-          </g-slides-item>
-          <g-slides-item name="3">
+          </am-slides-item>
+          <am-slides-item name="3">
             <div class="slides-item-3">slide 3</div>
-          </g-slides-item>
+          </am-slides-item>
         `
       }
     })
@@ -70,15 +70,15 @@ describe('Slides', () => {
       },
       slots: {
         default: `
-          <g-slides-item name="1">
+          <am-slides-item name="1">
             <div class="slides-item-1">slide 1</div>
-          </g-slides-item>
-          <g-slides-item name="2">
+          </am-slides-item>
+          <am-slides-item name="2">
             <div class="slides-item-2">slide 2</div>
-          </g-slides-item>
-          <g-slides-item name="3">
+          </am-slides-item>
+          <am-slides-item name="3">
             <div class="slides-item-3">slide 3</div>
-          </g-slides-item>
+          </am-slides-item>
         `
       },
       listeners: {
@@ -102,15 +102,15 @@ describe('Slides', () => {
       },
       slots: {
         default: `
-          <g-slides-item name="1">
+          <am-slides-item name="1">
             <div class="slides-item-1">slide 1</div>
-          </g-slides-item>
-          <g-slides-item name="2">
+          </am-slides-item>
+          <am-slides-item name="2">
             <div class="slides-item-2">slide 2</div>
-          </g-slides-item>
-          <g-slides-item name="3">
+          </am-slides-item>
+          <am-slides-item name="3">
             <div class="slides-item-3">slide 3</div>
-          </g-slides-item>
+          </am-slides-item>
         `
       },
       listeners: {
@@ -131,15 +131,15 @@ describe('Slides', () => {
       },
       slots: {
         default: `
-          <g-slides-item name="1">
+          <am-slides-item name="1">
             <div class="slides-item-1">slide 1</div>
-          </g-slides-item>
-          <g-slides-item name="2">
+          </am-slides-item>
+          <am-slides-item name="2">
             <div class="slides-item-2">slide 2</div>
-          </g-slides-item>
-          <g-slides-item name="3">
+          </am-slides-item>
+          <am-slides-item name="3">
             <div class="slides-item-3">slide 3</div>
-          </g-slides-item>
+          </am-slides-item>
         `
       },
       listeners: {
@@ -161,15 +161,15 @@ describe('Slides', () => {
       },
       slots: {
         default: `
-          <g-slides-item name="1">
+          <am-slides-item name="1">
             <div class="slides-item-1">slide 1</div>
-          </g-slides-item>
-          <g-slides-item name="2">
+          </am-slides-item>
+          <am-slides-item name="2">
             <div class="slides-item-2">slide 2</div>
-          </g-slides-item>
-          <g-slides-item name="3">
+          </am-slides-item>
+          <am-slides-item name="3">
             <div class="slides-item-3">slide 3</div>
-          </g-slides-item>
+          </am-slides-item>
         `
       },
       listeners: {

@@ -1,21 +1,21 @@
 <template>
-  <div class="g-input-wrapper" :class="[`${iconType}`]">
-    <g-icon class="icon prefix" :name="prefix" v-if="prefix"></g-icon>
+  <div class="am-input-wrapper" :class="[`${iconType}`]">
+    <am-icon class="icon prefix" :name="prefix" v-if="prefix"></am-icon>
     <input type="text" :value="value" :disabled="disabled" :readonly="readonly" ref="input" @input="$emit('input',$event.target.value)" @keyup.enter="$emit('keyupEnter',$event.target.value)" @change="$emit('change',$event.target.value)" @focus="$emit('focus',$event.target.value)" @blur="$emit('blur',$event.target.value)">
-    <g-icon class="icon suffix" :name="suffix" v-if="suffix"></g-icon>
+    <am-icon class="icon suffix" :name="suffix" v-if="suffix"></am-icon>
     <template v-if="iconType">
-      <g-icon class="icon-type" :name="iconType"></g-icon>
+      <am-icon class="icon-type" :name="iconType"></am-icon>
       <span :class="[`message ${iconType}-message`]">{{message}}</span>
     </template>
   </div>
 </template>
 
 <script>
-import GIcon from "../icon";
+import AmIcon from "../icon";
 export default {
-  name: "guluInput",
+  name: "amInput",
   components: {
-    GIcon
+    AmIcon
   },
   props: {
     value: {
@@ -56,11 +56,11 @@ export default {
 
 <style lang="scss" scoped>
 @import "var";
-.g-input-wrapper {
+.am-input-wrapper {
   display: inline-flex;
   align-items: center;
   font-size: $input-font-size;
-  width: 100%;    
+  width: 100%;
   position: relative;
   // > :not(:last-child) {
   //   margin-right: 0.5em;
@@ -68,7 +68,8 @@ export default {
   & > .message {
     font-size: 12px;
   }
-  .prefix,.suffix,{
+  .prefix,
+  .suffix {
     position: absolute;
     top: 50%;
     z-index: 2;
@@ -77,15 +78,17 @@ export default {
     line-height: 0;
     transform: translateY(-50%);
   }
-  .prefix{
-    left:.8em;
+  .prefix {
+    left: 0.8em;
   }
-  .suffix{right:.3em;}
+  .suffix {
+    right: 0.3em;
+  }
   > input:not(:first-child) {
-    padding-left: 30px;
+    paddinam-left: 30px;
   }
   > input:not(:last-child) {
-    padding-right: 22px;
+    paddinam-right: 22px;
   }
   > input {
     width: 100%;
@@ -109,7 +112,7 @@ export default {
       cursor: not-allowed;
     }
   }
-  >.icon-type{
+  > .icon-type {
     margin-left: 0.5em;
   }
   &.error {

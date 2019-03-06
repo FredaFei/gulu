@@ -1,37 +1,37 @@
 <template>
-  <div class="g-date-picker-wrapper" ref="datePicker">
-    <g-popover position="bottom" ref="popover" :container="popoverContainer" @open="onOpen" :disabled="disabled">
-      <g-input :value="formattedValue" clearable prefix="date" @clear="onClickClear" :placeholder="placeholder" :disabled="disabled" :readonly="readonly" type="text" @keyup-enter="onEnter" @blur="onBlur" @change="onChange" @input="onInput" ref="input"></g-input>
+  <div class="am-date-picker-wrapper" ref="datePicker">
+    <am-popover position="bottom" ref="popover" :container="popoverContainer" @open="onOpen" :disabled="disabled">
+      <am-input :value="formattedValue" clearable prefix="date" @clear="onClickClear" :placeholder="placeholder" :disabled="disabled" :readonly="readonly" type="text" @keyup-enter="onEnter" @blur="onBlur" @change="onChange" @input="onInput" ref="input"></am-input>
       <template slot="popover">
-        <div class="g-date-picker-pop" @selectstart.prevent>
-          <div class="g-date-picker-pop-nav">
+        <div class="am-date-picker-pop" @selectstart.prevent>
+          <div class="am-date-picker-pop-nav">
             <template v-if="mode==='date'">
-              <g-icon name="double-left" @click="onClickPrevYear" :class="classes('prev-year')"></g-icon>
-              <g-icon name="left" @click="onClickPrevMonth" :class="classes('prev-month')"></g-icon>
+              <am-icon name="double-left" @click="onClickPrevYear" :class="classes('prev-year')"></am-icon>
+              <am-icon name="left" @click="onClickPrevMonth" :class="classes('prev-month')"></am-icon>
               <div>
                 <span :class="classes('current-year')" @click="onClickChangeMode('year')">{{display.year}}年</span>
                 <span :class="classes('current-month')" @click="onClickChangeMode('month')">{{display.month+1}}月</span>
               </div>
-              <g-icon name="double-right" @click="onClickNextYear" :class="classes('next-year')"></g-icon>
-              <g-icon name="right" @click="onClickNextMonth" :class="classes('next-month')"></g-icon>
+              <am-icon name="double-right" @click="onClickNextYear" :class="classes('next-year')"></am-icon>
+              <am-icon name="right" @click="onClickNextMonth" :class="classes('next-month')"></am-icon>
             </template>
             <template v-else-if="mode==='year'">
-              <g-icon name="double-left" @click="onClickRangeYear(0)" :class="classes('prev-year')"></g-icon>
+              <am-icon name="double-left" @click="onClickRangeYear(0)" :class="classes('prev-year')"></am-icon>
               <div>
                 <span :class="classes('current-year')">{{visibleYears[1]}}-{{visibleYears[10]}}</span>
               </div>
-              <g-icon name="double-right" @click="onClickRangeYear(11)" :class="classes('next-year')"></g-icon>
+              <am-icon name="double-right" @click="onClickRangeYear(11)" :class="classes('next-year')"></am-icon>
             </template>
             <template v-else>
-              <g-icon name="double-left" @click="onClickPrevYear" :class="classes('prev-year')"></g-icon>
+              <am-icon name="double-left" @click="onClickPrevYear" :class="classes('prev-year')"></am-icon>
               <div>
                 <span :class="classes('current-month')" @click="onClickChangeMode('year')">{{display.year}}</span>
               </div>
-              <g-icon name="double-right" @click="onClickNextYear" :class="classes('next-year')"></g-icon>
+              <am-icon name="double-right" @click="onClickNextYear" :class="classes('next-year')"></am-icon>
             </template>
           </div>
-          <div class="g-date-picker-pop-panes">
-            <div class="g-date-picker-pop-content">
+          <div class="am-date-picker-pop-panes">
+            <div class="am-date-picker-pop-content">
               <template v-if="mode==='date'">
                 <div :class="classes('weeks')">
                   <span :class="classes('week')" v-for="n in weeksMap" :key="n">{{n}}</span>
@@ -61,29 +61,29 @@
               </template>
             </div>
           </div>
-          <div class="g-date-picker-pop-actions" v-show="mode==='date'">
-            <g-button @click="onClickToday">今天</g-button>
-            <g-button @click="onClickClear">清除</g-button>
+          <div class="am-date-picker-pop-actions" v-show="mode==='date'">
+            <am-button @click="onClickToday">今天</am-button>
+            <am-button @click="onClickClear">清除</am-button>
           </div>
         </div>
       </template>
-    </g-popover>
+    </am-popover>
   </div>
 </template>
 
 <script>
-import GPopover from "../popover/popover";
-import GIcon from "../icon";
-import GButton from "../button/button";
-import GInput from "../input/input";
+import AmPopover from "../popover/popover";
+import AmIcon from "../icon";
+import AmButton from "../button/button";
+import AmInput from "../input/input";
 import moment from "./moment";
 export default {
-  name: "guluDatePicker",
+  name: "amDatePicker",
   components: {
-    GPopover,
-    GIcon,
-    GButton,
-    GInput
+    AmPopover,
+    AmIcon,
+    AmButton,
+    AmInput
   },
   props: {
     value: {
@@ -303,7 +303,7 @@ export default {
       this.mode = "date";
     },
     classes(name) {
-      return `g-date-picker-pop-${name}`;
+      return `am-date-picker-pop-${name}`;
     }
   }
 };
@@ -311,12 +311,12 @@ export default {
 
 <style lang="scss" scoped>
 @import "var";
-.g-date-picker-wrapper {
-  .g-popover-wrapper {
+.am-date-picker-wrapper {
+  .am-popover-wrapper {
     width: 200px;
   }
-  .g-date-picker-pop {
-    .g-icon:hover {
+  .am-date-picker-pop {
+    .am-icon:hover {
       color: $blue;
     }
     &-nav {
@@ -420,15 +420,15 @@ export default {
       padding: 6px 0;
     }
     &-actions {
-      padding-top: 10px;
+      paddinam-top: 10px;
       border-top: 1px solid $gray;
     }
     &-select-year {
-      .g-date-picker-pop-row {
+      .am-date-picker-pop-row {
         width: 100%;
         padding: 16px 0;
       }
-      .g-date-picker-pop-col {
+      .am-date-picker-pop-col {
         flex: 1;
         width: 33.33%;
         color: #333;
@@ -457,11 +457,11 @@ export default {
       }
     }
     &-select-month {
-      .g-date-picker-pop-row {
+      .am-date-picker-pop-row {
         width: 100%;
         padding: 16px 0;
       }
-      .g-date-picker-pop-col {
+      .am-date-picker-pop-col {
         flex: 1;
         width: 33.33%;
         color: #333;

@@ -371,156 +371,156 @@
 &nbsp;
 &lt;script&gt;
 let validator = val =&gt; {
-    let valid = true
-    Object.keys(val).forEach(key =&gt; {
-        <span class="missing-if-branch" title="if path not taken" >I</span>if (!['span', 'offset'].includes(key)) {
-<span class="cstat-no" title="statement not covered" >            valid = false</span>
-        }
-    })
-    return valid
-}
-export default {
-    name: 'guluCol',
-    props: {
-        span: {
-            type: [String, Number]
-        },
-        offset: {
-            type: [String, Number]
-        },
-        phone: {
-            type: Object,
-            validator
-        },
-        ipad: {
-            type: Object,
-            validator
-        },
-        narrowPc: {
-            type: Object,
-            validator
-        },
-        pc: {
-            type: Object,
-            validator
-        }
-    },
-    data(){
-        return {
-            gutter: 0
-        }
-    },
-    computed: {
-        colClass() {
-            let { span, offset, phone, ipad, narrowPc, pc, createClass } = this
-            return [
-                ...createClass({ span, offset }),
-                ...createClass(phone, 'phone-'),
-                ...createClass(ipad, 'ipad-'),
-                ...createClass(narrowPc, 'narrow-pc-'),
-                ...createClass(pc, 'pc-')
-            ]
-        },
-        colStyle() {
-            let { gutter } = this
-            if(gutter !== 0){
-                return {
-                    paddingLeft: gutter / 2 + 'px',
-                    paddingRight: gutter / 2 + 'px'
-                }
-            }
-        }
-    },
-    methods: {
-        // str: pc-、ipad-...
-        createClass(obj, str = '') {
-            if (!obj) return []
-            let array = []
-            if (obj.span) {
-                array.push(`col-${str}${obj.span}`)
-            }
-            if (obj.offset) {
-                array.push(`offset-${str}${obj.offset}`)
-            }
-            return array
-        }
+  let valid = true;
+  Object.keys(val).forEach(key =&gt; {
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (!["span", "offset"].includes(key)) {
+<span class="cstat-no" title="statement not covered" >      valid = false;</span>
     }
-}
+  });
+  return valid;
+};
+export default {
+  name: "amCol",
+  props: {
+    span: {
+      type: [String, Number]
+    },
+    offset: {
+      type: [String, Number]
+    },
+    phone: {
+      type: Object,
+      validator
+    },
+    ipad: {
+      type: Object,
+      validator
+    },
+    narrowPc: {
+      type: Object,
+      validator
+    },
+    pc: {
+      type: Object,
+      validator
+    }
+  },
+  data() {
+    return {
+      gutter: 0
+    };
+  },
+  computed: {
+    colClass() {
+      let { span, offset, phone, ipad, narrowPc, pc, createClass } = this;
+      return [
+        ...createClass({ span, offset }),
+        ...createClass(phone, "phone-"),
+        ...createClass(ipad, "ipad-"),
+        ...createClass(narrowPc, "narrow-pc-"),
+        ...createClass(pc, "pc-")
+      ];
+    },
+    colStyle() {
+      let { gutter } = this;
+      if (gutter !== 0) {
+        return {
+          paddingLeft: gutter / 2 + "px",
+          paddingRight: gutter / 2 + "px"
+        };
+      }
+    }
+  },
+  methods: {
+    // str: pc-、ipad-...
+    createClass(obj, str = "") {
+      if (!obj) return [];
+      let array = [];
+      if (obj.span) {
+        array.push(`col-${str}${obj.span}`);
+      }
+      if (obj.offset) {
+        array.push(`offset-${str}${obj.offset}`);
+      }
+      return array;
+    }
+  }
+};
 &lt;/script&gt;
 &nbsp;
 &lt;style lang="scss" scoped&gt;
 .col {
-    height: 100%;
-    background: #ddd;
-    $class-prefix: offset-;
-    @for $n from 1 through 24 {
-        &amp;.#{$class-prefix}#{$n} {
-            margin-left: ($n/24) * 100%;
-        }
+  height: 100%;
+  background: #ddd;
+  $class-prefix: offset-;
+  @for $n from 1 through 24 {
+    &amp;.#{$class-prefix}#{$n} {
+      margin-left: ($n/24) * 100%;
     }
-    $class-prefix: col-;
-    @for $n from 1 through 24 {
-        &amp;.#{$class-prefix}#{$n} {
-            width: ($n/24) * 100%;
-        }
+  }
+  $class-prefix: col-;
+  @for $n from 1 through 24 {
+    &amp;.#{$class-prefix}#{$n} {
+      width: ($n/24) * 100%;
     }
+  }
 &nbsp;
-    @media (max-width: 576px) {
-        $class-prefix: offset-phone-;
-        @for $n from 1 through 24 {
-            &amp;.#{$class-prefix}#{$n} {
-                margin-left: ($n/24) * 100%;
-            }
-        }
-        $class-prefix: col-phone-;
-        @for $n from 1 through 24 {
-            &amp;.#{$class-prefix}#{$n} {
-                width: ($n/24) * 100%;
-            }
-        }
+  @media (max-width: 576px) {
+    $class-prefix: offset-phone-;
+    @for $n from 1 through 24 {
+      &amp;.#{$class-prefix}#{$n} {
+        margin-left: ($n/24) * 100%;
+      }
     }
-    @media (min-width: 577px) {
-        $class-prefix: offset-ipad-;
-        @for $n from 1 through 24 {
-            &amp;.#{$class-prefix}#{$n} {
-                margin-left: ($n/24) * 100%;
-            }
-        }
-        $class-prefix: col-ipad-;
-        @for $n from 1 through 24 {
-            &amp;.#{$class-prefix}#{$n} {
-                width: ($n/24) * 100%;
-            }
-        }
+    $class-prefix: col-phone-;
+    @for $n from 1 through 24 {
+      &amp;.#{$class-prefix}#{$n} {
+        width: ($n/24) * 100%;
+      }
     }
-    @media (min-width: 769px) {
-        $class-prefix: offset-narrow-pc-;
-        @for $n from 1 through 24 {
-            &amp;.#{$class-prefix}#{$n} {
-                margin-left: ($n/24) * 100%;
-            }
-        }
-        $class-prefix: col-narrow-pc-;
-        @for $n from 1 through 24 {
-            &amp;.#{$class-prefix}#{$n} {
-                width: ($n/24) * 100%;
-            }
-        }
+  }
+  @media (min-width: 577px) {
+    $class-prefix: offset-ipad-;
+    @for $n from 1 through 24 {
+      &amp;.#{$class-prefix}#{$n} {
+        margin-left: ($n/24) * 100%;
+      }
     }
-    @media (min-width: 993px) {
-        $class-prefix: offset-pc-;
-        @for $n from 1 through 24 {
-            &amp;.#{$class-prefix}#{$n} {
-                margin-left: ($n/24) * 100%;
-            }
-        }
-        $class-prefix: col-pc-;
-        @for $n from 1 through 24 {
-            &amp;.#{$class-prefix}#{$n} {
-                width: ($n/24) * 100%;
-            }
-        }
+    $class-prefix: col-ipad-;
+    @for $n from 1 through 24 {
+      &amp;.#{$class-prefix}#{$n} {
+        width: ($n/24) * 100%;
+      }
     }
+  }
+  @media (min-width: 769px) {
+    $class-prefix: offset-narrow-pc-;
+    @for $n from 1 through 24 {
+      &amp;.#{$class-prefix}#{$n} {
+        margin-left: ($n/24) * 100%;
+      }
+    }
+    $class-prefix: col-narrow-pc-;
+    @for $n from 1 through 24 {
+      &amp;.#{$class-prefix}#{$n} {
+        width: ($n/24) * 100%;
+      }
+    }
+  }
+  @media (min-width: 993px) {
+    $class-prefix: offset-pc-;
+    @for $n from 1 through 24 {
+      &amp;.#{$class-prefix}#{$n} {
+        margin-left: ($n/24) * 100%;
+      }
+    }
+    $class-prefix: col-pc-;
+    @for $n from 1 through 24 {
+      &amp;.#{$class-prefix}#{$n} {
+        width: ($n/24) * 100%;
+      }
+    }
+  }
 }
 &lt;/style&gt;
 &nbsp;</pre></td></tr>
@@ -529,7 +529,7 @@ export default {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Fri Mar 01 2019 14:19:40 GMT+0800 (中国标准时间)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Mar 06 2019 11:21:01 GMT+0800 (中国标准时间)
 </div>
 </div>
 <script src="../../prettify.js"></script>

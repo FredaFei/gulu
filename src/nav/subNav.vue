@@ -1,22 +1,22 @@
 <template>
-  <div class="g-sub-nav" :class="{active, vertical}" v-click-outside="close" :data-name="name">
-    <span class="g-sub-nav-label" @click="onClick">
-      <span class="g-sub-nav-title">
+  <div class="am-sub-nav" :class="{active, vertical}" v-click-outside="close" :data-name="name">
+    <span class="am-sub-nav-label" @click="onClick">
+      <span class="am-sub-nav-title">
         <slot name="title"></slot>
       </span>
-      <span class="g-sub-nav-icon" :class="{visible,vertical}">
-        <g-icon name="right"></g-icon>
+      <span class="am-sub-nav-icon" :class="{visible,vertical}">
+        <am-icon name="right"></am-icon>
       </span>
     </span>
     <template v-if="vertical">
       <transition name="fade" @enter="enter" @after-enter="afterEnter" @leave="leave" @after-leave="afterLeave">
-        <div class="g-sub-nav-popover" v-show="visible" :class="{vertical}">
+        <div class="am-sub-nav-popover" v-show="visible" :class="{vertical}">
           <slot></slot>
         </div>
       </transition>
     </template>
     <template v-else>
-      <div class="g-sub-nav-popover" v-show="visible" :class="{vertical}">
+      <div class="am-sub-nav-popover" v-show="visible" :class="{vertical}">
         <slot></slot>
       </div>
     </template>
@@ -24,13 +24,13 @@
 </template>
 
 <script>
-import ClickOutside from '../clickOutside'
-import GIcon from '../icon'
+import ClickOutside from "../clickOutside";
+import AmIcon from "../icon";
 export default {
-  name: 'gulusubNav',
-  inject: ['root', 'vertical'],
+  name: "amsubNav",
+  inject: ["root", "vertical"],
   directives: { ClickOutside },
-  components: { GIcon },
+  components: { AmIcon },
   props: {
     name: {
       type: String,
@@ -40,63 +40,63 @@ export default {
   data() {
     return {
       visible: false
-    }
+    };
   },
   computed: {
     active() {
-      return this.root.namePath.indexOf(this.name) >= 0 ? true : false
+      return this.root.namePath.indexOf(this.name) >= 0 ? true : false;
     }
   },
   methods: {
     enter(el, done) {
-      el.style.height = `auto`
-      let { height } = el.getBoundingClientRect()
-      el.style.height = 0
-      el.getBoundingClientRect()
-      el.style.height = `${height}px`
-      el.addEventListener('transitionend', () => {
-        done()
-      })
+      el.style.height = `auto`;
+      let { height } = el.getBoundingClientRect();
+      el.style.height = 0;
+      el.getBoundingClientRect();
+      el.style.height = `${height}px`;
+      el.addEventListener("transitionend", () => {
+        done();
+      });
     },
     afterEnter(el) {
-      el.style.height = `auto`
+      el.style.height = `auto`;
     },
     leave(el, done) {
-      let { height } = el.getBoundingClientRect()
-      el.style.height = `${height}px`
-      el.getBoundingClientRect()
-      el.style.height = 0
-      el.addEventListener('transitionend', () => {
-        done()
-      })
+      let { height } = el.getBoundingClientRect();
+      el.style.height = `${height}px`;
+      el.getBoundingClientRect();
+      el.style.height = 0;
+      el.addEventListener("transitionend", () => {
+        done();
+      });
     },
     afterLeave(el) {
-      el.style.height = `auto`
+      el.style.height = `auto`;
     },
     onClick() {
-      this.visible = !this.visible
+      this.visible = !this.visible;
     },
     close() {
-      this.visible = false
+      this.visible = false;
     },
     updateNamePath() {
-      this.root.namePath.unshift(this.name)
+      this.root.namePath.unshift(this.name);
       if (this.$parent.updateNamePath) {
-        this.$parent.updateNamePath()
+        this.$parent.updateNamePath();
       }
     }
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>
-@import 'var';
-.g-sub-nav {
+@import "var";
+.am-sub-nav {
   position: relative;
   &:not(.vertical) {
     &.active {
       &:after {
-        content: '';
+        content: "";
         position: absolute;
         bottom: 0;
         left: 0;
@@ -135,15 +135,15 @@ export default {
   }
 }
 
-.g-sub-nav {
-  & .g-sub-nav,
-  &.vertical{
-    .g-sub-nav-label {
+.am-sub-nav {
+  & .am-sub-nav,
+  &.vertical {
+    .am-sub-nav-label {
       display: flex;
       align-items: center;
       justify-content: space-between;
     }
-    .g-sub-nav-icon {
+    .am-sub-nav-icon {
       transition: transform 250ms;
       display: inline-flex;
       margin-left: 1em;
@@ -159,13 +159,13 @@ export default {
     }
   }
 }
-.g-sub-nav .g-sub-nav {
+.am-sub-nav .am-sub-nav {
   &.active {
     &:after {
       display: none;
     }
   }
-  .g-sub-nav-popover {
+  .am-sub-nav-popover {
     top: 0;
     left: 100%;
     margin-left: 8px;

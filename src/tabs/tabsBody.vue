@@ -1,17 +1,17 @@
 <template>
-  <div class="g-tabs-body">
+  <div class="am-tabs-body">
     <slot></slot>
   </div>
 </template>
 
 <script>
 export default {
-  name: "guluTabsBody",
+  name: "amTabsBody",
   inject: ["eventBus"]
 };
 </script>
 
 <style lang="scss" scoped>
-.g-tabs-body {
+.am-tabs-body {
 }
 </style>

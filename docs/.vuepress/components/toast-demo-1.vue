@@ -2,13 +2,13 @@
   <div>
     <h5>基础用法</h5>
     <p>默认居中显示，3 秒后自动消失。</p>
-    <g-button @click="showTaost1">顶部</g-button>
-    <g-button @click="showTaost2">居中</g-button>
-    <g-button @click="showTaost3">底部</g-button>
+    <am-button @click="showTaost1">顶部</am-button>
+    <am-button @click="showTaost2">居中</am-button>
+    <am-button @click="showTaost3">底部</am-button>
     <h5>手动关闭</h5>
-    <g-button @click="showTaost4">顶部</g-button>
+    <am-button @click="showTaost4">顶部</am-button>
     <h5>使用HTML片段</h5>
-    <g-button @click="showTaost5">顶部</g-button>
+    <am-button @click="showTaost5">顶部</am-button>
   </div>
 </template>
 <script>
@@ -19,8 +19,7 @@ Vue.use(Toast);
 
 export default {
   components: {
-    GButton: Button,
-    GToast: Toast
+    AmButton: Button
   },
   methods: {
     showTaost1() {
@@ -72,7 +71,7 @@ export default {
 };
 </script>
 <style lang="scss">
-.g-toast-wrapper {
+.am-toast-wrapper {
   // z-index: 9999999 !important;
 }
 </style>

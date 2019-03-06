@@ -9,9 +9,9 @@ import Nav from '../../src/nav/nav'
 import NavItem from '../../src/nav/navItem'
 import SubNav from '../../src/nav/subNav'
 
-Vue.component('g-nav', Nav)
-Vue.component('g-nav-item', NavItem)
-Vue.component('g-sub-nav', SubNav)
+Vue.component('am-nav', Nav)
+Vue.component('am-nav-item', NavItem)
+Vue.component('am-sub-nav', SubNav)
 
 describe('SubNav', () => {
   it('subNav.vue 存在.', () => {
@@ -22,17 +22,17 @@ describe('SubNav', () => {
       const Component = {
         inject: ['root'],
         template: `
-          <g-sub-nav name="books">
+          <am-sub-nav name="books">
             <template slot="title">music</template>
-            <g-nav-item name="pop">
+            <am-nav-item name="pop">
               <div>nav 1</div>
-            </g-nav-item>
-          </g-sub-nav>
+            </am-nav-item>
+          </am-sub-nav>
         `
       }
       const wrapper = shallowMount(Component, {
         provide: {
-          root () {
+          root() {
             return { root: this }
           }
         }

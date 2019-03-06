@@ -6,7 +6,7 @@
 
 <script>
 export default {
-  name: "guluCollapseTransition",
+  name: "amCollapseTransition",
   data() {
     return {
       dataset: {}

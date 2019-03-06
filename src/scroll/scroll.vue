@@ -1,11 +1,11 @@
 <template>
-  <div class="g-scroll-wrapper" ref="scrollParent" @wheel="onWheel" @mouseenter="onMouseEnter" @mouseleave="onMouseLeave" @touchstart="onTouchStart" @touchmove="onTouchMove" @touchend="onTouchEnd">
-    <div class="g-scroll-content" ref="scrollChild" :style="{transform: `translateY(${contentY}px)`}">
+  <div class="am-scroll-wrapper" ref="scrollParent" @wheel="onWheel" @mouseenter="onMouseEnter" @mouseleave="onMouseLeave" @touchstart="onTouchStart" @touchmove="onTouchMove" @touchend="onTouchEnd">
+    <div class="am-scroll-content" ref="scrollChild" :style="{transform: `translateY(${contentY}px)`}">
       <slot></slot>
     </div>
-    <div class="g-scroll-track" v-show="scrollBarVisible">
-      <div class="g-scroll-bar" ref="scrollBar" @mousedown="onMouseDownScrollBar" @selectstart="onSelecteStartScrollBar">
-        <div class="g-scroll-bar-inner"></div>
+    <div class="am-scroll-track" v-show="scrollBarVisible">
+      <div class="am-scroll-bar" ref="scrollBar" @mousedown="onMouseDownScrollBar" @selectstart="onSelecteStartScrollBar">
+        <div class="am-scroll-bar-inner"></div>
       </div>
     </div>
   </div>
@@ -13,7 +13,7 @@
 
 <script>
 export default {
-  name: "gScroll",
+  name: "amScroll",
   data() {
     return {
       scrollBarVisible: false,
@@ -200,7 +200,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.g-scroll {
+.am-scroll {
   &-wrapper {
     overflow: hidden;
     box-sizing: border-box;
@@ -209,7 +209,7 @@ export default {
   }
   &-content {
     -webkit-overflow-scrolling: touch;
-    transition-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1);
+    transition-timinam-function: cubic-bezier(0.165, 0.84, 0.44, 1);
     transition-duration: 0.1s;
     border: 1px solid blue;
   }

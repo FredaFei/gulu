@@ -8,7 +8,7 @@ import Vue from 'vue'
 import Collapse from '../../src/collapse/collapse'
 import CollapseItem from '../../src/collapse/collapseItem'
 
-Vue.component('g-collapse-item', CollapseItem)
+Vue.component('am-collapse-item', CollapseItem)
 
 describe('Collapse', () => {
   it('存在.', () => {
@@ -24,8 +24,8 @@ describe('Collapse', () => {
       },
       slots: {
         default: `
-        <g-collapse-item title="title_1" name="apple"><span id="content_1">content_1</span></g-collapse-item>
-        <g-collapse-item title="title_2" name="orange"><span id="content_2">content_2</span></g-collapse-item>
+        <am-collapse-item title="title_1" name="apple"><span id="content_1">content_1</span></am-collapse-item>
+        <am-collapse-item title="title_2" name="orange"><span id="content_2">content_2</span></am-collapse-item>
         `
       },
       listeners: {
@@ -50,8 +50,8 @@ describe('Collapse', () => {
       },
       slots: {
         default: `
-        <g-collapse-item title="title_1" name="apple"><span id="content_1">content_1</span></g-collapse-item>
-        <g-collapse-item title="title_2" name="orange"><span id="content_2">content_2</span></g-collapse-item>
+        <am-collapse-item title="title_1" name="apple"><span id="content_1">content_1</span></am-collapse-item>
+        <am-collapse-item title="title_2" name="orange"><span id="content_2">content_2</span></am-collapse-item>
         `
       },
       listeners: {
@@ -72,9 +72,9 @@ describe('Collapse', () => {
       },
       slots: {
         default: `
-        <g-collapse-item title="title_1" name="apple"><span id="content_1">content_1</span></g-collapse-item>
-        <g-collapse-item title="title_2" name="orange"><span id="content_2">content_2</span></g-collapse-item>
-        <g-collapse-item title="title_2" name="banana"><span id="content_2">content_2</span></g-collapse-item>
+        <am-collapse-item title="title_1" name="apple"><span id="content_1">content_1</span></am-collapse-item>
+        <am-collapse-item title="title_2" name="orange"><span id="content_2">content_2</span></am-collapse-item>
+        <am-collapse-item title="title_2" name="banana"><span id="content_2">content_2</span></am-collapse-item>
         `
       },
       listeners: {
@@ -98,9 +98,9 @@ describe('Collapse', () => {
       },
       slots: {
         default: `
-        <g-collapse-item title="title_1" name="apple"><span id="content_1">content_1</span></g-collapse-item>
-        <g-collapse-item title="title_2" name="orange"><span id="content_2">content_2</span></g-collapse-item>
-        <g-collapse-item title="title_2" name="banana"><span id="content_2">content_2</span></g-collapse-item>
+        <am-collapse-item title="title_1" name="apple"><span id="content_1">content_1</span></am-collapse-item>
+        <am-collapse-item title="title_2" name="orange"><span id="content_2">content_2</span></am-collapse-item>
+        <am-collapse-item title="title_2" name="banana"><span id="content_2">content_2</span></am-collapse-item>
         `
       },
       listeners: {

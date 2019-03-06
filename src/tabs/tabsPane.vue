@@ -1,12 +1,12 @@
 <template>
-  <div class="g-tabs-pane" :class="classes" v-if="active" :data-name="name">
+  <div class="am-tabs-pane" :class="classes" v-if="active" :data-name="name">
     <slot></slot>
   </div>
 </template>
 
 <script>
 export default {
-  name: "guluTabsPane",
+  name: "amTabsPane",
   inject: ["eventBus"],
   props: {
     name: {
@@ -36,7 +36,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.g-tabs-pane {
+.am-tabs-pane {
   padding: 4px 8px;
 }
 </style>

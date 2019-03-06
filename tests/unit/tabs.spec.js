@@ -11,11 +11,11 @@ import TabsBody from '../../src/tabs/tabsBody'
 import TabsItem from '../../src/tabs/tabsItem'
 import TabsPane from '../../src/tabs/tabsPane'
 
-Vue.component('g-tabs', Tabs)
-Vue.component('g-tabs-header', TabsHeader)
-Vue.component('g-tabs-body', TabsBody)
-Vue.component('g-tabs-item', TabsItem)
-Vue.component('g-tabs-pane', TabsPane)
+Vue.component('am-tabs', Tabs)
+Vue.component('am-tabs-header', TabsHeader)
+Vue.component('am-tabs-body', TabsBody)
+Vue.component('am-tabs-item', TabsItem)
+Vue.component('am-tabs-pane', TabsPane)
 
 describe('Tabs', () => {
   it('存在.', () => {
@@ -28,23 +28,23 @@ describe('Tabs', () => {
       },
       slots: {
         default: `
-            <g-tabs-header>
-                <g-tabs-item name="sport">sport</g-tabs-item>
-                <g-tabs-item name="music">music</g-tabs-item>
-                <g-tabs-item name="moving">moving</g-tabs-item>
-            </g-tabs-header>
-            <g-tabs-body>
-                <g-tabs-pane name="sport">sport content</g-tabs-pane>
-                <g-tabs-pane name="music">music content</g-tabs-pane>
-                <g-tabs-pane name="moving">moving content</g-tabs-pane>
-            </g-tabs-body>
+            <am-tabs-header>
+                <am-tabs-item name="sport">sport</am-tabs-item>
+                <am-tabs-item name="music">music</am-tabs-item>
+                <am-tabs-item name="moving">moving</am-tabs-item>
+            </am-tabs-header>
+            <am-tabs-body>
+                <am-tabs-pane name="sport">sport content</am-tabs-pane>
+                <am-tabs-pane name="music">music content</am-tabs-pane>
+                <am-tabs-pane name="moving">moving content</am-tabs-pane>
+            </am-tabs-body>
               `
       }
     })
     setTimeout(() => {
-      const element = wrapper.find('.g-tabs-item[data-name="music"]')
+      const element = wrapper.find('.am-tabs-item[data-name="music"]')
       expect(element.exists()).to.be.true
-      expect(wrapper.find('.g-tabs-pane[data-name="music"]').isVisible()).to.be
+      expect(wrapper.find('.am-tabs-pane[data-name="music"]').isVisible()).to.be
         .true
       done()
     })
@@ -57,21 +57,21 @@ describe('Tabs', () => {
       },
       slots: {
         default: `
-            <g-tabs-header>
-                <g-tabs-item name="sport">sport</g-tabs-item>
-                <g-tabs-item name="music">music</g-tabs-item>
-                <g-tabs-item name="moving">moving</g-tabs-item>
-            </g-tabs-header>
-            <g-tabs-body>
-                <g-tabs-pane name="sport">sport content</g-tabs-pane>
-                <g-tabs-pane name="music">music content</g-tabs-pane>
-                <g-tabs-pane name="moving">moving content</g-tabs-pane>
-            </g-tabs-body>
+            <am-tabs-header>
+                <am-tabs-item name="sport">sport</am-tabs-item>
+                <am-tabs-item name="music">music</am-tabs-item>
+                <am-tabs-item name="moving">moving</am-tabs-item>
+            </am-tabs-header>
+            <am-tabs-body>
+                <am-tabs-pane name="sport">sport content</am-tabs-pane>
+                <am-tabs-pane name="music">music content</am-tabs-pane>
+                <am-tabs-pane name="moving">moving content</am-tabs-pane>
+            </am-tabs-body>
               `
       }
     })
     setTimeout(() => {
-      const element = wrapper.find('.g-tabs-item[data-name="music"].vertical')
+      const element = wrapper.find('.am-tabs-item[data-name="music"].vertical')
       expect(element.exists()).to.be.true
       done()
     })

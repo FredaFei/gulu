@@ -392,24 +392,24 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">&lt;template&gt;
-  &lt;div class="g-sub-nav" :class="{active, vertical}" v-click-outside="close" :data-name="name"&gt;
-    &lt;span class="g-sub-nav-label" @click="onClick"&gt;
-      &lt;span class="g-sub-nav-title"&gt;
+  &lt;div class="am-sub-nav" :class="{active, vertical}" v-click-outside="close" :data-name="name"&gt;
+    &lt;span class="am-sub-nav-label" @click="onClick"&gt;
+      &lt;span class="am-sub-nav-title"&gt;
         &lt;slot name="title"&gt;&lt;/slot&gt;
       &lt;/span&gt;
-      &lt;span class="g-sub-nav-icon" :class="{visible,vertical}"&gt;
-        &lt;g-icon name="right"&gt;&lt;/g-icon&gt;
+      &lt;span class="am-sub-nav-icon" :class="{visible,vertical}"&gt;
+        &lt;am-icon name="right"&gt;&lt;/am-icon&gt;
       &lt;/span&gt;
     &lt;/span&gt;
     &lt;template v-if="vertical"&gt;
       &lt;transition name="fade" @enter="enter" @after-enter="afterEnter" @leave="leave" @after-leave="afterLeave"&gt;
-        &lt;div class="g-sub-nav-popover" v-show="visible" :class="{vertical}"&gt;
+        &lt;div class="am-sub-nav-popover" v-show="visible" :class="{vertical}"&gt;
           &lt;slot&gt;&lt;/slot&gt;
         &lt;/div&gt;
       &lt;/transition&gt;
     &lt;/template&gt;
     &lt;template v-else&gt;
-      &lt;div class="g-sub-nav-popover" v-show="visible" :class="{vertical}"&gt;
+      &lt;div class="am-sub-nav-popover" v-show="visible" :class="{vertical}"&gt;
         &lt;slot&gt;&lt;/slot&gt;
       &lt;/div&gt;
     &lt;/template&gt;
@@ -417,13 +417,13 @@
 &lt;/template&gt;
 &nbsp;
 &lt;script&gt;
-import ClickOutside from '../clickOutside'
-import GIcon from '../icon'
+import ClickOutside from "../clickOutside";
+import AmIcon from "../icon";
 export default {
-  name: 'gulusubNav',
-  inject: ['root', 'vertical'],
+  name: "amsubNav",
+  inject: ["root", "vertical"],
   directives: { ClickOutside },
-  components: { GIcon },
+  components: { AmIcon },
   props: {
     name: {
       type: String,
@@ -433,63 +433,63 @@ export default {
   data() <span class="fstat-no" title="function not covered" >{</span>
 <span class="cstat-no" title="statement not covered" >    return {</span>
       visible: false
-    }
+    };
   },
   computed: {
     active() <span class="fstat-no" title="function not covered" >{</span>
-<span class="cstat-no" title="statement not covered" >      return this.root.namePath.indexOf(this.name) &gt;= 0 ? true : false</span>
+<span class="cstat-no" title="statement not covered" >      return this.root.namePath.indexOf(this.name) &gt;= 0 ? true : false;</span>
     }
   },
   methods: {
     enter(el, done) <span class="fstat-no" title="function not covered" >{</span>
-<span class="cstat-no" title="statement not covered" >      el.style.height = `auto`</span>
-      let { height } = <span class="cstat-no" title="statement not covered" >el.getBoundingClientRect()</span>
-<span class="cstat-no" title="statement not covered" >      el.style.height = 0</span>
-<span class="cstat-no" title="statement not covered" >      el.getBoundingClientRect()</span>
-<span class="cstat-no" title="statement not covered" >      el.style.height = `${height}px`</span>
-<span class="cstat-no" title="statement not covered" >      el.addEventListener('transitionend', () =&gt; <span class="fstat-no" title="function not covered" >{</span></span>
-<span class="cstat-no" title="statement not covered" >        done()</span>
-      })
+<span class="cstat-no" title="statement not covered" >      el.style.height = `auto`;</span>
+      let { height } = <span class="cstat-no" title="statement not covered" >el.getBoundingClientRect();</span>
+<span class="cstat-no" title="statement not covered" >      el.style.height = 0;</span>
+<span class="cstat-no" title="statement not covered" >      el.getBoundingClientRect();</span>
+<span class="cstat-no" title="statement not covered" >      el.style.height = `${height}px`;</span>
+<span class="cstat-no" title="statement not covered" >      el.addEventListener("transitionend", () =&gt; <span class="fstat-no" title="function not covered" >{</span></span>
+<span class="cstat-no" title="statement not covered" >        done();</span>
+      });
     },
     afterEnter(el) <span class="fstat-no" title="function not covered" >{</span>
-<span class="cstat-no" title="statement not covered" >      el.style.height = `auto`</span>
+<span class="cstat-no" title="statement not covered" >      el.style.height = `auto`;</span>
     },
     leave(el, done) <span class="fstat-no" title="function not covered" >{</span>
-      let { height } = <span class="cstat-no" title="statement not covered" >el.getBoundingClientRect()</span>
-<span class="cstat-no" title="statement not covered" >      el.style.height = `${height}px`</span>
-<span class="cstat-no" title="statement not covered" >      el.getBoundingClientRect()</span>
-<span class="cstat-no" title="statement not covered" >      el.style.height = 0</span>
-<span class="cstat-no" title="statement not covered" >      el.addEventListener('transitionend', () =&gt; <span class="fstat-no" title="function not covered" >{</span></span>
-<span class="cstat-no" title="statement not covered" >        done()</span>
-      })
+      let { height } = <span class="cstat-no" title="statement not covered" >el.getBoundingClientRect();</span>
+<span class="cstat-no" title="statement not covered" >      el.style.height = `${height}px`;</span>
+<span class="cstat-no" title="statement not covered" >      el.getBoundingClientRect();</span>
+<span class="cstat-no" title="statement not covered" >      el.style.height = 0;</span>
+<span class="cstat-no" title="statement not covered" >      el.addEventListener("transitionend", () =&gt; <span class="fstat-no" title="function not covered" >{</span></span>
+<span class="cstat-no" title="statement not covered" >        done();</span>
+      });
     },
     afterLeave(el) <span class="fstat-no" title="function not covered" >{</span>
-<span class="cstat-no" title="statement not covered" >      el.style.height = `auto`</span>
+<span class="cstat-no" title="statement not covered" >      el.style.height = `auto`;</span>
     },
     onClick() <span class="fstat-no" title="function not covered" >{</span>
-<span class="cstat-no" title="statement not covered" >      this.visible = !this.visible</span>
+<span class="cstat-no" title="statement not covered" >      this.visible = !this.visible;</span>
     },
     close() <span class="fstat-no" title="function not covered" >{</span>
-<span class="cstat-no" title="statement not covered" >      this.visible = false</span>
+<span class="cstat-no" title="statement not covered" >      this.visible = false;</span>
     },
     updateNamePath() <span class="fstat-no" title="function not covered" >{</span>
-<span class="cstat-no" title="statement not covered" >      this.root.namePath.unshift(this.name)</span>
+<span class="cstat-no" title="statement not covered" >      this.root.namePath.unshift(this.name);</span>
 <span class="cstat-no" title="statement not covered" >      if (this.$parent.updateNamePath) {</span>
-<span class="cstat-no" title="statement not covered" >        this.$parent.updateNamePath()</span>
+<span class="cstat-no" title="statement not covered" >        this.$parent.updateNamePath();</span>
       }
     }
   }
-}
+};
 &lt;/script&gt;
 &nbsp;
 &lt;style lang="scss" scoped&gt;
-@import 'var';
-.g-sub-nav {
+@import "var";
+.am-sub-nav {
   position: relative;
   &amp;:not(.vertical) {
     &amp;.active {
       &amp;:after {
-        content: '';
+        content: "";
         position: absolute;
         bottom: 0;
         left: 0;
@@ -528,15 +528,15 @@ export default {
   }
 }
 &nbsp;
-.g-sub-nav {
-  &amp; .g-sub-nav,
-  &amp;.vertical{
-    .g-sub-nav-label {
+.am-sub-nav {
+  &amp; .am-sub-nav,
+  &amp;.vertical {
+    .am-sub-nav-label {
       display: flex;
       align-items: center;
       justify-content: space-between;
     }
-    .g-sub-nav-icon {
+    .am-sub-nav-icon {
       transition: transform 250ms;
       display: inline-flex;
       margin-left: 1em;
@@ -552,13 +552,13 @@ export default {
     }
   }
 }
-.g-sub-nav .g-sub-nav {
+.am-sub-nav .am-sub-nav {
   &amp;.active {
     &amp;:after {
       display: none;
     }
   }
-  .g-sub-nav-popover {
+  .am-sub-nav-popover {
     top: 0;
     left: 100%;
     margin-left: 8px;
@@ -571,7 +571,7 @@ export default {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Fri Mar 01 2019 14:19:40 GMT+0800 (中国标准时间)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Mar 06 2019 11:21:01 GMT+0800 (中国标准时间)
 </div>
 </div>
 <script src="../../prettify.js"></script>

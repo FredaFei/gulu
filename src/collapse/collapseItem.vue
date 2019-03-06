@@ -1,26 +1,26 @@
 <template>
-  <div class="gulu-collapse-item">
-    <div class="gulu-collapse-item-name" :data-name="name" :class="{'active': open}" @click="onToggle">
-      <g-icon name="right" :class="['g-icon-animation',{'active': open}]" v-if="visibleIcon"></g-icon>
+  <div class="am-collapse-item">
+    <div class="am-collapse-item-name" :data-name="name" :class="{'active': open}" @click="onToggle">
+      <am-icon name="right" :class="['am-icon-animation',{'active': open}]" v-if="visibleIcon"></am-icon>
       <slot name="title">{{title}}</slot>
     </div>
-    <g-collapse-transition>
-      <div class="gulu-collapse-item-content" v-show="open">
-        <div class="gulu-collapse-item-inner">
+    <am-collapse-transition>
+      <div class="am-collapse-item-content" v-show="open">
+        <div class="am-collapse-item-inner">
           <slot></slot>
         </div>
       </div>
-    </g-collapse-transition>
+    </am-collapse-transition>
   </div>
 </template>
 
 <script>
-import GCollapseTransition from "../collapseTransition";
-import GIcon from "../icon";
+import AmCollapseTransition from "../collapseTransition";
+import AmIcon from "../icon";
 export default {
-  name: "guluCollapseItem",
+  name: "amCollapseItem",
   inject: ["eventBus"],
-  components: { GIcon, GCollapseTransition },
+  components: { AmIcon, AmCollapseTransition },
   props: {
     title: {
       type: String
@@ -60,7 +60,7 @@ export default {
 
 <style lang="scss" scoped>
 @import "var";
-.gulu-collapse-item {
+.am-collapse-item {
   &-name {
     font-size: $font-size;
     color: $color;
@@ -71,7 +71,7 @@ export default {
     &.active {
       border-bottom-color: transparent;
     }
-    .g-icon-animation {
+    .am-icon-animation {
       margin-right: 0.3em;
       transition: transform 0.25s;
     }

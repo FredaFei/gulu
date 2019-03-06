@@ -1,23 +1,23 @@
 <template>
-  <div class="g-input-wrapper" @mouseenter="hovering=true" @mouseleave="hovering=false" ref="gInput">
+  <div class="am-input-wrapper" @mouseenter="hovering=true" @mouseleave="hovering=false" ref="gInput">
     <template v-if="type=='textarea'">
       <textarea :rows="rows" :value="nativeValue" :placeholder="placeholder" :disabled="disabled" :readonly="readonly" ref="textarea" @input="onInput" @focus="onFocus" @change="onChange" @blur="onBlur"></textarea>
     </template>
     <template v-else>
-      <g-icon class="icon prefix" :name="prefix" v-if="prefix"></g-icon>
+      <am-icon class="icon prefix" :name="prefix" v-if="prefix"></am-icon>
       <input type="text" class="inputbox" :value="nativeValue" :placeholder="placeholder" :disabled="disabled" :readonly="readonly" ref="input" @input="onInput" @keyup.enter="onKeyup" @focus="onFocus" @change="onChange" @blur="onBlur">
-      <g-icon class="icon suffix" :name="suffix" v-if="suffix"></g-icon>
-      <g-icon class="icon suffix clear" name="delete" v-if="visibleClear" @click.stop="onClear"></g-icon>
+      <am-icon class="icon suffix" :name="suffix" v-if="suffix"></am-icon>
+      <am-icon class="icon suffix clear" name="delete" v-if="visibleClear" @click.stop="onClear"></am-icon>
     </template>
   </div>
 </template>
 
 <script>
-import GIcon from "../icon";
+import AmIcon from "../icon";
 export default {
-  name: "guluInput",
+  name: "amInput",
   components: {
-    GIcon
+    AmIcon
   },
   props: {
     value: {
@@ -114,7 +114,7 @@ export default {
 
 <style lang="scss" scoped>
 @import "var";
-.g-input-wrapper {
+.am-input-wrapper {
   display: inline-flex;
   align-items: center;
   font-size: $input-font-size;
@@ -137,10 +137,10 @@ export default {
     right: 0.3em;
   }
   > .inputbox:not(:first-child) {
-    padding-left: 30px;
+    paddinam-left: 30px;
   }
   > .inputbox:not(:last-child) {
-    padding-right: 22px;
+    paddinam-right: 22px;
   }
   > textarea,
   > .inputbox {

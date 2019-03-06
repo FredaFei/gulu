@@ -1,17 +1,17 @@
 <template>
-  <div class="g-table-wrapper">
-    <div class="g-table-content" :style="{height}" ref="tableContent">
-      <table class="g-table" :class="{border,striped,compact}" ref="gTable">
+  <div class="am-table-wrapper">
+    <div class="am-table-content" :style="{height}" ref="tableContent">
+      <table class="am-table" :class="{border,striped,compact}" ref="gTable">
         <thead>
           <tr>
-            <th class="g-table-expend-field g-table-center" v-if="expendField"></th>
-            <th class="g-table-checkbox" v-if="checkable"><input type="checkbox" @click="onChangeAllItems" :checked="areAllCheckedItems" ref="allChecked" /></th>
-            <th v-if="numberVisiable" class="g-table-number">#</th>
+            <th class="am-table-expend-field am-table-center" v-if="expendField"></th>
+            <th class="am-table-checkbox" v-if="checkable"><input type="checkbox" @click="onChangeAllItems" :checked="areAllCheckedItems" ref="allChecked" /></th>
+            <th v-if="numberVisiable" class="am-table-number">#</th>
             <th v-for="col in columns" :key="col.field" :style="{width:col.width+ 'px'}">
-              <div class="g-table-head">{{col.text}}
-                <span class="g-table-sorter" v-if="orderBy[col.field]" @click="onChangeOrderBy(col.field)">
-                  <g-icon name="asc" :class="{active: orderBy[col.field]==='asc'}"></g-icon>
-                  <g-icon name="desc" :class="{active: orderBy[col.field]==='desc'}"></g-icon>
+              <div class="am-table-head">{{col.text}}
+                <span class="am-table-sorter" v-if="orderBy[col.field]" @click="onChangeOrderBy(col.field)">
+                  <am-icon name="asc" :class="{active: orderBy[col.field]==='asc'}"></am-icon>
+                  <am-icon name="desc" :class="{active: orderBy[col.field]==='desc'}"></am-icon>
                 </span>
               </div>
             </th>
@@ -21,11 +21,11 @@
         <tbody>
           <template v-for="(data,index) in dataSource">
             <tr :key="data.id">
-              <td class="g-table-expend-field g-table-center" v-if="expendField">
-                <g-icon class="g-table-expend-icon" :class="{'active': inExpendIds(data.id)}" name="right" @click="expendItem(data.id)"></g-icon>
+              <td class="am-table-expend-field am-table-center" v-if="expendField">
+                <am-icon class="am-table-expend-icon" :class="{'active': inExpendIds(data.id)}" name="right" @click="expendItem(data.id)"></am-icon>
               </td>
-              <td class="g-table-checkbox" v-if="checkable"><input type="checkbox" :checked="inSelectedItems(data)" @click="onChangeItem(data,$event)" /></td>
-              <td v-if="numberVisiable" class="g-table-number">{{index+1}}</td>
+              <td class="am-table-checkbox" v-if="checkable"><input type="checkbox" :checked="inSelectedItems(data)" @click="onChangeItem(data,$event)" /></td>
+              <td v-if="numberVisiable" class="am-table-number">{{index+1}}</td>
               <template v-for="col in columns">
                 <td :key="col.field" :style="{width:col.width+'px'}">
                   <template v-if="col.render">
@@ -43,8 +43,8 @@
               </td>
             </tr>
             <transition name="slide-fade" :key="`${data.id}-expendFiled`">
-              <tr :key="`${data.id}-expendFiled`" class="g-table-expend-filed" v-if="inExpendIds(data.id)">
-                <td class="g-table-expend-field g-table-center"></td>
+              <tr :key="`${data.id}-expendFiled`" class="am-table-expend-filed" v-if="inExpendIds(data.id)">
+                <td class="am-table-expend-field am-table-center"></td>
                 <td :colspan="`${columns.length+expendedCellColSpan}`">
                   <p>{{data.description || '空'}}</p>
                 </td>
@@ -54,18 +54,18 @@
         </tbody>
       </table>
     </div>
-    <div class="g-table-loading" v-if="loading">
-      <g-icon name="loading"></g-icon>
+    <div class="am-table-loading" v-if="loading">
+      <am-icon name="loading"></am-icon>
     </div>
   </div>
 </template>
 
 <script>
-import GIcon from "../icon";
+import AmIcon from "../icon";
 export default {
-  name: "guluTable",
+  name: "amTable",
   components: {
-    GIcon,
+    AmIcon,
     vnodes: {
       functional: true,
       render: (h, context) => context.props.vnodes
@@ -185,8 +185,8 @@ export default {
         let { width } = node.getBoundingClientRect();
         let parentNode = node.parentNode;
         let styles = getComputedStyle(parentNode);
-        let paddingLeft = styles.getPropertyValue("padding-left");
-        let paddingRight = styles.getPropertyValue("padding-right");
+        let paddingLeft = styles.getPropertyValue("paddinam-left");
+        let paddingRight = styles.getPropertyValue("paddinam-right");
         let borderLeft = styles.getPropertyValue("border-left-width");
         let borderRight = styles.getPropertyValue("border-right-width");
         let width2 =
@@ -204,7 +204,7 @@ export default {
     doFixedHeader() {
       let newTable = this.$refs.gTable.cloneNode(false);
       this.newTable = newTable;
-      newTable.classList.add("g-table-copy");
+      newTable.classList.add("am-table-copy");
       let tHeader = this.$refs.gTable.children[0];
       this.$nextTick(() => {
         let { height } = tHeader.getBoundingClientRect();
@@ -272,7 +272,7 @@ export default {
   height: 0px;
 }
 
-.g-table {
+.am-table {
   $gray: darken($gray, 10%);
   width: 100%;
   border-collapse: collapse;

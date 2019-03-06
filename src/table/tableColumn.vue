@@ -4,7 +4,7 @@
 
 <script>
 export default {
-  name: 'gTableColumn',
+  name: "amTableColumn",
   props: {
     text: {
       type: String,
@@ -13,14 +13,13 @@ export default {
     field: {
       type: String,
       required: true
-    }, 
-    width: {
-      type: Number,
     },
+    width: {
+      type: Number
+    }
   }
-}
+};
 </script>
 
 <style>
-
 </style>

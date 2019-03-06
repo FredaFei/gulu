@@ -1,18 +1,18 @@
 <template>
-  <button class="g-button" :class="{[`icon-${iconPosition}`]:true,'icon-disabled':disabled}" :disabled="disabled" @click="$emit('click')">
-    <g-icon class="icon" v-if="icon&&!loading" :name="icon"></g-icon>
-    <g-icon class="icon loading" v-if="loading" name="loading"></g-icon>
-    <div class="g-button-content">
+  <button class="am-button" :class="{[`icon-${iconPosition}`]:true,'icon-disabled':disabled}" :disabled="disabled" @click="$emit('click')">
+    <am-icon class="icon" v-if="icon&&!loading" :name="icon"></am-icon>
+    <am-icon class="icon loading" v-if="loading" name="loading"></am-icon>
+    <div class="am-button-content">
       <slot />
     </div>
   </button>
 </template>
 <script>
-import GIcon from "../icon";
+import AmIcon from "../icon";
 export default {
-  name: "guluButton",
+  name: "amButton",
   components: {
-    GIcon
+    AmIcon
   },
   props: {
     icon: {
@@ -39,7 +39,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 @import "var";
-.g-button {
+.am-button {
   font-size: $button-fontSize;
   height: $button-height;
   padding: 0 1em;
@@ -51,13 +51,13 @@ export default {
   align-items: center;
   vertical-align: middle;
   transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
-  & + .g-button {
+  & + .am-button {
     margin-left: 0.5em;
   }
   & > .loading {
     @include spin;
   }
-  > .g-button-content {
+  > .am-button-content {
     line-height: 1em;
   }
   &.icon-left {
@@ -65,7 +65,7 @@ export default {
       order: 1;
       margin-right: 0.1em;
     }
-    > .g-button-content {
+    > .am-button-content {
       order: 2;
     }
   }
@@ -74,7 +74,7 @@ export default {
       order: 2;
       margin-left: 0.1em;
     }
-    > .g-button-content {
+    > .am-button-content {
       order: 1;
     }
   }

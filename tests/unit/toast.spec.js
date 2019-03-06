@@ -41,7 +41,7 @@ describe('Toast', () => {
           }
         }
       }).$mount()
-      let closeElement = vm.$el.querySelector('.g-toast-close')
+      let closeElement = vm.$el.querySelector('.am-toast-close')
       expect(closeElement.textContent.trim()).to.eq('关闭')
       closeElement.click()
       expect(callback).to.have.been.called

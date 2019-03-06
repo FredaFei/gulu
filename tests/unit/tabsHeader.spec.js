@@ -11,11 +11,11 @@ import TabsBody from '../../src/tabs/tabsBody'
 import TabsItem from '../../src/tabs/tabsItem'
 import TabsPane from '../../src/tabs/tabsPane'
 
-Vue.component('g-tabs', Tabs)
-Vue.component('g-tabs-header', TabsHeader)
-Vue.component('g-tabs-body', TabsBody)
-Vue.component('g-tabs-item', TabsItem)
-Vue.component('g-tabs-pane', TabsPane)
+Vue.component('am-tabs', Tabs)
+Vue.component('am-tabs-header', TabsHeader)
+Vue.component('am-tabs-body', TabsBody)
+Vue.component('am-tabs-item', TabsItem)
+Vue.component('am-tabs-pane', TabsPane)
 
 describe('TabsHeader', () => {
   it('存在.', () => {

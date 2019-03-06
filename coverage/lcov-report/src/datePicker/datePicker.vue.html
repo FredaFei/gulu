@@ -1022,39 +1022,39 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">&lt;template&gt;
-  &lt;div class="g-date-picker-wrapper" ref="datePicker"&gt;
-    &lt;g-popover position="bottom" ref="popover" :container="popoverContainer" @open="onOpen" :disabled="disabled"&gt;
-      &lt;g-input :value="formattedValue" clearable prefix="date" @clear="onClickClear" :placeholder="placeholder" :disabled="disabled" :readonly="readonly" type="text" @keyup-enter="onEnter" @blur="onBlur" @change="onChange" @input="onInput" ref="input"&gt;&lt;/g-input&gt;
+  &lt;div class="am-date-picker-wrapper" ref="datePicker"&gt;
+    &lt;am-popover position="bottom" ref="popover" :container="popoverContainer" @open="onOpen" :disabled="disabled"&gt;
+      &lt;am-input :value="formattedValue" clearable prefix="date" @clear="onClickClear" :placeholder="placeholder" :disabled="disabled" :readonly="readonly" type="text" @keyup-enter="onEnter" @blur="onBlur" @change="onChange" @input="onInput" ref="input"&gt;&lt;/am-input&gt;
       &lt;template slot="popover"&gt;
-        &lt;div class="g-date-picker-pop" @selectstart.prevent&gt;
-          &lt;div class="g-date-picker-pop-nav"&gt;
+        &lt;div class="am-date-picker-pop" @selectstart.prevent&gt;
+          &lt;div class="am-date-picker-pop-nav"&gt;
             &lt;template v-if="mode==='date'"&gt;
-              &lt;g-icon name="double-left" @click="onClickPrevYear" :class="classes('prev-year')"&gt;&lt;/g-icon&gt;
-              &lt;g-icon name="left" @click="onClickPrevMonth" :class="classes('prev-month')"&gt;&lt;/g-icon&gt;
+              &lt;am-icon name="double-left" @click="onClickPrevYear" :class="classes('prev-year')"&gt;&lt;/am-icon&gt;
+              &lt;am-icon name="left" @click="onClickPrevMonth" :class="classes('prev-month')"&gt;&lt;/am-icon&gt;
               &lt;div&gt;
                 &lt;span :class="classes('current-year')" @click="onClickChangeMode('year')"&gt;{{display.year}}年&lt;/span&gt;
                 &lt;span :class="classes('current-month')" @click="onClickChangeMode('month')"&gt;{{display.month+1}}月&lt;/span&gt;
               &lt;/div&gt;
-              &lt;g-icon name="double-right" @click="onClickNextYear" :class="classes('next-year')"&gt;&lt;/g-icon&gt;
-              &lt;g-icon name="right" @click="onClickNextMonth" :class="classes('next-month')"&gt;&lt;/g-icon&gt;
+              &lt;am-icon name="double-right" @click="onClickNextYear" :class="classes('next-year')"&gt;&lt;/am-icon&gt;
+              &lt;am-icon name="right" @click="onClickNextMonth" :class="classes('next-month')"&gt;&lt;/am-icon&gt;
             &lt;/template&gt;
             &lt;template v-else-if="mode==='year'"&gt;
-              &lt;g-icon name="double-left" @click="onClickRangeYear(0)" :class="classes('prev-year')"&gt;&lt;/g-icon&gt;
+              &lt;am-icon name="double-left" @click="onClickRangeYear(0)" :class="classes('prev-year')"&gt;&lt;/am-icon&gt;
               &lt;div&gt;
                 &lt;span :class="classes('current-year')"&gt;{{visibleYears[1]}}-{{visibleYears[10]}}&lt;/span&gt;
               &lt;/div&gt;
-              &lt;g-icon name="double-right" @click="onClickRangeYear(11)" :class="classes('next-year')"&gt;&lt;/g-icon&gt;
+              &lt;am-icon name="double-right" @click="onClickRangeYear(11)" :class="classes('next-year')"&gt;&lt;/am-icon&gt;
             &lt;/template&gt;
             &lt;template v-else&gt;
-              &lt;g-icon name="double-left" @click="onClickPrevYear" :class="classes('prev-year')"&gt;&lt;/g-icon&gt;
+              &lt;am-icon name="double-left" @click="onClickPrevYear" :class="classes('prev-year')"&gt;&lt;/am-icon&gt;
               &lt;div&gt;
                 &lt;span :class="classes('current-month')" @click="onClickChangeMode('year')"&gt;{{display.year}}&lt;/span&gt;
               &lt;/div&gt;
-              &lt;g-icon name="double-right" @click="onClickNextYear" :class="classes('next-year')"&gt;&lt;/g-icon&gt;
+              &lt;am-icon name="double-right" @click="onClickNextYear" :class="classes('next-year')"&gt;&lt;/am-icon&gt;
             &lt;/template&gt;
           &lt;/div&gt;
-          &lt;div class="g-date-picker-pop-panes"&gt;
-            &lt;div class="g-date-picker-pop-content"&gt;
+          &lt;div class="am-date-picker-pop-panes"&gt;
+            &lt;div class="am-date-picker-pop-content"&gt;
               &lt;template v-if="mode==='date'"&gt;
                 &lt;div :class="classes('weeks')"&gt;
                   &lt;span :class="classes('week')" v-for="n in weeksMap" :key="n"&gt;{{n}}&lt;/span&gt;
@@ -1084,29 +1084,29 @@
               &lt;/template&gt;
             &lt;/div&gt;
           &lt;/div&gt;
-          &lt;div class="g-date-picker-pop-actions" v-show="mode==='date'"&gt;
-            &lt;g-button @click="onClickToday"&gt;今天&lt;/g-button&gt;
-            &lt;g-button @click="onClickClear"&gt;清除&lt;/g-button&gt;
+          &lt;div class="am-date-picker-pop-actions" v-show="mode==='date'"&gt;
+            &lt;am-button @click="onClickToday"&gt;今天&lt;/am-button&gt;
+            &lt;am-button @click="onClickClear"&gt;清除&lt;/am-button&gt;
           &lt;/div&gt;
         &lt;/div&gt;
       &lt;/template&gt;
-    &lt;/g-popover&gt;
+    &lt;/am-popover&gt;
   &lt;/div&gt;
 &lt;/template&gt;
 &nbsp;
 &lt;script&gt;
-import GPopover from "../popover/popover";
-import GIcon from "../icon";
-import GButton from "../button/button";
-import GInput from "../input/input";
+import AmPopover from "../popover/popover";
+import AmIcon from "../icon";
+import AmButton from "../button/button";
+import AmInput from "../input/input";
 import moment from "./moment";
 export default {
-  name: "guluDatePicker",
+  name: "amDatePicker",
   components: {
-    GPopover,
-    GIcon,
-    GButton,
-    GInput
+    AmPopover,
+    AmIcon,
+    AmButton,
+    AmInput
   },
   props: {
     value: {
@@ -1326,7 +1326,7 @@ export default {
 <span class="cstat-no" title="statement not covered" >      this.mode = "date";</span>
     },
     classes(name) {
-      return `g-date-picker-pop-${name}`;
+      return `am-date-picker-pop-${name}`;
     }
   }
 };
@@ -1334,12 +1334,12 @@ export default {
 &nbsp;
 &lt;style lang="scss" scoped&gt;
 @import "var";
-.g-date-picker-wrapper {
-  .g-popover-wrapper {
+.am-date-picker-wrapper {
+  .am-popover-wrapper {
     width: 200px;
   }
-  .g-date-picker-pop {
-    .g-icon:hover {
+  .am-date-picker-pop {
+    .am-icon:hover {
       color: $blue;
     }
     &amp;-nav {
@@ -1443,15 +1443,15 @@ export default {
       padding: 6px 0;
     }
     &amp;-actions {
-      padding-top: 10px;
+      paddinam-top: 10px;
       border-top: 1px solid $gray;
     }
     &amp;-select-year {
-      .g-date-picker-pop-row {
+      .am-date-picker-pop-row {
         width: 100%;
         padding: 16px 0;
       }
-      .g-date-picker-pop-col {
+      .am-date-picker-pop-col {
         flex: 1;
         width: 33.33%;
         color: #333;
@@ -1480,11 +1480,11 @@ export default {
       }
     }
     &amp;-select-month {
-      .g-date-picker-pop-row {
+      .am-date-picker-pop-row {
         width: 100%;
         padding: 16px 0;
       }
-      .g-date-picker-pop-col {
+      .am-date-picker-pop-col {
         flex: 1;
         width: 33.33%;
         color: #333;
@@ -1516,7 +1516,7 @@ export default {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Fri Mar 01 2019 14:19:40 GMT+0800 (中国标准时间)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Mar 06 2019 11:21:01 GMT+0800 (中国标准时间)
 </div>
 </div>
 <script src="../../prettify.js"></script>

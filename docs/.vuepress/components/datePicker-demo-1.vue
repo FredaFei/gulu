@@ -2,23 +2,23 @@
   <div>
     <div class="box">
       <h4>基础用法</h4>
-      <g-date-picker v-model="x1"></g-date-picker>
+      <am-date-picker v-model="x1"></am-date-picker>
     </div>
     <div class="box">
       <h4>日期待选择状态</h4>
-      <g-date-picker v-model="x2"></g-date-picker>
+      <am-date-picker v-model="x2"></am-date-picker>
     </div>
     <div class="box">
       <h4>禁用状态</h4>
-      <g-date-picker v-model="x3" disabled></g-date-picker>
+      <am-date-picker v-model="x3" disabled></am-date-picker>
     </div>
   </div>
 </template>
 <script>
-import GDatePicker from "../../../src/datePicker/datePicker";
+import AmDatePicker from "../../../src/datePicker/datePicker";
 export default {
   components: {
-    GDatePicker
+    AmDatePicker
   },
   data() {
     return {

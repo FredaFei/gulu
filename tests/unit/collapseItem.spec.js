@@ -28,7 +28,7 @@ describe('CollapseItem', done => {
         title: 'title oo'
       }
     })
-    expect(wrapper.find('.g-icon-animation').exists()).to.be.true
+    expect(wrapper.find('.am-icon-animation').exists()).to.be.true
   })
   it('可以设置 visibleIcon.', () => {
     const wrapper = mount(CollapseItem, {
@@ -39,7 +39,7 @@ describe('CollapseItem', done => {
         visibleIcon: false
       }
     })
-    expect(wrapper.find('.g-icon-animation').exists()).to.be.false
+    expect(wrapper.find('.am-icon-animation').exists()).to.be.false
   })
   it('可以设置 title.', () => {
     const wrapper = mount(CollapseItem, {
@@ -48,6 +48,8 @@ describe('CollapseItem', done => {
         title: 'title oo'
       }
     })
-    expect(wrapper.find('.gulu-collapse-item-name').text()).to.be.eq('title oo')
+    expect(
+      wrapper.find('.am-collapse-item-name[data-name="test1"]').text()
+    ).to.be.eq('title oo')
   })
 })

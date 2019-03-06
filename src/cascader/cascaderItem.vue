@@ -14,15 +14,15 @@
       </div>
     </div>
     <div class="right" v-if="rightItems">
-      <gulu-cascader-item :height="height" :source-items="rightItems" :loading-item="loadingItem" :level="level+1" :selected="selected" @update:selected="onUpdateSelected" :load-data="loadData"></gulu-cascader-item>
+      <gulu-cascader-item :height="height" :source-items="rightItems" :loadinam-item="loadingItem" :level="level+1" :selected="selected" @update:selected="onUpdateSelected" :load-data="loadData"></gulu-cascader-item>
     </div>
   </div>
 </template>
 
 <script>
-import Icon from '../icon'
+import Icon from "../icon";
 export default {
-  name: "guluCascaderItem",
+  name: "amCascaderItem",
   components: { Icon },
   props: {
     sourceItems: {
@@ -48,36 +48,41 @@ export default {
     }
   },
   data() {
-    return {
-    }
+    return {};
   },
   computed: {
     rightItems() {
       if (this.selected[this.level]) {
-        let selected = this.sourceItems.filter(item => item.name === this.selected[this.level].name)
-        if (selected && selected[0].children && selected[0].children.length > 0) {
-          return selected[0].children
+        let selected = this.sourceItems.filter(
+          item => item.name === this.selected[this.level].name
+        );
+        if (
+          selected &&
+          selected[0].children &&
+          selected[0].children.length > 0
+        ) {
+          return selected[0].children;
         } else {
-          return null
+          return null;
         }
       }
     }
   },
   methods: {
     rightArrowVisible(item) {
-      return this.loadData ? !item.isLeaf : item.children
+      return this.loadData ? !item.isLeaf : item.children;
     },
     onClickLabel(item) {
-      let copy = JSON.parse(JSON.stringify(this.selected))
-      copy[this.level] = item
-      copy.splice(this.level + 1)
-      this.$emit('update:selected', copy)
+      let copy = JSON.parse(JSON.stringify(this.selected));
+      copy[this.level] = item;
+      copy.splice(this.level + 1);
+      this.$emit("update:selected", copy);
     },
     onUpdateSelected(newSelected) {
-      this.$emit('update:selected', newSelected)
+      this.$emit("update:selected", newSelected);
     }
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>
@@ -106,7 +111,7 @@ export default {
         margin-left: auto;
         fill: #aaa;
         .next {
-          transform: scale(.7);
+          transform: scale(0.7);
         }
         .loading {
           @include spin;

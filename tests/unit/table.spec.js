@@ -8,8 +8,8 @@ import Vue from 'vue'
 import Table from '../../src/table/table'
 import TableColumn from '../../src/table/tableColumn'
 
-Vue.component('g-Table', Table)
-Vue.component('g-table-column', TableColumn)
+Vue.component('am-Table', Table)
+Vue.component('am-table-column', TableColumn)
 
 describe('Table', () => {
   it('存在.', () => {
@@ -37,10 +37,10 @@ describe('Table', () => {
       },
       slots: {
         default: `
-          <g-table-column text="姓名" field="name" :width="200"></g-table-column>
-          <g-table-column text="班级" field="class" :width="200"></g-table-column>
-          <g-table-column text="体重" field="weigth" :width="200"></g-table-column>
-          <g-table-column text="身高" field="height"></g-table-column>
+          <am-table-column text="姓名" field="name" :width="200"></am-table-column>
+          <am-table-column text="班级" field="class" :width="200"></am-table-column>
+          <am-table-column text="体重" field="weigth" :width="200"></am-table-column>
+          <am-table-column text="身高" field="height"></am-table-column>
         `
       }
     })

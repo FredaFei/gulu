@@ -1,18 +1,18 @@
 <template>
-  <div class="g-toast-wrapper" :class="`position-${position}`" :style="{'z-index': zIndex}">
-    <div class="g-toast-inner">
-      <div class="g-toast-content" :class="toastClass">
+  <div class="am-toast-wrapper" :class="`position-${position}`" :style="{'z-index': zIndex}">
+    <div class="am-toast-inner">
+      <div class="am-toast-content" :class="toastClass">
         <div v-if="enableHtml" v-html="$slots.default[0]"></div>
         <slot v-else></slot>
       </div>
-      <span class="g-toast-close" v-if="closeButton&&!autoClose" @click="onClose">{{closeButton.text}}</span>
+      <span class="am-toast-close" v-if="closeButton&&!autoClose" @click="onClose">{{closeButton.text}}</span>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: "gTaost",
+  name: "amTaost",
   props: {
     autoClose: {
       type: [Boolean, Number],
@@ -113,7 +113,7 @@ $animation: 0.2s linear;
   }
 }
 
-.g-toast {
+.am-toast {
   &-wrapper {
     position: fixed;
     left: 50%;
@@ -121,21 +121,21 @@ $animation: 0.2s linear;
     &.position-top {
       top: 0;
       border-radius: 0 0 4px 4px;
-      .g-toast-inner {
+      .am-toast-inner {
         animation: slide-down $animation;
       }
     }
     &.position-middle {
       top: 50%;
       transform: translate(-50%, -50%);
-      .g-toast-inner {
+      .am-toast-inner {
         animation: fade-in $animation;
       }
     }
     &.position-bottom {
       bottom: 0;
       border-radius: 4px 4px 0 0;
-      .g-toast-inner {
+      .am-toast-inner {
         animation: slide-up $animation;
       }
     }
@@ -151,15 +151,15 @@ $animation: 0.2s linear;
     background: $toast-bg;
     border-radius: 4px;
     box-shadow: 0 1px 3px 0 $box-shadow;
-    .g-toast-content {
+    .am-toast-content {
       flex: 1;
       padding: 12px 0;
       &.border {
-        padding-right: 16px;
+        paddinam-right: 16px;
         border-right: 1px solid $border-color;
       }
     }
-    .g-toast-close {
+    .am-toast-close {
       flex-shrink: 0;
       margin-left: 16px;
       cursor: pointer;

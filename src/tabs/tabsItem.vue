@@ -1,12 +1,12 @@
 <template>
-  <div class="g-tabs-item" :data-name="name" @click="onClick" :class="classes">
+  <div class="am-tabs-item" :data-name="name" @click="onClick" :class="classes">
     <slot></slot>
   </div>
 </template>
 
 <script>
 export default {
-  name: "guluTabsItem",
+  name: "amTabsItem",
   inject: ["eventBus", "direction"],
   props: {
     disabled: {
@@ -53,7 +53,7 @@ export default {
 <style lang="scss" scoped>
 @import "var";
 $darkblue: #1890ff;
-.g-tabs-item {
+.am-tabs-item {
   padding: 12px 16px;
   display: flex;
   align-items: center;
@@ -65,10 +65,10 @@ $darkblue: #1890ff;
   &:hover {
     color: $blue;
   }
-  & + .g-tabs-item {
+  & + .am-tabs-item {
     margin-left: 10px;
   }
-  &.vertical + .g-tabs-item {
+  &.vertical + .am-tabs-item {
     margin-top: 10px;
     margin-left: 0;
   }

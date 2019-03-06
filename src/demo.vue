@@ -1,16 +1,16 @@
 <template>
   <div id="demo">
-    <!-- <g-scroll class="scroll">
+    <!-- <am-scroll class="scroll">
       <div class="view">
-        <p><img src="https://desk-fd.zol-img.com.cn/t_s960x600c5/g4/M08/08/02/Cg-4WlS13_OIAi_tAAwNAaRPTQ0AASnYAGZ4gUADA0Z950.jpg" alt=""></p>
-        <p><img src="https://desk-fd.zol-img.com.cn/t_s960x600c5/g4/M08/08/02/Cg-4WlS13_OIAi_tAAwNAaRPTQ0AASnYAGZ4gUADA0Z950.jpg" alt=""></p>
-        <p><img src="https://desk-fd.zol-img.com.cn/t_s960x600c5/g4/M08/08/02/Cg-4WlS13_OIAi_tAAwNAaRPTQ0AASnYAGZ4gUADA0Z950.jpg" alt=""></p>
-        <p><img src="https://desk-fd.zol-img.com.cn/t_s960x600c5/g4/M08/08/02/Cg-4WlS13_OIAi_tAAwNAaRPTQ0AASnYAGZ4gUADA0Z950.jpg" alt=""></p>
-        <p><img src="https://desk-fd.zol-img.com.cn/t_s960x600c5/g4/M08/08/02/Cg-4WlS13_OIAi_tAAwNAaRPTQ0AASnYAGZ4gUADA0Z950.jpg" alt=""></p>
-        <p><img src="https://desk-fd.zol-img.com.cn/t_s960x600c5/g4/M08/08/02/Cg-4WlS13_OIAi_tAAwNAaRPTQ0AASnYAGZ4gUADA0Z950.jpg" alt=""></p>
-        <p><img src="https://desk-fd.zol-img.com.cn/t_s960x600c5/g4/M08/08/02/Cg-4WlS13_OIAi_tAAwNAaRPTQ0AASnYAGZ4gUADA0Z950.jpg" alt=""></p>
-        <p><img src="https://desk-fd.zol-img.com.cn/t_s960x600c5/g4/M08/08/02/Cg-4WlS13_OIAi_tAAwNAaRPTQ0AASnYAGZ4gUADA0Z950.jpg" alt=""></p>
-        <p><img src="https://desk-fd.zol-img.com.cn/t_s960x600c5/g4/M08/08/02/Cg-4WlS13_OIAi_tAAwNAaRPTQ0AASnYAGZ4gUADA0Z950.jpg" alt=""></p>
+        <p><img src="https://desk-fd.zol-img.com.cn/t_s960x600c5/g4/M08/08/02/Cam-4WlS13_OIAi_tAAwNAaRPTQ0AASnYAAmZ4gUADA0Z950.jpg" alt=""></p>
+        <p><img src="https://desk-fd.zol-img.com.cn/t_s960x600c5/g4/M08/08/02/Cam-4WlS13_OIAi_tAAwNAaRPTQ0AASnYAAmZ4gUADA0Z950.jpg" alt=""></p>
+        <p><img src="https://desk-fd.zol-img.com.cn/t_s960x600c5/g4/M08/08/02/Cam-4WlS13_OIAi_tAAwNAaRPTQ0AASnYAAmZ4gUADA0Z950.jpg" alt=""></p>
+        <p><img src="https://desk-fd.zol-img.com.cn/t_s960x600c5/g4/M08/08/02/Cam-4WlS13_OIAi_tAAwNAaRPTQ0AASnYAAmZ4gUADA0Z950.jpg" alt=""></p>
+        <p><img src="https://desk-fd.zol-img.com.cn/t_s960x600c5/g4/M08/08/02/Cam-4WlS13_OIAi_tAAwNAaRPTQ0AASnYAAmZ4gUADA0Z950.jpg" alt=""></p>
+        <p><img src="https://desk-fd.zol-img.com.cn/t_s960x600c5/g4/M08/08/02/Cam-4WlS13_OIAi_tAAwNAaRPTQ0AASnYAAmZ4gUADA0Z950.jpg" alt=""></p>
+        <p><img src="https://desk-fd.zol-img.com.cn/t_s960x600c5/g4/M08/08/02/Cam-4WlS13_OIAi_tAAwNAaRPTQ0AASnYAAmZ4gUADA0Z950.jpg" alt=""></p>
+        <p><img src="https://desk-fd.zol-img.com.cn/t_s960x600c5/g4/M08/08/02/Cam-4WlS13_OIAi_tAAwNAaRPTQ0AASnYAAmZ4gUADA0Z950.jpg" alt=""></p>
+        <p><img src="https://desk-fd.zol-img.com.cn/t_s960x600c5/g4/M08/08/02/Cam-4WlS13_OIAi_tAAwNAaRPTQ0AASnYAAmZ4gUADA0Z950.jpg" alt=""></p>
         <h3>1 this is a test text this is a test text this is a test text this is a test text this is a test text this is a test text</h3>
         <h3>2</h3>
         <h3>3</h3>
@@ -62,29 +62,29 @@
         <h3>49</h3>
         <h3>50</h3>
       </div>
-    </g-scroll>
+    </am-scroll>
     <h1>实例一</h1>
-    <g-table :data-source="dataSource" :border="true" expend-field="description" checkable :selected-items.sync="selectedItems" :loading="loading" :order-by.sync="orderBy" @update:orderBy="xx" :height="400">
-      <g-table-column text="姓名" field="name" :width="200">
+    <am-table :data-source="dataSource" :border="true" expend-field="description" checkable :selected-items.sync="selectedItems" :loading="loading" :order-by.sync="orderBy" @update:orderBy="xx" :height="400">
+      <am-table-column text="姓名" field="name" :width="200">
         <template slot-scope="props">
           <a :href="`/user/${props.value}`">{{props.value}}</a>
         </template>
-      </g-table-column>
-      <g-table-column text="班级" field="class" :width="200"></g-table-column>
-      <g-table-column text="体重" field="weigth">
+      </am-table-column>
+      <am-table-column text="班级" field="class" :width="200"></am-table-column>
+      <am-table-column text="体重" field="weigth">
         <template slot-scope="props">
           <h1>{{props.value}}</h1>
         </template>
-      </g-table-column>
+      </am-table-column>
       <template slot-scope="slotProps">
         <button @click="onEdit(slotProps.data)">编辑</button>
         <button @click="onRemove(slotProps.data)">删除</button>
       </template>
-    </g-table> -->
-    <g-date-picker v-model="x1"></g-date-picker>
-    <g-date-picker v-model="x2" disabled></g-date-picker>
-    <!-- <g-date-picker :value.sync="x3"></g-date-picker> -->
-    <!-- <g-date-picker :value.sync="x4"></g-date-picker> -->
+    </am-table> -->
+    <am-date-picker v-model="x1"></am-date-picker>
+    <am-date-picker v-model="x2" disabled></am-date-picker>
+    <!-- <am-date-picker :value.sync="x3"></am-date-picker> -->
+    <!-- <am-date-picker :value.sync="x4"></am-date-picker> -->
 
   </div>
 </template>
@@ -97,11 +97,11 @@ import Scroll from "./scroll/scroll";
 
 import DatePicker from "./datePicker/datePicker";
 import Icon from "./icon";
-Vue.component("g-table", Table);
-Vue.component("g-table-column", TableColumn);
-Vue.component("g-scroll", Scroll);
-Vue.component("g-icon", Icon);
-Vue.component("g-date-picker", DatePicker);
+Vue.component("am-table", Table);
+Vue.component("am-table-column", TableColumn);
+Vue.component("am-scroll", Scroll);
+Vue.component("am-icon", Icon);
+Vue.component("am-date-picker", DatePicker);
 
 export default {
   data() {

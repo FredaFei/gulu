@@ -1,5 +1,5 @@
 <template>
-  <div class="g-tabs-content" :class="classes">
+  <div class="am-tabs-content" :class="classes">
     <slot></slot>
   </div>
 </template>
@@ -7,7 +7,7 @@
 <script>
 import Vue from "vue";
 export default {
-  name: "guluTabs",
+  name: "amTabs",
   props: {
     selected: {
       type: String | Number,
@@ -53,10 +53,10 @@ export default {
     },
     selectedTabs() {
       this.$children.forEach(vm => {
-        if (vm.$options.name === "guluTabsHeader") {
+        if (vm.$options.name === "amTabsHeader") {
           vm.$children.forEach(childVm => {
             if (
-              childVm.$options.name === "guluTabsItem" &&
+              childVm.$options.name === "amTabsItem" &&
               childVm.name === this.selected
             ) {
               this.eventBus &&
@@ -71,7 +71,7 @@ export default {
 </script>
 
 <style lang="scss">
-.g-tabs-content {
+.am-tabs-content {
   position: relative;
   &.vertical {
     display: flex;

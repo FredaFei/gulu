@@ -11,11 +11,11 @@ import TabsBody from '../../src/tabs/tabsBody'
 import TabsItem from '../../src/tabs/tabsItem'
 import TabsPane from '../../src/tabs/tabsPane'
 
-Vue.component('g-tabs', Tabs)
-Vue.component('g-tabs-header', TabsHeader)
-Vue.component('g-tabs-body', TabsBody)
-Vue.component('g-tabs-item', TabsItem)
-Vue.component('g-tabs-pane', TabsPane)
+Vue.component('am-tabs', Tabs)
+Vue.component('am-tabs-header', TabsHeader)
+Vue.component('am-tabs-body', TabsBody)
+Vue.component('am-tabs-item', TabsItem)
+Vue.component('am-tabs-pane', TabsPane)
 
 describe('TabsItem', () => {
   it('存在.', () => {
@@ -45,7 +45,7 @@ describe('TabsItem', () => {
     })
     setTimeout(() => {
       expect(wrapper.classes('disabled')).to.be.true
-      wrapper.find('.g-tabs-item[data-name="test2"]').trigger('click')
+      wrapper.find('.am-tabs-item[data-name="test2"]').trigger('click')
       expect(callback).to.have.not.been.called
       done()
     })
@@ -63,7 +63,7 @@ describe('TabsItem', () => {
       attachToDocument: true
     })
     setTimeout(() => {
-      wrapper.find('.g-tabs-item[data-name="test2"]').trigger('click')
+      wrapper.find('.am-tabs-item[data-name="test2"]').trigger('click')
       // expect(callback).to.have.been.called()
       done()
     })

@@ -1,6 +1,6 @@
 <template>
   <transition name="slide">
-    <div class="g-slides-item" v-if="visible" :class="{reverse}">
+    <div class="am-slides-item" v-if="visible" :class="{reverse}">
       <slot></slot>
     </div>
   </transition>
@@ -8,7 +8,7 @@
 
 <script>
 export default {
-  name: "guluSlideItem",
+  name: "amSlidesItem",
   props: {
     name: {
       type: String,
@@ -36,7 +36,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.g-slides-item {
+.am-slides-item {
 }
 
 .slide-leave-active {

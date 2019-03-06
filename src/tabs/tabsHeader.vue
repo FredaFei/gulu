@@ -1,5 +1,5 @@
 <template>
-  <div :class="['g-tabs-header',{'vertical':direction=='vertical'}]" ref="tabsHead">
+  <div :class="['am-tabs-header',{'vertical':direction=='vertical'}]" ref="tabsHead">
     <slot></slot>
     <div class="line" ref="line"></div>
     <div class="action-wrapper">
@@ -11,7 +11,7 @@
 
 <script>
 export default {
-  name: "guluTabsHeader",
+  name: "amTabsHeader",
   inject: ["eventBus", "direction"],
   mounted() {
     this.eventBus &&
@@ -47,7 +47,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.g-tabs-header {
+.am-tabs-header {
   position: relative;
   display: flex;
   justify-content: flex-start;
