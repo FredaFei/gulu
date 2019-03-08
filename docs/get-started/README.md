@@ -39,6 +39,10 @@ components: { App }
 
 ```
 
+### 使用 Amazing UI 示例
+
+[点我跳转 项目实战应用](https://codesandbox.io/s/ojvvl27v6q)
+
 ::: tip
 安装 使用本框架前，请在 CSS 中开启 border-box
 
@@ -47,5 +51,3 @@ components: { App }
 ```
 
 :::
-
-[项目实战应用](https://codesandbox.io/s/ojvvl27v6q)
