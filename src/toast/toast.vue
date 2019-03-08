@@ -12,7 +12,7 @@
 
 <script>
 export default {
-  name: "amTaost",
+  name: "amToast",
   props: {
     autoClose: {
       type: [Boolean, Number],

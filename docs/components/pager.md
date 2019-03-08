@@ -11,22 +11,18 @@ sidebarDepth: 2
 ```vue{4}
 <template>
   <div>
-    <g-pager
+    <am-pagination
       :current-page="currentPage"
-      :total-page="1"
+      :total-page="10"
       :hide-on-single-page="false"
       :current-page.sync="currentPage"
-    ></g-pager>
+    ></am-pagination>
   </div>
 </template>
 ```
 
 ```js{4}
-import GPager from '../../../src/pager/pager'
 export default {
-  components: {
-    GPager
-  },
   data() {
     return {
       currentPage: 1

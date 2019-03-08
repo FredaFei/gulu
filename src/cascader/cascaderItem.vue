@@ -5,25 +5,26 @@
         <span class="name">{{item.name}}</span>
         <span class="icons">
           <template v-if="item.name===loadingItem.name">
-            <icon class="icon loading" name="loading"></icon>
+            <am-icon class="icon loading" name="loading"></am-icon>
           </template>
           <template v-else>
-            <icon class="icon next" name="right" v-if="rightArrowVisible(item)"></icon>
+            <am-icon class="icon next" name="right" v-if="rightArrowVisible(item)"></am-icon>
           </template>
         </span>
       </div>
     </div>
     <div class="right" v-if="rightItems">
-      <gulu-cascader-item :height="height" :source-items="rightItems" :loadinam-item="loadingItem" :level="level+1" :selected="selected" @update:selected="onUpdateSelected" :load-data="loadData"></gulu-cascader-item>
+      <am-cascader-item :height="height" :source-items="rightItems" :loading-item="loadingItem" :level="level+1" :selected="selected" @update:selected="onUpdateSelected" :load-data="loadData">
+      </am-cascader-item>
     </div>
   </div>
 </template>
 
 <script>
-import Icon from "../icon";
+import AmIcon from "../icon";
 export default {
   name: "amCascaderItem",
-  components: { Icon },
+  components: { AmIcon },
   props: {
     sourceItems: {
       // type: Array

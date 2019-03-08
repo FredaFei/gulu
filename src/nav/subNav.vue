@@ -27,7 +27,7 @@
 import ClickOutside from "../clickOutside";
 import AmIcon from "../icon";
 export default {
-  name: "amsubNav",
+  name: "amSubNav",
   inject: ["root", "vertical"],
   directives: { ClickOutside },
   components: { AmIcon },

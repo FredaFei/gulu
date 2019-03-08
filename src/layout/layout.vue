@@ -1,5 +1,5 @@
 <template>
-  <div class="layout-content" :class="layoutClass">
+  <div class="am-layout-content" :class="layoutClass">
     <slot></slot>
   </div>
 </template>
@@ -16,7 +16,7 @@ export default {
   },
   mounted() {
     this.$children.forEach(item => {
-      if (item.$options.name === "guluSider") {
+      if (item.$options.name === "amAside") {
         this.layoutClass.hasSider = true;
       }
     });
@@ -25,7 +25,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.layout-content {
+.am-layout-content {
   display: flex;
   flex-direction: column;
   width: 100%;

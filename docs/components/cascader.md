@@ -10,20 +10,40 @@ sidebarDepth: 2
 ```vue{4}
 <template>
   <div class="box">
-    <g-cascader
+    <am-cascader
       :source.sync="source"
       :load-data="loadData"
       :selected.sync="selected"
       popover-height="200px"
-    ></g-cascader>
+    ></am-cascader>
   </div>
 </template>
 ```
 
 ```js{4}
-import Cascader from '../../../src/cascader/cascader'
-import CascaderItem from '../../../src/cascader/cascaderItem'
-import db from '../../../tests/fixtures/db'
+// 格式如下
+const db = [
+  { id: 1, name: '北京', parent_id: 0 },
+  { id: 2, name: '天津', parent_id: 0 },
+  { id: 3, name: '上海', parent_id: 0 },
+  { id: 5, name: '河北', parent_id: 0 },
+  { id: 36, name: '东城', parent_id: 1 },
+  { id: 51, name: '平谷', parent_id: 1 },
+  { id: 52, name: '密云', parent_id: 1 },
+  { id: 54, name: '和平', parent_id: 2 },
+  { id: 55, name: '河东', parent_id: 2 },
+  { id: 56, name: '河西', parent_id: 2 },
+  { id: 70, name: '黄浦', parent_id: 3 },
+  { id: 71, name: '徐汇', parent_id: 3 },
+  { id: 76, name: '虹口', parent_id: 3 },
+  { id: 127, name: '秦皇岛', parent_id: 5 },
+  { id: 128, name: '邯郸', parent_id: 5 },
+  { id: 577, name: '邯山', parent_id: 128 },
+  { id: 578, name: '丛台', parent_id: 128 },
+  { id: 579, name: '复兴', parent_id: 128 },
+  ...
+]
+
 function ajax(parentId = 0) {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
@@ -40,10 +60,6 @@ function ajax(parentId = 0) {
   })
 }
 export default {
-  components: {
-    GCascader: Cascader,
-    GCascaderItem: CascaderItem
-  },
   data() {
     return {
       source: [],
@@ -62,14 +78,6 @@ export default {
       })
     }
   }
-}
-```
-
-```css{4}
-.box {
-  padding: 20px;
-  z-index: 100;
-  position: relative;
 }
 ```
 

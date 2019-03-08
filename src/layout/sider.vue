@@ -1,15 +1,15 @@
 <template>
   <transition name="slide">
-    <div class="sider" v-if="visible">
+    <aside class="sider" v-if="visible">
       <slot></slot>
       <button class="close" v-if="visibleCloseBtn" @click="visible=false">close</button>
-    </div>
+    </aside>
   </transition>
 </template>
 
 <script>
 export default {
-  name: "amSider",
+  name: "amAside",
   props: {
     visibleCloseBtn: false
   },

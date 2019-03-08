@@ -17,11 +17,11 @@
 </template>
 <script>
 import Button from "../../../src/button/button";
-import ButtonAmroup from "../../../src/button/buttonAmroup";
+import ButtonGroup from "../../../src/button/buttonGroup";
 export default {
   components: {
     AmButton: Button,
-    AmButtonAmroup: ButtonAmroup
+    AmButtonGroup: ButtonGroup
   }
 };
 </script>

@@ -16,29 +16,19 @@ sidebarDepth: 2
   <div>
     <h5>基础用法</h5>
     <p>默认居中显示，3 秒后自动消失。</p>
-    <g-button @click="showTaost1">顶部</g-button>
-    <g-button @click="showTaost2">居中</g-button>
-    <g-button @click="showTaost3">底部</g-button>
+    <am-button @click="showTaost1">顶部</am-button>
+    <am-button @click="showTaost2">居中</am-button>
+    <am-button @click="showTaost3">底部</am-button>
     <h5>手动关闭</h5>
-    <g-button @click="showTaost4">顶部</g-button>
+    <am-button @click="showTaost4">顶部</am-button>
     <h5>使用HTML片段</h5>
-    <g-button @click="showTaost5">顶部</g-button>
+    <am-button @click="showTaost5">顶部</am-button>
   </div>
 </template>
 ```
 
 ```js{4}
-import Button from '../../../src/button/button'
-import Toast from '../../../src/toast/toast'
-import plugin from '../../../src/plugin.js'
-import Vue from 'vue'
-Vue.use(plugin)
-
 export default {
-  components: {
-    GButton: Button,
-    GToast: Toast
-  },
   methods: {
     showTaost1() {
       this.$toast(

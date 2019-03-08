@@ -7,11 +7,7 @@ module.exports = {
     lineNumbers: true
   },
   themeConfig: {
-    nav: [
-      { text: 'Home', link: '/' },
-      { text: 'Guide', link: '/get-started' },
-      { text: 'External', link: 'https://google.com' }
-    ],
+    nav: [{ text: 'Github', link: 'https://github.com/' }],
     sidebar: [
       '/install/',
       '/get-started/',

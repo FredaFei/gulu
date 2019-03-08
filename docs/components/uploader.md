@@ -11,7 +11,7 @@ sidebarDepth: 2
 <template>
   <div>
     <p class="error">上传的文件最大尺寸不超过3MB</p>
-    <g-uploader
+    <am-uploader
       name="files"
       action="http://127.0.0.1:3000/upload"
       :file-list.sync="fileList"
@@ -20,22 +20,14 @@ sidebarDepth: 2
       @error="error = $event"
       accept="image/png"
     >
-      <g-button icon="upload">上传文件</g-button>
-    </g-uploader>
+      <am-button icon="upload">上传文件</am-button>
+    </am-uploader>
   </div>
 </template>
 ```
 
 ```js{4}
-import GUploader from '../../../src/uploader/uploader'
-import GButton from '../../../src/button/button'
-
 export default {
-  name: 'uploader1',
-  components: {
-    GUploader,
-    GButton
-  },
   data() {
     return {
       fileList: [],

@@ -50,24 +50,24 @@
 </template>
 
 <script>
-import Layout from '../../../src/layout/layout'
-import Sider from '../../../src/layout/sider'
-import Header from '../../../src/layout/header'
-import Content from '../../../src/layout/content'
-import Footer from '../../../src/layout/footer'
+import Layout from "../../../src/layout/layout";
+import Sider from "../../../src/layout/sider";
+import Header from "../../../src/layout/header";
+import Content from "../../../src/layout/content";
+import Footer from "../../../src/layout/footer";
 export default {
   components: {
     AmLayout: Layout,
     AmSider: Sider,
     AmHeader: Header,
     AmContent: Content,
-    AmFooter: Footer,
+    AmFooter: Footer
   }
-}
+};
 </script>
 
 <style>
-.demoCol{
+.demoCol {
   background: #ccc;
 }
 </style>

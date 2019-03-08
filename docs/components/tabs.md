@@ -16,95 +16,79 @@ sidebarDepth: 2
   <div>
     <div class="box">
       <h4>Tabs 默认定位</h4>
-      <g-tabs :selected.sync="selectedTabs1">
-        <g-tabs-header>
-          <g-tabs-item name="finance">财经</g-tabs-item>
-          <g-tabs-item name="sport">体育</g-tabs-item>
-          <g-tabs-item name="comic">娱乐</g-tabs-item>
-        </g-tabs-header>
-        <g-tabs-body>
-          <g-tabs-pane name="finance">财经 content</g-tabs-pane>
-          <g-tabs-pane name="sport">体育 content</g-tabs-pane>
-          <g-tabs-pane name="comic">娱乐 content</g-tabs-pane>
-        </g-tabs-body>
-      </g-tabs>
+      <am-tabs :selected.sync="selectedTabs1">
+        <am-tabs-header>
+          <am-tabs-item name="finance">财经</am-tabs-item>
+          <am-tabs-item name="sport">体育</am-tabs-item>
+          <am-tabs-item name="comic">娱乐</am-tabs-item>
+        </am-tabs-header>
+        <am-tabs-body>
+          <am-tabs-pane name="finance">财经 content</am-tabs-pane>
+          <am-tabs-pane name="sport">体育 content</am-tabs-pane>
+          <am-tabs-pane name="comic">娱乐 content</am-tabs-pane>
+        </am-tabs-body>
+      </am-tabs>
     </div>
     <div class="box">
       <h4>Tabs 垂直定位</h4>
-      <g-tabs :selected.sync="selectedTabs2" direction="vertical">
-        <g-tabs-header>
-          <g-tabs-item name="finance">财经</g-tabs-item>
-          <g-tabs-item name="sport">体育</g-tabs-item>
-          <g-tabs-item name="comic">娱乐</g-tabs-item>
-        </g-tabs-header>
-        <g-tabs-body>
-          <g-tabs-pane name="finance">财经 content</g-tabs-pane>
-          <g-tabs-pane name="sport">体育 content</g-tabs-pane>
-          <g-tabs-pane name="comic">娱乐 content</g-tabs-pane>
-        </g-tabs-body>
-      </g-tabs>
+      <am-tabs :selected.sync="selectedTabs2" direction="vertical">
+        <am-tabs-header>
+          <am-tabs-item name="finance">财经</am-tabs-item>
+          <am-tabs-item name="sport">体育</am-tabs-item>
+          <am-tabs-item name="comic">娱乐</am-tabs-item>
+        </am-tabs-header>
+        <am-tabs-body>
+          <am-tabs-pane name="finance">财经 content</am-tabs-pane>
+          <am-tabs-pane name="sport">体育 content</am-tabs-pane>
+          <am-tabs-pane name="comic">娱乐 content</am-tabs-pane>
+        </am-tabs-body>
+      </am-tabs>
     </div>
     <div class="box">
       <h4>自定义tabs</h4>
-      <g-tabs :selected.sync="selectedTabs3">
-        <g-tabs-header>
-          <g-tabs-item name="finance"
-            >财经 <g-icon name="thumbs-up"></g-icon>
-          </g-tabs-item>
-          <g-tabs-item name="sport">体育</g-tabs-item>
-          <g-tabs-item name="comic">娱乐</g-tabs-item>
-          <g-button slot="actions">更多</g-button>
-        </g-tabs-header>
-        <g-tabs-body>
-          <g-tabs-pane name="finance">财经 content</g-tabs-pane>
-          <g-tabs-pane name="sport">体育 content</g-tabs-pane>
-          <g-tabs-pane name="comic">娱乐 content</g-tabs-pane>
-        </g-tabs-body>
-      </g-tabs>
+      <am-tabs :selected.sync="selectedTabs3">
+        <am-tabs-header>
+          <am-tabs-item name="finance"
+            >财经 <am-icon name="thumbs-up"></am-icon>
+          </am-tabs-item>
+          <am-tabs-item name="sport">体育</am-tabs-item>
+          <am-tabs-item name="comic">娱乐</am-tabs-item>
+          <am-button slot="actions">更多</am-button>
+        </am-tabs-header>
+        <am-tabs-body>
+          <am-tabs-pane name="finance">财经 content</am-tabs-pane>
+          <am-tabs-pane name="sport">体育 content</am-tabs-pane>
+          <am-tabs-pane name="comic">娱乐 content</am-tabs-pane>
+        </am-tabs-body>
+      </am-tabs>
     </div>
     <div class="box">
       <h4>禁用状态</h4>
-      <g-tabs :selected.sync="selectedTabs4" direction="vertical">
-        <g-tabs-header>
-          <g-tabs-item name="finance">财经</g-tabs-item>
-          <g-tabs-item name="sport" disabled>体育</g-tabs-item>
-          <g-tabs-item name="comic">娱乐</g-tabs-item>
-        </g-tabs-header>
-        <g-tabs-body>
-          <g-tabs-pane name="finance">财经 content</g-tabs-pane>
-          <g-tabs-pane name="sport">体育 content</g-tabs-pane>
-          <g-tabs-pane name="comic">娱乐 content</g-tabs-pane>
-        </g-tabs-body>
-      </g-tabs>
+      <am-tabs :selected.sync="selectedTabs4" direction="vertical">
+        <am-tabs-header>
+          <am-tabs-item name="finance">财经</am-tabs-item>
+          <am-tabs-item name="sport" disabled>体育</am-tabs-item>
+          <am-tabs-item name="comic">娱乐</am-tabs-item>
+        </am-tabs-header>
+        <am-tabs-body>
+          <am-tabs-pane name="finance">财经 content</am-tabs-pane>
+          <am-tabs-pane name="sport">体育 content</am-tabs-pane>
+          <am-tabs-pane name="comic">娱乐 content</am-tabs-pane>
+        </am-tabs-body>
+      </am-tabs>
     </div>
   </div>
 </template>
 ```
 
 ```js{4}
-import Icon from '../../../src/icon'
-import Tabs from '../../../src/tabs/tabs'
-import TabsHeader from '../../../src/tabs/tabsHeader'
-import TabsItem from '../../../src/tabs/tabsItem'
-import TabsBody from '../../../src/tabs/tabsBody'
-import TabsPane from '../../../src/tabs/tabsPane'
 export default {
-  components: {
-    GIcon: Icon,
-    GTabs: Tabs,
-    GTabsHeader: TabsHeader,
-    GTabsItem: TabsItem,
-    GTabsBody: TabsBody,
-    GTabsPane: TabsPane
-  },
   data() {
     return {
-      selectedTabs: 'sport'
-    }
-  },
-  methods: {
-    selectedFn() {
-      console.log('tabs')
+      selectedTabs1: 'finance',
+      selectedTabs2: 'comic',
+      selectedTabs3: 'comic',
+      selectedTabs4: 'comic'
     }
   }
 }

@@ -14,54 +14,40 @@ sidebarDepth: 2
 ```vue{4}
 <template>
   <div>
-    <g-slides :selected.sync="selected1">
-      <g-slides-item name="1">
+    <am-slides :selected.sync="selected1">
+      <am-slides-item name="1">
         <div class="slides-item">slide 1</div>
-      </g-slides-item>
-      <g-slides-item name="2">
+      </am-slides-item>
+      <am-slides-item name="2">
         <div class="slides-item">slide 2</div>
-      </g-slides-item>
-      <g-slides-item name="3">
+      </am-slides-item>
+      <am-slides-item name="3">
         <div class="slides-item">slide 3</div>
-      </g-slides-item>
-    </g-slides>
-    <g-slides :selected.sync="selected2" :auto-play="false">
-      <g-slides-item name="11">
+      </am-slides-item>
+    </am-slides>
+    <am-slides :selected.sync="selected2" :auto-play="false">
+      <am-slides-item name="11">
         <div class="slides-item">slide 1</div>
-      </g-slides-item>
-      <g-slides-item name="12">
+      </am-slides-item>
+      <am-slides-item name="12">
         <div class="slides-item">slide 2</div>
-      </g-slides-item>
-      <g-slides-item name="13">
+      </am-slides-item>
+      <am-slides-item name="13">
         <div class="slides-item">slide 3</div>
-      </g-slides-item>
-    </g-slides>
+      </am-slides-item>
+    </am-slides>
   </div>
 </template>
 ```
 
 ```js{4}
-import GSlides from '../../../src/slides/slides'
-import GSlidesItem from '../../../src/slides/slidesItem'
 export default {
-  components: {
-    GSlides,
-    GSlidesItem
-  },
   data() {
     return {
       selected1: '',
       selected2: ''
     }
   }
-}
-```
-
-```css{4}
-.slides-item {
-  width: 100%;
-  height: 150px;
-  background: #99a9bf;
 }
 ```
 

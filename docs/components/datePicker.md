@@ -16,26 +16,22 @@ sidebarDepth: 2
   <div>
     <div class="box">
       <h4>基础用法</h4>
-      <g-date-picker v-model="x1"></g-date-picker>
+      <am-date-picker v-model="x1"></am-date-picker>
     </div>
     <div class="box">
       <h4>日期待选择状态</h4>
-      <g-date-picker v-model="x2"></g-date-picker>
+      <am-date-picker v-model="x2"></am-date-picker>
     </div>
     <div class="box">
       <h4>禁用状态</h4>
-      <g-date-picker v-model="x3" disabled></g-date-picker>
+      <am-date-picker v-model="x3" disabled></am-date-picker>
     </div>
   </div>
 </template>
 ```
 
 ```js{4}
-import GDatePicker from '../../../src/datePicker/datePicker'
 export default {
-  components: {
-    GDatePicker
-  },
   data() {
     return {
       x1: new Date(),
@@ -43,12 +39,6 @@ export default {
       x3: new Date()
     }
   }
-}
-```
-
-```css{4}
-.box {
-  margin-bottom: 14px;
 }
 ```
 

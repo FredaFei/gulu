@@ -4,16 +4,16 @@
       {{ result }}
     </div>
     <div class="popover-wrapper" v-if="popoverVisible">
-      <gulu-cascader-item :source-items="source" :selected="selected" :loadinam-item="loadingItem" @update:selected="onUpdateSelected" :load-data="loadData" :height="popoverHeight"></gulu-cascader-item>
+      <am-cascader-item :source-items="source" :selected="selected" :loading-item="loadingItem" @update:selected="onUpdateSelected" :load-data="loadData" :height="popoverHeight"></am-cascader-item>
     </div>
   </div>
 </template>
 
 <script>
-import guluCascaderItem from "./cascaderItem";
+import AmCascaderItem from "./cascaderItem";
 export default {
-  name: "amamCascader",
-  components: { guluCascaderItem },
+  name: "amCascader",
+  components: { AmCascaderItem },
   props: {
     source: {
       type: Array,

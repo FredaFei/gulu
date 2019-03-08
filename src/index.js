@@ -1,50 +1,103 @@
-import Button from './button/index.js'
-import Input from './input/index.js'
+import Button from './button/button.vue'
+import ButtonGroup from './button/buttonGroup'
+import Cascader from './cascader/cascader.vue'
+import CascaderItem from './cascader/cascaderItem.vue'
+import Collapse from './collapse/collapse.vue'
+import CollapseItem from './collapse/collapseItem.vue'
+import DatePicker from './datePicker/datePicker.vue'
+import Col from './grid/gCol.vue'
+import Row from './grid/gRow.vue'
+import Input from './input/input.vue'
+import Layout from './layout/layout.vue'
+import Header from './layout/header.vue'
+import Aside from './layout/sider.vue'
+import Content from './layout/content.vue'
+import Footer from './layout/footer.vue'
+import Nav from './nav/nav.vue'
+import NavItem from './nav/navItem.vue'
+import SubNav from './nav/subNav.vue'
+import Pager from './pager/pager.vue'
+import Popover from './popover/popover.vue'
+import Slides from './slides/slides.vue'
+import SlidesItem from './slides/slidesItem.vue'
+import Tabs from './tabs/tabs.vue'
+import TabsHeader from './tabs/tabsHeader.vue'
+import TabsItem from './tabs/tabsItem.vue'
+import TabsBody from './tabs/tabsBody.vue'
+import TabsPane from './tabs/tabsPane.vue'
 import Toast from './toast/index.js'
+import Uploader from './uploader/uploader.vue'
+import Icon from './icon.vue'
+import CollapseTransition from './collapseTransition.vue'
+import ClickOutside from './clickOutside.js'
 
-const components = [Button, Input]
+const components = [
+  Button,
+  ButtonGroup,
+  Cascader,
+  CascaderItem,
+  Collapse,
+  CollapseItem,
+  DatePicker,
+  Col,
+  Row,
+  Input,
+  Layout,
+  Header,
+  Aside,
+  Content,
+  Footer,
+  Nav,
+  NavItem,
+  SubNav,
+  Pager,
+  Popover,
+  Slides,
+  SlidesItem,
+  Tabs,
+  TabsHeader,
+  TabsItem,
+  TabsBody,
+  TabsPane,
+  Uploader,
+  Icon
+]
 const install = (Vue, opts = {}) => {
   components.forEach(component => {
-    component.install(Vue)
+    Vue.component(component.name, component)
   })
   Vue.use(Toast)
 }
-if (typeof window !== 'undefined' && window.Vue) {
-  install(window.Vue)
-}
 export default install
-export { Toast, Button, Input }
-
-// export { default as Button } from './button/button.vue'
-// export { default as ButtonGroup } from './button/buttonGroup'
-// export { default as Cascader } from './cascader/cascader.vue'
-// export { default as CascaderItem } from './cascader/cascaderItem.vue'
-// export { default as Collapse } from './collapse/collapse.vue'
-// export { default as CollapseItem } from './collapse/collapseItem.vue'
-// export { default as DatePicker } from './datePicker/datePicker.vue'
-// export { default as Moment } from './datePicker/moment.js'
-// export { default as Col } from './grid/gCol.vue'
-// export { default as Row } from './grid/gRow.vue'
-// export { default as Input } from './input/input.vue'
-// export { default as Layout } from './layout/layout.vue'
-// export { default as Header } from './layout/header.vue'
-// export { default as Sider } from './layout/sider.vue'
-// export { default as Content } from './layout/content.vue'
-// export { default as Footer } from './layout/footer.vue'
-// export { default as Nav } from './nav/nav.vue'
-// export { default as NavItem } from './nav/navItem.vue'
-// export { default as SubNav } from './nav/subNav.vue'
-// export { default as Pager } from './pager/pager.vue'
-// export { default as Popover } from './popover/popover.vue'
-// export { default as Slides } from './slides/slides.vue'
-// export { default as SlidesItem } from './slides/slidesItem.vue'
-// export { default as Tabs } from './tabs/tabs.vue'
-// export { default as TabsHeader } from './tabs/tabsHeader.vue'
-// export { default as TabsItem } from './tabs/tabsItem.vue'
-// export { default as TabsBody } from './tabs/tabsBody.vue'
-// export { default as TabsPane } from './tabs/tabsPane.vue'
-// export { default as Toast } from './toast/index.js'
-// export { default as Uploader } from './uploader/uploader.vue'
-// export { default as Icon } from './icon.vue'
-// export { default as CollapseTransition } from './collapseTransition.vue'
-// export { default as ClickOutside } from './clickOutside.js'
+export {
+  Button,
+  ButtonGroup,
+  Cascader,
+  CascaderItem,
+  Collapse,
+  CollapseItem,
+  DatePicker,
+  Col,
+  Row,
+  Input,
+  Layout,
+  Header,
+  Aside,
+  Content,
+  Footer,
+  Nav,
+  NavItem,
+  SubNav,
+  Pager,
+  Popover,
+  Slides,
+  SlidesItem,
+  Tabs,
+  TabsHeader,
+  TabsItem,
+  TabsBody,
+  TabsPane,
+  Toast,
+  Uploader,
+  Icon
+}
