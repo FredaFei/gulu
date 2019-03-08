@@ -7,7 +7,7 @@ module.exports = {
     lineNumbers: true
   },
   themeConfig: {
-    nav: [{ text: 'Github', link: 'https://github.com/' }],
+    nav: [{ text: 'Github', link: 'https://github.com/FredaFei/amazing-ui' }],
     sidebar: [
       '/install/',
       '/get-started/',
