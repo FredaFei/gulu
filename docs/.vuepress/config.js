@@ -1,7 +1,7 @@
 const path = require('path')
 module.exports = {
   base: '/amazing-ui/',
-  title: 'Hello VuePress',
+  title: 'Hello Amazing UI',
   description: 'Just playing around',
   markdown: {
     lineNumbers: true
