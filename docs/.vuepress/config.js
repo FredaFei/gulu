@@ -1,6 +1,6 @@
 const path = require('path')
 module.exports = {
-  base: '/gulu/',
+  base: '/amazing-ui/',
   title: 'Hello VuePress',
   description: 'Just playing around',
   markdown: {
