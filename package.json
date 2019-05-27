@@ -4,6 +4,7 @@
   "description": "UI组件库",
   "main": "dist/amazing-ui.umd.min.js",
   "scripts": {
+    "serve": "vue-cli-service serve",
     "build": "vue-cli-service build --target lib --name amazing-ui src/index.js",
     "test": "cross-env BABEL_ENV=test karma start --single-run",
     "test:unit": "cross-env BABEL_ENV=test karma start --watch",
