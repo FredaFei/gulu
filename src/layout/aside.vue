@@ -1,6 +1,6 @@
 <template>
   <transition name="slide">
-    <aside class="sider" v-if="visible">
+    <aside class="aside" v-if="visible">
       <slot></slot>
       <button class="close" v-if="visibleCloseBtn" @click="visible=false">close</button>
     </aside>
@@ -22,7 +22,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.sider {
+.aside {
   position: relative;
   > .close {
     position: absolute;
