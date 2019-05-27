@@ -137,10 +137,10 @@ export default {
     right: 0.3em;
   }
   > .inputbox:not(:first-child) {
-    paddinam-left: 30px;
+    padding-left: 30px;
   }
   > .inputbox:not(:last-child) {
-    paddinam-right: 22px;
+    padding-right: 22px;
   }
   > textarea,
   > .inputbox {
