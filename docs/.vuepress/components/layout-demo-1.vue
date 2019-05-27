@@ -17,9 +17,9 @@
         header
       </am-header>
       <am-layout>
-        <am-sider style="height: 100px; background:#ddd; width:200px; color: black;">
-          sider
-        </am-sider>
+        <am-aside style="height: 100px; background:#ddd; width:200px; color: black;">
+          aside
+        </am-aside>
         <am-content style="height: 100px; background:deepskyblue;">
           content
         </am-content>
@@ -30,9 +30,9 @@
     </am-layout>
 
     <am-layout style="color: white; overflow:hidden; margin-bottom:50px;">
-      <am-sider style=" background:#ddd; width:200px; color: black;">
-        sider
-      </am-sider>
+      <am-aside style=" background:#ddd; width:200px; color: black;">
+        aside
+      </am-aside>
       <am-layout>
         <am-header style="height: 50px; background:lightskyblue;">
           header
@@ -51,7 +51,7 @@
 
 <script>
 import Layout from "../../../src/layout/layout";
-import Sider from "../../../src/layout/sider";
+import Sider from "../../../src/layout/aside";
 import Header from "../../../src/layout/header";
 import Content from "../../../src/layout/content";
 import Footer from "../../../src/layout/footer";
