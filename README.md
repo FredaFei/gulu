@@ -26,6 +26,7 @@
 
 ## 文档
 
+[文档地址](https://fredafei.github.io/amazing-ui/)
 
 ## 提问
 
