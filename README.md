@@ -1,6 +1,6 @@
 # 基于 Vue 开发的一个 UI 组件库
 
-[![Build Status](https://travis-ci.org/FredaFei/gulu.svg?branch=master)](https://travis-ci.org/FredaFei/amazing-ui)
+[![Build Status](https://travis-ci.org/FredaFei/amazing-ui.svg?branch=master)](https://travis-ci.org/FredaFei/amazing-ui)
 
 ## 介绍
 
