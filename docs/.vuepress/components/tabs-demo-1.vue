@@ -94,7 +94,7 @@ export default {
 </script>
 <style>
 .box {
-  paddinam-bottom: 14px;
+  padding-bottom: 14px;
 }
 </style>
 

@@ -1,6 +1,6 @@
 <template>
   <div class="box">
-    <div style="paddinam-top: 16px;">
+    <div style="padding-top: 16px;">
       <h3>24格网格 预览</h3>
       <am-row class="demoRow">
         <am-col span="8">
@@ -86,7 +86,7 @@
         </am-col>
       </am-row>
     </div>
-    <div style="paddinam-top: 16px;">
+    <div style="padding-top: 16px;">
       <h3>设置gutter 预览</h3>
       <am-row class="demoRow" gutter="10">
         <am-col span="8">
@@ -142,7 +142,7 @@
         </am-col>
       </am-row>
     </div>
-    <div style="paddinam-top: 16px;">
+    <div style="padding-top: 16px;">
       <h3>设置offset 预览</h3>
       <am-row class="demoRow" gutter="10">
         <am-col span="8">
