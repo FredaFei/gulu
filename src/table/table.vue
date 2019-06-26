@@ -185,8 +185,8 @@ export default {
         let { width } = node.getBoundingClientRect();
         let parentNode = node.parentNode;
         let styles = getComputedStyle(parentNode);
-        let paddingLeft = styles.getPropertyValue("paddinam-left");
-        let paddingRight = styles.getPropertyValue("paddinam-right");
+        let paddingLeft = styles.getPropertyValue("padding-left");
+        let paddingRight = styles.getPropertyValue("padding-right");
         let borderLeft = styles.getPropertyValue("border-left-width");
         let borderRight = styles.getPropertyValue("border-right-width");
         let width2 =

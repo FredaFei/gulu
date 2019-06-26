@@ -85,10 +85,10 @@ export default {
     right: 0.3em;
   }
   > input:not(:first-child) {
-    paddinam-left: 30px;
+    padding-left: 30px;
   }
   > input:not(:last-child) {
-    paddinam-right: 22px;
+    padding-right: 22px;
   }
   > input {
     width: 100%;

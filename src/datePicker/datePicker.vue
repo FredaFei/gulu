@@ -420,7 +420,7 @@ export default {
       padding: 6px 0;
     }
     &-actions {
-      paddinam-top: 10px;
+      padding-top: 10px;
       border-top: 1px solid $gray;
     }
     &-select-year {
