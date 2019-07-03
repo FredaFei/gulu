@@ -262,6 +262,7 @@ export default {
       this.$refs.popover.close();
     },
     onClickChangeMode(name) {
+      console.log(name)
       this.mode = name;
     },
     controlPlate(type, count) {
