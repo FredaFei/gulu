@@ -93,7 +93,7 @@ export default {
   }
 };
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 .pop-body {
   width: 200px;
   .title {

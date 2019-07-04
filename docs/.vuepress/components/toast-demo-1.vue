@@ -72,7 +72,6 @@ export default {
 </script>
 <style lang="scss">
 .am-toast-wrapper {
-  // z-index: 9999999 !important;
 }
 </style>
 

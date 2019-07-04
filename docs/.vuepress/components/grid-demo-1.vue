@@ -213,7 +213,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .demoRow {
   line-height: 50px;
   text-align: center;

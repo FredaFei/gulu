@@ -44,7 +44,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .slides-item {
   width: 100%;
   height: 150px;

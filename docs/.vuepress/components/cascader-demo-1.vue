@@ -51,7 +51,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .box {
   padding: 20px;
   z-index: 100;

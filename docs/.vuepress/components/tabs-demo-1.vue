@@ -92,7 +92,7 @@ export default {
   }
 };
 </script>
-<style>
+<style scoped>
 .box {
   padding-bottom: 14px;
 }
