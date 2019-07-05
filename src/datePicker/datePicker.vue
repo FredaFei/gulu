@@ -11,7 +11,7 @@
                             <am-icon name="double-left" @click="onClickPrevYear"
                                      :class="classes('prev-year')"></am-icon>
                             <am-icon name="left" @click="onClickPrevMonth" :class="classes('prev-month')"></am-icon>
-                            <div>
+                            <div class="year-month">
                                 <span :class="classes('current-year')" @click="onClickChangeMode('year')">{{display.year}}年</span>
                                 <span :class="classes('current-month')" @click="onClickChangeMode('month')">{{display.month+1}}月</span>
                             </div>
@@ -22,7 +22,7 @@
                         <template v-else-if="mode==='year'">
                             <am-icon name="double-left" @click="onClickRangeYear(0)"
                                      :class="classes('prev-year')"></am-icon>
-                            <div>
+                            <div class="year-month">
                                 <span :class="classes('current-year')">{{visibleYears[1]}}-{{visibleYears[10]}}</span>
                             </div>
                             <am-icon name="double-right" @click="onClickRangeYear(11)"
@@ -31,7 +31,7 @@
                         <template v-else>
                             <am-icon name="double-left" @click="onClickPrevYear"
                                      :class="classes('prev-year')"></am-icon>
-                            <div>
+                            <div class="year-month">
                                 <span :class="classes('current-month')" @click="onClickChangeMode('year')">{{display.year}}</span>
                             </div>
                             <am-icon name="double-right" @click="onClickNextYear"
@@ -279,7 +279,6 @@
                 this.$refs.popover.close();
             },
             onClickChangeMode(name) {
-                console.log(name)
                 this.mode = name;
             },
             controlPlate(type, count) {
@@ -335,204 +334,217 @@
             width: 200px;
         }
 
-        .am-date-picker-pop {
-            .am-icon:hover {
+    }
+
+    .am-date-picker-pop {
+        .am-icon:hover {
+            color: $blue;
+        }
+
+        &-nav {
+            position: relative;
+            line-height: 32px;
+            text-align: center;
+            margin-bottom: 6px;
+
+            .year-month {
+                width: 76%;
+                margin: auto;
+                text-align: center;
+
+                > span {
+                    &:hover {
+                        color: $blue;
+                    }
+                }
+            }
+        }
+
+        &-prev-month,
+        &-next-month,
+        &-prev-year,
+        &-next-year {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+        }
+
+        &-prev-month {
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        &-next-month {
+            right: 10px;
+        }
+
+        &-prev-year {
+            left: -10px;
+        }
+
+        &-next-year {
+            right: -10px;
+        }
+
+        &-current-year,
+        &-current-month {
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        &-current-month {
+            margin-left: 6px;
+        }
+
+        &-weeks,
+        &-row {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: row;
+        }
+
+        &-weeks {
+            border-bottom: 1px solid $gray;
+        }
+
+        &-week,
+        &-col {
+            width: 36px;
+            height: 30px;
+            padding: 3px 0;
+            text-align: center;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        &-col {
+            color: #999;
+            position: relative;
+
+            &.currentMonth {
+                color: #333;
+            }
+
+            &.today {
                 color: $blue;
             }
 
-            &-nav {
-                position: relative;
-                line-height: 32px;
-                text-align: center;
-                margin-bottom: 6px;
-            }
-
-            &-prev-month,
-            &-next-month,
-            &-prev-year,
-            &-next-year {
+            .day {
                 position: absolute;
                 top: 50%;
-                transform: translateY(-50%);
-                cursor: pointer;
-            }
-
-            &-prev-month {
-                position: absolute;
-                left: 10px;
-                top: 50%;
-                transform: translateY(-50%);
-            }
-
-            &-next-month {
-                right: 10px;
-            }
-
-            &-prev-year {
-                left: -10px;
-            }
-
-            &-next-year {
-                right: -10px;
-            }
-
-            &-current-year,
-            &-current-month {
-                font-size: 16px;
-                font-weight: 500;
-                cursor: pointer;
-            }
-
-            &-current-month {
-                margin-left: 6px;
-            }
-
-            &-weeks,
-            &-row {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                flex-direction: row;
-            }
-
-            &-weeks {
-                border-bottom: 1px solid $gray;
-            }
-
-            &-week,
-            &-col {
-                width: 36px;
-                height: 30px;
-                padding: 3px 0;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                width: 28px;
+                line-height: 28px;
                 text-align: center;
-                font-size: 14px;
-                cursor: pointer;
+                transition: background 0.2s ease;
+
+                &:hover {
+                    background: #e6f7ff;
+                }
             }
 
-            &-col {
-                color: #999;
-                position: relative;
-
-                &.currentMonth {
-                    color: #333;
-                }
-
-                &.today {
-                    color: $blue;
-                }
-
+            &.selectedDay {
                 .day {
-                    position: absolute;
-                    top: 50%;
-                    left: 50%;
-                    transform: translate(-50%, -50%);
-                    width: 28px;
-                    line-height: 28px;
-                    text-align: center;
-                    transition: background 0.2s ease;
-
-                    &:hover {
-                        background: #e6f7ff;
-                    }
+                    background: #d1e9ff;
                 }
+            }
 
-                &.selectedDay {
-                    .day {
-                        background: #d1e9ff;
-                    }
+            &.selectedDate {
+                .day {
+                    background: $blue;
+                    color: #fff;
                 }
+            }
+        }
 
-                &.selectedDate {
-                    .day {
+        &-select-year,
+        &-select-month {
+            width: 250px;
+            height: 266px;
+        }
+
+        &-tables {
+            padding: 6px 0;
+        }
+
+        &-actions {
+            padding-top: 10px;
+            border-top: 1px solid $gray;
+        }
+
+        &-select-year {
+            .am-date-picker-pop-row {
+                width: 100%;
+                padding: 16px 0;
+            }
+
+            .am-date-picker-pop-col {
+                flex: 1;
+                width: 33.33%;
+                color: #333;
+
+                &.selectedYear {
+                    span {
                         background: $blue;
                         color: #fff;
                     }
                 }
-            }
 
-            &-select-year,
-            &-select-month {
-                width: 250px;
-                height: 266px;
-            }
-
-            &-tables {
-                padding: 6px 0;
-            }
-
-            &-actions {
-                padding-top: 10px;
-                border-top: 1px solid $gray;
-            }
-
-            &-select-year {
-                .am-date-picker-pop-row {
-                    width: 100%;
-                    padding: 16px 0;
-                }
-
-                .am-date-picker-pop-col {
-                    flex: 1;
-                    width: 33.33%;
-                    color: #333;
-
-                    &.selectedYear {
-                        span {
-                            background: $blue;
-                            color: #fff;
-                        }
-                    }
-
-                    &.prevOrNext {
-                        span {
-                            color: rgba(0, 0, 0, 0.25);
-                        }
-                    }
-
+                &.prevOrNext {
                     span {
-                        padding: 2px 4px;
-                        display: inline-block;
-                        border-radius: 2px;
-                        transition: background 0.3s ease;
+                        color: rgba(0, 0, 0, 0.25);
+                    }
+                }
 
-                        &:hover {
-                            background: #e6f7ff;
-                            color: $blue;
-                            cursor: pointer;
-                        }
+                span {
+                    padding: 2px 4px;
+                    display: inline-block;
+                    border-radius: 2px;
+                    transition: background 0.3s ease;
+
+                    &:hover {
+                        background: #e6f7ff;
+                        color: $blue;
+                        cursor: pointer;
                     }
                 }
             }
+        }
 
-            &-select-month {
-                .am-date-picker-pop-row {
-                    width: 100%;
-                    padding: 16px 0;
+        &-select-month {
+            .am-date-picker-pop-row {
+                width: 100%;
+                padding: 16px 0;
+            }
+
+            .am-date-picker-pop-col {
+                flex: 1;
+                width: 33.33%;
+                color: #333;
+
+                span {
+                    padding: 2px 4px;
+                    display: inline-block;
+                    border-radius: 2px;
+                    transition: background 0.3s ease;
+
+                    &:hover {
+                        background: #e6f7ff;
+                        color: $blue;
+                        cursor: pointer;
+                    }
                 }
 
-                .am-date-picker-pop-col {
-                    flex: 1;
-                    width: 33.33%;
-                    color: #333;
-
+                &.selectedMonth {
                     span {
-                        padding: 2px 4px;
-                        display: inline-block;
-                        border-radius: 2px;
-                        transition: background 0.3s ease;
-
-                        &:hover {
-                            background: #e6f7ff;
-                            color: $blue;
-                            cursor: pointer;
-                        }
-                    }
-
-                    &.selectedMonth {
-                        span {
-                            background: $blue;
-                            color: #fff;
-                        }
+                        background: $blue;
+                        color: #fff;
                     }
                 }
             }
