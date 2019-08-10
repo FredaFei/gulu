@@ -10,7 +10,7 @@ export default {
   name: "amTabs",
   props: {
     selected: {
-      type: String | Number,
+      type: [String, Number],
       required: true
     },
     direction: {
