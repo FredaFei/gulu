@@ -27,7 +27,7 @@ export default {
         `i am a toast!i am a toast! ${parseInt(Math.random() * 100)}`,
         {
           position: "top",
-          zIndex: 9999
+          zIndex: '9999'
         }
       );
     },

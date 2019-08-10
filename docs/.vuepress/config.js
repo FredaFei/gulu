@@ -19,6 +19,7 @@ module.exports = {
           '/components/input',
           '/components/datePicker',
           '/components/toast',
+          '/components/message',
           '/components/collapse',
           '/components/grid',
           '/components/layout',
