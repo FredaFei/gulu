@@ -1,5 +1,5 @@
 <template>
-  <div class="gulu-collapse-wrapper">
+  <div class="am-collapse-wrapper">
     <slot></slot>
   </div>
 </template>
@@ -61,7 +61,7 @@ export default {
 
 <style lang="scss" scoped>
 @import "var";
-.gulu-collapse-wrapper {
+.am-collapse-wrapper {
   border-top: 1px solid $border-color;
 }
 </style>

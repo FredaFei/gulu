@@ -51,10 +51,10 @@ export default {
     listenToRemoteResources() {
       let tags = this.$refs.scrollParent.querySelectorAll("img,video,audio");
       Array.from(tags).map(tag => {
-        if (tag.hasAttribute("data-gulu-listened")) {
+        if (tag.hasAttribute("data-am-listened")) {
           return;
         }
-        tag.setAttribute("data-gulu-listened", "yes");
+        tag.setAttribute("data-am-listened", "yes");
         tag.addEventListener("load", () => {
           this.childHeight = this.$refs.scrollChild.getBoundingClientRect().height;
           this.updateScrollBar();
