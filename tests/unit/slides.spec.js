@@ -37,7 +37,7 @@ describe('Slides', () => {
       done()
     })
   })
-  it('接受 selected 属性 ', done => {
+  it('设置 selected 属性 ', done => {
     const wrapper = mount(Slides, {
       propsData: {
         selected: '2',
@@ -92,7 +92,7 @@ describe('Slides', () => {
       wrapper.find('[data-index="1"]').trigger('click')
     })
   })
-  it('能自动播放', done => {
+  it('设置自动播放', done => {
     const callback = sinon.fake()
     const wrapper = mount(Slides, {
       propsData: {
@@ -122,7 +122,7 @@ describe('Slides', () => {
       done()
     }, 21)
   })
-  it('可以点击上一张', done => {
+  it('点击上一张', done => {
     const callback = sinon.fake()
     const wrapper = mount(Slides, {
       propsData: {
@@ -152,7 +152,7 @@ describe('Slides', () => {
       done()
     })
   })
-  it('可以点击下一张', done => {
+  it('点击下一张', done => {
     const callback = sinon.fake()
     const wrapper = mount(Slides, {
       propsData: {
@@ -181,5 +181,51 @@ describe('Slides', () => {
       expect(callback).to.have.been.calledWith('3')
       done()
     })
+  })
+  
+  it('mouseEnter & mouseLeave', done => {
+    const callback = sinon.fake()
+    const wrapper = mount(Slides, {
+      propsData: {
+        selected: '1',
+        autoPlayDelay: 20
+      },
+      slots: {
+        default: `
+          <am-slides-item name="1">
+            <div class="slides-item-1">slide 1</div>
+          </am-slides-item>
+          <am-slides-item name="2">
+            <div class="slides-item-2">slide 2</div>
+          </am-slides-item>
+          <am-slides-item name="3">
+            <div class="slides-item-3">slide 3</div>
+          </am-slides-item>
+        `
+      },
+      listeners: {
+        'update:selected': callback
+      }
+    })
+
+    setTimeout(() => {
+      wrapper.find('.am-slides-window').trigger('mouseenter')
+      expect(wrapper.find('.slides-item-1').exists()).to.eq(true)
+      wrapper.find('.am-slides-window').trigger('mouseleave')
+      setTimeout(() => {
+        expect(callback).to.have.been.calledWith('2')
+        done()
+      }, 21)
+    })
+  })
+  it('destroyed', () => {
+    const spy = sinon.stub()
+    const wrapper = mount(Slides, {
+      destroyed() {
+        spy()
+      }
+    })
+    wrapper.destroy()
+    expect(spy.calledOnce).to.eq(true)
   })
 })
