@@ -3,71 +3,81 @@ import sinon from 'sinon'
 import sinonChai from 'sinon-chai'
 chai.use(sinonChai)
 import { mount } from '@vue/test-utils'
-
-import Vue from 'vue'
 import Toast from '../../src/toast/toast'
 
 describe('Toast', () => {
   it('存在.', () => {
     expect(Toast).to.be.ok
   })
-  describe('props', done => {
-    const Constructor = Vue.extend(Toast)
-    let vm
-    afterEach(() => {
-      vm.$destroy()
+  it('可以设置 autoClose.', done => {
+    const callback = sinon.fake()
+    mount(Toast, {
+      propsData: {
+        autoClose: 20
+      },
+      slots: {
+        default: 'ha'
+      },
+      listeners: {
+        close: callback
+      }
     })
-    it('可以设置 autoClose.', () => {
-      const div = document.createElement('div')
-      document.body.appendChild(div)
-      vm = new Constructor({
-        propsData: {
-          autoClose: 3
-        }
-      }).$mount(div)
-      vm.$on('close', () => {
-        expect(document.body.contains(vm.$el)).to.eq(false)
-        done()
-      })
-    })
-    it('接受 closeButton 属性', () => {
-      const callback = sinon.fake()
-      vm = new Constructor({
-        propsData: {
-          autoClose: false,
-          closeButton: {
-            text: '关闭',
-            callback
-          }
-        }
-      }).$mount()
-      let closeElement = vm.$el.querySelector('.am-toast-close')
-      expect(closeElement.textContent.trim()).to.eq('关闭')
-      closeElement.click()
+    setTimeout(() => {
       expect(callback).to.have.been.called
+      done()
+    }, 22)
+  })
+  it('设置 callback，自动关闭时调用', done => {
+    const callback1 = sinon.fake()
+    const callback2 = sinon.fake()
+    mount(Toast, {
+      propsData: {
+        autoClose: 20,
+        callback: callback1
+      },
+      slots: {
+        default: 'ha'
+      },
+      listeners: {
+        close: callback2
+      }
     })
-    it('接受 enableHtml 属性', () => {
-      vm = new Constructor({
-        propsData: {
-          enableHtml: true
-        }
-      })
-      vm.$slots.default = ['<strong id="test">test strong</strong>']
-      vm.$mount()
-      let strong = vm.$el.querySelector('#test')
-      expect(strong).to.exist
+    setTimeout(() => {
+      expect(callback2).to.have.been.called
+      expect(callback1).to.have.been.called
+      done()
+    }, 22)
+  })
+  it('接受 buttonText 属性, 手动关闭时调用', () => {
+    const callback1 = sinon.fake()
+    const callback2 = sinon.fake()
+    const wrapper = mount(Toast, {
+      propsData: {
+        autoClose: false,
+        callback: callback2,
+        buttonText: 'k'
+      },
+      slots: {
+        default: 'ha'
+      },
+      listeners: {
+        close: callback1
+      }
     })
-    it('接受 position 属性', () => {
-      vm = new Constructor({
-        propsData: {
-          position: 'top'
-        }
-      }).$mount()
-      expect(vm.$el.classList.contains('position-top')).to.eq(true)
+    wrapper.find('.am-toast-close').trigger('click')
+    expect(callback2).to.have.been.called
+    expect(callback1).to.have.been.called
+  })
+  it('接受 position 属性', () => {
+    const wrapper = mount(Toast, {
+      propsData: {
+        autoClose: 20,
+        position: 'middle'
+      },
+      slots: {
+        default: 'ha'
+      }
     })
-    it('可以设置 zIndex.', () => {
-      vm = new Constructor({ propsData: { zIndex: 99 } }).$mount()
-      expect(vm.$el.style.zIndex).to.eq('99')
-    })
+    expect(wrapper.classes('position-middle')).to.eq(true)
   })
 })
