@@ -10,8 +10,8 @@ export default class Validator {
       if (ruleItem.required) {
         let errorText = this.required(value)
         if (errorText) {
-          ensureObject(errors, ruleItem.key)
-          errors[ruleItem.key].required = errorText
+          ensureArray(errors, ruleItem.key)
+          errors[ruleItem.key].push(errorText)
           return
         }
       }
@@ -22,8 +22,8 @@ export default class Validator {
         if (validator) {
           let errorText = this[validator](value, ruleItem[validator])
           if (errorText) {
-            ensureObject(errors, ruleItem.key)
-            errors[ruleItem.key][validator] = errorText
+            ensureArray(errors, ruleItem.key)
+            errors[ruleItem.key].push(errorText)
           }
         } else {
           throw `不存在的验证器${validator}`
@@ -37,9 +37,21 @@ export default class Validator {
       return '必填'
     }
   }
+  isEmpty(errors) {
+    return Object.keys(errors).length <= 0
+  }
   pattern(value, pattern) {
     if (pattern === 'email') {
       pattern = /^.+@.+$/
+    }
+    if (pattern === 'phone') {
+      pattern = /^1\d{10}$/
+    }
+    if (pattern === 'idCard') {
+      pattern = /(^[1-9]\d{14}$)|(^[1-9]\d{16}([0-9]|X)$)/
+    }
+    if (pattern === 'idBank') {
+      pattern = /^[1-9]\d{14,20}$/
     }
     if (pattern.test(value) === false) {
       return '格式不正确'
@@ -52,14 +64,14 @@ export default class Validator {
   }
 
   maxLength(value, maxLength) {
-    if (value.length < maxLength) {
-      return `密码长度不能大于${maxLength}`
+    if (value.length > maxLength) {
+      return `长度不能大于${maxLength}位`
     }
   }
 }
 
-function ensureObject(obj, key) {
-  if (Object.prototype.toString.call(obj[key]) !== '[object Object]') {
-    obj[key] = {}
+function ensureArray(obj, key) {
+  if (Object.prototype.toString.call(obj[key]) !== '[object Array]') {
+    obj[key] = []
   }
 }
