@@ -51,14 +51,14 @@
 
 <script>
 import Layout from "../../../src/layout/layout";
-import Sider from "../../../src/layout/aside";
+import Aside from "../../../src/layout/aside";
 import Header from "../../../src/layout/header";
 import Content from "../../../src/layout/content";
 import Footer from "../../../src/layout/footer";
 export default {
   components: {
     AmLayout: Layout,
-    AmSider: Sider,
+    AmASide: Aside,
     AmHeader: Header,
     AmContent: Content,
     AmFooter: Footer
