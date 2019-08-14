@@ -8,6 +8,7 @@ import DatePicker from './datePicker/datePicker.vue'
 import Col from './grid/gCol.vue'
 import Row from './grid/gRow.vue'
 import Input from './input/input.vue'
+import Checkbox from './checkbox/index.vue'
 import Layout from './layout/layout.vue'
 import Header from './layout/header.vue'
 import Aside from './layout/aside.vue'
@@ -42,6 +43,7 @@ const components = [
     Col,
     Row,
     Input,
+    Checkbox,
     Layout,
     Header,
     Aside,
