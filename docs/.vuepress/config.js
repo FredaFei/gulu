@@ -17,6 +17,7 @@ module.exports = {
         children: [
           '/components/button',
           '/components/input',
+          '/components/checkbox',
           '/components/datePicker',
           '/components/toast',
           '/components/message',
