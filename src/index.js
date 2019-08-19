@@ -10,6 +10,8 @@ import Row from './grid/gRow.vue'
 import Input from './input/input.vue'
 import Checkbox from './checkbox/index.vue'
 import Radio from './radio/index.vue'
+import Select from './select/index.vue'
+import Option from './select/option.vue'
 import Layout from './layout/layout.vue'
 import Header from './layout/header.vue'
 import Aside from './layout/aside.vue'
@@ -87,6 +89,8 @@ export {
   Input,
   Checkbox,
   Radio,
+  Select,
+  Option,
   Layout,
   Header,
   Aside,
