@@ -58,7 +58,7 @@ import Footer from "../../../src/layout/footer";
 export default {
   components: {
     AmLayout: Layout,
-    AmASide: Aside,
+    AmAside: Aside,
     AmHeader: Header,
     AmContent: Content,
     AmFooter: Footer
