@@ -1,10 +1,11 @@
 <template>
   <div class="am-select-wrapper" :class="classes" v-click-outside="close">
-    <div class="am-select" :class="{visible}" @click="onClick">
-      <am-input :value="selected" clearable @clear="onClear" :placeholder="placeholder" suffix="right" type="text"></am-input>
+    <div class="am-select" :class="{visible}" @click="onSelectClick" @mouseenter="inputHovering = true" @mouseleave="inputHovering = false">
+      <am-input :value="selected" readonly :disabled="disabled" @clear="onClear" autocomplete="off" :placeholder="placeholder" suffix="right" ></am-input>
+      <am-icon class="icon clear am-select-clear" name="delete" v-if="visibleClear" @click.stop="onClear"></am-icon>
     </div>
     <am-collapse-transition>
-      <div class="am-select-options" v-show="visible">
+      <div class="am-select-options" v-show="visible" :style="{zIndex}">
         <slot></slot>
       </div>
     </am-collapse-transition>
@@ -28,15 +29,24 @@ export default {
       type: Boolean,
       default: false
     },
+    clearable: {
+      type: Boolean,
+      default: false
+    },
     placeholder: {
       type: String,
       default: "请选择"
+    },
+    zIndex: {
+      type: [String,Number],
+      default: 10
     }
   },
   data() {
     return {
-      visible: true,
-      items: []
+      visible: false,
+      items: [],
+      inputHovering: false
     };
   },
   provide() {
@@ -47,6 +57,9 @@ export default {
       return {
         "am-select-disabled": this.disabled
       };
+    },
+    visibleClear() {
+      return this.clearable && !this.disabled && this.inputHovering && this.selected;
     }
   },
   mounted() {
@@ -63,7 +76,6 @@ export default {
       );
     },
     updateChildren() {
-      console.log("update");
       this.items.forEach(vm => {
         if (this.selected === vm.value) {
           vm.active = true;
@@ -73,7 +85,6 @@ export default {
       });
     },
     listenToChildren() {
-      console.log("listen");
       this.items.forEach(vm => {
         vm.$on("update:selected", name => {
           this.onUpdateSelected(name);
@@ -87,7 +98,8 @@ export default {
     onClear() {
       this.onUpdateSelected("");
     },
-    onClick() {
+    onSelectClick() {
+      if(this.disabled){return false}
       this.visible = !this.visible;
     },
     close() {
@@ -99,19 +111,49 @@ export default {
 <style lang="scss" scoped>
 @import "var";
 .am-select {
-  /deep/ .am-input-wrapper .suffix {
-    transition: transform 0.2s;
-    transform: translateY(-50%) rotate(90deg);
-  }
+  position:relative;
   &.visible {
-    /deep/ .am-input-wrapper .suffix {
-      transform: translateY(-50%) rotate(-90deg);
+    /deep/ .am-input-wrapper {
+      .suffix {
+        transform: translateY(-50%) rotate(-90deg);
+      }
     }
+  }
+  &-clear {
+    position: absolute;
+    top: 50%;
+    right: 0.3em;
+    z-index: 2;
+    color: #bbb;
+    fill: #bbb;
+    line-height: 0;
+    transform: translateY(-50%);
   }
   &-wrapper {
     display: inline-flex;
     flex-direction: column;
     position: relative;
+    &:not(.am-select-disabled){
+      /deep/ .am-input-wrapper{
+        > .inputbox {
+          &:focus {
+            outline: none;
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
+          }
+          &[readonly] {
+            color: inherit;
+            border-color: $input-border-color;
+            cursor: auto;
+          }
+        }
+      }
+    }
+    /deep/ .am-input-wrapper{
+      .suffix {
+        transition: transform 0.2s;
+        transform: translateY(-50%) rotate(90deg);
+      }
+    }
   }
   &-options {
     position: absolute;
@@ -125,7 +167,7 @@ export default {
     border-radius: $border-radius;
     border: 1px solid rgba($border-color, 0.3);
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-    transition: all 0.25s;
+    transition: all 0.2s;
   }
 }
 </style>
