@@ -26,7 +26,7 @@ describe('GRow', () => {
         attachToDocument: true
       })
       const { vm } = wrapper
-      const rowEl = vm.$el.querySelectorAll('.row')[0]
+      const rowEl = vm.$el.querySelectorAll('.am-row')[0]
       expect(getComputedStyle(rowEl).marginLeft).to.eq('-10px')
       expect(getComputedStyle(rowEl).marginRight).to.eq('-10px')
     })

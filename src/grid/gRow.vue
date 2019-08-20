@@ -1,5 +1,5 @@
 <template>
-  <div class="row" :class="rowClass" :style="rowStyle">
+  <div class="am-row" :class="rowClass" :style="rowStyle">
     <slot></slot>
   </div>
 </template>
@@ -41,7 +41,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.row {
+.am-row {
   display: flex;
   width: 100%;
   &.align-left {

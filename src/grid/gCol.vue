@@ -1,5 +1,5 @@
 <template>
-  <div class="col" :class="colClass" :style="colStyle">
+  <div class="am-col" :class="colClass" :style="colStyle">
     <slot></slot>
   </div>
 </template>
@@ -84,9 +84,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.col {
+.am-col {
   height: 100%;
-  background: #ddd;
   $class-prefix: offset-;
   @for $n from 1 through 24 {
     &.#{$class-prefix}#{$n} {
