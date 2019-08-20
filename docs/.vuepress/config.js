@@ -20,6 +20,7 @@ module.exports = {
           '/components/radio',
           '/components/checkbox',
           '/components/select',
+          '/components/form',
           '/components/datePicker',
           '/components/toast',
           '/components/message',
