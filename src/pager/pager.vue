@@ -85,7 +85,7 @@ export default {
 @import "var";
 .am-pager {
   $font-size: 14px;
-  $width: 28px;
+  $width: 22px;
   $height: 28px;
   display: flex;
   justify-content: flex-start;
@@ -105,7 +105,7 @@ export default {
     height: $height;
     margin: 0 4px;
     border-radius: $border-radius;
-    border: 1px solid $gray;
+    border: 1px solid $border-color;
     cursor: pointer;
     user-select: none;
     transition: all 0.25s;
@@ -117,6 +117,7 @@ export default {
       border-color: $blue;
     }
     &.disabled {
+      border-color: darken($gray, 10%);
       cursor: not-allowed;
       &:hover {
         border-color: $gray;
