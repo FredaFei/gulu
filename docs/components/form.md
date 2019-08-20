@@ -178,6 +178,7 @@ const rules = [
 ]
 const validator = new Validator()
 const errors = validator.validate(data, rules)
+// errors ==> {name: [error...],phone: [error...]}
 if (!validator.isEmpty(errors)) {
     // show errors
     return false
