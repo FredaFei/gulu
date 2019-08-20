@@ -219,4 +219,10 @@ export default {
   text-align: center;
   background: #e5e9f2;
 }
+.am-col{
+  background: #ddd;
+}
+.am-col:nth-child(2n+1){
+  background: #ccc;
+}
 </style>
