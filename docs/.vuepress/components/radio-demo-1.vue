@@ -18,7 +18,6 @@ export default {
     return {
       checked1: "A",
       checked2: "A",
-      checked3: "A",
     };
   }
 };
