@@ -23,7 +23,7 @@ export default {
       type: [String, Number, Boolean, Array]
     },
     name: {
-      type: [String, Number]
+      type: String
     },
     disabled: {
       type: Boolean,
@@ -47,18 +47,9 @@ export default {
       const attrs = {
         name: this.name,
         disabled: this.disabled,
-        required: this.required,
         "true-value": this.trueValue,
         "false-value": this.falseValue
       };
-      if (this.$options.propsData.hasOwnProperty("value")) {
-        if (this.value === null || typeof this.value !== "object") {
-          attrs.value =
-            this.value === null || this.value === undefined
-              ? ""
-              : String(this.value);
-        }
-      }
       return attrs;
     },
     isSelected() {
@@ -96,7 +87,7 @@ export default {
       this.$emit("change", newModel);
     },
     onSingleCheck() {
-      this.$emit("change", this.isSelected ? null : this.value);
+      this.$emit("change", this.isSelected ? '' : this.value);
     },
     onSimpleCheck() {
       this.$emit("change", this.isSelected ? this.falseValue : this.trueValue);

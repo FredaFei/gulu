@@ -37,6 +37,9 @@ export default {
       options: [1, 2, 3, 4, 5]
     };
   },
+  mounted(){
+    console.log(this.$children);
+  },
   computed: {
     allChecked: {
       get() {
@@ -56,6 +59,7 @@ export default {
   methods: {
     onChange(v){
       console.log(v)
+      console.log(this.$children);
     }
   },
 };
