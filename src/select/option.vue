@@ -31,8 +31,6 @@ export default {
         return false
       }
       this.$emit("update:selected", this.value);
-      console.log("option");
-      console.log(this.value);
     }
   }
 };

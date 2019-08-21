@@ -4,7 +4,7 @@
          @mouseleave="inputHovering = false">
       <am-input :value="selected" readonly :disabled="disabled" autocomplete="off"
                 :placeholder="placeholder" suffix="right"></am-input>
-      <am-icon class="icon clear am-select-clear" name="delete" v-if="visibleClear" @click="onClear"></am-icon>
+      <am-icon class="icon clear am-select-clear" name="delete" v-if="visibleClear" @click.stop="onClear"></am-icon>
     </div>
     <am-collapse-transition>
       <div class="am-select-options" v-show="visible" :style="{zIndex}">
@@ -66,6 +66,7 @@
       }
     },
     mounted() {
+      // this.updateItems()
       this.updateChildren();
       this.listenToChildren();
     },
@@ -75,6 +76,11 @@
     methods: {
       addItem(vm) {
         this.items.push(vm);
+      },
+      updateItems() {
+        this.items = this.$children[1].$children.filter(
+          vm => vm.$options.name === "amOption"
+        )
       },
       updateChildren: function () {
         this.items.forEach(vm => {
