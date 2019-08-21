@@ -1,5 +1,5 @@
 <template>
-  <div class="am-options-item" :class="{active,disabled}" @click.stop="onClick">
+  <div class="am-options-item" :data-name="value" :class="{active,disabled}" @click="onClick">
     <slot></slot>
   </div>
 </template>
@@ -21,6 +21,9 @@ export default {
     return {
       active: false
     };
+  },
+  created() {
+    this.root.addItem(this);
   },
   methods: {
     onClick() {

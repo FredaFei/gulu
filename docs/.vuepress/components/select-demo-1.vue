@@ -59,5 +59,8 @@ export default {
       ]
     };
   },
+  mounted() {
+    console.log(this.$children);
+  }
 };
 </script>
