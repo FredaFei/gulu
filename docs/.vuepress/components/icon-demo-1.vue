@@ -28,7 +28,7 @@
     }
   };
 </script>
-<style>
+<style scoped>
   .am-icon {
     font-size: 30px;
     margin-bottom: 10px;
