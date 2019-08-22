@@ -66,7 +66,6 @@
       }
     },
     mounted() {
-      // this.updateItems()
       this.updateChildren();
       this.listenToChildren();
     },
@@ -76,11 +75,6 @@
     methods: {
       addItem(vm) {
         this.items.push(vm);
-      },
-      updateItems() {
-        this.items = this.$children[1].$children.filter(
-          vm => vm.$options.name === "amOption"
-        )
       },
       updateChildren: function () {
         this.items.forEach(vm => {

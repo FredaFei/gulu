@@ -99,14 +99,11 @@ describe('AmSelect', () => {
       }
     })
     wrapper.find('.am-select').trigger('click')
+    expect(wrapper.find('.am-select-options').isVisible()).to.eq(true)
     wrapper.find('[data-name="B"]').trigger('click')
     expect(callback).to.have.been.calledWith('B')
-    console.log(wrapper.html());
     expect(wrapper.find('.am-select-options').isVisible()).to.eq(false)
     wrapper.destroy()
-    // setTimeout(() => {
-    //   done()
-    // }, 20)
   })
 
   it('设置 clear 事件', () => {
@@ -128,17 +125,12 @@ describe('AmSelect', () => {
         'update:selected': callback
       }
     })
-
-    console.log(wrapper.html());
-    // wrapper.find('.am-select').trigger('mouseenter')
-    wrapper.setData({inputHovering: true})
+    wrapper.find('.am-select').trigger('mouseenter')
     const el = wrapper.find('.am-select-clear')
     expect(el.exists()).to.eq(true)
     el.trigger('click')
     expect(callback).to.have.been.calledWith("")
-
-    console.log(111);
-    console.log(wrapper.html());
-    // expect(wrapper.find('.am-select-clear').exists()).to.eq(false)
+    wrapper.find('.am-select').trigger('mouseleave')
+    expect(wrapper.find('.am-select-clear').exists()).to.eq(false)
   })
 })
