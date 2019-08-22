@@ -213,90 +213,90 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import chai, { expect } from 'chai'
-import { mount } from '@vue/test-utils'
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import chai, {expect} from 'chai'
+import {mount} from '@vue/test-utils'
 &nbsp;
 import GCol from '../../src/grid/gCol'
 &nbsp;
 describe('GCol', () =&gt; {
-    it('存在.', () =&gt; {
-        expect(GCol).to.be.ok
+  it('存在.', () =&gt; {
+    expect(GCol).to.be.ok
+  })
+  describe('props', () =&gt; {
+    it('可以设置span.', () =&gt; {
+      const wrapper = mount(GCol, {
+        propsData: {
+          span: 12
+        }
+      })
+      const {vm} = wrapper
+      expect(wrapper.classes('col-12')).to.eq(true)
     })
-    describe('props', () =&gt; {
-        it('可以设置span.', () =&gt; {
-            const wrapper = mount(GCol, {
-                propsData: {
-                    span: 12
-                }
-            })
-            const { vm } = wrapper
-            expect(wrapper.classes('col-12')).to.eq(true)
-        })
-        it('接受 offset 属性', () =&gt; {
-            const wrapper = mount(GCol, {
-                propsData: {
-                    offset: 10
-                }
-            })
-            const { vm } = wrapper
-            expect(wrapper.classes('offset-10')).to.eq(true)
-        })
-        it('接受 phone 属性', () =&gt; {
-            const wrapper = mount(GCol, {
-                propsData: {
-                    phone: {
-                        span: 1,
-                        offset: 2
-                    }
-                }
-            })
-            const { vm } = wrapper
-            expect(wrapper.classes('col-phone-1')).to.eq(true)
-            expect(wrapper.classes('offset-phone-2')).to.eq(true)
-        })
-        it('接受 ipad 属性', () =&gt; {
-            const wrapper = mount(GCol, {
-                propsData: {
-                    ipad: {
-                        span: 1,
-                        offset: 2
-                    }
-                }
-            })
-            
-            const { vm } = wrapper
-            expect(wrapper.classes('col-ipad-1')).to.eq(true)
-            expect(wrapper.classes('offset-ipad-2')).to.eq(true)
-        })
-        it('接受 narrowPc 属性', () =&gt; {
-            const wrapper = mount(GCol, {
-                propsData: {
-                    narrowPc: {
-                        span: 1,
-                        offset: 2
-                    }
-                }
-            })
-            
-            const { vm } = wrapper
-            expect(wrapper.classes('col-narrow-pc-1')).to.eq(true)
-            expect(wrapper.classes('offset-narrow-pc-2')).to.eq(true)
-        })
-        it('接受 pc 属性', () =&gt; {
-            
-            const wrapper = mount(GCol, {
-                propsData: {
-                    pc: {
-                        span: 1,
-                        offset: 2
-                    }
-                }
-            })
-            const { vm } = wrapper
-            expect(wrapper.classes('col-pc-1')).to.eq(true)
-            expect(wrapper.classes('offset-pc-2')).to.eq(true)
-        })
+    it('接受 offset 属性', () =&gt; {
+      const wrapper = mount(GCol, {
+        propsData: {
+          offset: 10
+        }
+      })
+      const {vm} = wrapper
+      expect(wrapper.classes('offset-10')).to.eq(true)
     })
+    it('接受 phone 属性', () =&gt; {
+      const wrapper = mount(GCol, {
+        propsData: {
+          phone: {
+            span: 1,
+            offset: 2
+          }
+        }
+      })
+      const {vm} = wrapper
+      expect(wrapper.classes('col-phone-1')).to.eq(true)
+      expect(wrapper.classes('offset-phone-2')).to.eq(true)
+    })
+    it('接受 ipad 属性', () =&gt; {
+      const wrapper = mount(GCol, {
+        propsData: {
+          ipad: {
+            span: 1,
+            offset: 2
+          }
+        }
+      })
+&nbsp;
+      const {vm} = wrapper
+      expect(wrapper.classes('col-ipad-1')).to.eq(true)
+      expect(wrapper.classes('offset-ipad-2')).to.eq(true)
+    })
+    it('接受 narrowPc 属性', () =&gt; {
+      const wrapper = mount(GCol, {
+        propsData: {
+          narrowPc: {
+            span: 1,
+            offset: 2
+          }
+        }
+      })
+&nbsp;
+      const {vm} = wrapper
+      expect(wrapper.classes('col-narrow-pc-1')).to.eq(true)
+      expect(wrapper.classes('offset-narrow-pc-2')).to.eq(true)
+    })
+    it('接受 pc 属性', () =&gt; {
+&nbsp;
+      const wrapper = mount(GCol, {
+        propsData: {
+          pc: {
+            span: 1,
+            offset: 2
+          }
+        }
+      })
+      const {vm} = wrapper
+      expect(wrapper.classes('col-pc-1')).to.eq(true)
+      expect(wrapper.classes('offset-pc-2')).to.eq(true)
+    })
+  })
 })
 &nbsp;</pre></td></tr>
 </table></pre>
@@ -304,7 +304,7 @@ describe('GCol', () =&gt; {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon May 27 2019 11:01:36 GMT+0800 (中国标准时间)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Thu Aug 22 2019 09:54:37 GMT+0800 (中国标准时间)
 </div>
 </div>
 <script src="../../prettify.js"></script>

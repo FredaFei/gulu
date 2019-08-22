@@ -22,7 +22,7 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>41/41</span>
+        <span class='fraction'>57/57</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
@@ -32,12 +32,12 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>15/15</span>
+        <span class='fraction'>20/20</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>41/41</span>
+        <span class='fraction'>57/57</span>
       </div>
     </div>
   </div>
@@ -228,7 +228,53 @@
 183
 184
 185
-186</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
@@ -411,6 +457,52 @@
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import chai, { expect } from 'chai'
@@ -452,7 +544,7 @@ describe('Slides', () =&gt; {
       done()
     })
   })
-  it('接受 selected 属性 ', done =&gt; {
+  it('设置 selected 属性 ', done =&gt; {
     const wrapper = mount(Slides, {
       propsData: {
         selected: '2',
@@ -507,7 +599,7 @@ describe('Slides', () =&gt; {
       wrapper.find('[data-index="1"]').trigger('click')
     })
   })
-  it('能自动播放', done =&gt; {
+  it('设置自动播放', done =&gt; {
     const callback = sinon.fake()
     const wrapper = mount(Slides, {
       propsData: {
@@ -537,7 +629,7 @@ describe('Slides', () =&gt; {
       done()
     }, 21)
   })
-  it('可以点击上一张', done =&gt; {
+  it('点击上一张', done =&gt; {
     const callback = sinon.fake()
     const wrapper = mount(Slides, {
       propsData: {
@@ -567,7 +659,7 @@ describe('Slides', () =&gt; {
       done()
     })
   })
-  it('可以点击下一张', done =&gt; {
+  it('点击下一张', done =&gt; {
     const callback = sinon.fake()
     const wrapper = mount(Slides, {
       propsData: {
@@ -597,6 +689,52 @@ describe('Slides', () =&gt; {
       done()
     })
   })
+  
+  it('mouseEnter &amp; mouseLeave', done =&gt; {
+    const callback = sinon.fake()
+    const wrapper = mount(Slides, {
+      propsData: {
+        selected: '1',
+        autoPlayDelay: 20
+      },
+      slots: {
+        default: `
+          &lt;am-slides-item name="1"&gt;
+            &lt;div class="slides-item-1"&gt;slide 1&lt;/div&gt;
+          &lt;/am-slides-item&gt;
+          &lt;am-slides-item name="2"&gt;
+            &lt;div class="slides-item-2"&gt;slide 2&lt;/div&gt;
+          &lt;/am-slides-item&gt;
+          &lt;am-slides-item name="3"&gt;
+            &lt;div class="slides-item-3"&gt;slide 3&lt;/div&gt;
+          &lt;/am-slides-item&gt;
+        `
+      },
+      listeners: {
+        'update:selected': callback
+      }
+    })
+&nbsp;
+    setTimeout(() =&gt; {
+      wrapper.find('.am-slides-window').trigger('mouseenter')
+      expect(wrapper.find('.slides-item-1').exists()).to.eq(true)
+      wrapper.find('.am-slides-window').trigger('mouseleave')
+      setTimeout(() =&gt; {
+        expect(callback).to.have.been.calledWith('2')
+        done()
+      }, 21)
+    })
+  })
+  it('destroyed', () =&gt; {
+    const spy = sinon.stub()
+    const wrapper = mount(Slides, {
+      destroyed() {
+        spy()
+      }
+    })
+    wrapper.destroy()
+    expect(spy.calledOnce).to.eq(true)
+  })
 })
 &nbsp;</pre></td></tr>
 </table></pre>
@@ -604,7 +742,7 @@ describe('Slides', () =&gt; {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon May 27 2019 11:01:36 GMT+0800 (中国标准时间)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Thu Aug 22 2019 09:54:37 GMT+0800 (中国标准时间)
 </div>
 </div>
 <script src="../../prettify.js"></script>
