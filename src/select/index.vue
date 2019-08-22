@@ -76,7 +76,7 @@
       addItem(vm) {
         this.items.push(vm);
       },
-      updateChildren: function () {
+      updateChildren() {
         this.items.forEach(vm => {
           vm.active = this.selected === vm.value ? true : false;
         });
