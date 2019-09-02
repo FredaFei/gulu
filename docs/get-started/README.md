@@ -43,18 +43,16 @@ components: { App }
 
 [点我跳转 项目实战应用](https://codesandbox.io/s/ojvvl27v6q)
 
-
-::: tip
+::: tip 重要说明
 本框架支持的Vue2 v2.5.20前。v2.6.0+ 因修复了nextTick的一些Bug，对个别组件的使用会有影响。特别是datePicker组件,因使用了popover组件，在同一区域作条件切换时（对年月日点击时），会造成闪现的Bug。
 后期会对datePicker组件做优化
 
-[vue releases v2.6.0](https://github.com/vuejs/vue/releases/tag/v2.6.0)
-[nextTick #8450](https://github.com/vuejs/vue/pull/8450)
-[Vue中DOM的异步更新策略以及nextTick机制](https://segmentfault.com/a/1190000013314893)
+参考：
++ [vue releases v2.6.0](https://github.com/vuejs/vue/releases/tag/v2.6.0)
++ [nextTick #8450](https://github.com/vuejs/vue/pull/8450)
++ [Vue中DOM的异步更新策略以及nextTick机制](https://segmentfault.com/a/1190000013314893)
 
 
-
-::: tip
 安装 使用本框架前，请在 CSS 中开启 border-box
 
 ```
