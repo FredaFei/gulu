@@ -120,10 +120,6 @@
                 ) {
                     return;
                 }
-                console.log(this.$refs.popoverContent.innerHTML)
-                console.log(e.target)
-                console.log((this.$refs.popoverContent === e.target ||
-                    this.$refs.popoverContent.contains(e.target)))
                 if (
                     this.$refs.popoverContent &&
                     (this.$refs.popoverContent === e.target ||
