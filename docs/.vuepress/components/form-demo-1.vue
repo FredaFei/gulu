@@ -90,7 +90,7 @@
   import Select from "../../../src/select/index";
   import Checkbox from "../../../src/checkbox/index";
   import Option from "../../../src/select/option";
-  import DatePicker from "../../../src/datePicker/datePicker";
+  import DatePicker from "../../../src/datePicker/index";
   import Validator from "../../../src/validate";
 
   const validator = new Validator()
