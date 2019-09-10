@@ -6,6 +6,7 @@ chai.use(sinonChai)
 import { mount, shallowMount } from '@vue/test-utils'
 import Vue from 'vue'
 import DatePicker from '../../src/datePicker/index'
+import moment from '../../src/datePicker/moment'
 
 describe('DatePicker', () => {
   it('存在.', () => {
@@ -20,22 +21,23 @@ describe('DatePicker', () => {
     const input = wrapper.find('input')
     expect(input.element.value).to.eq('')
   })
-  xit('设置 value 为当天.', done => {
+  it('设置 value .', () => {
+    const callback = sinon.fake()
     const wrapper = mount(DatePicker, {
       propsData: {
-        value: new Date()
+        value: new Date('2019/09/08')
+      },
+      listeners:{
+        'input': callback
       }
     })
-    let today = new Date()
-      .toLocaleDateString()
-      .split('/')
-      .join('-')
     const input = wrapper.find('input')
-    setTimeout(() => {
-      console.log(wrapper.vm.$el.querySelector('input').value)
-      console.log(input.element.value)
-      done()
-    })
+    expect(input.element.value).to.eq('2019-09-08')
+    input.trigger('click')
+    const today = wrapper.find('.today')
+    today.trigger('click')
+    expect(callback).to.have.been.called
+    expect(wrapper.find('.am-date-picker-pop').exists()).to.eq(false)
   })
   it('可以设置 placeholder.', () => {
     const wrapper = mount(DatePicker, {

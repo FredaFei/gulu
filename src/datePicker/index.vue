@@ -80,8 +80,8 @@
           </div>
         </div>
         <div class="am-date-picker-pop-actions" v-show="mode==='date'">
-          <am-button @click="onClickToday">今天</am-button>
-          <am-button @click="onClickClear">清除</am-button>
+          <am-button @click="onClickToday" class="today">今天</am-button>
+          <am-button @click="onClickClear" class="clear">清除</am-button>
         </div>
       </div>
     </am-collapse-transition>
