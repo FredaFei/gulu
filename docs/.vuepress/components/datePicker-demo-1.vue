@@ -12,10 +12,14 @@
       <h4>禁用状态</h4>
       <am-date-picker v-model="x3" disabled></am-date-picker>
     </div>
+    <div class="box">
+      <h4>手动更新日期</h4>
+      <am-date-picker :value="x4" @input="onDateInput"></am-date-picker>
+    </div>
   </div>
 </template>
 <script>
-import AmDatePicker from "../../../src/datePicker/datePicker";
+import AmDatePicker from "../../../src/datePicker/index";
 export default {
   components: {
     AmDatePicker
@@ -24,8 +28,14 @@ export default {
     return {
       x1: new Date(),
       x2: "",
-      x3: new Date()
+      x3: new Date(),
+      x4: '',
     };
+  },
+  methods:{
+    onDateInput(value){
+      this.x4 = value
+    }
   }
 };
 </script>

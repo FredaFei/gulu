@@ -26,6 +26,10 @@ sidebarDepth: 2
       <h4>禁用状态</h4>
       <am-date-picker v-model="x3" disabled></am-date-picker>
     </div>
+    <div class="box">
+      <h4>手动更新日期</h4>
+      <am-date-picker :value="x4" @input="onDateInput"></am-date-picker>
+    </div>
   </div>
 </template>
 ```
@@ -36,7 +40,13 @@ export default {
     return {
       x1: new Date(),
       x2: '',
-      x3: new Date()
+      x3: new Date(),
+      x4: '',
+    }
+  },
+  methods:{
+    onDateInput(value){
+      this.x4 = value
     }
   }
 }
@@ -46,7 +56,18 @@ export default {
 
 | 参数            |      说明      |           类型 |     默认值 | 可选值 |
 | --------------- | :------------: | -------------: | ---------: | -----: |
-| value / v-model |     绑定值     | String/ Number |         —— |     —— |
+| value / v-model |     绑定值     | Date/String |         —— |     —— |
 | readonly        |  是否只读状态  |        Boolean |      false |   true |
 | disabled        |  是否禁用状态  |        Boolean |      false |   true |
 | placeholder     | 输入框占位文本 |         String | 请选择日期 |     —— |
+| zIndex      |    设置 CSS 层级    |  String/Number |      10 |         —— |
+
+### Event
+
+| 参数        |           说明           |    类型 | 默认值 | 可选值 |
+| ----------- | :----------------------: | ------: | -----: | -----: |
+| input | 用户确认选定的值时触发 | Date/String |   —— |      —— |
+
+::: tip
+日期的格式默认为yyyy-MM-dd，暂不支持其他格式
+:::
