@@ -46,6 +46,8 @@ const components = [
   Col,
   Row,
   Input,
+  Select,
+  Option,
   Checkbox,
   Radio,
   Layout,
