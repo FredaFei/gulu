@@ -5,7 +5,7 @@ chai.use(sinonChai)
 
 import { mount, shallowMount } from '@vue/test-utils'
 import Vue from 'vue'
-import DatePicker from '../../src/datePicker/datePicker'
+import DatePicker from '../../src/datePicker/index'
 
 describe('DatePicker', () => {
   it('存在.', () => {
