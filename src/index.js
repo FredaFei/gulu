@@ -1,5 +1,6 @@
 import Button from './button/button.vue'
 import ButtonGroup from './button/buttonGroup'
+import ControllCount from './controllCount/index.vue'
 import Cascader from './cascader/cascader.vue'
 import CascaderItem from './cascader/cascaderItem.vue'
 import Collapse from './collapse/collapse.vue'
@@ -38,6 +39,7 @@ import ClickOutside from './clickOutside.js'
 const components = [
   Button,
   ButtonGroup,
+  ControllCount,
   Cascader,
   CascaderItem,
   Collapse,
@@ -81,6 +83,7 @@ export default install
 export {
   Button,
   ButtonGroup,
+  ControllCount,
   Cascader,
   CascaderItem,
   Collapse,
