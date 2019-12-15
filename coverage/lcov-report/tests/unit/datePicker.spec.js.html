@@ -20,9 +20,9 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">75% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>21/28</span>
+        <span class='fraction'>30/30</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
@@ -30,18 +30,18 @@
         <span class='fraction'>0/0</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">75% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>6/8</span>
+        <span class='fraction'>7/7</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">75% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>21/28</span>
+        <span class='fraction'>30/30</span>
       </div>
     </div>
   </div>
-  <div class='status-line medium'></div>
+  <div class='status-line high'></div>
 <pre><table class="coverage">
 <tr><td class="line-count quiet">1
 2
@@ -110,7 +110,9 @@
 65
 66
 67
-68</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+68
+69
+70</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
@@ -119,35 +121,37 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1×</span>
-<span class="cline-any cline-yes">1×</span>
-<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
-<span class="cline-any cline-yes">1×</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
@@ -184,7 +188,8 @@ chai.use(sinonChai)
 &nbsp;
 import { mount, shallowMount } from '@vue/test-utils'
 import Vue from 'vue'
-import DatePicker from '../../src/datePicker/datePicker'
+import DatePicker from '../../src/datePicker/index'
+import moment from '../../src/datePicker/moment'
 &nbsp;
 describe('DatePicker', () =&gt; {
   it('存在.', () =&gt; {
@@ -199,22 +204,23 @@ describe('DatePicker', () =&gt; {
     const input = wrapper.find('input')
     expect(input.element.value).to.eq('')
   })
-  xit('设置 value 为当天.', done =&gt; <span class="fstat-no" title="function not covered" >{</span>
-    const wrapper = <span class="cstat-no" title="statement not covered" >mount(DatePicker, {</span>
+  it('设置 value .', () =&gt; {
+    const callback = sinon.fake()
+    const wrapper = mount(DatePicker, {
       propsData: {
-        value: new Date()
+        value: new Date('2019/09/08')
+      },
+      listeners:{
+        'input': callback
       }
     })
-    let today = <span class="cstat-no" title="statement not covered" >new Date()</span>
-      .toLocaleDateString()
-      .split('/')
-      .join('-')
-    const input = <span class="cstat-no" title="statement not covered" >wrapper.find('input')</span>
-<span class="cstat-no" title="statement not covered" >    setTimeout(() =&gt; <span class="fstat-no" title="function not covered" >{</span></span>
-<span class="cstat-no" title="statement not covered" >      console.log(wrapper.vm.$el.querySelector('input').value)</span>
-<span class="cstat-no" title="statement not covered" >      console.log(input.element.value)</span>
-<span class="cstat-no" title="statement not covered" >      done()</span>
-    })
+    const input = wrapper.find('input')
+    expect(input.element.value).to.eq('2019-09-08')
+    input.trigger('click')
+    const today = wrapper.find('.today')
+    today.trigger('click')
+    expect(callback).to.have.been.called
+    expect(wrapper.find('.am-date-picker-pop').exists()).to.eq(false)
   })
   it('可以设置 placeholder.', () =&gt; {
     const wrapper = mount(DatePicker, {
@@ -250,7 +256,7 @@ describe('DatePicker', () =&gt; {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Thu Aug 22 2019 09:54:37 GMT+0800 (中国标准时间)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Sun Dec 15 2019 11:58:25 GMT+0800 (中国标准时间)
 </div>
 </div>
 <script src="../../prettify.js"></script>
