@@ -1,8 +1,8 @@
 <template>
-  <div class="am-controll-count">
-    <button :class="['btn', {disabled: count<=1}]" @click="computedNum(-1)">-</button>
+  <div class="am-controll-count" :data-maxcount="maxCount">
+    <button :class="['btn prev', {disabled: count<=1}]" @click="computedNum(-1)">-</button>
     <input type="text" v-model="count" readonly="readonly">
-    <button :class="['btn', {disabled: count>=maxCount}]" @click="computedNum(1)">+</button>
+    <button :class="['btn next', {disabled: count>=maxCount}]" @click="computedNum(1)">+</button>
   </div>
 </template>
 <script>
