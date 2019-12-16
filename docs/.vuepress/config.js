@@ -3,6 +3,9 @@ module.exports = {
   base: '/amazing-ui/',
   title: 'Hello Amazing UI',
   description: 'Just playing around',
+  head: [
+    ['link', {rel: 'icon', href: '/logo.png'}]
+  ],
   markdown: {
     lineNumbers: true
   },
