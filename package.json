@@ -1,6 +1,6 @@
 {
   "name": "amazing-ui",
-  "version": "0.1.03",
+  "version": "0.9.1",
   "description": "UI组件库",
   "main": "dist/amazing-ui.umd.min.js",
   "scripts": {
