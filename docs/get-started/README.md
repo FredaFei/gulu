@@ -6,7 +6,7 @@ title: '快速上手'
 
 1. 完整引入，在 main.js 中写入以下内容：
 
-```
+``` js
 import Vue from 'vue'
 import AmazingUI from 'amazing-ui'
 import 'amazing-ui/dist/amazing-ui.css'
@@ -15,26 +15,26 @@ import App from './App.vue'
 Vue.use(AmazingUI)
 
 new Vue({
-el: '#app',
-components: { App }
+  el: '#app',
+  components: { App }
 })
 
 ```
 
 2. 单独引入某个组件
 
-```
+``` js
 import Vue from 'vue'
-import {Button,Input} from 'amazing-ui'
+import {Button,ControllCount} from 'amazing-ui'
 import 'amazing-ui/dist/amazing-ui.css'
 import App from './App.vue'
 
 Vue.component(Button.name, Button)
-Vue.component(Input.name, Input)
+Vue.component(ControllCount.name, ControllCount)
 
 new Vue({
-el: '#app',
-components: { App }
+  el: '#app',
+  components: { App }
 })
 
 ```
