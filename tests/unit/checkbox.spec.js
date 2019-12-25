@@ -49,7 +49,7 @@ describe('AmCheckbox', () => {
     })
     expect(wrapper.props('model')).to.eq(true)
   })
-  it('设置 v-model 为字符串, 默认不选中', (done) => {
+  it('设置 v-model 为字符串, 默认不选中', () => {
     const callback = sinon.fake()
     const wrapper = mount(AmCheckbox, {
       attachToDocument: true,
@@ -62,10 +62,7 @@ describe('AmCheckbox', () => {
       }
     })
     wrapper.trigger('click')
-    setTimeout(()=>{
-      expect(callback).to.have.been.calledWith('a')
-      done()
-    },10)
+    expect(callback).to.have.been.calledWith('a')
   })
   it('设置 v-model 为字符串, 默认选中', (done) => {
     const callback = sinon.fake()
@@ -80,10 +77,10 @@ describe('AmCheckbox', () => {
       }
     })
     wrapper.trigger('click')
-    setTimeout(()=>{
+    setTimeout(() => {
       expect(callback).to.have.been.calledWith('')
       done()
-    },10)
+    }, 10)
   })
   it('设置 v-model 为数组,默认为空数组', (done) => {
     const callback = sinon.fake()
@@ -98,10 +95,10 @@ describe('AmCheckbox', () => {
     })
     expect(wrapper.classes('am-checkbox-checked')).to.eq(false)
     wrapper.trigger('click')
-    setTimeout(()=>{
+    setTimeout(() => {
       expect(callback).to.have.been.calledWith(['1'])
       done()
-    },20)
+    }, 20)
   })
   it('设置 v-model 为数组,默认选中一个', (done) => {
     const callback = sinon.fake()
@@ -116,10 +113,10 @@ describe('AmCheckbox', () => {
     })
     expect(wrapper.classes('am-checkbox-checked')).to.eq(true)
     wrapper.trigger('click')
-    setTimeout(()=>{
+    setTimeout(() => {
       expect(callback).to.have.been.calledWith([])
       done()
-    },20)
+    }, 20)
   })
   it('trueValue 默认为 true,falseValue 默认为 false, 设置model 为false', () => {
     const callback = sinon.fake()
