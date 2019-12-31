@@ -2,6 +2,8 @@
 
 [![Build Status](https://travis-ci.org/FredaFei/amazing-ui.svg?branch=master)](https://travis-ci.org/FredaFei/amazing-ui)
 
+[React Hooks 版本](https://fredafei.github.io/AUI/#/guide)
+
 ## 介绍
 
 基于 Vue 开发的一个 UI 组件库
