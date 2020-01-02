@@ -63,7 +63,7 @@ export default {
 .am-sub-nav {
   .am-nav-item:not(.vertical) {
     &.selected {
-      color: $color;
+      color: $blue;
       background: $gray;
       &:after {
         display: none;
