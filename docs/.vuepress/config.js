@@ -3,6 +3,9 @@ module.exports = {
   base: '/amazing-ui/',
   title: 'Hello Amazing UI',
   description: 'Just playing around',
+  head: [
+    ['link', {rel: 'icon', href: '/logo.png'}]
+  ],
   markdown: {
     lineNumbers: true
   },
@@ -17,6 +20,7 @@ module.exports = {
         children: [
           '/components/icon',
           '/components/button',
+          '/components/controllCount',
           '/components/input',
           '/components/radio',
           '/components/checkbox',

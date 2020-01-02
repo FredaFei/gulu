@@ -24,6 +24,18 @@
         <div class="slides-item">slide 3</div>
       </am-slides-item>
     </am-slides>
+    <h4>下标风格</h4>
+    <am-slides :selected.sync="selected3" dots-style="button">
+      <am-slides-item name="111">
+        <div class="slides-item">slide 1</div>
+      </am-slides-item>
+      <am-slides-item name="122">
+        <div class="slides-item">slide 2</div>
+      </am-slides-item>
+      <am-slides-item name="133">
+        <div class="slides-item">slide 3</div>
+      </am-slides-item>
+    </am-slides>
   </div>
 </template>
 
@@ -38,7 +50,8 @@ export default {
   data() {
     return {
       selected1: "",
-      selected2: ""
+      selected2: "",
+      selected3: "",
     };
   }
 };

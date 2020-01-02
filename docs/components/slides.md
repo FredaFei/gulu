@@ -36,6 +36,17 @@ sidebarDepth: 2
         <div class="slides-item">slide 3</div>
       </am-slides-item>
     </am-slides>
+    <am-slides :selected.sync="selected3" dots-style="button">
+      <am-slides-item name="111">
+        <div class="slides-item">slide 1</div>
+      </am-slides-item>
+      <am-slides-item name="122">
+        <div class="slides-item">slide 2</div>
+      </am-slides-item>
+      <am-slides-item name="133">
+        <div class="slides-item">slide 3</div>
+      </am-slides-item>
+    </am-slides>
   </div>
 </template>
 ```
@@ -45,7 +56,8 @@ export default {
   data() {
     return {
       selected1: '',
-      selected2: ''
+      selected2: '',
+      selected3: '',
     }
   }
 }
@@ -57,6 +69,7 @@ export default {
 | ------------- | :----------: | ------: | -----: | -----: |
 | selected      |  默认切换值  |  String |     —— |     —— |
 | autoPlay      | 是否自动切换 | Boolean |   true |  false |
+| dotsStyle | 下标样式 |  String |   circle |     button |
 | autoPlayDelay | 自动切换频率 |  Number |   2000 |     —— |
 
 ### Events
