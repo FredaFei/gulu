@@ -80,7 +80,7 @@ describe('AmCheckbox', () => {
     setTimeout(() => {
       expect(callback).to.have.been.calledWith('')
       done()
-    }, 10)
+    }, 20)
   })
   it('设置 v-model 为数组,默认为空数组', (done) => {
     const callback = sinon.fake()
