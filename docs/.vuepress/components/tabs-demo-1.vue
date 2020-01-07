@@ -31,6 +31,21 @@
       </am-tabs>
     </div>
     <div class="box">
+      <h4>Tabs 自定义下标线高度</h4>
+      <am-tabs :selected.sync="selectedTabs2" direction="vertical"  lineWidthOrHeight="26">
+        <am-tabs-header>
+          <am-tabs-item name="finance">财经</am-tabs-item>
+          <am-tabs-item name="sport">体育</am-tabs-item>
+          <am-tabs-item name="comic">娱乐</am-tabs-item>
+        </am-tabs-header>
+        <am-tabs-body>
+          <am-tabs-pane name="finance">财经 content</am-tabs-pane>
+          <am-tabs-pane name="sport">体育 content</am-tabs-pane>
+          <am-tabs-pane name="comic">娱乐 content</am-tabs-pane>
+        </am-tabs-body>
+      </am-tabs>
+    </div>
+    <div class="box">
       <h4>自定义tabs</h4>
       <am-tabs :selected.sync="selectedTabs3">
         <am-tabs-header>
@@ -86,8 +101,9 @@ export default {
     return {
       selectedTabs1: "finance",
       selectedTabs2: "comic",
-      selectedTabs3: "comic",
-      selectedTabs4: "comic"
+      selectedTabs3: "sport",
+      selectedTabs4: "comic",
+      selectedTabs5: "comic",
     };
   }
 };
