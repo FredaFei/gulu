@@ -1,6 +1,6 @@
 <template>
   <div class="am-sub-nav" :class="{active, vertical}" v-click-outside="close" :data-name="name">
-    <span class="am-sub-nav-label" @click="onClick">
+    <span class="am-sub-nav-label" :class="{active}" @click="onClick">
       <span class="am-sub-nav-title">
         <slot name="title"></slot>
       </span>
@@ -45,7 +45,7 @@ export default {
   computed: {
     active() {
       return this.root.namePath.indexOf(this.name) >= 0 ? true : false;
-    }
+    },
   },
   methods: {
     enter(el, done) {
@@ -108,6 +108,9 @@ export default {
   &-label {
     padding: 10px 20px;
     display: block;
+    &.active {
+      color: $blue;
+    }
   }
   &-icon {
     display: none;

@@ -1,5 +1,5 @@
 TN:
-SF:D:\taro\amazing-ui\src\svg.js
+SF:E:\amazing-ui\src\svg.js
 FN:1,(anonymous_0)
 FN:1,(anonymous_1)
 FN:1,(anonymous_2)
@@ -47,7 +47,7 @@ BRF:20
 BRH:7
 end_of_record
 TN:
-SF:D:\taro\amazing-ui\src\icon.vue
+SF:E:\amazing-ui\src\icon.vue
 FNF:0
 FNH:0
 LF:0
@@ -56,7 +56,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
-SF:D:\taro\amazing-ui\src\button\button.vue
+SF:E:\amazing-ui\src\button\button.vue
 FN:25,(anonymous_0)
 FNF:1
 FNH:1
@@ -70,7 +70,7 @@ BRF:2
 BRH:2
 end_of_record
 TN:
-SF:D:\taro\amazing-ui\tests\unit\button.spec.js
+SF:E:\amazing-ui\tests\unit\button.spec.js
 FN:10,(anonymous_0)
 FN:11,(anonymous_1)
 FN:14,(anonymous_2)
@@ -131,7 +131,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
-SF:D:\taro\amazing-ui\src\checkbox\index.vue
+SF:E:\amazing-ui\src\checkbox\index.vue
 FN:46,(anonymous_0)
 FN:55,(anonymous_1)
 FN:64,(anonymous_2)
@@ -201,7 +201,7 @@ BRF:18
 BRH:18
 end_of_record
 TN:
-SF:D:\taro\amazing-ui\tests\unit\checkbox.spec.js
+SF:E:\amazing-ui\tests\unit\checkbox.spec.js
 FN:10,(anonymous_0)
 FN:11,(anonymous_1)
 FN:14,(anonymous_2)
@@ -297,7 +297,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
-SF:D:\taro\amazing-ui\src\grid\gCol.vue
+SF:E:\amazing-ui\src\grid\gCol.vue
 FN:8,(anonymous_0)
 FN:10,(anonymous_1)
 FN:43,(anonymous_2)
@@ -348,7 +348,7 @@ BRF:11
 BRH:10
 end_of_record
 TN:
-SF:D:\taro\amazing-ui\tests\unit\col.spec.js
+SF:E:\amazing-ui\tests\unit\col.spec.js
 FN:6,(anonymous_0)
 FN:7,(anonymous_1)
 FN:10,(anonymous_2)
@@ -407,7 +407,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
-SF:D:\taro\amazing-ui\src\collapse\collapse.vue
+SF:E:\amazing-ui\src\collapse\collapse.vue
 FN:14,(anonymous_0)
 FN:22,(anonymous_1)
 FN:27,(anonymous_2)
@@ -452,7 +452,7 @@ BRF:2
 BRH:2
 end_of_record
 TN:
-SF:D:\taro\amazing-ui\src\collapseTransition.vue
+SF:E:\amazing-ui\src\collapseTransition.vue
 FN:10,(anonymous_0)
 FN:16,(anonymous_1)
 FN:23,(anonymous_2)
@@ -520,7 +520,7 @@ BRF:6
 BRH:3
 end_of_record
 TN:
-SF:D:\taro\amazing-ui\src\collapse\collapseItem.vue
+SF:E:\amazing-ui\src\collapse\collapseItem.vue
 FN:37,(anonymous_0)
 FN:42,(anonymous_1)
 FN:44,(anonymous_2)
@@ -553,7 +553,7 @@ BRF:10
 BRH:10
 end_of_record
 TN:
-SF:D:\taro\amazing-ui\tests\unit\collapse.spec.js
+SF:E:\amazing-ui\tests\unit\collapse.spec.js
 FN:13,(anonymous_0)
 FN:14,(anonymous_1)
 FN:17,(anonymous_2)
@@ -620,7 +620,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
-SF:D:\taro\amazing-ui\tests\unit\collapseItem.spec.js
+SF:E:\amazing-ui\tests\unit\collapseItem.spec.js
 FN:10,(anonymous_0)
 FN:11,(anonymous_1)
 FN:14,(anonymous_2)
@@ -657,7 +657,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
-SF:D:\taro\amazing-ui\src\controllCount\index.vue
+SF:E:\amazing-ui\src\controllCount\index.vue
 FN:22,(anonymous_0)
 FNF:1
 FNH:1
@@ -681,7 +681,7 @@ BRF:8
 BRH:8
 end_of_record
 TN:
-SF:D:\taro\amazing-ui\tests\unit\controllCount.spec.js
+SF:E:\amazing-ui\tests\unit\controllCount.spec.js
 FN:10,(anonymous_0)
 FN:11,(anonymous_1)
 FN:14,(anonymous_2)
@@ -749,7 +749,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
-SF:D:\taro\amazing-ui\src\input\input.vue
+SF:E:\amazing-ui\src\input\input.vue
 FN:53,(anonymous_0)
 FN:62,(anonymous_1)
 FN:69,(anonymous_2)
@@ -806,7 +806,7 @@ BRF:8
 BRH:8
 end_of_record
 TN:
-SF:D:\taro\amazing-ui\src\clickOutside.js
+SF:E:\amazing-ui\src\clickOutside.js
 FN:1,(anonymous_0)
 FN:3,(anonymous_1)
 FN:14,(anonymous_2)
@@ -838,7 +838,7 @@ BRF:4
 BRH:4
 end_of_record
 TN:
-SF:D:\taro\amazing-ui\src\datePicker\moment.js
+SF:E:\amazing-ui\src\datePicker\moment.js
 FN:2,(anonymous_0)
 FN:6,(anonymous_1)
 FN:10,(anonymous_2)
@@ -884,7 +884,7 @@ BRF:4
 BRH:3
 end_of_record
 TN:
-SF:D:\taro\amazing-ui\src\datePicker\index.vue
+SF:E:\amazing-ui\src\datePicker\index.vue
 FN:128,(anonymous_0)
 FN:153,(anonymous_1)
 FN:175,(anonymous_2)
@@ -969,12 +969,12 @@ DA:160,61
 DA:162,2
 DA:163,2
 DA:164,2
-DA:165,0
+DA:165,3
 DA:167,2
 DA:168,2
 DA:169,2
 DA:170,2
-DA:171,23
+DA:171,20
 DA:173,2
 DA:176,0
 DA:177,0
@@ -1061,17 +1061,17 @@ DA:326,1
 DA:329,26
 DA:332,126
 LF:103
-LH:48
+LH:49
 BRDA:129,0,0,5
 BRDA:129,0,1,4
 BRDA:180,1,0,4
 BRDA:180,1,1,1
 BRDA:193,2,0,252
-BRDA:193,2,1,219
+BRDA:193,2,1,243
 BRDA:196,3,0,0
 BRDA:196,3,1,84
 BRDA:201,4,0,84
-BRDA:201,4,1,73
+BRDA:201,4,1,45
 BRDA:201,4,2,30
 BRDA:204,5,0,0
 BRDA:204,5,1,84
@@ -1080,7 +1080,7 @@ BRDA:210,6,1,61
 BRDA:220,7,0,23
 BRDA:220,7,1,61
 BRDA:225,8,0,61
-BRDA:225,8,1,61
+BRDA:225,8,1,31
 BRDA:225,8,2,31
 BRDA:229,9,0,0
 BRDA:229,9,1,0
@@ -1100,7 +1100,7 @@ BRF:34
 BRH:19
 end_of_record
 TN:
-SF:D:\taro\amazing-ui\tests\unit\datePicker.spec.js
+SF:E:\amazing-ui\tests\unit\datePicker.spec.js
 FN:11,(anonymous_0)
 FN:12,(anonymous_1)
 FN:15,(anonymous_2)
@@ -1153,7 +1153,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
-SF:D:\taro\amazing-ui\tests\unit\input.spec.js
+SF:E:\amazing-ui\tests\unit\input.spec.js
 FN:10,(anonymous_0)
 FN:11,(anonymous_1)
 FN:14,(anonymous_2)
@@ -1275,7 +1275,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
-SF:D:\taro\amazing-ui\src\message\message.vue
+SF:E:\amazing-ui\src\message\message.vue
 FN:35,(anonymous_0)
 FN:44,(anonymous_1)
 FN:56,(anonymous_2)
@@ -1312,7 +1312,7 @@ BRF:4
 BRH:3
 end_of_record
 TN:
-SF:D:\taro\amazing-ui\tests\unit\message.spec.js
+SF:E:\amazing-ui\tests\unit\message.spec.js
 FN:9,(anonymous_0)
 FN:10,(anonymous_1)
 FN:13,(anonymous_2)
@@ -1373,7 +1373,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
-SF:D:\taro\amazing-ui\tests\unit\moment.spec.js
+SF:E:\amazing-ui\tests\unit\moment.spec.js
 FN:7,(anonymous_0)
 FN:8,(anonymous_1)
 FN:11,(anonymous_2)
@@ -1424,7 +1424,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
-SF:D:\taro\amazing-ui\src\nav\nav.vue
+SF:E:\amazing-ui\src\nav\nav.vue
 FN:20,(anonymous_0)
 FN:23,(anonymous_1)
 FN:29,(anonymous_2)
@@ -1468,7 +1468,7 @@ BRF:2
 BRH:2
 end_of_record
 TN:
-SF:D:\taro\amazing-ui\src\nav\navItem.vue
+SF:E:\amazing-ui\src\nav\navItem.vue
 FN:17,(anonymous_0)
 FN:22,(anonymous_1)
 FN:26,(anonymous_2)
@@ -1490,7 +1490,7 @@ BRF:2
 BRH:1
 end_of_record
 TN:
-SF:D:\taro\amazing-ui\src\nav\subNav.vue
+SF:E:\amazing-ui\src\nav\subNav.vue
 FN:40,(anonymous_0)
 FN:46,(anonymous_1)
 FN:51,(anonymous_2)
@@ -1547,7 +1547,7 @@ BRF:4
 BRH:0
 end_of_record
 TN:
-SF:D:\taro\amazing-ui\tests\unit\nav.spec.js
+SF:E:\amazing-ui\tests\unit\nav.spec.js
 FN:16,(anonymous_0)
 FN:17,(anonymous_1)
 FN:20,(anonymous_2)
@@ -1602,7 +1602,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
-SF:D:\taro\amazing-ui\tests\unit\navItem.spec.js
+SF:E:\amazing-ui\tests\unit\navItem.spec.js
 FN:15,(anonymous_0)
 FN:16,(anonymous_1)
 FN:19,(anonymous_2)
@@ -1633,7 +1633,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
-SF:D:\taro\amazing-ui\src\pager\pager.vue
+SF:E:\amazing-ui\src\pager\pager.vue
 FN:27,unique
 FN:29,(anonymous_1)
 FN:32,(anonymous_2)
@@ -1679,7 +1679,7 @@ BRF:9
 BRH:8
 end_of_record
 TN:
-SF:D:\taro\amazing-ui\tests\unit\pager.spec.js
+SF:E:\amazing-ui\tests\unit\pager.spec.js
 FN:10,(anonymous_0)
 FN:11,(anonymous_1)
 FN:14,(anonymous_2)
@@ -1736,7 +1736,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
-SF:D:\taro\amazing-ui\src\popover\popover.vue
+SF:E:\amazing-ui\src\popover\popover.vue
 FN:21,(anonymous_0)
 FN:28,(anonymous_1)
 FN:44,(anonymous_2)
@@ -1849,7 +1849,7 @@ BRF:28
 BRH:16
 end_of_record
 TN:
-SF:D:\taro\amazing-ui\tests\unit\popover.spec.js
+SF:E:\amazing-ui\tests\unit\popover.spec.js
 FN:10,(anonymous_0)
 FN:11,(anonymous_1)
 FN:14,(anonymous_2)
@@ -1900,7 +1900,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
-SF:D:\taro\amazing-ui\src\radio\index.vue
+SF:E:\amazing-ui\src\radio\index.vue
 FN:34,(anonymous_0)
 FN:41,(anonymous_1)
 FN:44,(anonymous_2)
@@ -1926,7 +1926,7 @@ BRF:2
 BRH:2
 end_of_record
 TN:
-SF:D:\taro\amazing-ui\tests\unit\radio.spec.js
+SF:E:\amazing-ui\tests\unit\radio.spec.js
 FN:10,(anonymous_0)
 FN:11,(anonymous_1)
 FN:14,(anonymous_2)
@@ -1967,7 +1967,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
-SF:D:\taro\amazing-ui\src\grid\gRow.vue
+SF:E:\amazing-ui\src\grid\gRow.vue
 FN:17,(anonymous_0)
 FN:23,(anonymous_1)
 FN:30,(anonymous_2)
@@ -1995,7 +1995,7 @@ BRF:2
 BRH:2
 end_of_record
 TN:
-SF:D:\taro\amazing-ui\tests\unit\row.spec.js
+SF:E:\amazing-ui\tests\unit\row.spec.js
 FN:8,(anonymous_0)
 FN:9,(anonymous_1)
 FN:12,(anonymous_2)
@@ -2029,7 +2029,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
-SF:D:\taro\amazing-ui\src\select\index.vue
+SF:E:\amazing-ui\src\select\index.vue
 FN:48,(anonymous_0)
 FN:55,(anonymous_1)
 FN:59,(anonymous_2)
@@ -2097,7 +2097,7 @@ BRF:8
 BRH:8
 end_of_record
 TN:
-SF:D:\taro\amazing-ui\src\select\option.vue
+SF:E:\amazing-ui\src\select\option.vue
 FN:20,(anonymous_0)
 FN:25,(anonymous_1)
 FN:29,(anonymous_2)
@@ -2119,7 +2119,7 @@ BRF:2
 BRH:2
 end_of_record
 TN:
-SF:D:\taro\amazing-ui\tests\unit\select.spec.js
+SF:E:\amazing-ui\tests\unit\select.spec.js
 FN:16,(anonymous_0)
 FN:17,(anonymous_1)
 FN:20,(anonymous_2)
@@ -2187,7 +2187,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
-SF:D:\taro\amazing-ui\tests\unit\selectOption.spec.js
+SF:E:\amazing-ui\tests\unit\selectOption.spec.js
 FN:16,(anonymous_0)
 FN:17,(anonymous_1)
 FN:20,(anonymous_2)
@@ -2225,7 +2225,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
-SF:D:\taro\amazing-ui\src\slides\slides.vue
+SF:E:\amazing-ui\src\slides\slides.vue
 FN:45,(anonymous_0)
 FN:50,(anonymous_1)
 FN:59,(anonymous_2)
@@ -2381,7 +2381,7 @@ BRF:32
 BRH:18
 end_of_record
 TN:
-SF:D:\taro\amazing-ui\src\slides\slidesItem.vue
+SF:E:\amazing-ui\src\slides\slidesItem.vue
 FN:18,(anonymous_0)
 FN:25,(anonymous_1)
 FN:29,(anonymous_2)
@@ -2406,7 +2406,7 @@ BRF:4
 BRH:2
 end_of_record
 TN:
-SF:D:\taro\amazing-ui\tests\unit\slides.spec.js
+SF:E:\amazing-ui\tests\unit\slides.spec.js
 FN:12,(anonymous_0)
 FN:13,(anonymous_1)
 FN:16,(anonymous_2)
@@ -2512,7 +2512,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
-SF:D:\taro\amazing-ui\tests\unit\subNav.spec.js
+SF:E:\amazing-ui\tests\unit\subNav.spec.js
 FN:16,(anonymous_0)
 FN:17,(anonymous_1)
 FN:20,(anonymous_2)
@@ -2544,7 +2544,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
-SF:D:\taro\amazing-ui\src\table\table.vue
+SF:E:\amazing-ui\src\table\table.vue
 FN:71,(anonymous_0)
 FN:77,(anonymous_1)
 FN:78,(anonymous_2)
@@ -2719,7 +2719,7 @@ BRF:28
 BRH:0
 end_of_record
 TN:
-SF:D:\taro\amazing-ui\src\table\tableColumn.vue
+SF:E:\amazing-ui\src\table\tableColumn.vue
 FNF:0
 FNH:0
 LF:0
@@ -2728,7 +2728,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
-SF:D:\taro\amazing-ui\tests\unit\table.spec.js
+SF:E:\amazing-ui\tests\unit\table.spec.js
 FN:14,(anonymous_0)
 FN:15,(anonymous_1)
 FN:18,(anonymous_2)
@@ -2751,7 +2751,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
-SF:D:\taro\amazing-ui\src\tabs\tabs.vue
+SF:E:\amazing-ui\src\tabs\tabs.vue
 FN:19,(anonymous_0)
 FN:24,(anonymous_1)
 FN:29,(anonymous_2)
@@ -2804,7 +2804,7 @@ BRF:13
 BRH:13
 end_of_record
 TN:
-SF:D:\taro\amazing-ui\src\tabs\tabsHeader.vue
+SF:E:\amazing-ui\src\tabs\tabsHeader.vue
 FN:16,(anonymous_0)
 FN:18,(anonymous_1)
 FN:23,(anonymous_2)
@@ -2835,7 +2835,7 @@ BRF:4
 BRH:4
 end_of_record
 TN:
-SF:D:\taro\amazing-ui\src\tabs\tabsBody.vue
+SF:E:\amazing-ui\src\tabs\tabsBody.vue
 FNF:0
 FNH:0
 LF:0
@@ -2844,7 +2844,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
-SF:D:\taro\amazing-ui\src\tabs\tabsItem.vue
+SF:E:\amazing-ui\src\tabs\tabsItem.vue
 FN:21,(anonymous_0)
 FN:27,(anonymous_1)
 FN:35,(anonymous_2)
@@ -2877,7 +2877,7 @@ BRF:6
 BRH:5
 end_of_record
 TN:
-SF:D:\taro\amazing-ui\src\tabs\tabsPane.vue
+SF:E:\amazing-ui\src\tabs\tabsPane.vue
 FN:17,(anonymous_0)
 FN:23,(anonymous_1)
 FN:29,(anonymous_2)
@@ -2900,7 +2900,7 @@ BRF:2
 BRH:2
 end_of_record
 TN:
-SF:D:\taro\amazing-ui\tests\unit\tabs.spec.js
+SF:E:\amazing-ui\tests\unit\tabs.spec.js
 FN:20,(anonymous_0)
 FN:21,(anonymous_1)
 FN:24,(anonymous_2)
@@ -2952,7 +2952,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
-SF:D:\taro\amazing-ui\tests\unit\tabsItem.spec.js
+SF:E:\amazing-ui\tests\unit\tabsItem.spec.js
 FN:20,(anonymous_0)
 FN:21,(anonymous_1)
 FN:24,(anonymous_2)
@@ -3005,7 +3005,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
-SF:D:\taro\amazing-ui\src\toast\toast.vue
+SF:E:\amazing-ui\src\toast\toast.vue
 FN:20,(anonymous_0)
 FN:34,(anonymous_1)
 FN:48,(anonymous_2)
@@ -3054,7 +3054,7 @@ BRF:8
 BRH:8
 end_of_record
 TN:
-SF:D:\taro\amazing-ui\tests\unit\toast.spec.js
+SF:E:\amazing-ui\tests\unit\toast.spec.js
 FN:8,(anonymous_0)
 FN:9,(anonymous_1)
 FN:12,(anonymous_2)
@@ -3107,7 +3107,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
-SF:D:\taro\amazing-ui\src\http.js
+SF:E:\amazing-ui\src\http.js
 FN:1,core
 FN:4,(anonymous_1)
 FN:7,(anonymous_2)
@@ -3145,7 +3145,7 @@ BRF:4
 BRH:0
 end_of_record
 TN:
-SF:D:\taro\amazing-ui\src\uploader\uploader.vue
+SF:E:\amazing-ui\src\uploader\uploader.vue
 FN:51,(anonymous_0)
 FN:59,(anonymous_1)
 FN:64,(anonymous_2)
@@ -3162,9 +3162,9 @@ FN:128,(anonymous_12)
 FN:138,(anonymous_13)
 FN:139,(anonymous_14)
 FN:152,(anonymous_15)
-FN:153,(anonymous_16)
-FN:161,(anonymous_17)
-FN:168,(anonymous_18)
+FN:154,(anonymous_16)
+FN:162,(anonymous_17)
+FN:169,(anonymous_18)
 FNF:19
 FNH:4
 FNDA:0,(anonymous_0)
@@ -3252,15 +3252,16 @@ DA:154,0
 DA:155,0
 DA:156,0
 DA:157,0
-DA:159,0
-DA:162,0
-DA:169,0
+DA:158,0
+DA:160,0
+DA:163,0
 DA:170,0
 DA:171,0
 DA:172,0
 DA:173,0
 DA:174,0
-LF:74
+DA:175,0
+LF:75
 LH:11
 BRDA:91,0,0,0
 BRDA:91,0,1,0
@@ -3268,13 +3269,13 @@ BRDA:115,1,0,0
 BRDA:115,1,1,0
 BRDA:147,2,0,0
 BRDA:147,2,1,0
-BRDA:170,3,0,0
-BRDA:170,3,1,0
+BRDA:171,3,0,0
+BRDA:171,3,1,0
 BRF:8
 BRH:0
 end_of_record
 TN:
-SF:D:\taro\amazing-ui\tests\unit\uploader.spec.js
+SF:E:\amazing-ui\tests\unit\uploader.spec.js
 FN:11,(anonymous_0)
 FN:12,(anonymous_1)
 FN:15,(anonymous_2)
@@ -3323,7 +3324,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
-SF:D:\taro\amazing-ui\src\validate.js
+SF:E:\amazing-ui\src\validate.js
 FN:2,(anonymous_0)
 FN:3,(anonymous_1)
 FN:6,(anonymous_2)
@@ -3425,7 +3426,7 @@ BRF:30
 BRH:25
 end_of_record
 TN:
-SF:D:\taro\amazing-ui\tests\unit\validate.spec.js
+SF:E:\amazing-ui\tests\unit\validate.spec.js
 FN:7,(anonymous_0)
 FN:8,(anonymous_1)
 FN:11,(anonymous_2)
