@@ -45,6 +45,21 @@ sidebarDepth: 2
       </am-tabs>
     </div>
     <div class="box">
+      <h4>Tabs 自定义下标线高度</h4>
+      <am-tabs :selected.sync="selectedTabs2" direction="vertical"  lineWidthOrHeight="26">
+        <am-tabs-header>
+          <am-tabs-item name="finance">财经</am-tabs-item>
+          <am-tabs-item name="sport">体育</am-tabs-item>
+          <am-tabs-item name="comic">娱乐</am-tabs-item>
+        </am-tabs-header>
+        <am-tabs-body>
+          <am-tabs-pane name="finance">财经 content</am-tabs-pane>
+          <am-tabs-pane name="sport">体育 content</am-tabs-pane>
+          <am-tabs-pane name="comic">娱乐 content</am-tabs-pane>
+        </am-tabs-body>
+      </am-tabs>
+    </div>
+    <div class="box">
       <h4>自定义tabs</h4>
       <am-tabs :selected.sync="selectedTabs3">
         <am-tabs-header>
@@ -85,10 +100,11 @@ sidebarDepth: 2
 export default {
   data() {
     return {
-      selectedTabs1: 'finance',
-      selectedTabs2: 'comic',
-      selectedTabs3: 'comic',
-      selectedTabs4: 'comic'
+      selectedTabs1: "finance",
+      selectedTabs2: "comic",
+      selectedTabs3: "sport",
+      selectedTabs4: "comic",
+      selectedTabs5: "comic",
     }
   }
 }
@@ -106,6 +122,7 @@ export default {
 | --------- | :-----------------------: | ------------: | ---------: | -------: |
 | selected  | 绑定值，选中选项卡的 name | String/Number |         —— |       —— |
 | direction |       tabs 展示位置       |        String | horizontal | vertical |
+| lineWidthOrHeight |       tabs 选中时下线条宽/高   |   String/Number |  —— |  —— |
 | disabled  |       是否禁用状态        |       Boolean |      false |     true |
 
 ### TabsHeader.API
