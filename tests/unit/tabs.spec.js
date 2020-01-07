@@ -76,6 +76,34 @@ describe('Tabs', () => {
       done()
     })
   })
+
+  it('可以设置 lineWidthOrHeight .', done => {
+    const wrapper = mount(Tabs, {
+      propsData: {
+        selected: 'music',
+        lineWidthOrHeight: 24
+      },
+      slots: {
+        default: `
+            <am-tabs-header>
+                <am-tabs-item name="sport">sport</am-tabs-item>
+                <am-tabs-item name="music">music</am-tabs-item>
+                <am-tabs-item name="moving">moving</am-tabs-item>
+            </am-tabs-header>
+            <am-tabs-body>
+                <am-tabs-pane name="sport">sport content</am-tabs-pane>
+                <am-tabs-pane name="music">music content</am-tabs-pane>
+                <am-tabs-pane name="moving">moving content</am-tabs-pane>
+            </am-tabs-body>
+              `
+      }
+    })
+    setTimeout(() => {
+      expect(wrapper.props().lineWidthOrHeight).to.eq(24)
+      done()
+    })
+  })
+
   it('没有子组件时为空 .', done => {
     const wrapper = mount(Tabs, {
       propsData: {
