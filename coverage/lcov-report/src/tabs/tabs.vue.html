@@ -125,7 +125,12 @@
 80
 81
 82
-83</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+83
+84
+85
+86
+87
+88</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -144,33 +149,38 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3×</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">4×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3×</span>
-<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -179,14 +189,14 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3×</span>
 <span class="cline-any cline-yes">4×</span>
-<span class="cline-any cline-yes">2×</span>
 <span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">9×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">3×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -214,80 +224,85 @@
 &lt;/template&gt;
 &nbsp;
 &lt;script&gt;
-import Vue from "vue";
-export default {
-  name: "amTabs",
-  props: {
-    selected: {
-      type: [String, Number],
-      required: true
-    },
-    direction: {
-      type: String,
-      default: "horizontal",
-      validator(val) {
-        return ["horizontal", "vertical"].indexOf(val) &gt; -1;
+  import Vue from "vue";
+&nbsp;
+  export default {
+    name: "amTabs",
+    props: {
+      selected: {
+        type: [String, Number],
+        required: true
+      },
+      direction: {
+        type: String,
+        default: "horizontal",
+        validator(val) {
+          return ["horizontal", "vertical"].indexOf(val) &gt; -1;
+        }
+      },
+      lineWidthOrHeight: {
+        type: [String, Number]
       }
-    }
-  },
-  data() {
-    return {
-      eventBus: new Vue()
-    };
-  },
-  provide() {
-    return {
-      eventBus: this.eventBus,
-      direction: this.direction
-    };
-  },
-  computed: {
-    classes() {
-      return this.direction;
-    }
-  },
-  mounted() {
-    this.checkChildren();
-    this.selectedTabs();
-  },
-  methods: {
-    checkChildren() {
-      if (this.$children.length === 0) {
-        console &amp;&amp;
+    },
+    data() {
+      return {
+        eventBus: new Vue()
+      };
+    },
+    provide() {
+      return {
+        eventBus: this.eventBus,
+        direction: this.direction,
+        lineWidthOrHeight: this.lineWidthOrHeight
+      };
+    },
+    computed: {
+      classes() {
+        return this.direction;
+      }
+    },
+    mounted() {
+      this.checkChildren();
+      this.selectedTabs();
+    },
+    methods: {
+      checkChildren() {
+        if (this.$children.length === 0) {
+          console &amp;&amp;
           console.warn &amp;&amp;
           console.warn(
             "tabs的子组件应该是tabs-header和tabs-body,但是你没有写子组件"
           );
-      }
-    },
-    selectedTabs() {
-      this.$children.forEach(vm =&gt; {
-        if (vm.$options.name === "amTabsHeader") {
-          vm.$children.forEach(childVm =&gt; {
-            if (
-              childVm.$options.name === "amTabsItem" &amp;&amp;
-              childVm.name === this.selected
-            ) {
-              this.eventBus &amp;&amp;
-                this.eventBus.$emit("update:selected", this.selected, childVm);
-            }
-          });
         }
-      });
+      },
+      selectedTabs() {
+        this.$children.forEach(vm =&gt; {
+          if (vm.$options.name === "amTabsHeader") {
+            vm.$children.forEach(childVm =&gt; {
+              if (
+                childVm.$options.name === "amTabsItem" &amp;&amp;
+                childVm.name === this.selected
+              ) {
+                this.eventBus &amp;&amp;
+                this.eventBus.$emit("update:selected", this.selected, childVm);
+              }
+            });
+          }
+        });
+      }
     }
-  }
-};
+  };
 &lt;/script&gt;
 &nbsp;
 &lt;style lang="scss"&gt;
-.am-tabs-content {
-  position: relative;
-  &amp;.vertical {
-    display: flex;
-    align-items: flex-start;
-    justify-content: flex-start;
+  .am-tabs-content {
+    position: relative;
+    &amp;.vertical {
+      display: flex;
+      align-items: flex-start;
+      justify-content: flex-start;
+    }
   }
-}
 &lt;/style&gt;
 &nbsp;</pre></td></tr>
 </table></pre>
@@ -295,7 +310,7 @@ export default {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Sun Jan 05 2020 16:16:06 GMT+0800 (中国标准时间)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Tue Jan 07 2020 15:59:31 GMT+0800 (中国标准时间)
 </div>
 </div>
 <script src="../../prettify.js"></script>

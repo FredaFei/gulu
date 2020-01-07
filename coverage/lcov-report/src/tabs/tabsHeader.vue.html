@@ -22,12 +22,12 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>10/10</span>
+        <span class='fraction'>12/12</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>4/4</span>
+        <span class='fraction'>8/8</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
@@ -37,7 +37,7 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>10/10</span>
+        <span class='fraction'>12/12</span>
       </div>
     </div>
   </div>
@@ -123,7 +123,9 @@
 78
 79
 80
-81</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+81
+82
+83</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -139,28 +141,30 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
 <span class="cline-any cline-yes">2×</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2×</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2×</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2×</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2×</span>
-<span class="cline-any cline-yes">2×</span>
-<span class="cline-any cline-yes">1×</span>
-<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
@@ -215,73 +219,75 @@
 &lt;/template&gt;
 &nbsp;
 &lt;script&gt;
-export default {
-  name: "amTabsHeader",
-  inject: ["eventBus", "direction"],
-  mounted() {
-    this.eventBus &amp;&amp;
+  export default {
+    name: "amTabsHeader",
+    inject: ["eventBus", "direction", "lineWidthOrHeight"],
+    mounted() {
+      this.eventBus &amp;&amp;
       this.eventBus.$on("update:selected", (name, vm) =&gt; {
         this.calculateLineStyle(vm);
       });
-  },
-  methods: {
-    calculateLineStyle(vm) {
-      // 当选中状态样式导致元素宽度变化时，会出现下划线的宽度与当前选中的tabItem宽度不一致
-      this.$nextTick(() =&gt; {
-        let {
-          left: left1,
-          top: top1
-        } = this.$refs.tabsHead.getBoundingClientRect();
-        let {
-          width,
-          left: left2,
-          height,
-          top: top2
-        } = vm.$el.getBoundingClientRect();
-        if (this.direction === "horizontal") {
-          this.$refs.line.style.width = `${width}px`;
-          this.$refs.line.style.left = `${left2 - left1}px`;
-        } else {
-          this.$refs.line.style.height = `${height}px`;
-          this.$refs.line.style.top = `${top2 - top1}px`;
-        }
-      });
+    },
+    methods: {
+      calculateLineStyle(vm) {
+        // 当选中状态样式导致元素宽度变化时，会出现下划线的宽度与当前选中的tabItem宽度不一致
+        this.$nextTick(() =&gt; {
+          let {
+            left: left1,
+            top: top1
+          } = this.$refs.tabsHead.getBoundingClientRect();
+          let {
+            width,
+            left: left2,
+            height,
+            top: top2
+          } = vm.$el.getBoundingClientRect();
+          const lineWidth = this.lineWidthOrHeight ? +this.lineWidthOrHeight : width
+          const lineHeight = this.lineWidthOrHeight ? +this.lineWidthOrHeight : height
+          if (this.direction === "horizontal") {
+            this.$refs.line.style.width = `${lineWidth}px`;
+            this.$refs.line.style.left = `${left2 - left1 + (width - lineWidth) / 2}px`;
+          } else {
+            this.$refs.line.style.height = `${lineHeight}px`;
+            this.$refs.line.style.top = `${top2 - top1 + (height - lineHeight) / 2}px`;
+          }
+        });
+      }
     }
-  }
-};
+  };
 &lt;/script&gt;
 &nbsp;
 &lt;style lang="scss" scoped&gt;
-.am-tabs-header {
-  position: relative;
-  display: flex;
-  justify-content: flex-start;
-  flex-shrink: 0;
-  border-bottom: 1px solid #ddd;
-  &gt; .line {
-    position: absolute;
-    bottom: -1px;
-    border-bottom: 2px solid #1890ff;
-    box-sizing: border-box;
-    transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
-  }
-  &gt; .action-wrapper {
-    margin-left: auto;
+  .am-tabs-header {
+    position: relative;
     display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0 1em;
-  }
-  &amp;.vertical {
-    flex-direction: column;
-    border-right: 1px solid #ddd;
-    border-bottom: none;
+    justify-content: flex-start;
+    flex-shrink: 0;
+    border-bottom: 1px solid #ddd;
     &gt; .line {
-      right: -1px;
-      border-right: 2px solid #1890ff;
+      position: absolute;
+      bottom: -1px;
+      border-bottom: 2px solid #1890ff;
+      box-sizing: border-box;
+      transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+    }
+    &gt; .action-wrapper {
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 1em;
+    }
+    &amp;.vertical {
+      flex-direction: column;
+      border-right: 1px solid #ddd;
+      border-bottom: none;
+      &gt; .line {
+        right: -1px;
+        border-right: 2px solid #1890ff;
+      }
     }
   }
-}
 &lt;/style&gt;
 &nbsp;</pre></td></tr>
 </table></pre>
@@ -289,7 +295,7 @@ export default {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Sun Jan 05 2020 16:16:06 GMT+0800 (中国标准时间)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Tue Jan 07 2020 15:59:31 GMT+0800 (中国标准时间)
 </div>
 </div>
 <script src="../../prettify.js"></script>
