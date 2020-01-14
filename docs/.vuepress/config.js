@@ -26,6 +26,7 @@ module.exports = {
           '/components/checkbox',
           '/components/select',
           '/components/form',
+          '/components/table',
           '/components/datePicker',
           '/components/toast',
           '/components/message',

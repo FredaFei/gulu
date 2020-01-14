@@ -174,6 +174,7 @@ export default {
   methods: {
     createColumns() {
       this.columns = this.$slots.default.map(node => {
+        console.log(node);
         let { text, field, width } = node.componentOptions.propsData;
         let render = node.data.scopedSlots && node.data.scopedSlots.default;
         return { text, field, width, render };
