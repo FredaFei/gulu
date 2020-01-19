@@ -4,10 +4,10 @@
       <table class="am-table" :class="{border,striped,compact}" ref="gTable">
         <thead>
           <tr>
-            <th class="am-table-expend-field am-table-center" v-if="expendField"></th>
+            <th class="am-table-expand-field am-table-center" v-if="expandField"></th>
             <th class="am-table-checkbox" v-if="checkable"><input type="checkbox" @click="onChangeAllItems" :checked="areAllCheckedItems" ref="allChecked" /></th>
             <th v-if="numberVisiable" class="am-table-number">#</th>
-            <th v-for="col in columns" :key="col.field" :style="{width:col.width+ 'px'}">
+            <th v-for="col in columns" :key="col.field" :width="col.width">
               <div class="am-table-head">{{col.text}}
                 <span class="am-table-sorter" v-if="orderBy[col.field]" @click="onChangeOrderBy(col.field)">
                   <am-icon name="asc" :class="{active: orderBy[col.field]==='asc'}"></am-icon>
@@ -21,13 +21,13 @@
         <tbody>
           <template v-for="(data,index) in dataSource">
             <tr :key="data.id">
-              <td class="am-table-expend-field am-table-center" v-if="expendField">
-                <am-icon class="am-table-expend-icon" :class="{'active': inExpendIds(data.id)}" name="right" @click="expendItem(data.id)"></am-icon>
+              <td class="am-table-expand-field am-table-center" v-if="expandField">
+                <am-icon class="am-table-expand-icon" :class="{'active': inExpandIds(data.id)}" name="right" @click="expandItem(data.id)"></am-icon>
               </td>
               <td class="am-table-checkbox" v-if="checkable"><input type="checkbox" :checked="inSelectedItems(data)" @click="onChangeItem(data,$event)" /></td>
               <td v-if="numberVisiable" class="am-table-number">{{index+1}}</td>
               <template v-for="col in columns">
-                <td :key="col.field" :style="{width:col.width+'px'}">
+                <td :key="col.field" :width="col.width">
                   <template v-if="col.render">
                     <vnodes :vnodes="col.render({value: data[col.field]})"></vnodes>
                   </template>
@@ -42,10 +42,10 @@
                 </div>
               </td>
             </tr>
-            <transition name="slide-fade" :key="`${data.id}-expendFiled`">
-              <tr :key="`${data.id}-expendFiled`" class="am-table-expend-filed" v-if="inExpendIds(data.id)">
-                <td class="am-table-expend-field am-table-center"></td>
-                <td :colspan="`${columns.length+expendedCellColSpan}`">
+            <transition name="slide-fade" :key="`${data.id}-expandFiled`">
+              <tr :key="`${data.id}-expandFiled`" class="am-table-expand-filed" v-if="inExpandIds(data.id)">
+                <td class="am-table-expand-field am-table-center"></td>
+                <td :colspan="`${columns.length+expandedCellColSpan}`">
                   <p>{{data.description || '空'}}</p>
                 </td>
               </tr>
@@ -82,7 +82,7 @@ export default {
     height: {
       type: Number
     },
-    expendField: {
+    expandField: {
       type: String
     },
     orderBy: {
@@ -121,7 +121,7 @@ export default {
   data() {
     return {
       newTable: {},
-      expendIds: [],
+      expandIds: [],
       columns: []
     };
   },
@@ -141,12 +141,12 @@ export default {
       }
       return equal;
     },
-    expendedCellColSpan() {
+    expandedCellColSpan() {
       let count = 1;
       if (this.checkable) {
         count += 1;
       }
-      if (this.expendField) {
+      if (this.expandField) {
         count += 1;
       }
       return count;
@@ -173,12 +173,12 @@ export default {
   },
   methods: {
     createColumns() {
-      this.columns = this.$slots.default.map(node => {
-        console.log(node);
-        let { text, field, width } = node.componentOptions.propsData;
-        let render = node.data.scopedSlots && node.data.scopedSlots.default;
-        return { text, field, width, render };
-      });
+      this.columns = this.$slots.default.filter(node => node.tag && node.tag.includes('amTableColumn'))
+        .map(node => {
+          let { text, field, width } = node.componentOptions.propsData;
+          let render = node.data.scopedSlots && node.data.scopedSlots.default;
+          return { text, field, width, render };
+        });
     },
     doResponseCells() {
       if (this.$scopedSlots.default) {
@@ -215,15 +215,15 @@ export default {
         this.$refs.tableContent.appendChild(newTable);
       });
     },
-    expendItem(id) {
-      if (this.inExpendIds(id)) {
-        this.expendIds.splice(this.expendIds.indexOf(id), 1);
+    expandItem(id) {
+      if (this.inExpandIds(id)) {
+        this.expandIds.splice(this.expandIds.indexOf(id), 1);
       } else {
-        this.expendIds.push(id);
+        this.expandIds.push(id);
       }
     },
-    inExpendIds(id) {
-      return this.expendIds.includes(id);
+    inExpandIds(id) {
+      return this.expandIds.includes(id);
     },
     inSelectedItems(item) {
       return this.selectedItems.filter(i => i.id === item.id).length > 0
@@ -276,8 +276,6 @@ export default {
 .am-table {
   $gray: darken($gray, 10%);
   width: 100%;
-  border-collapse: collapse;
-  border-spacing: 0;
   border-bottom: 1px solid $gray;
   th,
   td {
@@ -306,6 +304,14 @@ export default {
     th,
     td {
       padding: 4px;
+    }
+  }
+  & {
+    tbody {
+      > tr:hover {
+        cursor: pointer;
+        background: lighten($blue, 30%) !important;
+      }
     }
   }
   &-head {
@@ -365,7 +371,7 @@ export default {
   & &-center {
     text-align: center;
   }
-  &-expend-icon {
+  &-expand-icon {
     transition: transform 0.25s;
     &.active {
       transform: rotate(90deg);
@@ -376,7 +382,7 @@ export default {
     min-width: 60px;
     width: 60px;
   }
-  &-expend-field {
+  &-expand-field {
     min-width: 40px;
     width: 40px;
     svg {

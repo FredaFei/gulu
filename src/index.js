@@ -13,6 +13,8 @@ import Checkbox from './checkbox/index.vue'
 import Radio from './radio/index.vue'
 import Select from './select/index.vue'
 import Option from './select/option.vue'
+import Table from './table/index.vue'
+import TableColumn from './table/tableColumn.vue'
 import Layout from './layout/layout.vue'
 import Header from './layout/header.vue'
 import Aside from './layout/aside.vue'
@@ -36,6 +38,8 @@ import Icon from './icon.vue'
 import CollapseTransition from './collapseTransition.vue'
 import ClickOutside from './clickOutside.js'
 
+import '../style/index.scss'
+
 const components = [
   Button,
   ButtonGroup,
@@ -52,6 +56,8 @@ const components = [
   Option,
   Checkbox,
   Radio,
+  Table,
+  TableColumn,
   Layout,
   Header,
   Aside,
@@ -96,6 +102,8 @@ export {
   Radio,
   Select,
   Option,
+  Table,
+  TableColumn,
   Layout,
   Header,
   Aside,
