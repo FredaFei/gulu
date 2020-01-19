@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="example-box">
     <p><strong>基础用法</strong>（支持多种类型）</p>
     <am-checkbox v-model="checked1">Boolean</am-checkbox>
     <am-checkbox v-model="checked1" value="Apple">String</am-checkbox>
@@ -21,10 +21,10 @@
   </div>
 </template>
 <script>
-import Checkbox from "../../../src/checkbox/index";
+import { AmCheckbox } from "../../../src/index";
 export default {
   components: {
-    AmCheckbox: Checkbox
+    AmCheckbox
   },
   data() {
     return {
@@ -37,7 +37,7 @@ export default {
       options: [1, 2, 3, 4, 5]
     };
   },
-  mounted(){
+  mounted() {
     console.log(this.$children);
   },
   computed: {
@@ -57,9 +57,8 @@ export default {
     }
   },
   methods: {
-    onChange(v){
+    onChange(v) {
       console.log(v)
-      console.log(this.$children);
     }
   },
 };

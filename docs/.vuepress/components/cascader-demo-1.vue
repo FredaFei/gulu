@@ -1,14 +1,12 @@
 <template>
-  <div class="box">
-    <h3>代码演示</h3>
+  <div class="example-box">
+    <p><strong>基础用法</strong></p>
     <am-cascader :source.sync="source" :load-data="loadData" :selected.sync="selected" popover-height="200px"></am-cascader>
-    <h3>使用方式</h3>
   </div>
 </template>
 
 <script>
-import Cascader from '../../../src/cascader/cascader'
-import CascaderItem from '../../../src/cascader/cascaderItem'
+import { Cascader, CascaderItem } from "../../../src/index";
 import db from '../../../tests/fixtures/db'
 function ajax(parentId = 0) {
   return new Promise((resolve, reject) => {
@@ -51,10 +49,3 @@ export default {
 }
 </script>
 
-<style scoped>
-.box {
-  padding: 20px;
-  z-index: 100;
-  position: relative;
-}
-</style>

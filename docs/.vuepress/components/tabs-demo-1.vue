@@ -1,5 +1,6 @@
 <template>
-  <div>
+  <div class="example-box">
+    <p><strong>基础用法</strong></p>
     <div class="box">
       <h4>Tabs 默认定位</h4>
       <am-tabs :selected.sync="selectedTabs1">

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="example-box">
     <p><strong>基础用法</strong></p>
     <am-radio v-model="checked1" value="A">Apple</am-radio>
     <am-radio v-model="checked1" value="B">Banana</am-radio>
@@ -9,10 +9,10 @@
   </div>
 </template>
 <script>
-import Radio from "../../../src/radio/index";
+import { AmRadio } from "../../../src/index";
 export default {
   components: {
-    AmRadio: Radio
+    AmRadio
   },
   data() {
     return {

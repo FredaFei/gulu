@@ -1,5 +1,5 @@
 <template>
-  <div class="box">
+  <div class="example-box">
     <am-layout style="color: white; margin-bottom:50px;">
       <am-header style="height: 50px; background:lightskyblue;">
         header
@@ -45,24 +45,14 @@
         </am-footer>
       </am-layout>
     </am-layout>
-    <h3>使用方式</h3>
+
   </div>
 </template>
 
 <script>
-import Layout from "../../../src/layout/layout";
-import Aside from "../../../src/layout/aside";
-import Header from "../../../src/layout/header";
-import Content from "../../../src/layout/content";
-import Footer from "../../../src/layout/footer";
+import { AmLayout, AmAside, AmHeader, AmContent, AmFooter } from '../../../src/index'
 export default {
-  components: {
-    AmLayout: Layout,
-    AmAside: Aside,
-    AmHeader: Header,
-    AmContent: Content,
-    AmFooter: Footer
-  }
+  components: { AmLayout, AmAside, AmHeader, AmContent, AmFooter }
 };
 </script>
 

@@ -198,7 +198,6 @@
         </am-col>
       </am-row>
     </div>
-    <h3>使用方式</h3>
   </div>
 </template>
 

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="example-box">
     <p><strong>基础用法</strong></p>
     <form @submit="onSumbit">
       <am-row>
@@ -82,107 +82,108 @@
   </div>
 </template>
 <script>
-  import Col from "../../../src/grid/gCol";
-  import Row from "../../../src/grid/gRow";
-  import Button from "../../../src/button/button";
-  import Input from "../../../src/input/input";
-  import Radio from "../../../src/radio/index";
-  import Select from "../../../src/select/index";
-  import Checkbox from "../../../src/checkbox/index";
-  import Option from "../../../src/select/option";
-  import DatePicker from "../../../src/datePicker/index";
-  import Validator from "../../../src/validate";
+import {  AmCol,
+  AmRow,
+  AmButton,
+  AmInput,
+  AmRadio,
+  AmCheckbox,
+  AmDatePicker,
+  AmSelect,
+  AmOption, Validator} from "../../../src/index";
 
-  const validator = new Validator()
-  validator.maxBirthday = value => {
-    if (new Date() - value < 0) {
-      return '出生日期最大为今天'
+
+
+const validator = new Validator()
+validator.maxBirthday = value => {
+  if (new Date() - value < 0) {
+    return '出生日期最大为今天'
+  }
+}
+export default {
+  components: {
+    AmCol,
+    AmRow,
+    AmButton,
+    AmInput,
+    AmRadio,
+    AmCheckbox,
+    AmDatePicker,
+    AmSelect,
+    AmOption,
+  },
+  data() {
+    return {
+      form: {
+        name: '',
+        birthday: '',
+        gender: '',
+        phone: '',
+        hobby: [],
+        profession: '',
+        other: '',
+      },
+      errors: [],
+      hobbies: [1, 2, 3, 4, 5],
+      profession: [
+        { value: "profession A", label: "Apple" },
+        { value: "profession B", label: "Banana" },
+        { value: "profession C", label: "Cherry" },
+        { value: "profession G", label: "Grape" },
+        { value: "profession P", label: "Peach" }
+      ],
+    };
+  },
+  methods: {
+    fieldError(key) {
+      return this.errors[key] && this.errors[key].join('，')
+    },
+    onSumbit(e) {
+      e.preventDefault()
+      const data = {}
+      for (let k of Object.keys(this.form)) {
+        if (Array.isArray(this.form[k])) {
+          data[k] = this.form[k].join(',')
+        } else {
+          data[k] = this.form[k]
+        }
+      }
+      const rules = [
+        { key: 'name', required: true, minLength: 3, maxLength: 8 },
+        { key: 'birthday', required: true, maxBirthday: true },
+        { key: 'gender', required: true },
+        { key: 'hobby', required: true },
+        { key: 'phone', required: true, pattern: 'phone' },
+        { key: 'profession', required: true },
+        { key: 'other', required: true }
+      ]
+      const errors = validator.validate(data, rules)
+      if (!validator.isEmpty(errors)) {
+        this.errors = errors;
+        return false
+      }
+      console.log('success');
     }
   }
-  export default {
-    components: {
-      AmCol: Col,
-      AmRow: Row,
-      AmButton: Button,
-      AmInput: Input,
-      AmRadio: Radio,
-      AmCheckbox: Checkbox,
-      AmDatePicker: DatePicker,
-      AmSelect: Select,
-      AmOption: Option,
-    },
-    data() {
-      return {
-        form: {
-          name: '',
-          birthday: '',
-          gender: '',
-          phone: '',
-          hobby: [],
-          profession: '',
-          other: '',
-        },
-        errors: [],
-        hobbies: [1, 2, 3, 4, 5],
-        profession: [
-          {value: "profession A", label: "Apple"},
-          {value: "profession B", label: "Banana"},
-          {value: "profession C", label: "Cherry"},
-          {value: "profession G", label: "Grape"},
-          {value: "profession P", label: "Peach"}
-        ],
-      };
-    },
-    methods: {
-      fieldError(key) {
-        return this.errors[key] && this.errors[key].join('，')
-      },
-      onSumbit(e) {
-        e.preventDefault()
-        const data = {}
-        for (let k of Object.keys(this.form)) {
-          if (Array.isArray(this.form[k])) {
-            data[k] = this.form[k].join(',')
-          } else {
-            data[k] = this.form[k]
-          }
-        }
-        const rules = [
-          {key: 'name', required: true, minLength: 3, maxLength: 8},
-          {key: 'birthday', required: true, maxBirthday: true},
-          {key: 'gender', required: true},
-          {key: 'hobby', required: true},
-          {key: 'phone', required: true, pattern: 'phone'},
-          {key: 'profession', required: true},
-          {key: 'other', required: true}
-        ]
-        const errors = validator.validate(data, rules)
-        if (!validator.isEmpty(errors)) {
-          this.errors = errors;
-          return false
-        }
-        console.log('success');
-      }
-    }
-  };
+};
 </script>
 <style scoped>
-  .am-row + .am-row {
-    margin-top: 20px;
-  }
-  form {
-    padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-  }
+.am-row + .am-row {
+  margin-top: 20px;
+}
+form {
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
 
-  .label {
-    text-align: right;
-    margin-right: 20px;
-  }
+.label {
+  text-align: right;
+  margin-right: 20px;
+}
 
-  .error {
-    color: red;
-    font-size: 14px;
-  }
+.error {
+  color: red;
+  font-size: 14px;
+}
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="example-box">
     <p><strong>基础用法</strong></p>
     <am-table :data-source="tableData1">
       <template v-for="(column,index) in columns1">
@@ -57,11 +57,11 @@
   </div>
 </template>
 <script>
-import { Button, Table, TableColumn } from "../../../src/index";
+import { AmTable, AmTableColumn, AmButton } from "../../../src/index";
 
 export default {
   components: {
-    AmTable: Table, AmTableColumn: TableColumn, AmButton: Button
+    AmTable, AmTableColumn, AmButton
   },
   data() {
     return {

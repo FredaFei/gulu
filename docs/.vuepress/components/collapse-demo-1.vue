@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="example-box">
     <div class="section">
       <div><strong>基础用法</strong></div>
       <p>可同时展开多个</p>
@@ -92,9 +92,7 @@
 </template>
 
 <script>
-import AmCollapse from "../../../src/collapse/collapse";
-import AmCollapseItem from "../../../src/collapse/collapseItem";
-import AmIcon from "../../../src/icon";
+import { AmIcon, AmCollapse, AmCollapseItem } from '../../../src/index'
 export default {
   components: {
     AmCollapse,

@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <h5>基础用法</h5>
+  <div class="example-box">
+    <p><strong>基础用法</strong></p>
     <p>默认居中显示，3 秒后自动消失。</p>
     <am-button @click="showTaost1">顶部</am-button>
     <am-button @click="showTaost2">居中</am-button>

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="example-box">
     <p><strong>基础用法</strong></p>
     <am-button>默认</am-button>
     <am-button icon="settings">icon 默认左边</am-button>
@@ -16,12 +16,11 @@
   </div>
 </template>
 <script>
-import Button from "../../../src/button/button";
-import ButtonGroup from "../../../src/button/buttonGroup";
+import { AmButton, AmButtonGroup } from "../../../src/index";
 export default {
   components: {
-    AmButton: Button,
-    AmButtonGroup: ButtonGroup
+    AmButton,
+    AmButtonGroup
   }
 };
 </script>

@@ -10,4 +10,9 @@ table {
 }
 .theme-container .content{
   max-width: 800px;
+  .example-box{
+    p{
+      margin: 10px 0;
+    }
+  }
 }

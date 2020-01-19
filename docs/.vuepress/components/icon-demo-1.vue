@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="example-box">
     <p><strong>基础用法</strong></p>
     <am-icon name="left"></am-icon>
     <am-icon name="right"></am-icon>
@@ -20,21 +20,21 @@
   </div>
 </template>
 <script>
-  import Icon from "../../../src/icon";
+import { AmIcon } from "../../../src/index";
 
-  export default {
-    components: {
-      AmIcon: Icon
-    }
-  };
+export default {
+  components: {
+    AmIcon
+  }
+};
 </script>
 <style scoped>
-  .am-icon {
-    font-size: 30px;
-    margin-bottom: 10px;
-  }
+.am-icon {
+  font-size: 30px;
+  margin-bottom: 10px;
+}
 
-  .am-icon + .am-icon {
-    margin-left: 10px;
-  }
+.am-icon + .am-icon {
+  margin-left: 10px;
+}
 </style>

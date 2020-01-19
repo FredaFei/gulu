@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="example-box">
     <p><strong>基础用法</strong></p>
     <am-select :selected.sync="selected1">
       <am-option v-for="o in options1" :key="o.value" :value="o.value">{{o.label}}</am-option>
@@ -20,12 +20,11 @@
   </div>
 </template>
 <script>
-import Select from "../../../src/select/index";
-import Option from "../../../src/select/option";
+import { AmSelect, AmOption } from "../../../src/index";
 export default {
   components: {
-    AmSelect: Select,
-    AmOption: Option
+    AmSelect,
+    AmOption
   },
   data() {
     return {
@@ -49,7 +48,7 @@ export default {
       options3: [
         { value: "G", label: "Grape" },
         { value: "P", label: "Peach" },
-        { value: "A", label: "Apple",disabled: true },
+        { value: "A", label: "Apple", disabled: true },
       ],
       selected4: '',
       options4: [

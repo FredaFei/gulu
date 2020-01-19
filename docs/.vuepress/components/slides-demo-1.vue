@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <h4>基础用法</h4>
+  <div class="example-box">
+    <p><strong>基础用法</strong></p>
     <am-slides :selected.sync="selected1">
       <am-slides-item name="1">
         <div class="slides-item">slide 1</div>

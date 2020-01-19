@@ -1,7 +1,6 @@
 <template>
-  <div>
-    <h3>代码演示</h3>
-    <h4>垂直菜单，可内嵌子菜单</h4>
+  <div class="example-box">
+    <p><strong>垂直菜单，可内嵌子菜单</strong></p>
     <am-nav :selected.sync="selected" @update:selected="clickFn" vertical style="width:200px; margin-bottom:50px">
       <am-nav-item name="music">
         <div>nav 1</div>
@@ -26,7 +25,7 @@
         <div>nav 3</div>
       </am-nav-item>
     </am-nav>
-    <h4>水平的顶部导航菜单</h4>
+    <p><strong>水平的顶部导航菜单</strong></p>
     <am-nav :selected.sync="selected" style="width:260px;">
       <am-nav-item name="music">
         <div>nav 1</div>
@@ -51,19 +50,14 @@
         <div>nav 3</div>
       </am-nav-item>
     </am-nav>
-    <h3>使用方式</h3>
   </div>
 </template>
 <script>
-import Nav from '../../../src/nav/nav'
-import SubNav from '../../../src/nav/subNav'
-import NavItem from '../../../src/nav/navItem'
+import {AmNav, AmSubNav, AmNavItem} from '../../../src/index'
+
+
 export default {
-  components: {
-    AmNav: Nav,
-    AmSubNav: SubNav,
-    AmNavItem: NavItem
-  },
+  components: { AmNav, AmSubNav, AmNavItem },
   data() {
     return {
       selected: 'sport'
