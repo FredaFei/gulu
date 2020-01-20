@@ -44,8 +44,9 @@ new Vue({
 [点我跳转 项目实战应用](https://codesandbox.io/s/ojvvl27v6q)
 
 ::: tip 重要说明
-本框架支持的Vue2 v2.5.20前。v2.6.0+ 因修复了nextTick的一些Bug，对个别组件的使用会有影响。特别是datePicker组件,因使用了popover组件，在同一区域作条件切换时（对年月日点击时），会造成闪现的Bug。
-后期会对datePicker组件做优化
+
+本框架支持的Vue v2.5.20前。v2.6.0+ 因修复了nextTick的一些Bug，对个别组件的使用会有影响。~~特别是datePicker组件,因使用了popover组件，在同一区域作条件切换时（对年月日点击时），会造成闪现的Bug。
+后期会对datePicker组件做优化~~。（已修复）
 
 参考：
 + [vue releases v2.6.0](https://github.com/vuejs/vue/releases/tag/v2.6.0)
