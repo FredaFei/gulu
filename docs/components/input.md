@@ -13,7 +13,7 @@ sidebarDepth: 2
 
 ```vue{4}
 <template>
-  <div>
+  <div class="example-box">
     <div class="box">
       <h4>基础用法</h4>
       <am-input v-model="v1"></am-input>

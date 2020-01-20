@@ -3,13 +3,17 @@ title: 'Uploader 上传'
 sidebarDepth: 2
 ---
 
+### 效果预览
+
 <ClientOnly>
   <uploader-demo-1/>
 </ClientOnly>
 
+### 使用方式
+
 ```vue{4}
 <template>
-  <div>
+  <div class="example-box">
     <p class="error">上传的文件最大尺寸不超过3MB</p>
     <am-uploader
       name="files"

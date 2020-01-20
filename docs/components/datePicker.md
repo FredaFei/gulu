@@ -13,7 +13,7 @@ sidebarDepth: 2
 
 ```vue{4}
 <template>
-  <div>
+  <div class="example-box">
     <div class="box">
       <h4>基础用法</h4>
       <am-date-picker v-model="x1"></am-date-picker>

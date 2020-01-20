@@ -1,7 +1,6 @@
 <template>
-  <div>
-    <h3>代码演示</h3>
-    <h4>click 触发</h4>
+  <div class="example-box">
+    <p><strong>click 触发</strong></p>
     <am-popover position="left" z-index="1000">
       <template slot="popover">
         <div class="pop-body">
@@ -48,7 +47,7 @@
       <am-button>bottom</am-button>
     </am-popover>
 
-    <h4>hover 触发</h4>
+    <p><strong>hover 触发</strong></p>
     <am-popover position="left" trigger="hover" z-index="1000">
       <template slot="popover">
         this is a content
@@ -73,8 +72,8 @@
       </template>
       <am-button>bottom</am-button>
     </am-popover>
-    <h4>禁止触发</h4>
 
+    <p><strong>禁止触发</strong></p>
     <am-popover position="left" trigger="hover" disabled>
       <template slot="popover">
         this is a content
@@ -84,13 +83,9 @@
   </div>
 </template>
 <script>
-import AmPopover from "../../../src/popover/popover";
-import AmButton from "../../../src/button/button";
+import { AmPopover, AmButton } from "../../../src/index";
 export default {
-  components: {
-    AmPopover,
-    AmButton
-  }
+  components: { AmPopover, AmButton }
 };
 </script>
 <style lang="scss" scoped>

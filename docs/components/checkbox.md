@@ -13,7 +13,7 @@ sidebarDepth: 2
 
 ```vue{4}
 <template>
-  <div>
+  <div class="example-box">
     <p><strong>基础用法</strong>（支持多种类型）</p>
     <p>支持多种类型</p>
     <am-checkbox v-model="checked1">Boolean</am-checkbox>
@@ -27,9 +27,7 @@ sidebarDepth: 2
     <am-checkbox v-model="checked3" disabled>B</am-checkbox>
     <p><strong>全选状态</strong></p>
     <div>
-      <am-checkbox v-model="allChecked" :indeterminate="indeterminate"
-        >全选</am-checkbox
-      >
+      <am-checkbox v-model="allChecked" :indeterminate="indeterminate">全选</am-checkbox>
     </div>
     <am-checkbox v-model="checkedNames" :value="i" v-for="i in options">{{
       i

@@ -13,7 +13,7 @@ sidebarDepth: 2
 
 ```vue{4}
 <template>
-  <div>
+  <div class="example-box">
     <p><strong>基础用法</strong></p>
     <am-button>默认</am-button>
     <am-button icon="settings">icon 默认左边</am-button>

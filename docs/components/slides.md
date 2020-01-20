@@ -13,7 +13,7 @@ sidebarDepth: 2
 
 ```vue{4}
 <template>
-  <div>
+  <div class="example-box">
     <am-slides :selected.sync="selected1">
       <am-slides-item name="1">
         <div class="slides-item">slide 1</div>

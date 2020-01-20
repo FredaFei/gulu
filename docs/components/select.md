@@ -13,7 +13,7 @@ sidebarDepth: 2
 
 ```vue{4}
 <template>
-  <div>
+  <div class="example-box">
     <p><strong>基础用法</strong></p>
     <am-select :selected.sync="selected1">
       <am-option v-for="o in options1" :key="o.value" :value="o.value">{{o.label}}</am-option>

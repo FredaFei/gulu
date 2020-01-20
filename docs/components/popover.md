@@ -3,6 +3,8 @@ title: 'Popover 气泡卡片'
 sidebarDepth: 2
 ---
 
+### 效果预览
+
 <ClientOnly>
   <popover-demo-1/>
 </ClientOnly>
@@ -11,7 +13,7 @@ sidebarDepth: 2
 
 ```vue{4}
 <template>
-  <div>
+  <div class="example-box">
     <am-popover position="left" z-index="1000">
       <template slot="popover">
         <div class="pop-body">

@@ -3,13 +3,17 @@ title: 'Layout 布局'
 sidebarDepth: 2
 ---
 
+### 效果预览
+
 <ClientOnly>
   <layout-demo-1/>
 </ClientOnly>
 
+### 使用方式
+
 ```vue{4}
 <template>
-  <div>
+  <div class="example-box">
     <am-layout style="color: white; margin-bottom:50px;">
       <am-header style="height: 50px; background:lightskyblue;">
         header

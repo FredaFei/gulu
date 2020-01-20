@@ -3,13 +3,17 @@ title: 'Grid 栅格'
 sidebarDepth: 2
 ---
 
+### 效果预览
+
 <ClientOnly>
   <grid-demo-1/>
 </ClientOnly>
 
+### 使用方式
+
 ```vue{4}
 <template>
-  <div class="box">
+  <div class="example-box">
     <div style="paddinam-top: 16px;">
       <h3>24格网格 预览</h3>
       <am-row class="demoRow">

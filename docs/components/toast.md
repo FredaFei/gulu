@@ -13,7 +13,7 @@ sidebarDepth: 2
 
 ```vue{4}
 <template>
-  <div>
+  <div class="example-box">
     <h5>基础用法</h5>
     <p>默认居中显示，3 秒后自动消失。</p>
     <am-button @click="showTaost1">顶部</am-button>

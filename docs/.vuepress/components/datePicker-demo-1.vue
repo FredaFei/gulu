@@ -13,9 +13,7 @@
 <script>
 import { AmDatePicker } from "../../../src/index";
 export default {
-  components: {
-    AmDatePicker
-  },
+  components: { AmDatePicker },
   data() {
     return {
       x1: new Date(),

@@ -3,14 +3,18 @@ title: 'Pager 分页'
 sidebarDepth: 2
 ---
 
+### 效果预览
+
 <ClientOnly>
   <pager-demo-1/>
   <pager-demo-2/>
 </ClientOnly>
 
+### 使用方式
+
 ```vue{4}
 <template>
-  <div>
+  <div class="example-box">
     <am-pagination
       :current-page="currentPage"
       :total-page="10"

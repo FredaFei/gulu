@@ -53,8 +53,7 @@
   </div>
 </template>
 <script>
-import {AmNav, AmSubNav, AmNavItem} from '../../../src/index'
-
+import { AmNav, AmSubNav, AmNavItem } from '../../../src/index'
 
 export default {
   components: { AmNav, AmSubNav, AmNavItem },

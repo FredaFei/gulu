@@ -12,7 +12,7 @@
         <div class="slides-item">slide 3</div>
       </am-slides-item>
     </am-slides>
-    <h4>手动播放</h4>
+    <p><strong>手动播放</strong></p>
     <am-slides :selected.sync="selected2" :auto-play="false">
       <am-slides-item name="11">
         <div class="slides-item">slide 1</div>
@@ -24,7 +24,7 @@
         <div class="slides-item">slide 3</div>
       </am-slides-item>
     </am-slides>
-    <h4>下标风格</h4>
+    <p><strong>下标风格</strong></p>
     <am-slides :selected.sync="selected3" dots-style="button">
       <am-slides-item name="111">
         <div class="slides-item">slide 1</div>
@@ -40,13 +40,9 @@
 </template>
 
 <script>
-import AmSlides from "../../../src/slides/slides";
-import AmSlidesItem from "../../../src/slides/slidesItem";
+import { AmSlides, AmSlidesItem } from "../../../src/index";
 export default {
-  components: {
-    AmSlides,
-    AmSlidesItem
-  },
+  components: { AmSlides, AmSlidesItem },
   data() {
     return {
       selected1: "",

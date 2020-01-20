@@ -12,15 +12,12 @@
   </div>
 </template>
 <script>
-import Button from "../../../src/button/button";
-import Toast from "../../../src/toast";
+import { AmButton, AmToast } from "../../../src/index";
 import Vue from "vue";
-Vue.use(Toast);
+Vue.use(AmToast);
 
 export default {
-  components: {
-    AmButton: Button
-  },
+  components: { AmButton },
   methods: {
     showTaost1() {
       this.$toast(

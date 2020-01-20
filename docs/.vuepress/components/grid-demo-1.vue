@@ -202,13 +202,9 @@
 </template>
 
 <script>
-import Col from "../../../src/grid/gCol";
-import Row from "../../../src/grid/gRow";
+import { AmCol, AmRow } from "../../../src/index";
 export default {
-  components: {
-    AmCol: Col,
-    AmRow: Row
-  }
+  components: { AmCol, AmRow }
 };
 </script>
 
@@ -218,10 +214,10 @@ export default {
   text-align: center;
   background: #e5e9f2;
 }
-.am-col{
+.am-col {
   background: #ddd;
 }
-.am-col:nth-child(2n+1){
+.am-col:nth-child(2n + 1) {
   background: #ccc;
 }
 </style>

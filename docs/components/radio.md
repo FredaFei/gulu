@@ -13,7 +13,7 @@ sidebarDepth: 2
 
 ```vue{4}
 <template>
-  <div>
+  <div class="example-box">
     <p><strong>基础用法</strong></p>
     <am-radio v-model="checked1" value="A">Apple</am-radio>
     <am-radio v-model="checked1" value="B">Banana</am-radio>

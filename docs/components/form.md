@@ -13,84 +13,84 @@ sidebarDepth: 2
 
 ```vue{4}
 <template>
-    <form @submit="onSumbit">
-      <am-row>
-        <am-col span="5">
-          <div class="label">姓名</div>
-        </am-col>
-        <am-col span="8">
-          <am-input v-model="form.name"></am-input>
-          <span class="error">{{fieldError('name')}}</span>
-        </am-col>
-      </am-row>
-      <am-row>
-        <am-col span="5">
-          <div class="label">出生日期</div>
-        </am-col>
-        <am-col span="8">
-          <am-date-picker v-model="form.birthday"></am-date-picker>
-          <span class="error">{{fieldError('birthday')}}</span>
-        </am-col>
-      </am-row>
-      <am-row>
-        <am-col span="5">
-          <div class="label">性别</div>
-        </am-col>
-        <am-col span="8">
-          <div>
-            <am-radio v-model="form.gender" value="M">M</am-radio>
-            <am-radio v-model="form.gender" value="F">F</am-radio>
-          </div>
-          <span class="error">{{fieldError('gender')}}</span>
-        </am-col>
-      </am-row>
-      <am-row>
-        <am-col span="5">
-          <div class="label">爱好</div>
-        </am-col>
-        <am-col span="10">
-          <div>
-            <am-checkbox v-model="form.hobby" :value="i" v-for="i in hobbies">{{i}}</am-checkbox>
-          </div>
-          <span class="error">{{fieldError('hobby')}}</span>
-        </am-col>
-      </am-row>
-      <am-row>
-        <am-col span="5">
-          <div class="label">职业</div>
-        </am-col>
-        <am-col span="8">
-          <am-select :selected.sync="form.profession" clearable>
-            <am-option v-for="o in profession" :key="o.value" :value="o.value">{{o.label}}</am-option>
-          </am-select>
-          <span class="error">{{fieldError('profession')}}</span>
-        </am-col>
-      </am-row>
-      <am-row>
-        <am-col span="5">
-          <div class="label">电话</div>
-        </am-col>
-        <am-col span="8">
-          <am-input v-model="form.phone"></am-input>
-          <span class="error">{{fieldError('phone')}}</span>
-        </am-col>
-      </am-row>
-      <am-row>
-        <am-col span="5">
-          <div class="label">其他</div>
-        </am-col>
-        <am-col span="8">
-          <am-input v-model="form.other" type="textarea"></am-input>
-          <span class="error">{{fieldError('other')}}</span>
-        </am-col>
-      </am-row>
-      <am-row>
-        <am-col span="5"></am-col>
-        <am-col span="8">
-          <am-button>提交</am-button>
-        </am-col>
-      </am-row>
-    </form>
+  <form @submit="onSumbit">
+    <am-row>
+      <am-col span="5">
+        <div class="label">姓名</div>
+      </am-col>
+      <am-col span="8">
+        <am-input v-model="form.name"></am-input>
+        <span class="error">{{fieldError('name')}}</span>
+      </am-col>
+    </am-row>
+    <am-row>
+      <am-col span="5">
+        <div class="label">出生日期</div>
+      </am-col>
+      <am-col span="8">
+        <am-date-picker v-model="form.birthday"></am-date-picker>
+        <span class="error">{{fieldError('birthday')}}</span>
+      </am-col>
+    </am-row>
+    <am-row>
+      <am-col span="5">
+        <div class="label">性别</div>
+      </am-col>
+      <am-col span="8">
+        <div>
+          <am-radio v-model="form.gender" value="M">M</am-radio>
+          <am-radio v-model="form.gender" value="F">F</am-radio>
+        </div>
+        <span class="error">{{fieldError('gender')}}</span>
+      </am-col>
+    </am-row>
+    <am-row>
+      <am-col span="5">
+        <div class="label">爱好</div>
+      </am-col>
+      <am-col span="10">
+        <div>
+          <am-checkbox v-model="form.hobby" :value="i" v-for="i in hobbies">{{i}}</am-checkbox>
+        </div>
+        <span class="error">{{fieldError('hobby')}}</span>
+      </am-col>
+    </am-row>
+    <am-row>
+      <am-col span="5">
+        <div class="label">职业</div>
+      </am-col>
+      <am-col span="8">
+        <am-select :selected.sync="form.profession" clearable>
+          <am-option v-for="o in profession" :key="o.value" :value="o.value">{{o.label}}</am-option>
+        </am-select>
+        <span class="error">{{fieldError('profession')}}</span>
+      </am-col>
+    </am-row>
+    <am-row>
+      <am-col span="5">
+        <div class="label">电话</div>
+      </am-col>
+      <am-col span="8">
+        <am-input v-model="form.phone"></am-input>
+        <span class="error">{{fieldError('phone')}}</span>
+      </am-col>
+    </am-row>
+    <am-row>
+      <am-col span="5">
+        <div class="label">其他</div>
+      </am-col>
+      <am-col span="8">
+        <am-input v-model="form.other" type="textarea"></am-input>
+        <span class="error">{{fieldError('other')}}</span>
+      </am-col>
+    </am-row>
+    <am-row>
+      <am-col span="5"></am-col>
+      <am-col span="8">
+        <am-button>提交</am-button>
+      </am-col>
+    </am-row>
+  </form>
 </template>
 ```
 

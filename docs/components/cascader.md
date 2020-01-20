@@ -3,13 +3,17 @@ title: 'Cascader 级联选择'
 sidebarDepth: 2
 ---
 
+### 效果预览
+
 <ClientOnly>
   <cascader-demo-1/>
 </ClientOnly>
 
+### 使用方式
+
 ```vue{4}
 <template>
-  <div class="box">
+  <div class="example-box">
     <am-cascader
       :source.sync="source"
       :load-data="loadData"

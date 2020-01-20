@@ -1,8 +1,7 @@
 <template>
   <div class="example-box">
     <div class="section">
-      <div><strong>基础用法</strong></div>
-      <p>可同时展开多个</p>
+      <p><strong>基础用法</strong></p>
       <am-collapse :selected.sync="selected1">
         <am-collapse-item title="风之谷 風の谷のナウシカ (1984)" name="1">
           <div class="desc">
@@ -25,8 +24,7 @@
       </am-collapse>
     </div>
     <div class="section">
-      <div><strong>手风琴效果</strong></div>
-      <p>每次只能展开一个</p>
+      <p><strong>手风琴效果</strong></p>
       <am-collapse :selected.sync="selected2" single>
         <am-collapse-item title="哈尔的移动城堡 ハウルの動く城 (2004)" name="1">
           <div class="desc">电影剧情：这部剧场版动画以战争前夜为背景，描述住在小镇的三姐妹，其中的大姐苏菲是位制作帽子的专家，但她却因此得罪了女巫，从18岁的美少女变成了90岁的老太婆。她惊恐地逃出家里，但又进入了一座移动的城堡，她和不能与人相恋但懂魔法的哈尔，谱出了一段战地恋曲，并且和城堡里的其他人一起想办法解开身上的魔咒。其中的城堡部分带有19世纪末钢铁工厂的特殊风格。</div>
@@ -47,8 +45,7 @@
       </am-collapse>
     </div>
     <div class="section">
-      <div><strong>自定义标题</strong></div>
-      <p>每次只能展开一个</p>
+      <p><strong>自定义标题</strong></p>
       <am-collapse :selected.sync="selected3" single>
         <am-collapse-item title="虞美人盛开的山坡 コクリコ坂から (2011)" name="1">
           <div class="desc">
@@ -108,16 +105,3 @@ export default {
   }
 };
 </script>
-<style lang="scss" scoped>
-p {
-  color: #5e6d82;
-  font-size: 14px;
-}
-.section {
-  margin-bottom: 40px;
-  .desc {
-    text-indent: 2em;
-    margin-bottom: 20px;
-  }
-}
-</style>

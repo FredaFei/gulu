@@ -1,18 +1,15 @@
 <template>
   <div class="example-box">
     <p><strong>只有一页时</strong></p>
-    <am-pager :current-page="currentPage" :total-page="1" :hide-on-single-page="false"
-    :current-page.sync="currentPage"></am-pager>
+    <am-pager :current-page="currentPage" :total-page="1" :hide-on-single-page="false" :current-page.sync="currentPage"></am-pager>
   </div>
 </template>
 <script>
-import AmPager from '../../../src/pager/pager'
+import { AmPager } from '../../../src/index'
 
 export default {
-  components: {
-    AmPager
-  },
-   data() {
+  components: { AmPager },
+  data() {
     return {
       currentPage: 1
     }
