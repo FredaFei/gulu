@@ -20,9 +20,9 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">87.5% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>7/8</span>
+        <span class='fraction'>11/11</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
@@ -30,14 +30,14 @@
         <span class='fraction'>0/0</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">66.67% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>2/3</span>
+        <span class='fraction'>5/5</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">87.5% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>7/8</span>
+        <span class='fraction'>11/11</span>
       </div>
     </div>
   </div>
@@ -88,10 +88,8 @@
 43
 44
 45
-46
-47
-48
-49</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+46</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
@@ -103,87 +101,80 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import chai, { expect } from 'chai'
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import chai, {expect} from 'chai'
 import sinon from 'sinon'
 import sinonChai from 'sinon-chai'
+&nbsp;
 chai.use(sinonChai)
-import { mount } from '@vue/test-utils'
 &nbsp;
+import {mount, shallowMount} from '@vue/test-utils'
 import Vue from 'vue'
-import Table from '../../src/table/table'
+import Table from '../../src/table/index'
 import TableColumn from '../../src/table/tableColumn'
-&nbsp;
-Vue.component('am-Table', Table)
-Vue.component('am-table-column', TableColumn)
 &nbsp;
 describe('Table', () =&gt; {
   it('存在.', () =&gt; {
     expect(Table).to.be.ok
   })
-  xit('渲染一个table', () =&gt; <span class="fstat-no" title="function not covered" >{</span>
-    const wrapper = <span class="cstat-no" title="statement not covered" >mount(Table, {</span>
-      propsData: {
-        dataSource: [
-          {
-            id: 1,
-            name: '李三',
-            class: '十二班',
-            weigth: '130',
-            height: '170cm'
-          },
-          {
-            id: 2,
-            name: '张三',
-            class: '二班',
-            weigth: '140',
-            height: '180cm'
-          }
-        ]
-      },
-      slots: {
-        default: `
-          &lt;am-table-column text="姓名" field="name" :width="200"&gt;&lt;/am-table-column&gt;
-          &lt;am-table-column text="班级" field="class" :width="200"&gt;&lt;/am-table-column&gt;
-          &lt;am-table-column text="体重" field="weigth" :width="200"&gt;&lt;/am-table-column&gt;
-          &lt;am-table-column text="身高" field="height"&gt;&lt;/am-table-column&gt;
-        `
-      }
+  describe('props', () =&gt; {
+    it('可以设置 dataSource.', (done) =&gt; {
+      const wrapper = mount(Table, {
+        propsData: {
+          dataSource: [
+            {id: 1, name: '王小虎', age: 2, phone: '12345678919', address: '上海市普陀区金沙江路 1518 弄'},
+            {id: 2, name: '李小', age: 10, phone: '12345678929', address: '上海市普陀区金沙江路 1518 弄'},
+            {id: 3, name: '刘虎', age: 6, phone: '12345678939', address: '上海市普陀区金沙江路 1518 弄'},
+            {id: 4, name: '高丽', age: 4, phone: '12345678949', address: '上海市普陀区金沙江路 1518 弄'},
+            {id: 5, name: '王二', age: 14, phone: '12345678949', address: '上海市普陀区金沙江路 1518 弄'},
+          ]
+        },
+        slots: {
+          default: `
+            &lt;table-column text="姓名" field="name"&gt;&lt;/table-column&gt;
+            &lt;table-column text="年龄" field="age"&gt;&lt;/table-column&gt;
+            &lt;table-column text="手机" field="phone"&gt;&lt;/table-column&gt;
+            &lt;table-column text="地址" field="address"&gt;&lt;/table-column&gt;
+          `
+        }
+      })
+      console.log(wrapper.html());
+      setTimeout(() =&gt; {
+        console.log(wrapper.html());
+        done()
+      }, 30)
+      // expect(el.attributes('href')).to.equal('#i-settings')
     })
   })
 })
@@ -193,7 +184,7 @@ describe('Table', () =&gt; {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Tue Jan 07 2020 15:59:31 GMT+0800 (中国标准时间)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Jan 20 2020 15:28:43 GMT+0800 (中国标准时间)
 </div>
 </div>
 <script src="../../prettify.js"></script>
