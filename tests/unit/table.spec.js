@@ -1,48 +1,45 @@
-import chai, { expect } from 'chai'
+import chai, {expect} from 'chai'
 import sinon from 'sinon'
 import sinonChai from 'sinon-chai'
+
 chai.use(sinonChai)
-import { mount } from '@vue/test-utils'
 
+import {mount, shallowMount} from '@vue/test-utils'
 import Vue from 'vue'
-import Table from '../../src/table/table'
+import Table from '../../src/table/index'
 import TableColumn from '../../src/table/tableColumn'
-
-Vue.component('am-Table', Table)
-Vue.component('am-table-column', TableColumn)
 
 describe('Table', () => {
   it('存在.', () => {
     expect(Table).to.be.ok
   })
-  xit('渲染一个table', () => {
-    const wrapper = mount(Table, {
-      propsData: {
-        dataSource: [
-          {
-            id: 1,
-            name: '李三',
-            class: '十二班',
-            weigth: '130',
-            height: '170cm'
-          },
-          {
-            id: 2,
-            name: '张三',
-            class: '二班',
-            weigth: '140',
-            height: '180cm'
-          }
-        ]
-      },
-      slots: {
-        default: `
-          <am-table-column text="姓名" field="name" :width="200"></am-table-column>
-          <am-table-column text="班级" field="class" :width="200"></am-table-column>
-          <am-table-column text="体重" field="weigth" :width="200"></am-table-column>
-          <am-table-column text="身高" field="height"></am-table-column>
-        `
-      }
+  describe('props', () => {
+    it('可以设置 dataSource.', (done) => {
+      const wrapper = mount(Table, {
+        propsData: {
+          dataSource: [
+            {id: 1, name: '王小虎', age: 2, phone: '12345678919', address: '上海市普陀区金沙江路 1518 弄'},
+            {id: 2, name: '李小', age: 10, phone: '12345678929', address: '上海市普陀区金沙江路 1518 弄'},
+            {id: 3, name: '刘虎', age: 6, phone: '12345678939', address: '上海市普陀区金沙江路 1518 弄'},
+            {id: 4, name: '高丽', age: 4, phone: '12345678949', address: '上海市普陀区金沙江路 1518 弄'},
+            {id: 5, name: '王二', age: 14, phone: '12345678949', address: '上海市普陀区金沙江路 1518 弄'},
+          ]
+        },
+        slots: {
+          default: `
+            <table-column text="姓名" field="name"></table-column>
+            <table-column text="年龄" field="age"></table-column>
+            <table-column text="手机" field="phone"></table-column>
+            <table-column text="地址" field="address"></table-column>
+          `
+        }
+      })
+      console.log(wrapper.html());
+      setTimeout(() => {
+        console.log(wrapper.html());
+        done()
+      }, 30)
+      // expect(el.attributes('href')).to.equal('#i-settings')
     })
   })
 })
